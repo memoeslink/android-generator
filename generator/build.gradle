@@ -3,7 +3,6 @@ plugins {
     id 'maven-publish'
 }
 
-def currentVersionCode = 1
 def currentVersionName = "1.1.0"
 
 afterEvaluate {
