@@ -4,7 +4,7 @@ plugins {
 }
 
 def currentVersionCode = 1
-def currentVersionName = "1.0.0"
+def currentVersionName = "1.1.0"
 
 afterEvaluate {
     publishing {
@@ -13,14 +13,14 @@ afterEvaluate {
                 from components.release
 
                 groupId = 'com.memoeslink.androidgenerator'
-                artifactId = 'final-release'
+                artifactId = 'release'
                 version = currentVersionName
             }
             debug(MavenPublication) {
                 from components.debug
 
                 groupId = 'com.memoeslink.androidgenerator'
-                artifactId = 'final-debug'
+                artifactId = 'debug'
                 version = currentVersionName
             }
         }
