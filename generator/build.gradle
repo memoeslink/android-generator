@@ -13,14 +13,14 @@ afterEvaluate {
                 from components.release
 
                 groupId = 'com.memoeslink.androidgenerator'
-                artifactId = 'release'
+                artifactId = 'final-release'
                 version = currentVersionName
             }
             debug(MavenPublication) {
                 from components.debug
 
                 groupId = 'com.memoeslink.androidgenerator'
-                artifactId = 'debug'
+                artifactId = 'final-debug'
                 version = currentVersionName
             }
         }
@@ -34,6 +34,8 @@ android {
     defaultConfig {
         minSdkVersion 26
         targetSdkVersion 30
+        versionCode currentVersionCode
+        versionName currentVersionName
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
