@@ -181,6 +181,29 @@ public class NameGenerator extends Generator {
         }
     }
 
+    public String getNameOrDefault(NameType nameType) {
+        return getNameOrDefault(nameType, getDefaultName());
+    }
+
+    public String getNameOrDefault(NameType nameType, String defaultValue) {
+        String name = getName(nameType);
+
+        if (StringHelper.isNullOrBlank(name) || name.equals(Database.DEFAULT_VALUE))
+            return defaultValue;
+        return name;
+    }
+
+    public String getNameOrRetry(NameType nameType) {
+        String name;
+        int tries = 9999;
+
+        do {
+            name = getName(nameType);
+            tries--;
+        } while (StringHelper.isNullOrBlank(name) || name.equals(Database.DEFAULT_VALUE) || tries > 0);
+        return getDefaultName();
+    }
+
     public String getUsername() {
         switch (r.getInt(5)) {
             case 1:
