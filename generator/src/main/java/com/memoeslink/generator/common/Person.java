@@ -281,4 +281,9 @@ public class Person {
     public boolean hasAttribute(String s) {
         return attributes.contains(s);
     }
+
+    public String getDescriptor() {
+        String descriptor = hasAttribute("anonymous") ? getUsername() : getFullName();
+        return StringHelper.defaultIfBlank(descriptor, Constant.DEFAULT_NAME);
+    }
 }

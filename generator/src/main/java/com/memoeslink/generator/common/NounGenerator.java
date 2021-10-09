@@ -87,10 +87,6 @@ public class NounGenerator extends Generator {
         }
     }
 
-    public static String getDefaultName() {
-        return Constant.DEFAULT_NAME;
-    }
-
     private NounGetter getGetter() {
         if (StringHelper.isNullOrEmpty(locale.getLanguage()) ||
                 locale.getLanguage().equals("xx") || locale.getCountry().equals("XX"))

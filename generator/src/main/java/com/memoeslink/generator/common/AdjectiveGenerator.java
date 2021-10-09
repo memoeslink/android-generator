@@ -87,10 +87,6 @@ public class AdjectiveGenerator extends Generator {
         }
     }
 
-    public static String getDefaultName() {
-        return Constant.DEFAULT_NAME;
-    }
-
     private AdjectiveGetter getGetter() {
         if (StringHelper.isNullOrEmpty(locale.getLanguage()) ||
                 locale.getLanguage().equals("xx") || locale.getCountry().equals("XX"))
