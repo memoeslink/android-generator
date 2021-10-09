@@ -200,7 +200,7 @@ public class NameGenerator extends Generator {
         do {
             name = getName(nameType);
             tries--;
-        } while (StringHelper.isNullOrBlank(name) || name.equals(Database.DEFAULT_VALUE) || tries > 0);
+        } while ((StringHelper.isNullOrBlank(name) || name.equals(Database.DEFAULT_VALUE)) && tries > 0);
         return getDefaultName();
     }
 
