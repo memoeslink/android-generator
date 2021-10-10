@@ -195,13 +195,17 @@ public class NameGenerator extends Generator {
 
     public String getNameOrRetry(NameType nameType) {
         String name;
+        boolean invalidName;
         int tries = 9999;
 
         do {
             name = getName(nameType);
             tries--;
-        } while ((StringHelper.isNullOrBlank(name) || name.equals(Database.DEFAULT_VALUE)) && tries > 0);
-        return getDefaultName();
+        } while ((invalidName = (StringHelper.isNullOrBlank(name) || name.equals(Database.DEFAULT_VALUE))) && tries > 0);
+
+        if (invalidName && tries == 0)
+            name = getDefaultName();
+        return name;
     }
 
     public String getUsername() {
