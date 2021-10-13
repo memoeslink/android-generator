@@ -71,6 +71,26 @@ public class OccupationGetter extends Getter implements OccupationDefiner {
     }
 
     @Override
+    public String getSimpleFantasyClass() {
+        return Database.DEFAULT_VALUE;
+    }
+
+    @Override
+    public String getFemaleSimpleFantasyClass() {
+        return Database.DEFAULT_VALUE;
+    }
+
+    @Override
+    public String getMaleSimpleFantasyClass() {
+        return Database.DEFAULT_VALUE;
+    }
+
+    @Override
+    public String getGenderlessSimpleFantasyClass() {
+        return Database.DEFAULT_VALUE;
+    }
+
+    @Override
     public String getFantasyClass() {
         return Database.DEFAULT_VALUE;
     }

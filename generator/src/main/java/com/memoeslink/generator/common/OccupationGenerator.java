@@ -39,10 +39,16 @@ public class OccupationGenerator extends Generator {
             case GENDERLESS_JOB_TITLE:
                 return getter.getGenderlessJobTitle();
             case MALE_FANTASY_CLASS:
-                return getter.getMaleFantasyClass();
+                return getter.getMaleSimpleFantasyClass();
             case FEMALE_FANTASY_CLASS:
-                return getter.getFemaleFantasyClass();
+                return getter.getFemaleSimpleFantasyClass();
             case GENDERLESS_FANTASY_CLASS:
+                return getter.getGenderlessSimpleFantasyClass();
+            case MALE_LEVELED_FANTASY_CLASS:
+                return getter.getMaleFantasyClass();
+            case FEMALE_LEVELED_FANTASY_CLASS:
+                return getter.getFemaleFantasyClass();
+            case GENDERLESS_LEVELED_FANTASY_CLASS:
                 return getter.getGenderlessFantasyClass();
             case MALE_HONORIFIC:
                 return getter.getMaleHonorific();
