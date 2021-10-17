@@ -286,4 +286,13 @@ public class Person {
         String descriptor = hasAttribute("anonymous") ? getUsername() : getFullName();
         return StringHelper.defaultIfBlank(descriptor, Constant.DEFAULT_NAME);
     }
+
+    public String getSummary() {
+        return (StringHelper.defaultWhenBlank(getDescriptor()) +
+                System.getProperty("line.separator") +
+                (gender != null ? gender.getGlyph() : Gender.UNDEFINED.getGlyph()) +
+                System.getProperty("line.separator") +
+                StringHelper.defaultWhenBlank(DateTimeHelper.getStrDate(getBirthdate()))
+        );
+    }
 }

@@ -4,6 +4,7 @@ import java.io.File;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class StringHelper {
     public static final String EMPTY = "";
@@ -48,6 +49,10 @@ public class StringHelper {
         return s.indexOf(occurrence);
     }
 
+    public static String defaultWhenNull(String s) {
+        return defaultIfNull(s, Database.DEFAULT_VALUE);
+    }
+
     public static String defaultIfNull(String s) {
         return s == null ? EMPTY : s;
     }
@@ -58,6 +63,10 @@ public class StringHelper {
         return s;
     }
 
+    public static String defaultWhenEmpty(String s) {
+        return defaultIfEmpty(s, Database.DEFAULT_VALUE);
+    }
+
     public static String defaultIfEmpty(String s) {
         return defaultIfEmpty(s, EMPTY);
     }
@@ -66,6 +75,10 @@ public class StringHelper {
         if (s == null || s.isEmpty())
             return defaultValue == null ? EMPTY : defaultValue;
         return s;
+    }
+
+    public static String defaultWhenBlank(String s) {
+        return defaultIfBlank(s, Database.DEFAULT_VALUE);
     }
 
     public static String defaultIfBlank(String s) {
@@ -669,8 +682,8 @@ public class StringHelper {
 
     public static boolean equalsIgnoreCase(String a, String b) {
         if (a == null || b == null)
-            return false;
-        return a.toLowerCase().equals(b.toLowerCase());
+            return Objects.equals(a, b);
+        return a.equalsIgnoreCase(b);
     }
 
     public static boolean equalsAny(String s, String... occurrences) {
