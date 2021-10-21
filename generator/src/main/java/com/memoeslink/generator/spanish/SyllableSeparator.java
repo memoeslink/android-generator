@@ -244,7 +244,11 @@ public class SyllableSeparator {
         if (!isParoxytone())
             return StringHelper.EMPTY;
         List<String> syllables = this.syllables;
-        syllables.set(syllables.size() - 3, StringHelper.stripAccents(syllables.get(syllables.size() - 3)));
+
+        if (syllables.size() > 2)
+            syllables.set(syllables.size() - 3, StringHelper.stripAccents(syllables.get(syllables.size() - 3)));
+        else
+            syllables.set(0, StringHelper.stripAccents(syllables.get(0)));
         syllables.add("es");
         char[] letters = syllables.get(syllables.size() - 3).toCharArray();
 
