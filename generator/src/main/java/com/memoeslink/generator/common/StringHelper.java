@@ -313,7 +313,7 @@ public class StringHelper {
     }
 
     public static String trimToDefault(String s) {
-        return defaultIfEmpty(trimToEmpty(s), Database.DEFAULT_VALUE);
+        return defaultWhenEmpty(trimToEmpty(s));
     }
 
     public static String trimToDefault(String s, String defaultValue) {
