@@ -299,8 +299,25 @@ public class StringHelper {
         return vowel ? (a + removeFirstChar(b)) : (removeLastChar(a) + b);
     }
 
+    public static String trim(String s) {
+        return s == null ? null : s.trim();
+    }
+
+    public static String trimToNull(String s) {
+        s = trim(s);
+        return isNullOrEmpty(s) ? null : s;
+    }
+
     public static String trimToEmpty(String s) {
         return s == null ? EMPTY : s.trim();
+    }
+
+    public static String trimToDefault(String s) {
+        return defaultIfEmpty(trimToEmpty(s), Database.DEFAULT_VALUE);
+    }
+
+    public static String trimToDefault(String s, String defaultValue) {
+        return defaultIfEmpty(trimToEmpty(s), defaultValue);
     }
 
     public static String normalize(String s) {
