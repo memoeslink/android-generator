@@ -92,39 +92,63 @@ public class StringHelper {
     }
 
     public static String prependIfNotNull(String s, String prefix) {
-        if (s == null || prefix == null)
+        if (s == null)
             return null;
-        return prefix + s;
+        return defaultIfNull(prefix) + s;
     }
 
     public static String prependIfNotEmpty(String s, String prefix) {
-        if (isNullOrEmpty(s) || prefix == null)
+        if (isNullOrEmpty(s))
             return s;
-        return prefix + s;
+        return defaultIfNull(prefix) + s;
     }
 
     public static String prependIfNotBlank(String s, String prefix) {
-        if (isNullOrBlank(s) || prefix == null)
+        if (isNullOrBlank(s))
             return s;
-        return prefix + s;
+        return defaultIfNull(prefix) + s;
+    }
+
+    public static String prependSpaceIfNotNull(String s) {
+        return prependIfNotNull(s, String.valueOf(Separator.SPACE.getCharacter()));
+    }
+
+    public static String prependSpaceIfNotEmpty(String s) {
+        return prependIfNotEmpty(s, String.valueOf(Separator.SPACE.getCharacter()));
+    }
+
+    public static String prependSpaceIfNotBlank(String s) {
+        return prependIfNotBlank(s, String.valueOf(Separator.SPACE.getCharacter()));
     }
 
     public static String appendIfNotNull(String s, String suffix) {
-        if (s == null || suffix == null)
+        if (s == null)
             return null;
-        return s + suffix;
+        return s + defaultIfNull(suffix);
     }
 
     public static String appendIfNotEmpty(String s, String suffix) {
-        if (isNullOrEmpty(s) || suffix == null)
+        if (isNullOrEmpty(s))
             return s;
-        return s + suffix;
+        return s + defaultIfNull(suffix);
     }
 
     public static String appendIfNotBlank(String s, String suffix) {
-        if (isNullOrBlank(s) || suffix == null)
+        if (isNullOrBlank(s))
             return s;
-        return s + suffix;
+        return s + defaultIfNull(suffix);
+    }
+
+    public static String appendSpaceIfNotNull(String s) {
+        return appendIfNotNull(s, String.valueOf(Separator.SPACE.getCharacter()));
+    }
+
+    public static String appendSpaceIfNotEmpty(String s) {
+        return appendIfNotEmpty(s, String.valueOf(Separator.SPACE.getCharacter()));
+    }
+
+    public static String appendSpaceIfNotBlank(String s) {
+        return appendIfNotBlank(s, String.valueOf(Separator.SPACE.getCharacter()));
     }
 
     public static String affixIfNotNull(String s, String prefix, String suffix) {
@@ -143,6 +167,21 @@ public class StringHelper {
         if (isNullOrBlank(s))
             return s;
         return defaultIfNull(prefix) + s + defaultIfNull(suffix);
+    }
+
+    public static String affixSpacesIfNotNull(String s) {
+        return affixIfNotNull(s, String.valueOf(Separator.SPACE.getCharacter()),
+                String.valueOf(Separator.SPACE.getCharacter()));
+    }
+
+    public static String affixSpacesIfNotEmpty(String s) {
+        return affixIfNotEmpty(s, String.valueOf(Separator.SPACE.getCharacter()),
+                String.valueOf(Separator.SPACE.getCharacter()));
+    }
+
+    public static String affixSpacesIfNotBlank(String s) {
+        return affixIfNotBlank(s, String.valueOf(Separator.SPACE.getCharacter()),
+                String.valueOf(Separator.SPACE.getCharacter()));
     }
 
     public static List<String> split(String s, char delimiter) {
