@@ -126,6 +126,12 @@ public class Randomizer {
         return numbers;
     }
 
+    public <T> T getItem(List<T> list) {
+        if (list == null || list.size() == 0)
+            return null;
+        return list.get(r.nextInt(list.size()));
+    }
+
     public char chooseOnWeight(WeightedChar[] weightedChars) {
         weightedChars = weightedChars != null ? weightedChars : new WeightedChar[]{};
         double completeWeight = ARRAY_WEIGHT_REGISTRY.getOrDefault(Arrays.hashCode(weightedChars), 0.0D);
