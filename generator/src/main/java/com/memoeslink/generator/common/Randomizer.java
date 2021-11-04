@@ -126,6 +126,12 @@ public class Randomizer {
         return numbers;
     }
 
+    public <T> T getElement(T[] array) {
+        if (array == null || array.length == 0)
+            return null;
+        return array[r.nextInt(array.length)];
+    }
+
     public <T> T getItem(List<T> list) {
         if (list == null || list.size() == 0)
             return null;
