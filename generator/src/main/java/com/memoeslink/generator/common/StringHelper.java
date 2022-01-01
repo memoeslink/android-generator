@@ -550,7 +550,7 @@ public class StringHelper {
         return s.replaceFirst("(?s)(.*)" + regex, "$1" + replacement);
     }
 
-    public static String replaceEach(String s, String[] occurrences, String replacements[]) {
+    public static String replaceEach(String s, String[] occurrences, String[] replacements) {
         if (isNullOrEmpty(s) || occurrences == null || replacements == null)
             return s;
 
@@ -686,7 +686,7 @@ public class StringHelper {
             return s;
         int n = s.lastIndexOf(separator);
 
-        if (n == IntegerHelper.INDEX_NOT_FOUND || n <= s.length() - separator.length())
+        if (n == IntegerHelper.INDEX_NOT_FOUND || n == s.length() - separator.length())
             return s;
         return s.substring(n + 1);
     }
