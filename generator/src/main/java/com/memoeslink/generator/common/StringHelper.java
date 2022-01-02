@@ -631,6 +631,26 @@ public class StringHelper {
         return s;
     }
 
+    public static String removeBetweenChars(String s, char opening, char closing) {
+        if (opening == '\0' || closing == '\0')
+            return s;
+        String regex = String.format("\\Q%1$s\\E[^\\Q%1$s\\E\\Q%2$s\\E]*\\Q%2$s\\E", opening, closing);
+        return removeAll(s, regex);
+    }
+
+    public static String removeBetweenChars(String s, char delimiter) {
+        return removeBetweenChars(s, delimiter, delimiter);
+    }
+
+    public static String removeBetweenSpaces(String s) {
+        String regex = "\\s[^\\s]*\\s";
+        return removeAll(s, regex);
+    }
+
+    public static String removeBetweenZeroWidthSpaces(String s) {
+        return removeBetweenChars(s, ZeroWidthChar.ZERO_WIDTH_SPACE.getCharacter());
+    }
+
     public static char getFirstChar(String s) {
         if (isNotNullOrEmpty(s))
             return s.charAt(0);
