@@ -568,10 +568,32 @@ public class StringHelper {
         return s;
     }
 
+    public static String replaceBetweenChars(String s, char opening, char closing, String replacement) {
+        if (opening == '\0' || closing == '\0')
+            return s;
+        String regex = String.format("\\Q%1$s\\E[^\\Q%1$s\\E\\Q%2$s\\E]*\\Q%2$s\\E", opening, closing);
+        return replaceAll(s, regex, replacement);
+    }
+
+    public static String replaceBetweenChars(String s, char delimiter, String replacement) {
+        return replaceBetweenChars(s, delimiter, delimiter, replacement);
+    }
+
+    public static String replaceBetweenParentheses(String s, String replacement) {
+        return replaceBetweenChars(s, '(', ')', replacement);
+    }
+
+    public static String replaceBetweenSpaces(String s, String replacement) {
+        String regex = "\\s[^\\s]*\\s";
+        return replaceAll(s, regex, replacement);
+    }
+
+    public static String replaceBetweenZeroWidthSpaces(String s, String replacement) {
+        return replaceBetweenChars(s, ZeroWidthChar.ZERO_WIDTH_SPACE.getCharacter(), replacement);
+    }
+
     public static String remove(String s, String occurrence) {
-        if (isNotNullOrEmpty(s) && isNotNullOrEmpty(occurrence))
-            return replace(s, occurrence, EMPTY);
-        return s;
+        return replace(s, occurrence, EMPTY);
     }
 
     public static String removeEach(String s, String... occurrences) {
@@ -632,23 +654,46 @@ public class StringHelper {
     }
 
     public static String removeBetweenChars(String s, char opening, char closing) {
-        if (opening == '\0' || closing == '\0')
-            return s;
-        String regex = String.format("\\Q%1$s\\E[^\\Q%1$s\\E\\Q%2$s\\E]*\\Q%2$s\\E", opening, closing);
-        return removeAll(s, regex);
+        return replaceBetweenChars(s, opening, closing, EMPTY);
     }
 
     public static String removeBetweenChars(String s, char delimiter) {
-        return removeBetweenChars(s, delimiter, delimiter);
+        return replaceBetweenChars(s, delimiter, delimiter, EMPTY);
+    }
+
+    public static String removeBetweenParentheses(String s) {
+        return replaceBetweenParentheses(s, EMPTY);
     }
 
     public static String removeBetweenSpaces(String s) {
-        String regex = "\\s[^\\s]*\\s";
-        return removeAll(s, regex);
+        return replaceBetweenSpaces(s, EMPTY);
     }
 
     public static String removeBetweenZeroWidthSpaces(String s) {
-        return removeBetweenChars(s, ZeroWidthChar.ZERO_WIDTH_SPACE.getCharacter());
+        return replaceBetweenZeroWidthSpaces(s, EMPTY);
+    }
+
+    //Remove zero width spaces (​)
+    public static String removeZeroWidthSpaces(String s) {
+        return remove(s, "\u200B");
+    }
+
+    //Remove invisible control characters and unused code points: \p{Cc} or \p{Other}
+    public static String removeOtherChars(String s) {
+        String regex = "\\p{Other}";
+        return removeAll(s, regex);
+    }
+
+    //Remove an ASCII or Latin-1 control character (Ox00–0x1F, 0x7F–0x9F): \p{Cc} or \p{Control}
+    public static String removeControlChars(String s) {
+        String regex = "\\p{Control}";
+        return removeAll(s, regex);
+    }
+
+    //Remove invisible formatting indicators: \p{Cf} or \p{Format}
+    public static String removeFormattingChars(String s) {
+        String regex = "\\p{Format}";
+        return removeAll(s, regex);
     }
 
     public static char getFirstChar(String s) {
