@@ -4,6 +4,7 @@ import com.memoeslink.generator.common.Database;
 import com.memoeslink.generator.common.Randomizer;
 import com.memoeslink.generator.common.ResourceGetter;
 import com.memoeslink.generator.common.Separator;
+import com.memoeslink.generator.common.StringHelper;
 import com.memoeslink.generator.international.Shaper;
 
 public class NameGetter extends com.memoeslink.generator.common.NameGetter implements com.memoeslink.generator.common.NameDefiner, NameDefiner {
@@ -22,25 +23,25 @@ public class NameGetter extends com.memoeslink.generator.common.NameGetter imple
     @Override
     public String getFemaleForename() {
         String name = r.getBoolean() ? ResourceGetter.with(r).getString(Constant.FEMALE_FORENAMES) :
-                ResourceGetter.with(r).getString(Constant.FEMALE_UNCOMMON_FORENAMES);
-        return !name.contains("-") ? name : getFemaleForename();
+                getFemaleForename(r.getInt(1, Database.countFrenchFemaleNames()));
+        return !StringHelper.containsAny(" ", "-") ? name : getFemaleForename();
     }
 
     @Override
     public String getFemaleForename(int id) {
-        return ResourceGetter.with(r).getString(Constant.MALE_FORENAMES, id);
+        return Database.selectFrenchFemaleName(id);
     }
 
     @Override
     public String getMaleForename() {
         String name = r.getBoolean() ? ResourceGetter.with(r).getString(Constant.MALE_FORENAMES) :
-                ResourceGetter.with(r).getString(Constant.MALE_UNCOMMON_FORENAMES);
-        return !name.contains("-") ? name : getMaleForename();
+                getMaleForename(r.getInt(1, Database.countFrenchMaleNames()));
+        return !StringHelper.containsAny(" ", "-") ? name : getMaleForename();
     }
 
     @Override
     public String getMaleForename(int id) {
-        return ResourceGetter.with(r).getString(Constant.MALE_FORENAMES, id);
+        return Database.selectFrenchMaleName(id);
     }
 
     @Override

@@ -23,6 +23,8 @@ public class Database extends SQLiteAssetHelper {
     public static final String TABLE_ENGLISH_OCCUPATIONS = "EnglishOccupations";
     public static final String TABLE_ENGLISH_PHONETICS = "EnglishPhonetics";
     public static final String TABLE_ENGLISH_SURNAMES = "EnglishSurnames";
+    public static final String TABLE_FRENCH_FEMALE_NAMES = "FrenchFemaleNames";
+    public static final String TABLE_FRENCH_MALE_NAMES = "FrenchMaleNames";
     public static final String TABLE_SPANISH_COMPOUND_SURNAMES = "SpanishCompoundSurnames";
     public static final String TABLE_SPANISH_FEMALE_NAMES = "SpanishFemaleNames";
     public static final String TABLE_SPANISH_MALE_NAMES = "SpanishMaleNames";
@@ -210,6 +212,30 @@ public class Database extends SQLiteAssetHelper {
 
     public static String selectEnglishSurname(int id) {
         return selectRow("SELECT * FROM " + TABLE_ENGLISH_SURNAMES + " WHERE " + TABLE_ENGLISH_SURNAMES + ID_PREFIX + " = ?", 1, String.valueOf(id));
+    }
+
+    public static int countFrenchFemaleNames() {
+        return countRows(TABLE_FRENCH_FEMALE_NAMES);
+    }
+
+    public static String selectFrenchFemaleName() {
+        return selectRow("SELECT * FROM " + TABLE_FRENCH_FEMALE_NAMES + " ORDER BY RANDOM() LIMIT 1", 1);
+    }
+
+    public static String selectFrenchFemaleName(int id) {
+        return selectRow("SELECT * FROM " + TABLE_FRENCH_FEMALE_NAMES + " WHERE " + TABLE_FRENCH_FEMALE_NAMES + ID_PREFIX + " = ?", 1, String.valueOf(id));
+    }
+
+    public static int countFrenchMaleNames() {
+        return countRows(TABLE_FRENCH_MALE_NAMES);
+    }
+
+    public static String selectFrenchMaleName() {
+        return selectRow("SELECT * FROM " + TABLE_FRENCH_MALE_NAMES + " ORDER BY RANDOM() LIMIT 1", 1);
+    }
+
+    public static String selectFrenchMaleName(int id) {
+        return selectRow("SELECT * FROM " + TABLE_FRENCH_MALE_NAMES + " WHERE " + TABLE_FRENCH_MALE_NAMES + ID_PREFIX + " = ?", 1, String.valueOf(id));
     }
 
     public static int countHispanicCompoundSurnames() {
