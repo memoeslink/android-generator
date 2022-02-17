@@ -1,6 +1,8 @@
 package com.memoeslink.generator.common;
 
 import java.io.File;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
@@ -1055,5 +1057,41 @@ public class StringHelper {
             sb.append(ch);
         }
         return sb.toString();
+    }
+
+    public static String md5(String s) {
+        try {
+            final MessageDigest md = java.security.MessageDigest.getInstance("MD5");
+            final byte[] array = md.digest(s.getBytes());
+            final StringBuffer sb = new StringBuffer();
+
+            for (byte b : array) {
+                sb.append(Integer.toHexString((b & 0xFF) | 0x100), 1, 3);
+            }
+            return sb.toString();
+        } catch (java.security.NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static String sha256(final String base) {
+        try {
+            final MessageDigest md = MessageDigest.getInstance("SHA-256");
+            final byte[] array = md.digest(base.getBytes(StandardCharsets.UTF_8));
+            final StringBuffer sb = new StringBuffer();
+
+            for (byte b : array) {
+                final String hex = Integer.toHexString(0xff & b);
+
+                if (hex.length() == 1)
+                    sb.append('0');
+                sb.append(hex);
+            }
+            return sb.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

@@ -3,6 +3,7 @@ package com.memoeslink.generator.common;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class Person {
     private long id;
@@ -310,5 +311,17 @@ public class Person {
                 System.getProperty("line.separator") +
                 StringHelper.defaultWhenBlank(DateTimeHelper.getStrDate(getBirthdate()))
         );
+    }
+
+    public String getMd5() {
+        return StringHelper.md5(getSummary());
+    }
+
+    public String getSha256() {
+        return StringHelper.sha256(getSummary());
+    }
+
+    public String getUuid() {
+        return UUID.nameUUIDFromBytes(getSummary().getBytes()).toString();
     }
 }
