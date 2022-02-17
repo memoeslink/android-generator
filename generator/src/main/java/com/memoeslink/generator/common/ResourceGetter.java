@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
+import java.main.common.Randomizer;
 import java.util.HashMap;
 
 public class ResourceGetter {

@@ -1,10 +1,11 @@
 package com.memoeslink.generator.hindi;
 
 import com.memoeslink.generator.common.Database;
-import com.memoeslink.generator.common.Randomizer;
 import com.memoeslink.generator.common.ResourceGetter;
 import com.memoeslink.generator.common.Separator;
 import com.memoeslink.generator.international.Shaper;
+
+import java.main.common.Randomizer;
 
 public class NameGetter extends com.memoeslink.generator.common.NameGetter implements com.memoeslink.generator.common.NameDefiner {
     private final com.memoeslink.generator.international.NameGetter nameGetter;

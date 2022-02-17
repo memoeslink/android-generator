@@ -3,10 +3,11 @@ package com.memoeslink.generator.english;
 import com.memoeslink.generator.common.Database;
 import com.memoeslink.generator.common.Gender;
 import com.memoeslink.generator.common.OccupationDefiner;
-import com.memoeslink.generator.common.Randomizer;
 import com.memoeslink.generator.common.ResourceGetter;
 import com.memoeslink.generator.common.Separator;
 import com.memoeslink.generator.common.StringHelper;
+
+import java.main.common.Randomizer;
 
 public final class OccupationGetter extends com.memoeslink.generator.common.OccupationGetter implements OccupationDefiner {
     public static final String FANTASY_CLASS_FORMAT = "LVL %d %s";

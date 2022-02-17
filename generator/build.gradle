@@ -3,7 +3,7 @@ plugins {
     id 'maven-publish'
 }
 
-def currentVersionName = "2022.0.4"
+def currentVersionName = "2022.0.5"
 
 afterEvaluate {
     publishing {
@@ -69,4 +69,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation 'com.readystatesoftware.sqliteasset:sqliteassethelper:2.0.1'
     implementation 'io.github.encryptorcode:pluralize:1.0.0'
+    implementation 'io.github.memoeslink:randomizer:2021.0.0-release'
 }

@@ -1,5 +1,6 @@
 package com.memoeslink.generator.common;
 
+import java.main.common.Randomizer;
 import java.util.Locale;
 
 public class Generator {

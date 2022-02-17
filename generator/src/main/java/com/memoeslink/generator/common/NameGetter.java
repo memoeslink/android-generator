@@ -2,6 +2,8 @@ package com.memoeslink.generator.common;
 
 import com.memoeslink.generator.international.Shaper;
 
+import java.main.common.Randomizer;
+
 public class NameGetter extends Getter implements NameDefiner {
 
     public NameGetter() {

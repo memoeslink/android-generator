@@ -2,6 +2,8 @@ package com.memoeslink.generator.common;
 
 import com.memoeslink.generator.international.Shaper;
 
+import java.main.common.Randomizer;
+
 public interface NameDefiner {
 
     public String getEmptyName();

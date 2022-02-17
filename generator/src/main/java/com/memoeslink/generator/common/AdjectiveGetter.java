@@ -1,5 +1,7 @@
 package com.memoeslink.generator.common;
 
+import java.main.common.Randomizer;
+
 public class AdjectiveGetter extends Getter implements AdjectiveDefiner {
 
     public AdjectiveGetter() {

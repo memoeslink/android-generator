@@ -2,8 +2,9 @@ package com.memoeslink.generator.english;
 
 import com.memoeslink.generator.common.Database;
 import com.memoeslink.generator.common.NounDefiner;
-import com.memoeslink.generator.common.Randomizer;
 import com.memoeslink.generator.common.Separator;
+
+import java.main.common.Randomizer;
 
 import io.github.encryptorcode.pluralize.Pluralize;
 

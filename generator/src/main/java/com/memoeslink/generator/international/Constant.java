@@ -1,6 +1,6 @@
 package com.memoeslink.generator.international;
 
-import com.memoeslink.generator.common.WeightedChar;
+import java.main.common.WeightedChar;
 
 public class Constant {
     public static final char[] LOWERCASE_ENDING_CONSONANTS = {'l', 'm', 'n', 'r', 's', 't', 'z'};

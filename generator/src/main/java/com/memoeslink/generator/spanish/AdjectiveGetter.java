@@ -3,7 +3,8 @@ package com.memoeslink.generator.spanish;
 import com.memoeslink.generator.common.AdjectiveDefiner;
 import com.memoeslink.generator.common.Database;
 import com.memoeslink.generator.common.Gender;
-import com.memoeslink.generator.common.Randomizer;
+
+import java.main.common.Randomizer;
 
 public final class AdjectiveGetter extends com.memoeslink.generator.common.AdjectiveGetter implements AdjectiveDefiner, com.memoeslink.generator.spanish.AdjectiveDefiner {
 
