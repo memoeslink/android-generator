@@ -105,6 +105,14 @@ public class CharHelper {
         return isPrintable(c) && isCharacterAvailableInFont(c);
     }
 
+    public static char getFirstDisplayableGlyph(char... chars) {
+        for (char c : chars) {
+            if (isGlyphDisplayable(c))
+                return c;
+        }
+        return '\0';
+    }
+
     public static String getUnicode(char c) {
         if (c == NULL_CHAR)
             return StringHelper.EMPTY;
