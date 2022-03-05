@@ -10,9 +10,10 @@ import java.util.regex.Pattern;
 public class TextProcessor {
     public static final String WORD_REGEX = "\\p{L}+";
     public static final Pattern WORD_PATTERN = Pattern.compile(WORD_REGEX);
+    public static final String LETTER_REGEX = "[\\w\\p{L}\\s'ªº∅]";
     public static final String COMBINED_WORDS_REGEX = "(\\p{L}+)(\\[(\\p{L})\\]|\\((\\p{L})\\)|[\\|\\/\\-](\\p{L}+))?";
     public static final Pattern COMBINED_WORDS_PATTERN = Pattern.compile(COMBINED_WORDS_REGEX);
-    public static final String EXTENDED_WORD_REGEX = "\\[[\\^]{0,2}[\\w\\p{L}\\s'ªº∅]*(\\[[\\w\\p{L}\\s'ªº∅]*(,[\\w\\p{L}\\s'ªº∅]*)?\\])?[\\w\\p{L}\\s'ªº∅]*\\]";
+    public static final String EXTENDED_WORD_REGEX = "\\[[\\^]{0,2}" + LETTER_REGEX + "*(\\[" + LETTER_REGEX + "*(," + LETTER_REGEX + "*)?\\])?" + LETTER_REGEX + "*\\]";
     public static final Pattern EXTENDED_WORD_PATTERN = Pattern.compile(EXTENDED_WORD_REGEX);
     public static final String ROMAN_NUMERAL_REGEX = "(^|\\s+)M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})($|\\s+)";
     public static final Pattern ROMAN_NUMERAL_PATTERN = Pattern.compile(ROMAN_NUMERAL_REGEX);
@@ -191,53 +192,56 @@ public class TextProcessor {
         StringBuffer sb = new StringBuffer();
 
         while (matcher.find()) {
-            String replacement;
-            String substring = StringHelper.substring(matcher.group(), 1, matcher.group().length() - 1);
-            boolean capitalized = !substring.equals(substring = StringHelper.removeStart(substring, "^"));
-            boolean fullyCapitalized = capitalized && !substring.equals(substring = StringHelper.removeStart(substring, "^"));
-            String prefix = StringHelper.substringBefore(substring, "[");
-            String suffix = StringHelper.substringAfter(substring, "]");
-            substring = StringHelper.substringBetween(substring, "[", "]");
-            List<String> items = Arrays.asList(substring.split(",\\s*"));
-            boolean shortened = false;
+            if (matcher.group(1) != null) {
+                String replacement;
+                String substring = StringHelper.substring(matcher.group(), 1, matcher.group().length() - 1);
+                boolean capitalized = !substring.equals(substring = StringHelper.removeStart(substring, "^"));
+                boolean fullyCapitalized = capitalized && !substring.equals(substring = StringHelper.removeStart(substring, "^"));
+                String prefix = StringHelper.substringBefore(substring, "[");
+                String suffix = StringHelper.substringAfter(substring, "]");
+                substring = StringHelper.substringBetween(substring, "[", "]");
+                List<String> items = Arrays.asList(substring.split(",\\s*"));
+                boolean shortened = false;
 
-            if (StringHelper.isNotNullOrEmpty(substring) && StringHelper.isNullOrBlank(suffix)) {
-                List<String> sortedItems = new ArrayList<>(items);
+                if (StringHelper.isNotNullOrEmpty(substring) && StringHelper.isNullOrBlank(suffix)) {
+                    List<String> sortedItems = new ArrayList<>(items);
 
-                Collections.sort(sortedItems, (item, otherItem) -> {
-                    if (item.length() > otherItem.length())
-                        return 1;
-                    else
-                        return item.compareTo(otherItem);
-                });
+                    Collections.sort(sortedItems, (item, otherItem) -> {
+                        if (item.length() > otherItem.length())
+                            return 1;
+                        else
+                            return item.compareTo(otherItem);
+                    });
 
-                if (sortedItems.size() >= 2) {
-                    if (sortedItems.get(0).length() <= 1 && sortedItems.get(sortedItems.size() - 1).length() <= 1)
-                        shortened = true;
-                }
-            }
-
-            if (items.size() == 0)
-                replacement = prefix + suffix;
-            else if (items.size() == 1)
-                replacement = prefix + items.get(0) + suffix;
-            else if (gender == Gender.UNDEFINED || gender == Gender.NEUTRAL) {
-                if (shortened)
-                    replacement = prefix + items.get(0) + "(" + StringHelper.join(items.subList(1, items.size()), ", ") + ")";
-                else {
-                    for (int n = 0; n < items.size(); n++) {
-                        items.set(n, prefix + items.get(n) + suffix);
+                    if (sortedItems.size() >= 2) {
+                        if (sortedItems.get(0).length() <= 1 && sortedItems.get(sortedItems.size() - 1).length() <= 1)
+                            shortened = true;
                     }
-                    replacement = StringHelper.join(items, "/");
                 }
-            } else
-                replacement = prefix + (gender == Gender.MASCULINE ? items.get(0) : items.get(1)) + suffix;
 
-            if (fullyCapitalized)
-                replacement = StringHelper.capitalize(replacement);
-            else if (capitalized)
-                replacement = StringHelper.capitalizeFirst(replacement);
-            matcher.appendReplacement(sb, replacement);
+                if (items.size() == 0)
+                    replacement = prefix + suffix;
+                else if (items.size() == 1)
+                    replacement = prefix + items.get(0) + suffix;
+                else if (gender == Gender.UNDEFINED || gender == Gender.NEUTRAL) {
+                    if (shortened)
+                        replacement = prefix + items.get(0) + "(" + StringHelper.join(items.subList(1, items.size()), ", ") + ")";
+                    else {
+                        for (int n = 0; n < items.size(); n++) {
+                            items.set(n, prefix + items.get(n) + suffix);
+                        }
+                        replacement = StringHelper.join(items, "/");
+                    }
+                } else
+                    replacement = prefix + (gender == Gender.MASCULINE ? items.get(0) : items.get(1)) + suffix;
+
+                if (fullyCapitalized)
+                    replacement = StringHelper.capitalize(replacement);
+                else if (capitalized)
+                    replacement = StringHelper.capitalizeFirst(replacement);
+                matcher.appendReplacement(sb, replacement);
+            } else
+                matcher.appendReplacement(sb, StringHelper.removeEach(matcher.group(), "[", "]"));
         }
         matcher.appendTail(sb);
 
