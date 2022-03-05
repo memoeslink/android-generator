@@ -192,11 +192,12 @@ public class TextProcessor {
         StringBuffer sb = new StringBuffer();
 
         while (matcher.find()) {
+            String replacement;
+            String substring = StringHelper.substring(matcher.group(), 1, matcher.group().length() - 1);
+            boolean capitalized = !substring.equals(substring = StringHelper.removeStart(substring, "^"));
+            boolean fullyCapitalized = capitalized && !substring.equals(substring = StringHelper.removeStart(substring, "^"));
+
             if (matcher.group(1) != null) {
-                String replacement;
-                String substring = StringHelper.substring(matcher.group(), 1, matcher.group().length() - 1);
-                boolean capitalized = !substring.equals(substring = StringHelper.removeStart(substring, "^"));
-                boolean fullyCapitalized = capitalized && !substring.equals(substring = StringHelper.removeStart(substring, "^"));
                 String prefix = StringHelper.substringBefore(substring, "[");
                 String suffix = StringHelper.substringAfter(substring, "]");
                 substring = StringHelper.substringBetween(substring, "[", "]");
@@ -234,14 +235,14 @@ public class TextProcessor {
                     }
                 } else
                     replacement = prefix + (gender == Gender.MASCULINE ? items.get(0) : items.get(1)) + suffix;
-
-                if (fullyCapitalized)
-                    replacement = StringHelper.capitalize(replacement);
-                else if (capitalized)
-                    replacement = StringHelper.capitalizeFirst(replacement);
-                matcher.appendReplacement(sb, replacement);
             } else
-                matcher.appendReplacement(sb, StringHelper.removeEach(matcher.group(), "[", "]"));
+                replacement = substring;
+
+            if (fullyCapitalized)
+                replacement = StringHelper.capitalize(replacement);
+            else if (capitalized)
+                replacement = StringHelper.capitalizeFirst(replacement);
+            matcher.appendReplacement(sb, replacement);
         }
         matcher.appendTail(sb);
 
