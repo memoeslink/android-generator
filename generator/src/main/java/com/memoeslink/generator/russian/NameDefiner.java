@@ -15,9 +15,9 @@ public interface NameDefiner extends com.memoeslink.generator.common.NameDefiner
         String base = getPatronymicBase(name);
 
         if (CharHelper.isConsonant(base.charAt(base.length() - 1)) || name.charAt(name.length() - 1) == 'a')
-            return base + "ovich";
+            return base + "ovna";
         else if (CharHelper.isVowel(base.charAt(base.length() - 1)))
-            return base + "evich";
+            return base + "enva";
         return name;
     }
 
@@ -25,9 +25,9 @@ public interface NameDefiner extends com.memoeslink.generator.common.NameDefiner
         String base = getPatronymicBase(name);
 
         if (CharHelper.isConsonant(base.charAt(base.length() - 1)) || name.charAt(name.length() - 1) == 'a')
-            return base + "ovna";
+            return base + "ovich";
         else if (CharHelper.isVowel(base.charAt(base.length() - 1)))
-            return base + "evna";
+            return base + "evich";
         return name;
     }
 }
