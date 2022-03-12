@@ -1,8 +1,7 @@
 package com.memoeslink.generator.international;
 
+import com.memoeslink.common.Randomizer;
 import com.memoeslink.generator.common.OccupationDefiner;
-
-import java.main.common.Randomizer;
 
 public final class OccupationGetter extends com.memoeslink.generator.common.OccupationGetter implements OccupationDefiner {
 

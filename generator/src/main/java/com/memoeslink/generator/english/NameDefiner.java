@@ -1,8 +1,7 @@
 package com.memoeslink.generator.english;
 
+import com.memoeslink.common.Randomizer;
 import com.memoeslink.generator.common.ResourceGetter;
-
-import java.main.common.Randomizer;
 
 public interface NameDefiner extends com.memoeslink.generator.common.NameDefiner {
 

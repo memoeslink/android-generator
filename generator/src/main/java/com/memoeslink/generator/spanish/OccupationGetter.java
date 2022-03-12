@@ -1,5 +1,6 @@
 package com.memoeslink.generator.spanish;
 
+import com.memoeslink.common.Randomizer;
 import com.memoeslink.generator.common.Database;
 import com.memoeslink.generator.common.Gender;
 import com.memoeslink.generator.common.OccupationDefiner;
@@ -7,8 +8,6 @@ import com.memoeslink.generator.common.ResourceGetter;
 import com.memoeslink.generator.common.Separator;
 import com.memoeslink.generator.common.StringHelper;
 import com.memoeslink.generator.common.TextProcessor;
-
-import java.main.common.Randomizer;
 
 public final class OccupationGetter extends com.memoeslink.generator.common.OccupationGetter implements OccupationDefiner {
     public static final String FANTASY_CLASS_FORMAT = "%s de nivel %d";

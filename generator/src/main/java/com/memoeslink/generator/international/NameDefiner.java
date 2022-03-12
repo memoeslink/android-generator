@@ -1,12 +1,11 @@
 package com.memoeslink.generator.international;
 
+import com.memoeslink.common.Randomizer;
+import com.memoeslink.common.WeightedChar;
 import com.memoeslink.generator.common.CharHelper;
 import com.memoeslink.generator.common.IntegerHelper;
 import com.memoeslink.generator.common.ResourceGetter;
 import com.memoeslink.generator.common.StringHelper;
-
-import java.main.common.Randomizer;
-import java.main.common.WeightedChar;
 
 public interface NameDefiner extends com.memoeslink.generator.common.NameDefiner {
 

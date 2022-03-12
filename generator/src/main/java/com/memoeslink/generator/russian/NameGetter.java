@@ -1,13 +1,12 @@
 package com.memoeslink.generator.russian;
 
+import com.memoeslink.common.Randomizer;
 import com.memoeslink.generator.common.Database;
 import com.memoeslink.generator.common.ResourceGetter;
 import com.memoeslink.generator.common.Separator;
 import com.memoeslink.generator.international.Shaper;
 
-import java.main.common.Randomizer;
-
-public class NameGetter extends com.memoeslink.generator.common.NameGetter implements com.memoeslink.generator.common.NameDefiner {
+public class NameGetter extends com.memoeslink.generator.common.NameGetter implements com.memoeslink.generator.common.NameDefiner, NameDefiner {
     private final com.memoeslink.generator.international.NameGetter nameGetter;
 
     public NameGetter() {
@@ -38,6 +37,30 @@ public class NameGetter extends com.memoeslink.generator.common.NameGetter imple
     @Override
     public String getMaleForename(int id) {
         return ResourceGetter.with(r).getString(Constant.MALE_FORENAMES, id);
+    }
+
+    @Override
+    public String getFemalePatronymic() {
+        String name = getMaleForename();
+        return getFemalePatronymic(name);
+    }
+
+    @Override
+    public String getFemalePatronymic(int id) {
+        String name = getMaleForename(id);
+        return getFemalePatronymic(name);
+    }
+
+    @Override
+    public String getMalePatronymic() {
+        String name = getMaleForename();
+        return getMalePatronymic(name);
+    }
+
+    @Override
+    public String getMalePatronymic(int id) {
+        String name = getMaleForename(id);
+        return getMalePatronymic(name);
     }
 
     @Override

@@ -1,8 +1,7 @@
 package com.memoeslink.generator.common;
 
+import com.memoeslink.common.Randomizer;
 import com.memoeslink.generator.international.Shaper;
-
-import java.main.common.Randomizer;
 
 public class NameGetter extends Getter implements NameDefiner {
 
@@ -46,6 +45,26 @@ public class NameGetter extends Getter implements NameDefiner {
 
     @Override
     public String getMaleForename(int id) {
+        return Database.DEFAULT_VALUE;
+    }
+
+    @Override
+    public String getFemalePatronymic() {
+        return Database.DEFAULT_VALUE;
+    }
+
+    @Override
+    public String getFemalePatronymic(int id) {
+        return Database.DEFAULT_VALUE;
+    }
+
+    @Override
+    public String getMalePatronymic() {
+        return Database.DEFAULT_VALUE;
+    }
+
+    @Override
+    public String getMalePatronymic(int id) {
         return Database.DEFAULT_VALUE;
     }
 

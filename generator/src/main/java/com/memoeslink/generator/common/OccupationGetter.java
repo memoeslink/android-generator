@@ -1,6 +1,6 @@
 package com.memoeslink.generator.common;
 
-import java.main.common.Randomizer;
+import com.memoeslink.common.Randomizer;
 
 public class OccupationGetter extends Getter implements OccupationDefiner {
 

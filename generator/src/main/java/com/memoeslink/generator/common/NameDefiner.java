@@ -1,8 +1,7 @@
 package com.memoeslink.generator.common;
 
+import com.memoeslink.common.Randomizer;
 import com.memoeslink.generator.international.Shaper;
-
-import java.main.common.Randomizer;
 
 public interface NameDefiner {
 
@@ -19,6 +18,14 @@ public interface NameDefiner {
     public String getMaleForename();
 
     public String getMaleForename(int id);
+
+    public String getFemalePatronymic();
+
+    public String getFemalePatronymic(int id);
+
+    public String getMalePatronymic();
+
+    public String getMalePatronymic(int id);
 
     public String getDoubleBarrelledFemaleForename();
 
