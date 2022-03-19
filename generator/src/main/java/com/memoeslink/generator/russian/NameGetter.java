@@ -168,12 +168,28 @@ public class NameGetter extends com.memoeslink.generator.common.NameGetter imple
 
     @Override
     public String getFemaleFullName() {
-        return getFemaleSimpleName();
+        switch (r.getInt(2)) {
+            case 1:
+                return getFemaleSimpleName();
+            case 0:
+            default:
+                return (getFemaleForename() + Separator.SPACE.getCharacter() +
+                        getFemalePatronymic() + Separator.SPACE.getCharacter() +
+                        getSurname());
+        }
     }
 
     @Override
     public String getMaleFullName() {
-        return getMaleSimpleName();
+        switch (r.getInt(2)) {
+            case 1:
+                return getMaleSimpleName();
+            case 0:
+            default:
+                return (getMaleForename() + Separator.SPACE.getCharacter() +
+                        getMalePatronymic() + Separator.SPACE.getCharacter() +
+                        getSurname());
+        }
     }
 
     @Override
