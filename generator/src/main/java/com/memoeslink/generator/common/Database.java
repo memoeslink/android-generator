@@ -245,11 +245,11 @@ public class Database extends SQLiteAssetHelper {
     }
 
     public static String selectRussianFemaleName() {
-        return selectRow("SELECT * FROM " + TABLE_RUSSIAN_FEMALE_NAMES + " ORDER BY RANDOM() LIMIT 1", 2);
+        return selectRow("SELECT * FROM " + TABLE_RUSSIAN_FEMALE_NAMES + " ORDER BY RANDOM() LIMIT 1", 1);
     }
 
     public static String selectRussianFemaleName(int id) {
-        return selectRow("SELECT * FROM " + TABLE_RUSSIAN_FEMALE_NAMES + " WHERE " + TABLE_RUSSIAN_FEMALE_NAMES + ID_PREFIX + " = ?", 2, String.valueOf(id));
+        return selectRow("SELECT * FROM " + TABLE_RUSSIAN_FEMALE_NAMES + " WHERE " + TABLE_RUSSIAN_FEMALE_NAMES + ID_PREFIX + " = ?", 1, String.valueOf(id));
     }
 
     public static int countRussianMaleNames() {
@@ -257,11 +257,11 @@ public class Database extends SQLiteAssetHelper {
     }
 
     public static String selectRussianMaleName() {
-        return selectRow("SELECT * FROM " + TABLE_RUSSIAN_MALE_NAMES + " ORDER BY RANDOM() LIMIT 1", 2);
+        return selectRow("SELECT * FROM " + TABLE_RUSSIAN_MALE_NAMES + " ORDER BY RANDOM() LIMIT 1", 1);
     }
 
     public static String selectRussianMaleName(int id) {
-        return selectRow("SELECT * FROM " + TABLE_RUSSIAN_MALE_NAMES + " WHERE " + TABLE_RUSSIAN_MALE_NAMES + ID_PREFIX + " = ?", 2, String.valueOf(id));
+        return selectRow("SELECT * FROM " + TABLE_RUSSIAN_MALE_NAMES + " WHERE " + TABLE_RUSSIAN_MALE_NAMES + ID_PREFIX + " = ?", 1, String.valueOf(id));
     }
 
     public static int countHispanicCompoundSurnames() {
