@@ -228,9 +228,9 @@ public class StringHelper {
     }
 
     public static String join(String separator, String a, String b) {
+        if (a == null && b == null)
+            return null;
         separator = defaultIfNull(separator);
-        a = defaultIfNull(a);
-        b = defaultIfNull(b);
 
         if (isNotNullOrEmpty(a) && isNullOrEmpty(b))
             return a;
@@ -246,6 +246,14 @@ public class StringHelper {
 
     public static String joinWithHyphen(String a, String b) {
         return join(String.valueOf(Separator.HYPHEN.getCharacter()), a, b);
+    }
+
+    public static String joinWithSlash(String a, String b) {
+        return join('/', a, b);
+    }
+
+    public static String joinWithBackslash(String a, String b) {
+        return join('\\', a, b);
     }
 
     public static String joinWithFileSeparator(String a, String b) {
@@ -500,7 +508,7 @@ public class StringHelper {
     }
 
     public static String replace(String s, String occurrence, String replacement) {
-        if (isNullOrEmpty(s) || occurrence == null || replacement == null)
+        if (isNullOrEmpty(s) || isNullOrEmpty(occurrence) || replacement == null)
             return s;
         int i = 0;
 
@@ -522,6 +530,18 @@ public class StringHelper {
             s = sb.toString();
             sb.setLength(0);
         }
+        return s;
+    }
+
+    public static String replaceFirstChar(String s, String replacement) {
+        if (isNotNullOrEmpty(s) && replacement != null)
+            s = replacement + s.substring(1);
+        return s;
+    }
+
+    public static String replaceLastChar(String s, String replacement) {
+        if (isNotNullOrEmpty(s) && replacement != null)
+            s = s.substring(0, s.length() - 1) + replacement;
         return s;
     }
 
@@ -553,12 +573,10 @@ public class StringHelper {
     }
 
     public static String replaceEach(String s, String[] occurrences, String[] replacements) {
-        if (isNullOrEmpty(s) || occurrences == null || replacements == null)
+        if (occurrences == null || replacements == null)
             return s;
 
         for (int n = 0; n < occurrences.length && n < replacements.length; n++) {
-            if (isNullOrEmpty(occurrences[n]) || replacements[n] == null)
-                continue;
             s = replace(s, occurrences[n], replacements[n]);
         }
         return s;
@@ -567,6 +585,60 @@ public class StringHelper {
     public static String replaceAll(String s, String regex, String replacement) {
         if (isNotNullOrEmpty(s) && replacement != null)
             return s.replaceAll(regex, replacement);
+        return s;
+    }
+
+    public static String replaceStart(String s, String prefix, String replacement) {
+        if (startsWith(s, prefix) && replacement != null)
+            return replacement + s.substring(prefix.length());
+        return s;
+    }
+
+    public static String replaceAnyStart(String s, String replacement, String... prefixes) {
+        for (String prefix : prefixes) {
+            if (endsWith(s, prefix))
+                return replaceEnd(s, prefix, replacement);
+        }
+        return s;
+    }
+
+    public static String replaceEachStart(String s, String[] prefixes, String[] replacements) {
+        if (prefixes == null || replacements == null)
+            return s;
+
+        for (int n = 0; n < prefixes.length && n < replacements.length; n++) {
+            String result = replaceStart(s, prefixes[n], replacements[n]);
+
+            if (!s.equals(result))
+                return result;
+        }
+        return s;
+    }
+
+    public static String replaceEnd(String s, String suffix, String replacement) {
+        if (endsWith(s, suffix) && replacement != null)
+            return s.substring(0, s.length() - suffix.length()) + replacement;
+        return s;
+    }
+
+    public static String replaceAnyEnd(String s, String replacement, String... suffixes) {
+        for (String suffix : suffixes) {
+            if (endsWith(s, suffix))
+                return replaceEnd(s, suffix, replacement);
+        }
+        return s;
+    }
+
+    public static String replaceEachEnd(String s, String[] suffixes, String[] replacements) {
+        if (suffixes == null || replacements == null)
+            return s;
+
+        for (int n = 0; n < suffixes.length && n < replacements.length; n++) {
+            String result = replaceEnd(s, suffixes[n], replacements[n]);
+
+            if (!s.equals(result))
+                return result;
+        }
         return s;
     }
 
@@ -644,15 +716,19 @@ public class StringHelper {
     }
 
     public static String removeStart(String s, String prefix) {
-        if (startsWith(s, prefix))
-            return s.substring(prefix.length());
-        return s;
+        return replaceStart(s, prefix, EMPTY);
+    }
+
+    public static String removeAnyStart(String s, String... prefixes) {
+        return replaceAnyStart(s, EMPTY, prefixes);
     }
 
     public static String removeEnd(String s, String suffix) {
-        if (endsWith(s, suffix))
-            return s.substring(0, s.length() - suffix.length());
-        return s;
+        return replaceStart(s, suffix, EMPTY);
+    }
+
+    public static String removeAnyEnd(String s, String... suffixes) {
+        return replaceAnyStart(s, EMPTY, suffixes);
     }
 
     public static String removeBetweenChars(String s, char opening, char closing) {

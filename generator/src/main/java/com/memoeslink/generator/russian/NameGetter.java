@@ -2,6 +2,7 @@ package com.memoeslink.generator.russian;
 
 import com.memoeslink.common.Randomizer;
 import com.memoeslink.generator.common.Database;
+import com.memoeslink.generator.common.Gender;
 import com.memoeslink.generator.common.ResourceGetter;
 import com.memoeslink.generator.common.Separator;
 import com.memoeslink.generator.international.Shaper;
@@ -21,46 +22,48 @@ public class NameGetter extends com.memoeslink.generator.common.NameGetter imple
 
     @Override
     public String getFemaleForename() {
-        return ResourceGetter.with(r).getString(Constant.FEMALE_FORENAMES);
+        return r.getBoolean() ? ResourceGetter.with(r).getString(Constant.FEMALE_FORENAMES) :
+                getFemaleForename(r.getInt(1, Database.countRussianFemaleNames()));
     }
 
     @Override
     public String getFemaleForename(int id) {
-        return ResourceGetter.with(r).getString(Constant.MALE_FORENAMES, id);
+        return Database.selectRussianFemaleName(id);
     }
 
     @Override
     public String getMaleForename() {
-        return ResourceGetter.with(r).getString(Constant.MALE_FORENAMES);
+        return r.getBoolean() ? ResourceGetter.with(r).getString(Constant.MALE_FORENAMES) :
+                getMaleForename(r.getInt(1, Database.countRussianMaleNames()));
     }
 
     @Override
     public String getMaleForename(int id) {
-        return ResourceGetter.with(r).getString(Constant.MALE_FORENAMES, id);
+        return Database.selectRussianMaleName(id);
     }
 
     @Override
     public String getFemalePatronymic() {
         String name = getMaleForename();
-        return getFemalePatronymic(name);
+        return getPatronymic(name, Gender.FEMININE);
     }
 
     @Override
     public String getFemalePatronymic(int id) {
         String name = getMaleForename(id);
-        return getFemalePatronymic(name);
+        return getPatronymic(name, Gender.FEMININE);
     }
 
     @Override
     public String getMalePatronymic() {
         String name = getMaleForename();
-        return getMalePatronymic(name);
+        return getPatronymic(name, Gender.MASCULINE);
     }
 
     @Override
     public String getMalePatronymic(int id) {
         String name = getMaleForename(id);
-        return getMalePatronymic(name);
+        return getPatronymic(name, Gender.MASCULINE);
     }
 
     @Override

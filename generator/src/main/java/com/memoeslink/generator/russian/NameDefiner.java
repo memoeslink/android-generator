@@ -1,33 +1,34 @@
 package com.memoeslink.generator.russian;
 
 import com.memoeslink.generator.common.CharHelper;
-import com.memoeslink.generator.common.Database;
+import com.memoeslink.generator.common.Gender;
 import com.memoeslink.generator.common.StringHelper;
 
 public interface NameDefiner extends com.memoeslink.generator.common.NameDefiner {
 
-    private String getPatronymicBase(String name) {
-        String base = StringHelper.defaultIfEmpty(name, Database.DEFAULT_VALUE);
-        return StringHelper.removeAll(base, "[eiy]$");
-    }
+    default String getPatronymic(String name, Gender gender) {
+        gender = gender != null ? gender : Gender.UNDEFINED;
 
-    default String getFemalePatronymic(String name) {
-        String base = getPatronymicBase(name);
+        if (StringHelper.isNullOrEmpty(name))
+            return name;
+        String[] suffixes;
 
-        if (CharHelper.isConsonant(base.charAt(base.length() - 1)) || name.charAt(name.length() - 1) == 'a')
-            return base + "ovna";
-        else if (CharHelper.isVowel(base.charAt(base.length() - 1)))
-            return base + "enva";
-        return name;
-    }
+        if (gender == Gender.MASCULINE)
+            suffixes = Constant.MALE_PATRONYMIC_SUFFIXES;
+        else if (gender == Gender.FEMININE)
+            suffixes = Constant.FEMALE_PATRONYMIC_SUFFIXES;
+        else
+            return name;
+        char lastChar = StringHelper.getLastChar(name);
 
-    default String getMalePatronymic(String name) {
-        String base = getPatronymicBase(name);
-
-        if (CharHelper.isConsonant(base.charAt(base.length() - 1)) || name.charAt(name.length() - 1) == 'a')
-            return base + "ovich";
-        else if (CharHelper.isVowel(base.charAt(base.length() - 1)))
-            return base + "evich";
+        if (lastChar == 'a')
+            return StringHelper.removeLastChar(name) + suffixes[0];
+        else if (lastChar == 'e')
+            return StringHelper.removeLastChar(name) + suffixes[1];
+        else if (CharHelper.isVowel(lastChar) || lastChar == 'j')
+            return name + suffixes[1];
+        else if (CharHelper.isConsonant(lastChar))
+            return name + suffixes[2];
         return name;
     }
 }

@@ -25,6 +25,8 @@ public class Database extends SQLiteAssetHelper {
     public static final String TABLE_ENGLISH_SURNAMES = "EnglishSurnames";
     public static final String TABLE_FRENCH_FEMALE_NAMES = "FrenchFemaleNames";
     public static final String TABLE_FRENCH_MALE_NAMES = "FrenchMaleNames";
+    public static final String TABLE_RUSSIAN_FEMALE_NAMES = "RussianFemaleNames";
+    public static final String TABLE_RUSSIAN_MALE_NAMES = "RussianMaleNames";
     public static final String TABLE_SPANISH_COMPOUND_SURNAMES = "SpanishCompoundSurnames";
     public static final String TABLE_SPANISH_FEMALE_NAMES = "SpanishFemaleNames";
     public static final String TABLE_SPANISH_MALE_NAMES = "SpanishMaleNames";
@@ -236,6 +238,30 @@ public class Database extends SQLiteAssetHelper {
 
     public static String selectFrenchMaleName(int id) {
         return selectRow("SELECT * FROM " + TABLE_FRENCH_MALE_NAMES + " WHERE " + TABLE_FRENCH_MALE_NAMES + ID_PREFIX + " = ?", 1, String.valueOf(id));
+    }
+
+    public static int countRussianFemaleNames() {
+        return countRows(TABLE_RUSSIAN_FEMALE_NAMES);
+    }
+
+    public static String selectRussianFemaleName() {
+        return selectRow("SELECT * FROM " + TABLE_RUSSIAN_FEMALE_NAMES + " ORDER BY RANDOM() LIMIT 1", 2);
+    }
+
+    public static String selectRussianFemaleName(int id) {
+        return selectRow("SELECT * FROM " + TABLE_RUSSIAN_FEMALE_NAMES + " WHERE " + TABLE_RUSSIAN_FEMALE_NAMES + ID_PREFIX + " = ?", 2, String.valueOf(id));
+    }
+
+    public static int countRussianMaleNames() {
+        return countRows(TABLE_RUSSIAN_MALE_NAMES);
+    }
+
+    public static String selectRussianMaleName() {
+        return selectRow("SELECT * FROM " + TABLE_RUSSIAN_MALE_NAMES + " ORDER BY RANDOM() LIMIT 1", 2);
+    }
+
+    public static String selectRussianMaleName(int id) {
+        return selectRow("SELECT * FROM " + TABLE_RUSSIAN_MALE_NAMES + " WHERE " + TABLE_RUSSIAN_MALE_NAMES + ID_PREFIX + " = ?", 2, String.valueOf(id));
     }
 
     public static int countHispanicCompoundSurnames() {

@@ -89,7 +89,7 @@ public class Word {
             String cutFeminineForm = StringHelper.removeLastChar(feminineForm);
 
             if (cutMasculineForm.equals(cutFeminineForm) || (cutMasculineForm = masculineForm).equals(cutFeminineForm))
-                return cutMasculineForm + combination.getStarter() + feminineForm.charAt(feminineForm.length() - 1) +
+                return cutMasculineForm + combination.getStarter() + StringHelper.getEnd(feminineForm) +
                         (combination.getFinisher() != CharHelper.NULL_CHAR ? combination.getFinisher() : StringHelper.EMPTY);
             return masculineForm + combination.getCombinator() + feminineForm;
         }
