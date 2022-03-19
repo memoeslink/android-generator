@@ -285,6 +285,6 @@ public class Constant {
             "Sorokin",
             "Volkov"
     };
-    public static final String[] FEMALE_PATRONYMIC_SUFFIXES = {"ich", "evich", "ovich"};
-    public static final String[] MALE_PATRONYMIC_SUFFIXES = {"inichna", "evna", "ovna"};
+    public static final String[] FEMALE_PATRONYMIC_SUFFIXES = {"inichna", "evna", "ovna"};
+    public static final String[] MALE_PATRONYMIC_SUFFIXES = {"ich", "evich", "ovich"};
 }
