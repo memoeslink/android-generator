@@ -21,28 +21,30 @@ public class DateTimeHelper {
     }
 
     public static String getStrCurrentTime(int type) {
-        type = IntegerHelper.defaultInt(type, 1, 10);
+        type = IntegerHelper.defaultInt(type, 1, 11);
 
         switch (type) {
             case 1:
                 return ZonedDateTime.now().format(DateTimeFormatter.ofPattern("h:mm a", Locale.getDefault()));
             case 2:
-                return ZonedDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm", Locale.getDefault()));
+                return ZonedDateTime.now().format(DateTimeFormatter.ofPattern("K:mm a, z", Locale.getDefault()));
             case 3:
-                return ZonedDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss Z", Locale.getDefault()));
+                return ZonedDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm", Locale.getDefault()));
             case 4:
-                return ZonedDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss", Locale.getDefault()));
+                return ZonedDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss Z", Locale.getDefault()));
             case 5:
-                return ZonedDateTime.now().format(DateTimeFormatter.ISO_LOCAL_TIME);
+                return ZonedDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss", Locale.getDefault()));
             case 6:
-                return ZonedDateTime.now().format(DateTimeFormatter.ISO_TIME);
+                return ZonedDateTime.now().format(DateTimeFormatter.ISO_LOCAL_TIME);
             case 7:
-                return ZonedDateTime.now().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.FULL));
+                return ZonedDateTime.now().format(DateTimeFormatter.ISO_TIME);
             case 8:
-                return ZonedDateTime.now().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.LONG));
+                return ZonedDateTime.now().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.FULL));
             case 9:
-                return ZonedDateTime.now().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.MEDIUM));
+                return ZonedDateTime.now().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.LONG));
             case 10:
+                return ZonedDateTime.now().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.MEDIUM));
+            case 11:
                 return ZonedDateTime.now().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT));
             default:
                 return "";
@@ -54,7 +56,7 @@ public class DateTimeHelper {
     }
 
     public static String getStrCurrentDate(int type) {
-        type = IntegerHelper.defaultInt(type, 1, 11);
+        type = IntegerHelper.defaultInt(type, 1, 13);
 
         switch (type) {
             case 1:
@@ -64,20 +66,24 @@ public class DateTimeHelper {
             case 3:
                 return LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy", Locale.getDefault()));
             case 4:
-                return LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MMM/yyyy", Locale.getDefault()));
+                return LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MMM-yyyy", Locale.getDefault()));
             case 5:
-                return LocalDate.now().format(DateTimeFormatter.ofPattern("MMMM d", Locale.getDefault()));
+                return LocalDate.now().format(DateTimeFormatter.ofPattern("E, MMM dd yyyy", Locale.getDefault()));
             case 6:
-                return LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE);
+                return LocalDate.now().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy", Locale.getDefault()));
             case 7:
-                return LocalDateTime.now().format(DateTimeFormatter.ISO_DATE);
+                return LocalDate.now().format(DateTimeFormatter.ofPattern("MMMM d", Locale.getDefault()));
             case 8:
-                return LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL));
+                return LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE);
             case 9:
-                return LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG));
+                return LocalDateTime.now().format(DateTimeFormatter.ISO_DATE);
             case 10:
-                return LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM));
+                return LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL));
             case 11:
+                return LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG));
+            case 12:
+                return LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM));
+            case 13:
                 return LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT));
             default:
                 return "";
