@@ -41,41 +41,6 @@ public class DateTimeGetter {
         }
     }
 
-    public static String getCurrentTime() {
-        return ZonedDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss").withLocale(locale));
-    }
-
-    public static String getCurrentTime(int type) {
-        type = IntegerHelper.defaultInt(type, 1, 11);
-
-        switch (type) {
-            case 1:
-                return ZonedDateTime.now().format(DateTimeFormatter.ofPattern("h:mm a", locale));
-            case 2:
-                return ZonedDateTime.now().format(DateTimeFormatter.ofPattern("K:mm a, z", locale));
-            case 3:
-                return ZonedDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm", locale));
-            case 4:
-                return ZonedDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss Z", locale));
-            case 5:
-                return ZonedDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss", locale));
-            case 6:
-                return ZonedDateTime.now().format(DateTimeFormatter.ISO_LOCAL_TIME.withLocale(locale));
-            case 7:
-                return ZonedDateTime.now().format(DateTimeFormatter.ISO_TIME.withLocale(locale));
-            case 8:
-                return ZonedDateTime.now().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.FULL).withLocale(locale));
-            case 9:
-                return ZonedDateTime.now().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.LONG).withLocale(locale));
-            case 10:
-                return ZonedDateTime.now().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.MEDIUM).withLocale(locale));
-            case 11:
-                return ZonedDateTime.now().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT).withLocale(locale));
-            default:
-                return "";
-        }
-    }
-
     public static String getCurrentDate() {
         return LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd").withLocale(locale));
     }
@@ -120,7 +85,46 @@ public class DateTimeGetter {
         return dayOfWeek.getDisplayName(TextStyle.FULL, locale);
     }
 
+    public static String getCurrentTime() {
+        return ZonedDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss").withLocale(locale));
+    }
+
+    public static String getCurrentTime(int type) {
+        type = IntegerHelper.defaultInt(type, 1, 11);
+
+        switch (type) {
+            case 1:
+                return ZonedDateTime.now().format(DateTimeFormatter.ofPattern("h:mm a", locale));
+            case 2:
+                return ZonedDateTime.now().format(DateTimeFormatter.ofPattern("K:mm a, z", locale));
+            case 3:
+                return ZonedDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm", locale));
+            case 4:
+                return ZonedDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss Z", locale));
+            case 5:
+                return ZonedDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss", locale));
+            case 6:
+                return ZonedDateTime.now().format(DateTimeFormatter.ISO_LOCAL_TIME.withLocale(locale));
+            case 7:
+                return ZonedDateTime.now().format(DateTimeFormatter.ISO_TIME.withLocale(locale));
+            case 8:
+                return ZonedDateTime.now().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.FULL).withLocale(locale));
+            case 9:
+                return ZonedDateTime.now().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.LONG).withLocale(locale));
+            case 10:
+                return ZonedDateTime.now().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.MEDIUM).withLocale(locale));
+            case 11:
+                return ZonedDateTime.now().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT).withLocale(locale));
+            default:
+                return "";
+        }
+    }
+
     public static DateTimeGetter with(Locale locale) {
         return new DateTimeGetter(locale);
+    }
+
+    public static DateTimeGetter without() {
+        return with(null);
     }
 }

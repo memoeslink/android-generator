@@ -3,7 +3,7 @@ plugins {
     id 'maven-publish'
 }
 
-def currentVersionName = "2022.1.8"
+def currentVersionName = "2022.1.9"
 
 afterEvaluate {
     publishing {

@@ -167,4 +167,8 @@ public class ResourceGetter {
     public static ResourceGetter with(Randomizer r) {
         return new ResourceGetter(r);
     }
+
+    public static ResourceGetter without() {
+        return with(null);
+    }
 }
