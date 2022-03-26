@@ -309,7 +309,7 @@ public class Person {
                 System.getProperty("line.separator") +
                 (gender != null ? gender.getGlyph() : Gender.UNDEFINED.getGlyph()) +
                 System.getProperty("line.separator") +
-                StringHelper.defaultWhenBlank(DateTimeHelper.getStrDate(getBirthdate()))
+                StringHelper.defaultWhenBlank(DateTimeHelper.toIso8601(getBirthdate()))
         );
     }
 
