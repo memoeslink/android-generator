@@ -25,16 +25,20 @@ public class DateTimeGetter {
     }
 
     public static String getCurrentDateTime(int type) {
-        type = IntegerHelper.defaultInt(type, 1, 4);
+        type = IntegerHelper.defaultInt(type, 1, 6);
 
         switch (type) {
             case 1:
-                return ZonedDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL).withLocale(locale));
+                return ZonedDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME.withLocale(locale));
             case 2:
-                return ZonedDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).withLocale(locale));
+                return ZonedDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME.withLocale(locale));
             case 3:
-                return ZonedDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM).withLocale(locale));
+                return ZonedDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL).withLocale(locale));
             case 4:
+                return ZonedDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).withLocale(locale));
+            case 5:
+                return ZonedDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM).withLocale(locale));
+            case 6:
                 return ZonedDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT).withLocale(locale));
             default:
                 return "";
@@ -42,38 +46,40 @@ public class DateTimeGetter {
     }
 
     public static String getCurrentDate() {
-        return LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd").withLocale(locale));
+        return LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd").withLocale(locale));
     }
 
     public static String getCurrentDate(int type) {
-        type = IntegerHelper.defaultInt(type, 1, 13);
+        type = IntegerHelper.defaultInt(type, 1, 14);
 
         switch (type) {
             case 1:
-                return LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd", locale));
+                return LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd", locale));
             case 2:
-                return LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy", locale));
+                return LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd", locale));
             case 3:
-                return LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy", locale));
+                return LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy", locale));
             case 4:
-                return LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MMM-yyyy", locale));
+                return LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy", locale));
             case 5:
-                return LocalDate.now().format(DateTimeFormatter.ofPattern("E, MMM dd yyyy", locale));
+                return LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MMM-yyyy", locale));
             case 6:
-                return LocalDate.now().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy", locale));
+                return LocalDate.now().format(DateTimeFormatter.ofPattern("E, MMM dd yyyy", locale));
             case 7:
-                return LocalDate.now().format(DateTimeFormatter.ofPattern("MMMM d", locale));
+                return LocalDate.now().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy", locale));
             case 8:
-                return LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE.withLocale(locale));
+                return LocalDate.now().format(DateTimeFormatter.ofPattern("MMMM d", locale));
             case 9:
-                return LocalDateTime.now().format(DateTimeFormatter.ISO_DATE.withLocale(locale));
+                return LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE.withLocale(locale));
             case 10:
-                return LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL).withLocale(locale));
+                return LocalDateTime.now().format(DateTimeFormatter.ISO_DATE.withLocale(locale));
             case 11:
-                return LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG).withLocale(locale));
+                return LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL).withLocale(locale));
             case 12:
-                return LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).withLocale(locale));
+                return LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG).withLocale(locale));
             case 13:
+                return LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).withLocale(locale));
+            case 14:
                 return LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT).withLocale(locale));
             default:
                 return "";
