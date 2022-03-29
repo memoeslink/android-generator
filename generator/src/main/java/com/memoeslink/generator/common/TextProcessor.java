@@ -276,7 +276,7 @@ public class TextProcessor {
             if (Character.isSpaceChar(c))
                 sb.append(Separator.SPACE.getCharacter());
             else
-                sb.append(ResourceGetter.getChar(Constant.ACCENTED_LETTERS));
+                sb.append(ResourceGetter.without().getChar(Constant.ACCENTED_LETTERS));
         }
         return sb.toString();
     }
