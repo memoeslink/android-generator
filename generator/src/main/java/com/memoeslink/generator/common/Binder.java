@@ -7,6 +7,10 @@ import com.memoeslink.common.Randomizer;
 public class Binder extends ContextWrapper {
     protected final Randomizer r;
 
+    public Binder(Context context) {
+        this(context, null);
+    }
+
     public Binder(Context context, Long seed) {
         super(context);
         r = new Randomizer(seed);

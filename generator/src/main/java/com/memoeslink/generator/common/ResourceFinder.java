@@ -25,6 +25,16 @@ public class ResourceFinder extends Binder {
         super(context, seed);
     }
 
+    public String getStrFromArray(String[] items) {
+        if (StringHelper.isNullOrEmpty(items))
+            return RESOURCE_NOT_FOUND;
+        return items[r.getInt(items.length)];
+    }
+
+    public String getStrFromList(List<String> items) {
+        return getStrFromArray(items.toArray(new String[0]));
+    }
+
     public String getRawRes(@RawRes int id) {
         if (isResource(id) && getResources().getResourceTypeName(id).equals("raw")) {
             try {

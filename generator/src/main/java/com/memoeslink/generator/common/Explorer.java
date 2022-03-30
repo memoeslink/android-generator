@@ -9,9 +9,9 @@ import com.memoeslink.generator.R;
 import java.util.Locale;
 
 public class Explorer extends Binder {
-    ResourceFinder resourceFinder;
-    ContactNameFinder contactNameFinder;
-    Device device;
+    protected ResourceFinder resourceFinder;
+    protected ContactNameFinder contactNameFinder;
+    protected Device device;
 
     public Explorer(Context context) {
         this(context, null);
@@ -50,6 +50,8 @@ public class Explorer extends Binder {
             case EMOJI:
                 int unicode = resourceFinder.getIntFromIntArrayRes(R.array.emojis);
                 return new String(Character.toChars(unicode));
+            case EMOTICON:
+                return resourceFinder.getStrFromSplitStrRes(R.string.emoticons);
             default:
                 return ResourceFinder.RESOURCE_NOT_FOUND;
         }

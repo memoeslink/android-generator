@@ -19,6 +19,9 @@ public class TextProcessor {
     public static final Pattern ROMAN_NUMERAL_PATTERN = Pattern.compile(ROMAN_NUMERAL_REGEX);
     public static final String LATIN_OR_SPACE_REGEX = "[\\p{L}\\s]+";
     public static final Pattern LATIN_OR_SPACE_PATTERN = Pattern.compile(LATIN_OR_SPACE_REGEX);
+    private static final Pattern GENDER_PATTERN = Pattern.compile("｢([0-2])｣");
+    public static final String DOUBLE_FULL_STOP_REGEX = "(\\.(\\s*</?\\w+>\\s*)*)\\.";
+    public static final Pattern DOUBLE_FULL_STOP_PATTERN = Pattern.compile(DOUBLE_FULL_STOP_REGEX);
 
     public static Word getFirstSeveredWord(String s) {
         List<Word> words = severWords(s, 1);
@@ -278,6 +281,17 @@ public class TextProcessor {
             else
                 sb.append(ResourceGetter.without().getChar(Constant.ACCENTED_LETTERS));
         }
+        return sb.toString();
+    }
+
+    public String removeDoubleFullStop(String s) {
+        Matcher matcher = DOUBLE_FULL_STOP_PATTERN.matcher(s);
+        StringBuffer sb = new StringBuffer();
+
+        while (matcher.find()) {
+            matcher.appendReplacement(sb, matcher.group(1));
+        }
+        matcher.appendTail(sb);
         return sb.toString();
     }
 }
