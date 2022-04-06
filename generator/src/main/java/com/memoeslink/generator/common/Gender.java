@@ -10,11 +10,11 @@ public enum Gender {
 
     private final int value;
     private final String[] glyphs;
-    private static final HashMap<Integer, Gender> lookup = new HashMap<>();
+    private static final HashMap<Integer, Gender> LOOKUP = new HashMap<>();
 
     static {
         for (Gender gender : Gender.values()) {
-            lookup.put(gender.getValue(), gender);
+            LOOKUP.put(gender.getValue(), gender);
         }
     }
 
@@ -32,6 +32,6 @@ public enum Gender {
     }
 
     public static Gender get(int value) {
-        return lookup.getOrDefault(value, Gender.UNDEFINED);
+        return LOOKUP.getOrDefault(value, Gender.UNDEFINED);
     }
 }

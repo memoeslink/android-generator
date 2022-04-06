@@ -10,6 +10,8 @@ import android.os.Build;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
 
+import com.memoeslink.generator.common.finder.ResourceFinder;
+
 import java.lang.reflect.Field;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -17,10 +19,10 @@ import java.net.SocketException;
 import java.util.Enumeration;
 
 public class Device extends ContextWrapper {
-    private static final Field[] versionCodes;
+    private static final Field[] VERSION_CODES;
 
     static {
-        versionCodes = Build.VERSION_CODES.class.getFields();
+        VERSION_CODES = Build.VERSION_CODES.class.getFields();
     }
 
     public Device(Context context) {
@@ -109,10 +111,10 @@ public class Device extends ContextWrapper {
     }
 
     public String getAndroidVersionName() {
-        if (versionCodes == null || versionCodes.length == 0)
+        if (VERSION_CODES == null || VERSION_CODES.length == 0)
             return ResourceFinder.RESOURCE_NOT_FOUND;
 
-        for (Field versionCode : versionCodes) {
+        for (Field versionCode : VERSION_CODES) {
             String versionName = versionCode.getName();
             int fieldValue = -1;
 

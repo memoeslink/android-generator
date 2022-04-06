@@ -35,27 +35,27 @@ public class TextProcessor {
     private static List<Word> severWords(String s, int amount) {
         s = StringHelper.defaultIfBlank(s);
         List<Word> words = new ArrayList<>();
-        Matcher m = COMBINED_WORDS_PATTERN.matcher(s);
+        Matcher matcher = COMBINED_WORDS_PATTERN.matcher(s);
         int n = 1;
 
-        while (m.find()) {
+        while (matcher.find()) {
             Word word = new Word();
-            word.setWord(m.group(1));
-            word.setMasculineForm(m.group(1));
+            word.setWord(matcher.group(1));
+            word.setMasculineForm(matcher.group(1));
 
             assignation:
             {
-                if (m.group(2) == null) {
-                    word.setNeutralForm(m.group(1));
+                if (matcher.group(2) == null) {
+                    word.setNeutralForm(matcher.group(1));
                     break assignation;
                 }
-                String ending = StringHelper.defaultIfNull(m.group(3), StringHelper.defaultIfNull(m.group(4)));
+                String ending = StringHelper.defaultIfNull(matcher.group(3), StringHelper.defaultIfNull(matcher.group(4)));
 
                 if (!ending.isEmpty()) {
-                    word.setFeminineForm(feminize(m.group(1), ending));
+                    word.setFeminineForm(feminize(matcher.group(1), ending));
                     break assignation;
                 }
-                word.setFeminineForm(m.group(5));
+                word.setFeminineForm(matcher.group(5));
             }
             word.setGender(Gender.NEUTRAL);
             words.add(word);
@@ -152,38 +152,38 @@ public class TextProcessor {
         StringBuffer sb = new StringBuffer();
         gender = gender != null ? gender : Gender.UNDEFINED;
         combination = combination != null ? combination : WordCombination.SLASH_AND_SQUARE_BRACKETS;
-        Matcher m = COMBINED_WORDS_PATTERN.matcher(s);
+        Matcher matcher = COMBINED_WORDS_PATTERN.matcher(s);
 
-        while (m.find()) {
+        while (matcher.find()) {
             switch (gender) {
                 case MASCULINE:
-                    m.appendReplacement(sb, m.group(1));
+                    matcher.appendReplacement(sb, matcher.group(1));
                     break;
                 case FEMININE:
-                    if (StringHelper.isNullOrEmpty(m.group(2))) {
-                        m.appendReplacement(sb, m.group(1));
+                    if (StringHelper.isNullOrEmpty(matcher.group(2))) {
+                        matcher.appendReplacement(sb, matcher.group(1));
                         continue;
                     }
-                    String ending = StringHelper.defaultIfNull(m.group(3), StringHelper.defaultIfNull(m.group(4)));
+                    String ending = StringHelper.defaultIfNull(matcher.group(3), StringHelper.defaultIfNull(matcher.group(4)));
 
                     if (!ending.isEmpty())
-                        m.appendReplacement(sb, feminize(m.group(1), ending));
+                        matcher.appendReplacement(sb, feminize(matcher.group(1), ending));
                     else
-                        m.appendReplacement(sb, m.group(5));
+                        matcher.appendReplacement(sb, matcher.group(5));
                     break;
                 case NEUTRAL:
-                    m.appendReplacement(sb, getFirstSeveredWord(m.group(0)).getNeutralForm());
+                    matcher.appendReplacement(sb, getFirstSeveredWord(matcher.group(0)).getNeutralForm());
                     break;
                 case UNDEFINED:
                 default:
                     if (combination == WordCombination.SLASH_AND_SQUARE_BRACKETS)
-                        m.appendReplacement(sb, m.group(0));
+                        matcher.appendReplacement(sb, matcher.group(0));
                     else
-                        m.appendReplacement(sb, getFirstSeveredWord(m.group(0)).getCombinedForm(combination));
+                        matcher.appendReplacement(sb, getFirstSeveredWord(matcher.group(0)).getCombinedForm(combination));
                     break;
             }
         }
-        m.appendTail(sb);
+        matcher.appendTail(sb);
         return sb.toString();
     }
 

@@ -4,15 +4,13 @@ import com.memoeslink.common.Randomizer;
 
 public class Maker {
 
-    public static String makeColor(String s) {
-        if (StringHelper.isNullOrEmpty(s))
-            return String.format("#%06X", (0xFFFFFF & -7829368));
-        Randomizer r = new Randomizer(LongHelper.getSeed(s));
-        return String.format("#%06x", r.getInt(0xFFFFFF + 1));
+    public static String getColor(String s) {
+        StringGenerator stringGenerator = new StringGenerator(null, LongHelper.getSeed(s));
+        return stringGenerator.getStrColor(s);
     }
 
-    public static String getColor(String s) {
+    public static String getDefaultColor(String s) {
         Randomizer r = new Randomizer(LongHelper.getSeed(s));
-        return ResourceGetter.with(r).getString(Constant.COLORS);
+        return ResourceGetter.with(r).getString(Constant.DEFAULT_COLORS);
     }
 }

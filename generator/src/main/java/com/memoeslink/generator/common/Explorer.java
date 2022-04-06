@@ -5,6 +5,8 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 
 import com.memoeslink.generator.R;
+import com.memoeslink.generator.common.finder.ContactNameFinder;
+import com.memoeslink.generator.common.finder.ResourceFinder;
 
 import java.util.Locale;
 
@@ -40,13 +42,27 @@ public class Explorer extends Binder {
         initializeFinders(null);
     }
 
+    public String findRes(int id) {
+        return findRes(id, -1);
+    }
+
+    public String findRes(int id, int index) {
+        if (!resourceFinder.isResource(id))
+            return ResourceFinder.RESOURCE_NOT_FOUND;
+        else if (getResources().getResourceTypeName(id).equals("array"))
+            return index >= 0 ? resourceFinder.getStrFromStrArrayRes(id, index) : resourceFinder.getStrFromStrArrayRes(id);
+        else if (getResources().getResourceTypeName(id).equals("string"))
+            return index >= 0 ? resourceFinder.getStrFromSplitStrRes(id, index) : resourceFinder.getStrFromSplitStrRes(id);
+        return ResourceFinder.RESOURCE_NOT_FOUND;
+    }
+
     public String findByRef(ExplorerReference reference) {
         if (reference == null)
             return ResourceFinder.RESOURCE_NOT_FOUND;
 
         switch (reference) {
             case COLOR:
-                return ResourceGetter.with(r).getString(Constant.COLORS);
+                return ResourceGetter.with(r).getString(Constant.DEFAULT_COLORS);
             case EMOJI:
                 int unicode = resourceFinder.getIntFromIntArrayRes(R.array.emojis);
                 return new String(Character.toChars(unicode));

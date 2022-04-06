@@ -105,7 +105,7 @@ public class TextFormatter {
         if (person.hasAttribute("anonymous"))
             formattedDescriptor = formatUsername(person.getUsername());
         else
-            formattedDescriptor = String.format("<font color=%s>%s</font>", Maker.getColor(person.getSummary()), formatName(person.getDescriptor()));
+            formattedDescriptor = String.format("<font color=%s>%s</font>", Maker.getDefaultColor(person.getSummary()), formatName(person.getDescriptor()));
 
         if (person.hasAttribute("requested"))
             formattedDescriptor = formatText(formattedDescriptor, "u");
@@ -115,7 +115,7 @@ public class TextFormatter {
     public static String formatName(String s) {
         if (StringHelper.isNullOrBlank(s))
             return s;
-        return String.format("<font color=%s>%s</font>", Maker.getColor(s), formatText(s, "b"));
+        return String.format("<font color=%s>%s</font>", Maker.getDefaultColor(s), formatText(s, "b"));
     }
 
     public static String formatName(Person person) {
@@ -123,7 +123,7 @@ public class TextFormatter {
             return "";
         return String.format("%s<font color=%s>%s%s%s</font>",
                 (StringHelper.isNotNullOrBlank(person.getOccupation()) ? formatText(person.getOccupation(), "i") + " " : ""),
-                Maker.getColor(person.getFullName()),
+                Maker.getDefaultColor(person.getFullName()),
                 formatText(person.getFullName(), "b"),
                 StringHelper.defaultIfBlank(person.getJapaneseHonorific()),
                 (StringHelper.isNotNullOrBlank(person.getPostNominalLetters()) ? ", " + formatText(person.getPostNominalLetters(), "b,i") : "")
@@ -133,22 +133,22 @@ public class TextFormatter {
     public static String formatUsername(String s) {
         if (StringHelper.isNullOrBlank(s))
             return s;
-        return String.format("<font color=%s>%s</font>", Maker.getColor(s), formatText(s, "b,tt"));
+        return String.format("<font color=%s>%s</font>", Maker.getDefaultColor(s), formatText(s, "b,tt"));
     }
 
     public static String formatContactName(String s) {
         if (StringHelper.isNullOrBlank(s))
             return s;
 
-        if (Validation.isEmailAddress(s))
+        if (Validation.isEmailAddress(s) || Validation.isPhone(s))
             return "<font color=#FFFFC6>" + s + "</font>";
 
         if (Validation.isUrl(s))
-            return String.format("<font color=%s>%s</font>", Maker.getColor(s), formatText(s, "s"));
+            return String.format("<font color=%s>%s</font>", Maker.getDefaultColor(s), formatText(s, "s"));
 
         if (!StringHelper.containsSpace(s))
-            return String.format("<font color=%s>%s</font>", Maker.getColor(s), formatText(s, "b,tt"));
-        return String.format("<font color=%s>%s</font>", Maker.getColor(s), formatText(s, "b"));
+            return String.format("<font color=%s>%s</font>", Maker.getDefaultColor(s), formatText(s, "b,tt"));
+        return String.format("<font color=%s>%s</font>", Maker.getDefaultColor(s), formatText(s, "b"));
     }
 
     public static String formatSuggestedName(String s) {
@@ -156,7 +156,7 @@ public class TextFormatter {
             return s;
 
         if (StringHelper.equalsIgnoreCase(s, Constant.DEVELOPER))
-            return String.format("<font color=%s>%s</font>", Maker.getColor(s), formatText(s, "b,i"));
-        return String.format("<font color=%s>%s</font>", Maker.getColor(s), formatText(s, "b"));
+            return String.format("<font color=%s>%s</font>", Maker.getDefaultColor(s), formatText(s, "b,i"));
+        return String.format("<font color=%s>%s</font>", Maker.getDefaultColor(s), formatText(s, "b"));
     }
 }

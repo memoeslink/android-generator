@@ -1,4 +1,4 @@
-package com.memoeslink.generator.common;
+package com.memoeslink.generator.common.finder;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -6,6 +6,10 @@ import android.content.res.Resources;
 import androidx.annotation.ArrayRes;
 import androidx.annotation.RawRes;
 import androidx.annotation.StringRes;
+
+import com.memoeslink.generator.common.Binder;
+import com.memoeslink.generator.common.IntegerHelper;
+import com.memoeslink.generator.common.StringHelper;
 
 import java.io.IOException;
 import java.io.InputStream;

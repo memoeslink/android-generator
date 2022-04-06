@@ -1,4 +1,4 @@
-package com.memoeslink.generator.common;
+package com.memoeslink.generator.common.finder;
 
 import android.Manifest;
 import android.content.ContentResolver;
@@ -8,6 +8,9 @@ import android.database.Cursor;
 import android.provider.ContactsContract;
 
 import androidx.core.content.ContextCompat;
+
+import com.memoeslink.generator.common.Binder;
+import com.memoeslink.generator.common.StringHelper;
 
 import java.util.ArrayList;
 import java.util.List;
