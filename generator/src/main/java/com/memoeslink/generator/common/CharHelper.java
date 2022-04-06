@@ -116,7 +116,7 @@ public class CharHelper {
     public static String getUnicode(char c) {
         if (c == NULL_CHAR)
             return StringHelper.EMPTY;
-        return String.format("\\u%04X", (int) c);
+        return String.format("\\u%04x", (int) c);
     }
 
     public static char getHexDigit(int value) {

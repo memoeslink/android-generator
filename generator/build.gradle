@@ -71,7 +71,7 @@ dependencies {
     implementation 'com.readystatesoftware.sqliteasset:sqliteassethelper:2.0.1'
     implementation 'commons-validator:commons-validator:1.7'
     implementation 'io.github.encryptorcode:pluralize:1.0.0'
-    implementation 'io.github.memoeslink:randomizer:2022.0.0-release'
+    implementation 'io.github.memoeslink:randomizer:2022.0.1-release'
     implementation "androidx.core:core-ktx:+"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
