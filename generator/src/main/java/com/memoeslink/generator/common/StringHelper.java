@@ -348,6 +348,17 @@ public class StringHelper {
         return vowel ? (a + removeFirstChar(b)) : (removeLastChar(a) + b);
     }
 
+    public static String repeat(String s, int count) {
+        if (s == null || count < 0)
+            return null;
+        StringBuilder sb = new StringBuilder(s.length() * count);
+
+        for (int i = 0; i < count; i++) {
+            sb.append(s);
+        }
+        return sb.toString();
+    }
+
     public static String trim(String s) {
         return s == null ? null : s.trim();
     }
