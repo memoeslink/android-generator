@@ -56,21 +56,49 @@ public class Explorer extends Binder {
         return ResourceFinder.RESOURCE_NOT_FOUND;
     }
 
+    public String findResByName(String name) {
+        return findResByName(name, -1);
+    }
+
+    public String findResByName(String name, int index) {
+        if (StringHelper.isNullOrBlank(name))
+            return ResourceFinder.RESOURCE_NOT_FOUND;
+        int id = resourceFinder.getArrayResourceId(name);
+
+        if (resourceFinder.getArrayResourceId(name) >= 0)
+            return index >= 0 ? resourceFinder.getStrFromStrArrayRes(id, index) : resourceFinder.getStrFromStrArrayRes(id);
+        id = resourceFinder.getStringResourceId(name);
+
+        if (resourceFinder.getStringResourceId(name) >= 0)
+            return index >= 0 ? resourceFinder.getStrFromSplitStrRes(id, index) : resourceFinder.getStrFromSplitStrRes(id);
+        return ResourceFinder.RESOURCE_NOT_FOUND;
+    }
+
     public String findByRef(ExplorerReference reference) {
         if (reference == null)
             return ResourceFinder.RESOURCE_NOT_FOUND;
 
         switch (reference) {
-            case COLOR:
-                return ResourceGetter.with(r).getString(Constant.DEFAULT_COLORS);
             case EMOJI:
                 int unicode = resourceFinder.getIntFromIntArrayRes(R.array.emojis);
                 return new String(Character.toChars(unicode));
             case EMOTICON:
                 return resourceFinder.getStrFromStrArrayRes(R.array.emoticons);
+            case KAOMOJI:
+                return resourceFinder.getStrFromStrArrayRes(R.array.kaomojis);
             default:
                 return ResourceFinder.RESOURCE_NOT_FOUND;
         }
+    }
+
+    public int findArrayLength(int id) {
+        if (!resourceFinder.isResource(id))
+            return 0;
+        else if (getResources().getResourceTypeName(id).equals("array"))
+            return resourceFinder.getArrayResLength(id);
+        else if (getResources().getResourceTypeName(id).equals("string"))
+            return resourceFinder.getSplitStrResLength(id);
+        return 0;
     }
 
     public String findGenderName(Gender gender, int type) {

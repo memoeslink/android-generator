@@ -42,7 +42,7 @@
         <item>:-||</item>
         <item>\u003e:[</item>
         <item>:{</item>
-        <item>:@</item>
+        <item>:\u0026</item>
         <item>;(</item>
         <item>:\'-(</item>
         <item>:\'(</item>
@@ -179,6 +179,437 @@
         <item>^.^</item>
         <item>\u003e.\u003c</item>
         <item>\u003e__\u003c</item>
+    </string-array>
+    <string-array name="kaomojis">
+        <item>¢‿¢</item>
+        <item>©¿© o</item>
+        <item>ª{•̃̾_•̃̾}ª</item>
+        <item>¬_¬</item>
+        <item>¯＼(º_o)/¯</item>
+        <item>¯\(º o)/¯</item>
+        <item>¯\_(⊙︿⊙)_/¯</item>
+        <item>¯\_(ツ)_/¯</item>
+        <item>°ω°</item>
+        <item>°Д°</item>
+        <item>°‿‿°</item>
+        <item>°ﺑ°</item>
+        <item>´ ▽ ` )ﾉ</item>
+        <item>¿ⓧ_ⓧﮌ</item>
+        <item>Ò,ó</item>
+        <item>ó‿ó</item>
+        <item>ô⌐ô</item>
+        <item>ôヮô</item>
+        <item>ŎםŎ</item>
+        <item>ŏﺡó</item>
+        <item>ʕ•̫͡•ʔ</item>
+        <item>ʕ•ᴥ•ʔ</item>
+        <item>ʘ‿ʘ</item>
+        <item>˚•_•˚</item>
+        <item>˚⌇˚</item>
+        <item>˚▱˚</item>
+        <item>̿ ̿̿'̿'\̵͇̿̿\=(•̪●)=/̵͇̿̿/'̿̿ ̿ ̿ ̿</item>
+        <item>͡° ͜ʖ ͡°</item>
+        <item>Σ ◕ ◡ ◕</item>
+        <item>Σ (ﾟДﾟ;）</item>
+        <item>Σ(ﾟДﾟ；≡；ﾟдﾟ)</item>
+        <item>Σ(ﾟДﾟ )</item>
+        <item>Σ(||ﾟДﾟ)</item>
+        <item>Φ,Φ</item>
+        <item>δﺡό</item>
+        <item>σ_σ</item>
+        <item>д_д</item>
+        <item>ф_ф</item>
+        <item>щ（ﾟДﾟщ）</item>
+        <item>щ(ಠ益ಠщ)</item>
+        <item>щ(ಥДಥщ)</item>
+        <item>Ծ_Ծ</item>
+        <item>أ‿أ</item>
+        <item>ب_ب</item>
+        <item>ح˚௰˚づ</item>
+        <item>ح˚ᆺ˚ว</item>
+        <item>حᇂﮌᇂ)</item>
+        <item>٩๏̯͡๏۶</item>
+        <item>٩๏̯͡๏)۶</item>
+        <item>٩◔̯◔۶</item>
+        <item>٩(×̯×)۶</item>
+        <item>٩(̾●̮̮̃̾•̃̾)۶</item>
+        <item>٩(͡๏̯͡๏)۶</item>
+        <item>٩(͡๏̯ ͡๏)۶</item>
+        <item>٩(ಥ_ಥ)۶</item>
+        <item>٩(•̮̮̃•̃)۶</item>
+        <item>٩(●̮̮̃•̃)۶</item>
+        <item>٩(●̮̮̃●̃)۶</item>
+        <item>٩(｡͡•‿•｡)۶</item>
+        <item>٩(-̮̮̃•̃)۶</item>
+        <item>٩(-̮̮̃-̃)۶</item>
+        <item>۞_۞</item>
+        <item>۞_۟۞</item>
+        <item>۹ↁﮌↁ</item>
+        <item>۹⌤_⌤۹</item>
+        <item>॓_॔</item>
+        <item>१✌◡✌५</item>
+        <item>१|˚–˚|५</item>
+        <item>ਉ_ਉ</item>
+        <item>ଘ_ଘ</item>
+        <item>இ_இ</item>
+        <item>ఠ_ఠ</item>
+        <item>రృర</item>
+        <item>ಠ¿ಠi</item>
+        <item>ಠ‿ಠ</item>
+        <item>ಠ⌣ಠ</item>
+        <item>ಠ╭╮ಠ</item>
+        <item>ಠ▃ಠ</item>
+        <item>ಠ◡ಠ</item>
+        <item>ಠ益ಠ</item>
+        <item>ಠ益ಠ</item>
+        <item>ಠ︵ಠ凸</item>
+        <item>ಠ , ಥ</item>
+        <item>ಠ.ಠ</item>
+        <item>ಠoಠ</item>
+        <item>ಠ_ృ</item>
+        <item>ಠ_ಠ</item>
+        <item>ಠ_๏</item>
+        <item>ಠ~ಠ</item>
+        <item>ಡ_ಡ</item>
+        <item>ತಎತ</item>
+        <item>ತ_ತ</item>
+        <item>ಥдಥ</item>
+        <item>ಥ‿ಥ</item>
+        <item>ಥ⌣ಥ</item>
+        <item>ಥ◡ಥ</item>
+        <item>ಥ﹏ಥ</item>
+        <item>ಥ_ಥ</item>
+        <item>ಭ_ಭ</item>
+        <item>ರ_ರ</item>
+        <item>ಸ , ໖</item>
+        <item>ಸ_ಸ</item>
+        <item>ക_ക</item>
+        <item>อ้_อ้</item>
+        <item>อ_อ</item>
+        <item>โ๏௰๏ใ ื</item>
+        <item>๏̯͡๏﴿</item>
+        <item>๏̯͡๏</item>
+        <item>๏̯͡๏﴿</item>
+        <item>๏[-ิิ_•ิ]๏</item>
+        <item>๏_๏</item>
+        <item>໖_໖</item>
+        <item>༺‿༻</item>
+        <item>ლ(´ڡ`ლ)</item>
+        <item>ლ(́◉◞౪◟◉‵ლ)</item>
+        <item>ლ(ಠ益ಠლ)</item>
+        <item>ლ(╹◡╹ლ)</item>
+        <item>ლ(◉◞౪◟◉‵ლ)</item>
+        <item>ლ,ᔑ•ﺪ͟͠•ᔐ.ლ</item>
+        <item>ᄽὁȍ ̪ őὀᄿ</item>
+        <item>ᕕ( ᐛ )ᕗ</item>
+        <item>ᕙ(⇀‸↼‶)ᕗ</item>
+        <item>ᕦ(ò_óˇ)ᕤ</item>
+        <item>ᶘ ᵒᴥᵒᶅ</item>
+        <item>‘︿’</item>
+        <item>•▱•</item>
+        <item>•✞_✞•</item>
+        <item>•ﺑ•</item>
+        <item>•(⌚_⌚)•</item>
+        <item>•_•)</item>
+        <item>‷̗ↂ凸ↂ‴̖</item>
+        <item>‹•.•›</item>
+        <item>‹› ‹(•¿•)› ‹›</item>
+        <item>‹(ᵒᴥᵒ­­­­­)›</item>
+        <item>‹(•¿•)›</item>
+        <item>ↁ_ↁ</item>
+        <item>⇎_⇎</item>
+        <item>∩(︶▽︶)∩</item>
+        <item>∩( ・ω・)∩</item>
+        <item>≖‿≖</item>
+        <item>≧ヮ≦</item>
+        <item>⊂•⊃_⊂•⊃</item>
+        <item>⊂⌒~⊃｡Д｡)⊃</item>
+        <item>⊂(◉‿◉)つ</item>
+        <item>⊂(ﾟДﾟ,,⊂⌒｀つ</item>
+        <item>⊙ω⊙</item>
+        <item>⊙▂⊙</item>
+        <item>⊙▃⊙</item>
+        <item>⊙△⊙</item>
+        <item>⊙︿⊙</item>
+        <item>⊙﹏⊙</item>
+        <item>⊙０⊙</item>
+        <item>⊛ठ̯⊛</item>
+        <item>⋋ō_ō`</item>
+        <item>━━━ヽ(ヽ(ﾟヽ(ﾟ∀ヽ(ﾟ∀ﾟヽ(ﾟ∀ﾟ)ﾉﾟ∀ﾟ)ﾉ∀ﾟ)ﾉﾟ)ﾉ)ﾉ━━━</item>
+        <item>┌∩┐(◕_◕)┌∩┐</item>
+        <item>┌( ಠ_ಠ)┘</item>
+        <item>┌( ಥ_ಥ)┘</item>
+        <item>╚(•⌂•)╝</item>
+        <item>╭╮╭╮☜{•̃̾_•̃̾}☞╭╮╭╮</item>
+        <item>╭✬⌢✬╮</item>
+        <item>╮(─▽─)╭</item>
+        <item>╯‵Д′)╯彡┻━┻</item>
+        <item>╰☆╮</item>
+        <item>□_□</item>
+        <item>►_◄</item>
+        <item>◃┆◉◡◉┆▷</item>
+        <item>◉△◉</item>
+        <item>◉︵◉</item>
+        <item>◉_◉</item>
+        <item>○_○</item>
+        <item>●¿●\ ~</item>
+        <item>●_●</item>
+        <item>◔̯◔</item>
+        <item>◔ᴗ◔</item>
+        <item>◔ ⌣ ◔</item>
+        <item>◔_◔</item>
+        <item>◕ω◕</item>
+        <item>◕‿◕</item>
+        <item>◕◡◕</item>
+        <item>◕ ◡ ◕</item>
+        <item>◖♪_♪|◗</item>
+        <item>◖|◔◡◉|◗</item>
+        <item>◘_◘</item>
+        <item>◙‿◙</item>
+        <item>◜㍕◝</item>
+        <item>◪_◪</item>
+        <item>◮_◮</item>
+        <item>☁ ☝ˆ~ˆ☂</item>
+        <item>☆¸☆</item>
+        <item>☉‿⊙</item>
+        <item>☉_☉</item>
+        <item>☐_☐</item>
+        <item>☜ق❂Ⴢ❂ق☞</item>
+        <item>☜(⌒▽⌒)☞</item>
+        <item>☜(ﾟヮﾟ☜)</item>
+        <item>☜-(ΘLΘ)-☞</item>
+        <item>☝☞✌</item>
+        <item>☮▁▂▃▄☾ ♛ ◡ ♛ ☽▄▃▂▁☮</item>
+        <item>☹_☹</item>
+        <item>☻_☻</item>
+        <item>☼.☼</item>
+        <item>☾˙❀‿❀˙☽</item>
+        <item>♀ح♀ヾ</item>
+        <item>♥‿♥</item>
+        <item>♥╣[-_-]╠♥</item>
+        <item>♥╭╮♥</item>
+        <item>♥◡♥</item>
+        <item>✌♫♪˙❤‿❤˙♫♪✌</item>
+        <item>✌.ʕʘ‿ʘʔ.✌</item>
+        <item>✌.|•͡˘‿•͡˘|.✌</item>
+        <item>✖‿✖</item>
+        <item>✖_✖</item>
+        <item>❐‿❑</item>
+        <item>⨀_⨀</item>
+        <item>⨀_Ꙩ</item>
+        <item>⨂_⨂</item>
+        <item>〆(・∀・＠)</item>
+        <item>《〠_〠》</item>
+        <item>【•】_【•】</item>
+        <item>〠_〠</item>
+        <item>〴⋋_⋌〵</item>
+        <item>のヮの</item>
+        <item>ニガー? ━━━━━━(ﾟ∀ﾟ)━━━━━━ ニガー?</item>
+        <item>ペ㍕˚\</item>
+        <item>ヽ(´ｰ｀ )ﾉ</item>
+        <item>ヽ(๏∀๏ )ﾉ</item>
+        <item>ヽ(｀Д´)ﾉ</item>
+        <item>ヽ(ｏ`皿′ｏ)ﾉ</item>
+        <item>ヽ(`Д´)ﾉ</item>
+        <item>ㅎ_ㅎ</item>
+        <item>乂◜◬◝乂</item>
+        <item>凸ಠ益ಠ)凸</item>
+        <item>句_句</item>
+        <item>Ꙩ⌵Ꙩ</item>
+        <item>Ꙩ_Ꙩ</item>
+        <item>ꙩ_ꙩ</item>
+        <item>Ꙫ_Ꙫ</item>
+        <item>ꙫ_ꙫ</item>
+        <item>ꙮ_ꙮ</item>
+        <item>흫_흫</item>
+        <item>句_句</item>
+        <item>﴾͡๏̯͡๏﴿</item>
+        <item>¯\(ºдಠ)/¯</item>
+        <item>（·×·）</item>
+        <item>（⌒Д⌒）</item>
+        <item>（╹ェ╹）</item>
+        <item>（♯・∀・）⊃</item>
+        <item>（　´∀｀）☆</item>
+        <item>（　´∀｀）</item>
+        <item>（゜Д゜）</item>
+        <item>（・∀・）</item>
+        <item>（・Ａ・）</item>
+        <item>（ﾟ∀ﾟ）</item>
+        <item>（￣へ￣）</item>
+        <item>（ ´☣///_ゝ///☣｀）</item>
+        <item>（ つ Д ｀）</item>
+        <item>＿☆（ ´_⊃｀）☆＿</item>
+        <item>｡◕‿‿◕｡</item>
+        <item>｡◕ ‿ ◕｡</item>
+        <item>!⑈ˆ~ˆ!⑈</item>
+        <item>!(｀･ω･｡)</item>
+        <item>(¬‿¬)</item>
+        <item>(¬▂¬)</item>
+        <item>(¬_¬)</item>
+        <item>(°ℇ °)</item>
+        <item>(°∀°)</item>
+        <item>(´ω｀)</item>
+        <item>(´◉◞౪◟◉)</item>
+        <item>(´ヘ｀;)</item>
+        <item>(´・ω・｀)</item>
+        <item>(´ー｀)</item>
+        <item>(ʘ‿ʘ)</item>
+        <item>(ʘ_ʘ)</item>
+        <item>(˚இ˚)</item>
+        <item>(͡๏̯͡๏)</item>
+        <item>(ΘεΘ;)</item>
+        <item>(ι´Д｀)ﾉ</item>
+        <item>(Ծ‸ Ծ)</item>
+        <item>(॓_॔)</item>
+        <item>(० ्०)</item>
+        <item>(ு८ு_ .:)</item>
+        <item>(ಠ‾ಠ)</item>
+        <item>(ಠ‿ʘ)</item>
+        <item>(ಠ‿ಠ)</item>
+        <item>(ಠ⌣ಠ)</item>
+        <item>(ಠ益ಠ ╬)</item>
+        <item>(ಠ益ಠ)</item>
+        <item>(ಠ_ృ)</item>
+        <item>(ಠ_ಠ)</item>
+        <item>(ಥ﹏ಥ)</item>
+        <item>(ಥ_ಥ)</item>
+        <item>(๏̯͡๏ )</item>
+        <item>(ღˇ◡ˇ)~♥</item>
+        <item>(ღ˘⌣˘ღ) ♫･*:.｡. .｡.:*･</item>
+        <item>(ღ˘⌣˘ღ)</item>
+        <item>(ᵔᴥᵔ)</item>
+        <item>(•ω•)</item>
+        <item>(•‿•)</item>
+        <item>(•⊙ω⊙•)</item>
+        <item>(• ε •)</item>
+        <item>(∩▂∩)</item>
+        <item>(∩︵∩)</item>
+        <item>(∪ ◡ ∪)</item>
+        <item>(≧ω≦)</item>
+        <item>(≧◡≦)</item>
+        <item>(≧ロ≦)</item>
+        <item>(⊙ヮ⊙)</item>
+        <item>(⊙_◎)</item>
+        <item>(⋋▂⋌)</item>
+        <item>(⌐■_■)</item>
+        <item>(─‿‿─)</item>
+        <item>(┛◉Д◉)┛┻━┻</item>
+        <item>(╥_╥)</item>
+        <item>(╬ಠ益ಠ)</item>
+        <item>(╬◣д◢)</item>
+        <item>(╬ ಠ益ಠ)</item>
+        <item>(╯°□°）╯︵ ┻━┻</item>
+        <item>(╯ಊ╰)</item>
+        <item>(╯◕_◕)╯</item>
+        <item>(╯︵╰,)</item>
+        <item>(╯3╰)</item>
+        <item>(╯_╰)</item>
+        <item>(╹◡╹)凸</item>
+        <item>(▰˘◡˘▰)</item>
+        <item>(●´ω｀●)</item>
+        <item>(●´∀｀●)</item>
+        <item>(◑‿◐)</item>
+        <item>(◑◡◑)</item>
+        <item>(◕‿◕✿)</item>
+        <item>(◕‿◕)</item>
+        <item>(◕‿-)</item>
+        <item>(◕︵◕)</item>
+        <item>(◕ ^ ◕)</item>
+        <item>(◕_◕)</item>
+        <item>(◜௰◝)</item>
+        <item>(◡‿◡✿)</item>
+        <item>(◣_◢)</item>
+        <item>(☞ﾟ∀ﾟ)☞</item>
+        <item>(☞ﾟヮﾟ)☞</item>
+        <item>(☞ﾟ ∀ﾟ )☞</item>
+        <item>(☼◡☼)</item>
+        <item>(☼_☼)</item>
+        <item>(✌ﾟ∀ﾟ)☞</item>
+        <item>(✖╭╮✖)</item>
+        <item>(✪㉨✪)</item>
+        <item>(✿◠‿◠)</item>
+        <item>(✿ ♥‿♥)</item>
+        <item>(　・∀・)</item>
+        <item>(　･ัω･ั)？</item>
+        <item>(　ﾟ∀ﾟ)o彡゜えーりんえーりん!!</item>
+        <item>(。・_・。)</item>
+        <item>(つд｀)</item>
+        <item>(づ｡◕‿‿◕｡)づ</item>
+        <item>(ノಠ益ಠ)ノ彡┻━┻</item>
+        <item>(ノ ◑‿◑)ノ</item>
+        <item>(ノ_・。)</item>
+        <item>(・∀・ )</item>
+        <item>(屮ﾟДﾟ)屮</item>
+        <item>(︶ω︶)</item>
+        <item>(︶︹︺)</item>
+        <item>(ﺧ益ﺨ)</item>
+        <item>(；一_一)</item>
+        <item>(｀・ω・´)”</item>
+        <item>(｡◕‿‿◕｡)</item>
+        <item>(｡◕‿◕｡)</item>
+        <item>(｡◕ ‿ ◕｡)</item>
+        <item>(｡♥‿♥｡)</item>
+        <item>(｡･ω..･)っ</item>
+        <item>(･ｪ-)</item>
+        <item>(ﾉ◕ヮ◕)ﾉ*:・ﾟ✧</item>
+        <item>(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧</item>
+        <item>(ﾟДﾟ)</item>
+        <item>(ﾟДﾟ)y─┛~~</item>
+        <item>(ﾟ∀ﾟ)</item>
+        <item>(ﾟヮﾟ)</item>
+        <item>(￣□￣)</item>
+        <item>(￣。￣)</item>
+        <item>(￣ー￣)</item>
+        <item>(￣(エ)￣)</item>
+        <item>( °٢° )</item>
+        <item>( ´_ゝ｀)</item>
+        <item>( ͡° ͜ʖ ͡°)</item>
+        <item>( ͡~ ͜ʖ ͡°)</item>
+        <item>( ಠ◡ಠ )</item>
+        <item>( •_•)>⌐■-■</item>
+        <item>( 　ﾟ,_ゝﾟ)</item>
+        <item>( ･ิз･ิ)</item>
+        <item>( ﾟдﾟ)､</item>
+        <item>( ^▽^)σ)~O~)</item>
+        <item>((((゜д゜;))))</item>
+        <item>(*´д｀*)</item>
+        <item>(*..Д｀)</item>
+        <item>(*..д｀*)</item>
+        <item>(*~▽~)</item>
+        <item>(-’๏_๏’-)</item>
+        <item>(-＿- )ノ</item>
+        <item>(/◔ ◡ ◔)/</item>
+        <item>(///_ಥ)</item>
+        <item>(;´Д`)</item>
+        <item>(=ω=;)</item>
+        <item>(=゜ω゜)</item>
+        <item>(>'o')> ♥ \u003c('o'\u003c)</item>
+        <item>(n˘v˘•)¬</item>
+        <item>(o´ω｀o)</item>
+        <item>(V)(°,,°)(V)</item>
+        <item>(\/) (°,,°) (\/)</item>
+        <item>(^▽^)</item>
+        <item>(`･ω･´)</item>
+        <item>(~￣▽￣)~</item>
+        <item>/╲/\╭ºoꍘoº╮/\╱\</item>
+        <item>\u003c【☯】‿【☯】\u003e</item>
+        <item>=(ﾟдﾟ)ｳ</item>
+        <item>\u0026_\u0026</item>
+        <item>d(*⌒▽⌒*)b</item>
+        <item>o(≧∀≦)o</item>
+        <item>o(≧o≦)o</item>
+        <item>q(❂‿❂)p</item>
+        <item>y=ｰ( ﾟдﾟ)･∵.</item>
+        <item>\˚ㄥ˚\</item>
+        <item>\ᇂ_ᇂ\</item>
+        <item>\(ಠ ὡ ಠ )/</item>
+        <item>\(◕ ◡ ◕\)</item>
+        <item>^̮^</item>
+        <item>^ㅂ^</item>
+        <item>_(͡๏̯͡๏)_</item>
+        <item>{´◕ ◡ ◕｀}</item>
+        <item>{ಠ_ಠ}__,,|,</item>
+        <item>{◕ ◡ ◕}</item>
     </string-array>
     <string-array name="genders">
         <item>@string/gender_indefinite</item>
