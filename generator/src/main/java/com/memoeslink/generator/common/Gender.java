@@ -32,6 +32,6 @@ public enum Gender {
     }
 
     public static Gender get(int value) {
-        return LOOKUP.getOrDefault(value, Gender.UNDEFINED);
+        return LOOKUP.getOrDefault(value, UNDEFINED);
     }
 }
