@@ -10,19 +10,29 @@ import com.memoeslink.generator.common.finder.ResourceFinder;
 
 import java.util.Locale;
 
-public class Explorer extends Binder {
+public abstract class Explorer extends Binder {
     protected ResourceFinder resourceFinder;
     protected ContactNameFinder contactNameFinder;
     protected Device device;
 
-    public Explorer(Context context) {
+    protected Explorer(Context context) {
         this(context, null);
     }
 
-    public Explorer(Context context, Long seed) {
+    protected Explorer(Context context, Long seed) {
         super(context, seed);
         device = new Device(context);
+        resourceFinder = new ResourceFinder(context);
+        contactNameFinder = new ContactNameFinder(context);
         initializeFinders(seed);
+    }
+
+    public ResourceFinder getResourceFinder() {
+        return resourceFinder;
+    }
+
+    public ContactNameFinder getContactNameFinder() {
+        return contactNameFinder;
     }
 
     public void initializeFinders(Long seed) {
