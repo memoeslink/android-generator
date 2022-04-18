@@ -11,9 +11,9 @@ import com.memoeslink.generator.common.finder.ResourceFinder;
 import java.util.Locale;
 
 public abstract class Explorer extends Binder {
-    protected ResourceFinder resourceFinder;
-    protected ContactNameFinder contactNameFinder;
-    protected Device device;
+    protected final ResourceFinder resourceFinder;
+    protected final ContactNameFinder contactNameFinder;
+    protected final Device device;
 
     protected Explorer(Context context) {
         this(context, null);
@@ -22,9 +22,8 @@ public abstract class Explorer extends Binder {
     protected Explorer(Context context, Long seed) {
         super(context, seed);
         device = new Device(context);
-        resourceFinder = new ResourceFinder(context);
-        contactNameFinder = new ContactNameFinder(context);
-        initializeFinders(seed);
+        resourceFinder = new ResourceFinder(context, seed);
+        contactNameFinder = new ContactNameFinder(context, seed);
     }
 
     public ResourceFinder getResourceFinder() {
@@ -35,21 +34,18 @@ public abstract class Explorer extends Binder {
         return contactNameFinder;
     }
 
-    public void initializeFinders(Long seed) {
+    @Override
+    public void bindSeed(Long seed) {
+        super.bindSeed(seed);
         resourceFinder.bindSeed(seed);
         contactNameFinder.bindSeed(seed);
     }
 
     @Override
-    public void bindSeed(Long seed) {
-        super.bindSeed(seed);
-        initializeFinders(seed);
-    }
-
-    @Override
     public void unbindSeed() {
         super.unbindSeed();
-        initializeFinders(null);
+        resourceFinder.unbindSeed();
+        contactNameFinder.unbindSeed();
     }
 
     public String findRes(int id) {
