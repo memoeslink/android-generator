@@ -1,6 +1,7 @@
 package com.memoeslink.generator.common;
 
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.SupplicantState;
@@ -10,6 +11,7 @@ import android.os.Build;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
 
+import com.memoeslink.generator.R;
 import com.memoeslink.generator.common.finder.ResourceFinder;
 
 import java.lang.reflect.Field;
@@ -27,6 +29,54 @@ public class Device extends ContextWrapper {
 
     public Device(Context context) {
         super(context);
+    }
+
+    public String getInfo(int type) {
+        type = IntegerHelper.defaultInt(type, 1, 9);
+
+        switch (type) {
+            case 1:
+                String name = getAndroidVersionName();
+
+                if (StringHelper.isNullOrEmpty(name)) {
+                    try {
+                        name = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+                    } catch (PackageManager.NameNotFoundException ignored) {
+                    }
+                }
+
+                if (StringHelper.isNullOrEmpty(name))
+                    return getString(R.string.device_android);
+                return getString(R.string.device_version, name + " " + "(" + Build.VERSION.RELEASE + ")");
+            case 2:
+                return getString(R.string.device, StringHelper.defaultWhenEmpty(Build.MANUFACTURER) + StringHelper.prependSpaceIfNotEmpty(Build.MODEL));
+            case 3:
+                return getString(R.string.device, StringHelper.defaultWhenEmpty(Build.BRAND) + StringHelper.prependSpaceIfNotEmpty(Build.MODEL));
+            case 4:
+                return getString(R.string.device, StringHelper.defaultWhenEmpty(Build.PRODUCT));
+            case 5:
+                return getString(R.string.device_id, getDeviceId());
+            case 6:
+                return getString(R.string.device_brand, StringHelper.defaultWhenEmpty(Build.BRAND));
+            case 7:
+                String networkName = getNetworkName();
+
+                if (StringHelper.isNullOrEmpty(networkName))
+                    return getString(R.string.device_network_disconnected);
+                else if (networkName.equals("<unknown ssid>"))
+                    return getString(R.string.device_network_unknown_ssid);
+                return getString(R.string.device_network_ssid, networkName);
+            case 8:
+                String networkOperator = getNetworkOperator();
+                return StringHelper.isNullOrBlank(networkOperator) ? getString(R.string.device_network_operator_disconnected) :
+                        getString(R.string.device_network_operator, networkOperator);
+            case 9:
+                String ipAddress = getLocalIpAddress();
+                return StringHelper.isNullOrEmpty(ipAddress) ? getString(R.string.device_unknown_ip) :
+                        getString(R.string.device_ip, ipAddress);
+            default:
+                return getString(R.string.device_unidentified);
+        }
     }
 
     public String getNetworkName() {
