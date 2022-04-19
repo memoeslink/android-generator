@@ -55,10 +55,10 @@ public class ResourceFinder extends Binder {
         return RESOURCE_NOT_FOUND;
     }
 
-    public String getRawResFromName(String s) {
-        if (s != null && !s.isEmpty()) {
+    public String getRawResFromName(String name) {
+        if (StringHelper.isNotNullOrEmpty(name)) {
             try {
-                int resourceId = getResources().getIdentifier(s, "raw", getPackageName());
+                int resourceId = getResources().getIdentifier(name, "raw", getPackageName());
 
                 if (resourceId != 0)
                     return getRawRes(resourceId);
@@ -78,10 +78,10 @@ public class ResourceFinder extends Binder {
         return RESOURCE_NOT_FOUND;
     }
 
-    public String getStrResByName(String s) {
-        if (s != null && !s.isEmpty()) {
+    public String getStrResByName(String name) {
+        if (StringHelper.isNotNullOrEmpty(name)) {
             try {
-                int resourceId = getResources().getIdentifier(s, "string", getPackageName());
+                int resourceId = getResources().getIdentifier(name, "string", getPackageName());
 
                 if (resourceId != 0)
                     return getString(resourceId);
@@ -101,10 +101,10 @@ public class ResourceFinder extends Binder {
         return new String[]{};
     }
 
-    public String[] getStrArrayResByName(String s) {
-        if (s != null && !s.isEmpty()) {
+    public String[] getStrArrayResByName(String name) {
+        if (StringHelper.isNotNullOrEmpty(name)) {
             try {
-                int resourceId = getResources().getIdentifier(s, "array", getPackageName());
+                int resourceId = getResources().getIdentifier(name, "array", getPackageName());
 
                 if (resourceId != 0)
                     return getResources().getStringArray(resourceId);
@@ -141,10 +141,10 @@ public class ResourceFinder extends Binder {
         return new int[]{};
     }
 
-    public int[] getIntArrayResByName(String s) {
-        if (s != null && !s.isEmpty()) {
+    public int[] getIntArrayResByName(String name) {
+        if (StringHelper.isNotNullOrEmpty(name)) {
             try {
-                int resourceId = getResources().getIdentifier(s, "array", getPackageName());
+                int resourceId = getResources().getIdentifier(name, "array", getPackageName());
 
                 if (resourceId != 0)
                     return getResources().getIntArray(resourceId);
@@ -225,12 +225,12 @@ public class ResourceFinder extends Binder {
         return 0;
     }
 
-    public int getStringResourceId(String s) {
-        return getResources().getIdentifier(s, "string", getPackageName());
+    public int getStringResourceId(String name) {
+        return getResources().getIdentifier(name, "string", getPackageName());
     }
 
-    public int getArrayResourceId(String s) {
-        return getResources().getIdentifier(s, "array", getPackageName());
+    public int getArrayResourceId(String name) {
+        return getResources().getIdentifier(name, "array", getPackageName());
     }
 
     public boolean isResource(int id) {

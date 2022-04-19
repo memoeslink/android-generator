@@ -1,8 +1,6 @@
 package com.memoeslink.generator.common;
 
 import android.content.Context;
-import android.content.pm.PackageManager;
-import android.os.Build;
 
 import com.memoeslink.generator.R;
 import com.memoeslink.generator.common.finder.ContactNameFinder;
@@ -71,11 +69,11 @@ public abstract class Explorer extends Binder {
             return ResourceFinder.RESOURCE_NOT_FOUND;
         int id = resourceFinder.getArrayResourceId(name);
 
-        if (getResources().getResourceTypeName(id).equals("array"))
+        if (id != 0)
             return index >= 0 ? resourceFinder.getStrFromStrArrayRes(id, index) : resourceFinder.getStrFromStrArrayRes(id);
         id = resourceFinder.getStringResourceId(name);
 
-        if (getResources().getResourceTypeName(id).equals("string"))
+        if (id != 0)
             return index >= 0 ? resourceFinder.getStrFromSplitStrRes(id, index) : resourceFinder.getStrFromSplitStrRes(id);
         return ResourceFinder.RESOURCE_NOT_FOUND;
     }
