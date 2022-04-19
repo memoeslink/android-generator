@@ -71,11 +71,11 @@ public abstract class Explorer extends Binder {
             return ResourceFinder.RESOURCE_NOT_FOUND;
         int id = resourceFinder.getArrayResourceId(name);
 
-        if (resourceFinder.getArrayResourceId(name) >= 0)
+        if (getResources().getResourceTypeName(id).equals("array"))
             return index >= 0 ? resourceFinder.getStrFromStrArrayRes(id, index) : resourceFinder.getStrFromStrArrayRes(id);
         id = resourceFinder.getStringResourceId(name);
 
-        if (resourceFinder.getStringResourceId(name) >= 0)
+        if (getResources().getResourceTypeName(id).equals("string"))
             return index >= 0 ? resourceFinder.getStrFromSplitStrRes(id, index) : resourceFinder.getStrFromSplitStrRes(id);
         return ResourceFinder.RESOURCE_NOT_FOUND;
     }
