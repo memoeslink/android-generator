@@ -4,7 +4,7 @@ plugins {
     id 'kotlin-android'
 }
 
-def currentVersionName = "2022.2.9"
+def currentVersionName = "2022.2.10"
 
 afterEvaluate {
     publishing {
@@ -60,8 +60,8 @@ java {
 
 dependencies {
 
-    implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation 'com.google.android.material:material:1.6.1'
     implementation 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
     implementation 'androidx.startup:startup-runtime:1.1.1'
     implementation 'com.github.jitpack:gradle-simple:1.0'

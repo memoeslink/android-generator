@@ -120,6 +120,18 @@ public class StringHelper {
     }
 
     public static String prependSpaceIfNotBlank(String s) {
+        return prependIfNotBlank(s, System.getProperty("line.separator"));
+    }
+
+    public static String prependLineBreakIfNotNull(String s) {
+        return prependIfNotNull(s, System.getProperty("line.separator"));
+    }
+
+    public static String prependLineBreakIfNotEmpty(String s) {
+        return prependIfNotEmpty(s, System.getProperty("line.separator"));
+    }
+
+    public static String prependLineBreakIfNotBlank(String s) {
         return prependIfNotBlank(s, String.valueOf(Separator.SPACE.getCharacter()));
     }
 
@@ -153,6 +165,18 @@ public class StringHelper {
         return appendIfNotBlank(s, String.valueOf(Separator.SPACE.getCharacter()));
     }
 
+    public static String appendLineBreakIfNotNull(String s) {
+        return appendIfNotNull(s, System.getProperty("line.separator"));
+    }
+
+    public static String appendLineBreakIfNotEmpty(String s) {
+        return appendIfNotEmpty(s, System.getProperty("line.separator"));
+    }
+
+    public static String appendLineBreakIfNotBlank(String s) {
+        return appendIfNotBlank(s, System.getProperty("line.separator"));
+    }
+
     public static String affixIfNotNull(String s, String prefix, String suffix) {
         if (s == null)
             return null;
@@ -184,6 +208,21 @@ public class StringHelper {
     public static String affixSpacesIfNotBlank(String s) {
         return affixIfNotBlank(s, String.valueOf(Separator.SPACE.getCharacter()),
                 String.valueOf(Separator.SPACE.getCharacter()));
+    }
+
+    public static String affixLineBreaksIfNotNull(String s) {
+        return affixIfNotNull(s, System.getProperty("line.separator"),
+                System.getProperty("line.separator"));
+    }
+
+    public static String affixLineBreaksIfNotEmpty(String s) {
+        return affixIfNotEmpty(s, System.getProperty("line.separator"),
+                System.getProperty("line.separator"));
+    }
+
+    public static String affixLineBreaksIfNotBlank(String s) {
+        return affixIfNotBlank(s, System.getProperty("line.separator"),
+                System.getProperty("line.separator"));
     }
 
     public static List<String> split(String s, char delimiter) {
@@ -1056,6 +1095,47 @@ public class StringHelper {
 
     public static boolean isNotAllLowerCase(String s) {
         return !isAllLowerCase(s);
+    }
+
+    public static String escapeJavaString(String s) {
+        if (s == null)
+            return null;
+        StringBuffer sb = new StringBuffer();
+
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+
+            switch (c) {
+                case '\\':
+                    sb.append("\\\\");
+                    break;
+                case '\b':
+                    sb.append("\\b");
+                    break;
+                case '\f':
+                    sb.append("\\f");
+                    break;
+                case '\n':
+                    sb.append("\\n");
+                    break;
+                case '\r':
+                    sb.append("\\r");
+                    break;
+                case '\t':
+                    sb.append("\\t");
+                    break;
+                case '\'':
+                    sb.append("\\'");
+                    break;
+                case '\"':
+                    sb.append("\\\"");
+                    break;
+                default:
+                    sb.append(c);
+                    break;
+            }
+        }
+        return sb.toString();
     }
 
     /**

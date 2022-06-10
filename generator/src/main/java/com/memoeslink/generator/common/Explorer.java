@@ -87,9 +87,9 @@ public abstract class Explorer extends Binder {
                 int unicode = resourceFinder.getIntFromIntArrayRes(R.array.emojis);
                 return new String(Character.toChars(unicode));
             case EMOTICON:
-                return resourceFinder.getStrFromStrArrayRes(R.array.emoticons);
+                return StringHelper.escapeJavaString(resourceFinder.getStrFromStrArrayRes(R.array.emoticons));
             case KAOMOJI:
-                return resourceFinder.getStrFromStrArrayRes(R.array.kaomojis);
+                return StringHelper.escapeJavaString(resourceFinder.getStrFromStrArrayRes(R.array.kaomojis));
             default:
                 return ResourceFinder.RESOURCE_NOT_FOUND;
         }
