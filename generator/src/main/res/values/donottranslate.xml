@@ -44,13 +44,13 @@
         <item>:{</item>
         <item>:\u0026</item>
         <item>;(</item>
-        <item>:\'-(</item>
-        <item>:\'(</item>
+        <item>:&apos;-(</item>
+        <item>:&apos;(</item>
         <item>:=(</item>
-        <item>:\'-)</item>
-        <item>:\')</item>
+        <item>:&apos;-)</item>
+        <item>:&apos;)</item>
         <item>:\"D</item>
-        <item>D-\':</item>
+        <item>D-&apos;:</item>
         <item>D:\u003c</item>
         <item>D:</item>
         <item>D8</item>
@@ -150,8 +150,8 @@
         <item>:-###..</item>
         <item>:###..</item>
         <item>\u003c:-|</item>
-        <item>\',:-|</item>
-        <item>\',:-l</item>
+        <item>&apos;,:-|</item>
+        <item>&apos;,:-l</item>
         <item>:E</item>
         <item>8-X</item>
         <item>8=X</item>
@@ -207,7 +207,7 @@
         <item>˚•_•˚</item>
         <item>˚⌇˚</item>
         <item>˚▱˚</item>
-        <item>̿ ̿̿\'̿\'\̵͇̿̿\=(•̪●)=/̵͇̿̿/\'̿̿ ̿ ̿ ̿</item>
+        <item>̿ ̿̿&apos;̿&apos;\̵͇̿̿\=(•̪●)=/̵͇̿̿/&apos;̿̿ ̿ ̿ ̿</item>
         <item>͡° ͜ʖ ͡°</item>
         <item>Σ ◕ ◡ ◕</item>
         <item>Σ (ﾟДﾟ;）</item>
@@ -583,7 +583,7 @@
         <item>(;´Д`)</item>
         <item>(=ω=;)</item>
         <item>(=゜ω゜)</item>
-        <item>(>\'o\')> ♥ \u003c(\'o\'\u003c)</item>
+        <item>(>&apos;o&apos;)> ♥ \u003c(&apos;o&apos;\u003c)</item>
         <item>(n˘v˘•)¬</item>
         <item>(o´ω｀o)</item>
         <item>(V)(°,,°)(V)</item>
