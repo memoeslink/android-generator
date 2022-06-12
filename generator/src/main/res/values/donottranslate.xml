@@ -49,7 +49,7 @@
         <item>:=(</item>
         <item>:\u0027-)</item>
         <item>:\u0027)</item>
-        <item>:\"D</item>
+        <item>:\u0022D</item>
         <item>D-\u0027:</item>
         <item>D:\u003c</item>
         <item>D:</item>
@@ -106,11 +106,11 @@
         <item>:-/</item>
         <item>:/</item>
         <item>:-.</item>
-        <item>\u003e:\</item>
+        <item>\u003e:\u005c</item>
         <item>\u003e:/</item>
-        <item>:\</item>
+        <item>:\u005c</item>
         <item>=/</item>
-        <item>=\</item>
+        <item>=\u005c</item>
         <item>:L</item>
         <item>=L</item>
         <item>:S</item>
@@ -179,6 +179,7 @@
         <item>^.^</item>
         <item>\u003e.\u003c</item>
         <item>\u003e__\u003c</item>
+        <item>\u003c:‑|</item>
     </string-array>
     <string-array name="kaomojis">
         <item>¢‿¢</item>
@@ -186,9 +187,9 @@
         <item>ª{•̃̾_•̃̾}ª</item>
         <item>¬_¬</item>
         <item>¯＼(º_o)/¯</item>
-        <item>¯\(º o)/¯</item>
-        <item>¯\_(⊙︿⊙)_/¯</item>
-        <item>¯\_(ツ)_/¯</item>
+        <item>¯\u005c(º o)/¯</item>
+        <item>¯\u005c_(⊙︿⊙)_/¯</item>
+        <item>¯\u005c_(ツ)_/¯</item>
         <item>°ω°</item>
         <item>°Д°</item>
         <item>°‿‿°</item>
@@ -352,7 +353,7 @@
         <item>◉︵◉</item>
         <item>◉_◉</item>
         <item>○_○</item>
-        <item>●¿●\ ~</item>
+        <item>●¿●\u005c ~</item>
         <item>●_●</item>
         <item>◔̯◔</item>
         <item>◔ᴗ◔</item>
@@ -405,7 +406,7 @@
         <item>〴⋋_⋌〵</item>
         <item>のヮの</item>
         <item>ニガー? ━━━━━━(ﾟ∀ﾟ)━━━━━━ ニガー?</item>
-        <item>ペ㍕˚\</item>
+        <item>ペ㍕˚\u005c</item>
         <item>ヽ(´ｰ｀ )ﾉ</item>
         <item>ヽ(๏∀๏ )ﾉ</item>
         <item>ヽ(｀Д´)ﾉ</item>
@@ -424,7 +425,7 @@
         <item>흫_흫</item>
         <item>句_句</item>
         <item>﴾͡๏̯͡๏﴿</item>
-        <item>¯\(ºдಠ)/¯</item>
+        <item>¯\u005c(ºдಠ)/¯</item>
         <item>（·×·）</item>
         <item>（⌒Д⌒）</item>
         <item>（╹ェ╹）</item>
@@ -587,11 +588,11 @@
         <item>(n˘v˘•)¬</item>
         <item>(o´ω｀o)</item>
         <item>(V)(°,,°)(V)</item>
-        <item>(\/) (°,,°) (\/)</item>
+        <item>(\u005c/) (°,,°) (\u005c/)</item>
         <item>(^▽^)</item>
         <item>(`･ω･´)</item>
         <item>(~￣▽￣)~</item>
-        <item>/╲/\╭ºoꍘoº╮/\╱\</item>
+        <item>/╲/\u005c╭ºoꍘoº╮/\u005c╱\u005c</item>
         <item>\u003c【☯】‿【☯】\u003e</item>
         <item>=(ﾟдﾟ)ｳ</item>
         <item>\u0026_\u0026</item>
@@ -600,10 +601,10 @@
         <item>o(≧o≦)o</item>
         <item>q(❂‿❂)p</item>
         <item>y=ｰ( ﾟдﾟ)･∵.</item>
-        <item>\˚ㄥ˚\</item>
-        <item>\ᇂ_ᇂ\</item>
-        <item>\(ಠ ὡ ಠ )/</item>
-        <item>\(◕ ◡ ◕\)</item>
+        <item>\u005c˚ㄥ˚\u005c</item>
+        <item>\u005cᇂ_ᇂ\u005c</item>
+        <item>\u005c(ಠ ὡ ಠ )/</item>
+        <item>\u005c(◕ ◡ ◕\u005c)</item>
         <item>^̮^</item>
         <item>^ㅂ^</item>
         <item>_(͡๏̯͡๏)_</item>

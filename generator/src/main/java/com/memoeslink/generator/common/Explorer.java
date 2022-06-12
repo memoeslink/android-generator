@@ -8,16 +8,16 @@ import com.memoeslink.generator.common.finder.ResourceFinder;
 
 import java.util.Locale;
 
-public abstract class Explorer extends Binder {
+public class Explorer extends Binder {
     protected final ResourceFinder resourceFinder;
     protected final ContactNameFinder contactNameFinder;
     protected final Device device;
 
-    protected Explorer(Context context) {
+    public Explorer(Context context) {
         this(context, null);
     }
 
-    protected Explorer(Context context, Long seed) {
+    public Explorer(Context context, Long seed) {
         super(context, seed);
         device = new Device(context);
         resourceFinder = new ResourceFinder(context, seed);
@@ -87,9 +87,9 @@ public abstract class Explorer extends Binder {
                 int unicode = resourceFinder.getIntFromIntArrayRes(R.array.emojis);
                 return new String(Character.toChars(unicode));
             case EMOTICON:
-                return StringHelper.escapeJavaString(resourceFinder.getStrFromStrArrayRes(R.array.emoticons));
+                return resourceFinder.getStrFromStrArrayRes(R.array.emoticons);
             case KAOMOJI:
-                return StringHelper.escapeJavaString(resourceFinder.getStrFromStrArrayRes(R.array.kaomojis));
+                return resourceFinder.getStrFromStrArrayRes(R.array.kaomojis);
             default:
                 return ResourceFinder.RESOURCE_NOT_FOUND;
         }
