@@ -556,6 +556,8 @@ public class StringHelper {
     }
 
     public static String replace(String s, char occurrence, char replacement) {
+        if (replacement == CharHelper.NULL_CHAR)
+            return replace(s, String.valueOf(occurrence), EMPTY);
         return replace(s, String.valueOf(occurrence), String.valueOf(replacement));
     }
 
@@ -583,6 +585,20 @@ public class StringHelper {
             sb.setLength(0);
         }
         return s;
+    }
+
+    public static String replaceByIndex(String s, int startIndex, int endIndex, String replacement) {
+        if (isNullOrEmpty(s))
+            return s;
+
+        if (startIndex < 0)
+            startIndex = s.length() + startIndex;
+        startIndex = IntegerHelper.defaultInt(startIndex, 0, s.length());
+
+        if (endIndex < 0)
+            endIndex = s.length() + endIndex;
+        endIndex = IntegerHelper.defaultInt(endIndex, startIndex, s.length());
+        return new StringBuilder(s).replace(startIndex, endIndex, replacement).toString();
     }
 
     public static String replaceFirstChar(String s, String replacement) {
@@ -713,7 +729,7 @@ public class StringHelper {
     }
 
     public static String replaceBetweenChars(String s, char opening, char closing, String replacement) {
-        if (opening == '\0' || closing == '\0')
+        if (opening == CharHelper.NULL_CHAR || closing == CharHelper.NULL_CHAR)
             return s;
         String regex = String.format("\\Q%1$s\\E[^\\Q%1$s\\E\\Q%2$s\\E]*\\Q%2$s\\E", opening, closing);
         return replaceAll(s, regex, replacement);
@@ -736,8 +752,16 @@ public class StringHelper {
         return replaceBetweenChars(s, ZeroWidthChar.ZERO_WIDTH_SPACE.getCharacter(), replacement);
     }
 
+    public static String remove(String s, char occurrence) {
+        return replace(s, occurrence, CharHelper.NULL_CHAR);
+    }
+
     public static String remove(String s, String occurrence) {
         return replace(s, occurrence, EMPTY);
+    }
+
+    public static String removeByIndex(String s, int startIndex, int endIndex) {
+        return replaceByIndex(s, startIndex, endIndex, EMPTY);
     }
 
     public static String removeEach(String s, String... occurrences) {
