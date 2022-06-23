@@ -7,6 +7,8 @@ import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class StringHelper {
     public static final String EMPTY = "";
@@ -120,7 +122,7 @@ public class StringHelper {
     }
 
     public static String prependSpaceIfNotBlank(String s) {
-        return prependIfNotBlank(s, System.getProperty("line.separator"));
+        return prependIfNotBlank(s, String.valueOf(Separator.SPACE.getCharacter()));
     }
 
     public static String prependLineBreakIfNotNull(String s) {
@@ -132,7 +134,7 @@ public class StringHelper {
     }
 
     public static String prependLineBreakIfNotBlank(String s) {
-        return prependIfNotBlank(s, String.valueOf(Separator.SPACE.getCharacter()));
+        return prependIfNotBlank(s, System.getProperty("line.separator"));
     }
 
     public static String appendIfNotNull(String s, String suffix) {
@@ -638,6 +640,24 @@ public class StringHelper {
         return s;
     }
 
+    public static String replaceGroup(String s, String regex, int groupIndex, String replacement) {
+        return replaceGroup(s, regex, groupIndex, 1, replacement);
+    }
+
+    public static String replaceGroup(String s, String regex, int groupIndex, int groupOccurrence, String replacement) {
+        if (s == null || replacement == null)
+            return s;
+        Matcher matcher = Pattern.compile(regex).matcher(s);
+
+        for (int i = 0; i < groupOccurrence; i++) {
+            if (!matcher.find()) return s;
+        }
+
+        if (groupIndex > matcher.groupCount() || matcher.group(groupIndex) == null)
+            return s;
+        return new StringBuilder(s).replace(matcher.start(groupIndex), matcher.end(groupIndex), replacement).toString();
+    }
+
     public static String replaceStart(String s, String prefix, String replacement) {
         if (startsWith(s, prefix) && replacement != null)
             return replacement + s.substring(prefix.length());
@@ -735,6 +755,14 @@ public class StringHelper {
         if (isNotNullOrEmpty(s) && isNotNullOrEmpty(regex))
             return s.replaceAll(regex, EMPTY);
         return s;
+    }
+
+    public static String removeGroup(String s, String regex, int groupIndex) {
+        return replaceGroup(s, regex, groupIndex, 1, EMPTY);
+    }
+
+    public static String removeGroup(String s, String regex, int groupIndex, int groupOccurrence) {
+        return replaceGroup(s, regex, groupIndex, groupOccurrence, EMPTY);
     }
 
     public static String removeFirstChar(String s) {
