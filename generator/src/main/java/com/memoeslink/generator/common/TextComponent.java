@@ -21,6 +21,11 @@ public class TextComponent {
         nullified = false;
     }
 
+    public TextComponent(String text) {
+        this();
+        this.text = text;
+    }
+
     public TextComponent(long id, String uniqueId, String tag, String text, Gender hegemonicGender, boolean nullified, Set<String> attributes) {
         this.id = id;
         this.uniqueId = uniqueId;
