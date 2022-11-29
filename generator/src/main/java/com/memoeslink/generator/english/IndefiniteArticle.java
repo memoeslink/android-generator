@@ -24,6 +24,7 @@
 
 package com.memoeslink.generator.english;
 
+import com.memoeslink.generator.common.Database;
 import com.memoeslink.generator.common.StringHelper;
 
 import java.util.regex.Matcher;
@@ -32,6 +33,24 @@ import java.util.regex.Pattern;
 public class IndefiniteArticle {
     private static final String WORD_REGEX = "(\\w+)\\s*.*";
     private static final Pattern WORD_PATTERN = Pattern.compile(WORD_REGEX);
+
+    public static String search(String word) {
+        if (StringHelper.isNullOrBlank(word))
+            return "a/an";
+        String script = Database.selectEnglishPhoneticScript(word.toUpperCase());
+
+        if (StringHelper.isNotNullOrBlank(script) && !script.equals(Database.DEFAULT_VALUE)) {
+            for (char c : script.toCharArray()) {
+                if (c == 'ˌ' || c == 'ˈ')
+                    continue;
+
+                if ("æɑɒʌɛɪiɔʊuəɚɜɝ".indexOf(c) >= 0)
+                    return "an";
+                return "a";
+            }
+        }
+        return IndefiniteArticle.get(word);
+    }
 
     public static String get(String s) {
         if (StringHelper.isNullOrBlank(s))
@@ -89,7 +108,7 @@ public class IndefiniteArticle {
         if ("aeiou".indexOf(lowercaseWord.substring(0, 1)) >= 0)
             return "an";
 
-        // Instances where y followed by specific letters is preceded by 'an'
+        // Instances where 'y' followed by specific letters is preceded by 'an'
         if (lowercaseWord.matches("^y(b[lor]|cl[ea]|fere|gg|p[ios]|rou|tt).*"))
             return "an";
         return "a";
