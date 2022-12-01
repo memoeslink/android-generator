@@ -12,6 +12,7 @@ public class GeneratorManager {
     private DateTimeGenerator dateTimeGenerator;
     private PersonGenerator personGenerator;
     private StringGenerator stringGenerator;
+    private RelationGenerator relationGenerator;
 
     public GeneratorManager() {
         this(Locale.ENGLISH, null);
@@ -73,6 +74,10 @@ public class GeneratorManager {
         return stringGenerator;
     }
 
+    public RelationGenerator getRelationGenerator() {
+        return relationGenerator;
+    }
+
     private void initializeGenerators() {
         nameGenerator = new NameGenerator(locale, seed);
         occupationGenerator = new OccupationGenerator(locale, seed);
@@ -81,5 +86,6 @@ public class GeneratorManager {
         dateTimeGenerator = new DateTimeGenerator(locale, seed);
         personGenerator = new PersonGenerator(locale, seed);
         stringGenerator = new StringGenerator(locale, seed);
+        relationGenerator = new RelationGenerator(locale, seed);
     }
 }

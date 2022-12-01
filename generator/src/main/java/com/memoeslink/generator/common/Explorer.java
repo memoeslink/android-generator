@@ -78,23 +78,6 @@ public class Explorer extends Binder {
         return ResourceFinder.RESOURCE_NOT_FOUND;
     }
 
-    public String findByRef(ExplorerReference reference) {
-        if (reference == null)
-            return ResourceFinder.RESOURCE_NOT_FOUND;
-
-        switch (reference) {
-            case EMOJI:
-                int unicode = resourceFinder.getIntFromIntArrayRes(R.array.emojis);
-                return new String(Character.toChars(unicode));
-            case EMOTICON:
-                return resourceFinder.getStrFromStrArrayRes(R.array.emoticons);
-            case KAOMOJI:
-                return resourceFinder.getStrFromStrArrayRes(R.array.kaomojis);
-            default:
-                return ResourceFinder.RESOURCE_NOT_FOUND;
-        }
-    }
-
     public int findArrayLength(int id) {
         if (!resourceFinder.isResource(id))
             return 0;
@@ -108,16 +91,17 @@ public class Explorer extends Binder {
     public String findGenderName(Gender gender, int type) {
         gender = gender != null ? gender : Gender.UNDEFINED;
         type = IntegerHelper.defaultInt(type, 1, 4);
+        String genderName = resourceFinder.getStrFromIntArrayRes(R.array.genders, gender.ordinal());
 
         switch (type) {
             case 1:
-                return resourceFinder.getStrArrayRes(R.array.genders)[gender.ordinal()];
+                return genderName;
             case 2:
-                return StringHelper.capitalizeFirst(resourceFinder.getStrArrayRes(R.array.genders)[gender.ordinal()]);
+                return StringHelper.capitalizeFirst(genderName);
             case 3:
-                return resourceFinder.getStrArrayRes(R.array.genders)[gender.ordinal()].toUpperCase(Locale.ROOT);
+                return genderName.toUpperCase(Locale.ROOT);
             case 4:
-                return StringHelper.getStart(resourceFinder.getStrArrayRes(R.array.genders)[gender.ordinal()]).toUpperCase(Locale.ROOT);
+                return StringHelper.getStart(genderName).toUpperCase(Locale.ROOT);
             default:
                 return gender.toString();
         }

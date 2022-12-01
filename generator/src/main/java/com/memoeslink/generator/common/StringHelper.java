@@ -96,6 +96,66 @@ public class StringHelper {
         return s;
     }
 
+    public static String getFirstNonNull(String... strings) {
+        for (String s : strings) {
+            if (s != null)
+                return s;
+        }
+        return null;
+    }
+
+    public static String getFirstNonEmpty(String... strings) {
+        for (String s : strings) {
+            if (isNotNullOrEmpty(s))
+                return s;
+        }
+        return null;
+    }
+
+    public static String getFirstNonBlank(String... strings) {
+        for (String s : strings) {
+            if (isNotNullOrBlank(s))
+                return s;
+        }
+        return null;
+    }
+
+    public static String getFirstNonNullElseDefault(String... strings) {
+        return getFirstNonNullOrDefault(DEFAULT_VALUE, strings);
+    }
+
+    public static String getFirstNonEmptyElseDefault(String... strings) {
+        return getFirstNonEmptyOrDefault(DEFAULT_VALUE, strings);
+    }
+
+    public static String getFirstNonBlankElseDefault(String... strings) {
+        return getFirstNonBlankOrDefault(DEFAULT_VALUE, strings);
+    }
+
+    public static String getFirstNonNullOrDefault(String defaultValue, String... strings) {
+        for (String s : strings) {
+            if (s != null)
+                return s;
+        }
+        return defaultValue;
+    }
+
+    public static String getFirstNonEmptyOrDefault(String defaultValue, String... strings) {
+        for (String s : strings) {
+            if (isNotNullOrEmpty(s))
+                return s;
+        }
+        return defaultValue;
+    }
+
+    public static String getFirstNonBlankOrDefault(String defaultValue, String... strings) {
+        for (String s : strings) {
+            if (isNotNullOrBlank(s))
+                return s;
+        }
+        return defaultValue;
+    }
+
     public static String prependIfNotNull(String s, String prefix) {
         if (s == null)
             return null;
@@ -112,6 +172,36 @@ public class StringHelper {
         if (isNullOrBlank(s))
             return s;
         return defaultIfNull(prefix) + s;
+    }
+
+    public static String prependEvenDefaultIfNotNull(String s, String prefix) {
+        return prependEvenDefaultIfNotNull(s, prefix, DEFAULT_VALUE);
+    }
+
+    public static String prependEvenDefaultIfNotEmpty(String s, String prefix) {
+        return prependEvenDefaultIfNotEmpty(s, prefix, DEFAULT_VALUE);
+    }
+
+    public static String prependEvenDefaultIfNotBlank(String s, String prefix) {
+        return prependEvenDefaultIfNotBlank(s, prefix, DEFAULT_VALUE);
+    }
+
+    public static String prependEvenDefaultIfNotNull(String s, String prefix, String defaultPrefix) {
+        if (s == null)
+            return null;
+        return defaultIfNull(prefix, defaultPrefix) + s;
+    }
+
+    public static String prependEvenDefaultIfNotEmpty(String s, String prefix, String defaultPrefix) {
+        if (isNullOrEmpty(s))
+            return s;
+        return defaultIfNull(prefix, defaultPrefix) + s;
+    }
+
+    public static String prependEvenDefaultIfNotBlank(String s, String prefix, String defaultPrefix) {
+        if (isNullOrBlank(s))
+            return s;
+        return defaultIfNull(prefix, defaultPrefix) + s;
     }
 
     public static String prependSpaceIfNotNull(String s) {
@@ -168,6 +258,36 @@ public class StringHelper {
         return s + defaultIfNull(suffix);
     }
 
+    public static String appendEvenDefaultIfNotNull(String s, String suffix) {
+        return appendEvenDefaultIfNotNull(s, suffix, DEFAULT_VALUE);
+    }
+
+    public static String appendEvenDefaultIfNotEmpty(String s, String suffix) {
+        return appendEvenDefaultIfNotEmpty(s, suffix, DEFAULT_VALUE);
+    }
+
+    public static String appendEvenDefaultIfNotBlank(String s, String suffix) {
+        return appendEvenDefaultIfNotBlank(s, suffix, DEFAULT_VALUE);
+    }
+
+    public static String appendEvenDefaultIfNotNull(String s, String suffix, String defaultSuffix) {
+        if (s == null)
+            return null;
+        return s + defaultIfNull(suffix, defaultSuffix);
+    }
+
+    public static String appendEvenDefaultIfNotEmpty(String s, String suffix, String defaultSuffix) {
+        if (isNullOrEmpty(s))
+            return s;
+        return s + defaultIfNull(suffix, defaultSuffix);
+    }
+
+    public static String appendEvenDefaultIfNotBlank(String s, String suffix, String defaultSuffix) {
+        if (isNullOrBlank(s))
+            return s;
+        return s + defaultIfNull(suffix, defaultSuffix);
+    }
+
     public static String appendSpaceIfNotNull(String s) {
         return appendIfNotNull(s, String.valueOf(Separator.SPACE.getCharacter()));
     }
@@ -220,6 +340,36 @@ public class StringHelper {
         if (isNullOrBlank(s))
             return s;
         return defaultIfNull(prefix) + s + defaultIfNull(suffix);
+    }
+
+    public static String affixEvenDefaultIfNotNull(String s, String prefix, String suffix) {
+        return affixEvenDefaultIfNotNull(s, prefix, suffix, DEFAULT_VALUE, DEFAULT_VALUE);
+    }
+
+    public static String affixEvenDefaultIfNotEmpty(String s, String prefix, String suffix) {
+        return affixEvenDefaultIfNotEmpty(s, prefix, suffix, DEFAULT_VALUE, DEFAULT_VALUE);
+    }
+
+    public static String affixEvenDefaultIfNotBlank(String s, String prefix, String suffix) {
+        return affixEvenDefaultIfNotBlank(s, prefix, suffix, DEFAULT_VALUE, DEFAULT_VALUE);
+    }
+
+    public static String affixEvenDefaultIfNotNull(String s, String prefix, String suffix, String defaultPrefix, String defaultSuffix) {
+        if (s == null)
+            return null;
+        return defaultIfNull(prefix, defaultPrefix) + s + defaultIfNull(suffix, defaultSuffix);
+    }
+
+    public static String affixEvenDefaultIfNotEmpty(String s, String prefix, String suffix, String defaultPrefix, String defaultSuffix) {
+        if (isNullOrEmpty(s))
+            return s;
+        return defaultIfNull(prefix, defaultPrefix) + s + defaultIfNull(suffix, defaultSuffix);
+    }
+
+    public static String affixEvenDefaultIfNotBlank(String s, String prefix, String suffix, String defaultPrefix, String defaultSuffix) {
+        if (isNullOrBlank(s))
+            return s;
+        return defaultIfNull(prefix, defaultPrefix) + s + defaultIfNull(suffix, defaultSuffix);
     }
 
     public static String affixSpacesIfNotNull(String s) {
