@@ -126,9 +126,27 @@ public class ResourceFinder extends Binder {
         String[] items = getStrArrayRes(id);
 
         if (items.length == 0)
-            return getStrFromIntArrayRes(id, index);
+            return RESOURCE_NOT_FOUND;
         index = IntegerHelper.defaultIndex(index, items.length);
         return items[index];
+    }
+
+    public String getStrFromArrayRes(@ArrayRes int id) {
+        int length = getArrayResLength(id);
+
+        if (length > 0)
+            return getStrFromStrArrayRes(id, r.getInt(length));
+        return getStrFromIntArrayRes(id);
+    }
+
+    public String getStrFromArrayRes(@ArrayRes int id, int index) {
+        String[] items = getStrArrayRes(id);
+
+        if (items.length > 0) {
+            index = IntegerHelper.defaultIndex(index, items.length);
+            return items[index];
+        }
+        return getStrFromIntArrayRes(id, index);
     }
 
     public int[] getIntArrayRes(@ArrayRes int id) {

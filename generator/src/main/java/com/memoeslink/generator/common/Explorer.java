@@ -91,7 +91,7 @@ public class Explorer extends Binder {
     public String findGenderName(Gender gender, int type) {
         gender = gender != null ? gender : Gender.UNDEFINED;
         type = IntegerHelper.defaultInt(type, 1, 4);
-        String genderName = resourceFinder.getStrFromIntArrayRes(R.array.genders, gender.ordinal());
+        String genderName = resourceFinder.getStrFromStrArrayRes(R.array.genders, gender.ordinal());
 
         switch (type) {
             case 1:
