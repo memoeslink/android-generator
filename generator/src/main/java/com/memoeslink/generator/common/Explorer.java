@@ -103,8 +103,13 @@ public class Explorer extends Binder {
                     return getPictogram();
                 case FORMATTED_PICTOGRAM:
                     return getFormattedPictogram();
+                case NONE:
+                    return ResourceFinder.RESOURCE_NOT_FOUND;
             }
-            return resourceFinder.getStrFromArrayRes(reference.getResourceId());
+
+            if (reference.getResourceId() > 0)
+                return resourceFinder.getStrFromArrayRes(reference.getResourceId());
+            return ResourceFinder.RESOURCE_NOT_FOUND;
         }
 
         private String getEmojis(int length) {
