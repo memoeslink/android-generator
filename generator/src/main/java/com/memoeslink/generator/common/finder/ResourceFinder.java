@@ -96,7 +96,10 @@ public class ResourceFinder extends Binder {
     public String[] getStrArrayRes(@ArrayRes int id) {
         if (isResource(id) && getResources().getResourceTypeName(id).equals("array")) {
             try {
-                return getResources().getStringArray(id);
+                String[] items = getResources().getStringArray(id);
+
+                if (StringHelper.isNotNullOrEmpty(items) && items[0] != null)
+                    return items;
             } catch (Exception ignored) {
             }
         }
