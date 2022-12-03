@@ -36,6 +36,8 @@ public class ResourceFinder extends Binder {
     }
 
     public String getStrFromList(List<String> items) {
+        if (items == null)
+            return RESOURCE_NOT_FOUND;
         return getStrFromArray(items.toArray(new String[0]));
     }
 

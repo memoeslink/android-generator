@@ -1,5 +1,9 @@
 package com.memoeslink.generator.common;
 
+import android.content.Context;
+
+import com.memoeslink.generator.R;
+
 import java.util.HashMap;
 
 public enum Gender {
@@ -29,6 +33,26 @@ public enum Gender {
 
     public String getGlyph() {
         return glyphs[0];
+    }
+
+    public String getName(Context context, int type) {
+        if (context == null)
+            return this.toString();
+        type = IntegerHelper.defaultInt(type, 1, 4);
+        String genderName = context.getResources().getStringArray(R.array.genders)[this.ordinal()];
+
+        switch (type) {
+            case 1:
+                return genderName;
+            case 2:
+                return StringHelper.capitalizeFirst(genderName);
+            case 3:
+                return genderName.toUpperCase();
+            case 4:
+                return StringHelper.getStart(genderName).toUpperCase();
+            default:
+                return this.toString();
+        }
     }
 
     public static Gender get(int value) {

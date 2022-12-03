@@ -2,11 +2,8 @@ package com.memoeslink.generator.common;
 
 import android.content.Context;
 
-import com.memoeslink.generator.R;
 import com.memoeslink.generator.common.finder.ContactNameFinder;
 import com.memoeslink.generator.common.finder.ResourceFinder;
-
-import java.util.Locale;
 
 public class Explorer extends Binder {
     protected final ResourceFinder resourceFinder;
@@ -78,6 +75,12 @@ public class Explorer extends Binder {
         return ResourceFinder.RESOURCE_NOT_FOUND;
     }
 
+    public String findByRef(ResourceReference reference) {
+        if (reference == null)
+            return ResourceFinder.RESOURCE_NOT_FOUND;
+        return resourceFinder.getStrFromArrayRes(reference.getResourceId());
+    }
+
     public int findArrayLength(int id) {
         if (!resourceFinder.isResource(id))
             return 0;
@@ -86,24 +89,5 @@ public class Explorer extends Binder {
         else if (getResources().getResourceTypeName(id).equals("string"))
             return resourceFinder.getSplitStrResLength(id);
         return 0;
-    }
-
-    public String findGenderName(Gender gender, int type) {
-        gender = gender != null ? gender : Gender.UNDEFINED;
-        type = IntegerHelper.defaultInt(type, 1, 4);
-        String genderName = resourceFinder.getStrFromStrArrayRes(R.array.genders, gender.ordinal());
-
-        switch (type) {
-            case 1:
-                return genderName;
-            case 2:
-                return StringHelper.capitalizeFirst(genderName);
-            case 3:
-                return genderName.toUpperCase(Locale.ROOT);
-            case 4:
-                return StringHelper.getStart(genderName).toUpperCase(Locale.ROOT);
-            default:
-                return gender.toString();
-        }
     }
 }
