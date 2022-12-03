@@ -8,6 +8,7 @@ import com.memoeslink.generator.common.finder.ResourceFinder;
 public class Explorer extends Binder {
     protected final ResourceFinder resourceFinder;
     protected final ContactNameFinder contactNameFinder;
+    protected final ReferenceFinder referenceFinder;
     protected final Device device;
 
     public Explorer(Context context) {
@@ -19,6 +20,7 @@ public class Explorer extends Binder {
         device = new Device(context);
         resourceFinder = new ResourceFinder(context, seed);
         contactNameFinder = new ContactNameFinder(context, seed);
+        referenceFinder = new ReferenceFinder();
     }
 
     public ResourceFinder getResourceFinder() {
@@ -76,12 +78,10 @@ public class Explorer extends Binder {
     }
 
     public String findByRef(ResourceReference reference) {
-        if (reference == null)
-            return ResourceFinder.RESOURCE_NOT_FOUND;
-        return resourceFinder.getStrFromArrayRes(reference.getResourceId());
+        return referenceFinder.getResource(reference);
     }
 
-    public int findArrayLength(int id) {
+    public int findArrayResLength(int id) {
         if (!resourceFinder.isResource(id))
             return 0;
         else if (getResources().getResourceTypeName(id).equals("array"))
@@ -89,5 +89,51 @@ public class Explorer extends Binder {
         else if (getResources().getResourceTypeName(id).equals("string"))
             return resourceFinder.getSplitStrResLength(id);
         return 0;
+    }
+
+    private class ReferenceFinder {
+        public String getResource(ResourceReference reference) {
+            if (reference == null)
+                return ResourceFinder.RESOURCE_NOT_FOUND;
+
+            switch (reference) {
+                case EMOJIS:
+                    return getEmojis(r.getInt(1, 4));
+                case PICTOGRAM:
+                    return getPictogram();
+                case FORMATTED_PICTOGRAM:
+                    return getFormattedPictogram();
+            }
+            return resourceFinder.getStrFromArrayRes(reference.getResourceId());
+        }
+
+        private String getEmojis(int length) {
+            length = IntegerHelper.defaultInt(length, 0, 1000);
+            StringBuilder sb = new StringBuilder();
+
+            for (int n = 0; n < length; n++) {
+                sb.append(getResource(ResourceReference.EMOJI));
+            }
+            return sb.toString();
+        }
+
+        private String getPictogram() {
+            switch (r.getInt(3)) {
+                case 0:
+                    return getResource(ResourceReference.EMOTICON);
+                case 1:
+                    return getResource(ResourceReference.KAOMOJI);
+                case 2:
+                    return getEmojis(r.getInt(1, 4));
+                default:
+                    return ResourceFinder.RESOURCE_NOT_FOUND;
+            }
+        }
+
+        private String getFormattedPictogram() {
+            return String.format("<b><font color=%s>%s</font></b>",
+                    ResourceGetter.with(r).getString(Constant.DEFAULT_COLORS),
+                    getPictogram());
+        }
     }
 }
