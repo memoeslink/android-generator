@@ -136,9 +136,20 @@ public class Explorer extends Binder {
         }
 
         private String getFormattedPictogram() {
-            return String.format("<b><font color=%s>%s</font></b>",
-                    ResourceGetter.with(r).getString(Constant.DEFAULT_COLORS),
-                    getPictogram());
+            switch (r.getInt(3)) {
+                case 0:
+                    String emoticon = TextFormatter.colorText(getResource(ResourceReference.EMOTICON),
+                            ResourceGetter.with(r).getString(Constant.DEFAULT_COLORS));
+                    return TextFormatter.formatText(emoticon, "b");
+                case 1:
+                    String kaomoji = TextFormatter.colorText(getResource(ResourceReference.KAOMOJI),
+                            ResourceGetter.with(r).getString(Constant.DEFAULT_COLORS));
+                    return TextFormatter.formatText(kaomoji, "b");
+                case 2:
+                    return getEmojis(r.getInt(1, 4));
+                default:
+                    return ResourceFinder.RESOURCE_NOT_FOUND;
+            }
         }
     }
 }
