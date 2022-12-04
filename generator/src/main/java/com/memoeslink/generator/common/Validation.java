@@ -21,13 +21,13 @@ public class Validation {
 
     public static boolean isPhone(String phone) {
         if (StringHelper.isNotNullOrBlank(phone))
-            return phone.matches(PHONE_REGEX);
+            return PHONE_PATTERN.matcher(phone).matches();
         return false;
     }
 
     public static boolean isHexColor(String color) {
         if (StringHelper.isNotNullOrBlank(color))
-            return color.matches(HEX_COLOR_REGEX);
+            return HEX_COLOR_PATTERN.matcher(color).matches();
         return false;
     }
 }
