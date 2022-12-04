@@ -334,6 +334,6 @@ public class TextFormatter {
             color = "#FFFFFF";
         else if (!Validation.isHexColor(color))
             color = COLORS.getOrDefault(color, "#FFFFFF");
-        return String.format("<font color=%s>%s</font>", color, s);
+        return String.format("<font color=%s>%s</font>", color.toUpperCase(), s);
     }
 }

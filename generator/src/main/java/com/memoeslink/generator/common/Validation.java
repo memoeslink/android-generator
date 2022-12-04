@@ -27,7 +27,7 @@ public class Validation {
 
     public static boolean isHexColor(String color) {
         if (StringHelper.isNotNullOrBlank(color))
-            return HEX_COLOR_PATTERN.matcher(color).matches();
+            return HEX_COLOR_PATTERN.matcher(color.toLowerCase()).matches();
         return false;
     }
 }

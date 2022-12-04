@@ -4,7 +4,7 @@ plugins {
     id 'kotlin-android'
 }
 
-def currentVersionName = "2022.2.25"
+def currentVersionName = "2022.2.26"
 
 afterEvaluate {
     publishing {
