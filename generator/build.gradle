@@ -4,7 +4,7 @@ plugins {
     id 'kotlin-android'
 }
 
-def currentVersionName = "2022.2.26"
+def currentVersionName = "2022.2.27"
 
 afterEvaluate {
     publishing {
@@ -70,6 +70,7 @@ dependencies {
     implementation 'commons-validator:commons-validator:1.7'
     implementation 'io.github.encryptorcode:pluralize:1.0.0'
     implementation 'io.github.memoeslink:randomizer:2022.0.1-release'
+    implementation 'com.github.memoeslink.sharedpreferences-helper:final:2022.1.1'
     implementation "androidx.core:core-ktx:+"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     testImplementation 'junit:junit:4.13.2'

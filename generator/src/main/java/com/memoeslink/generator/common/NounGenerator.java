@@ -37,6 +37,11 @@ public class NounGenerator extends Generator {
         }
     }
 
+    public String getNounWithArticle() {
+        return r.getBoolean() ? getNounWithArticle(Form.UNDEFINED) :
+                getNounWithIndefiniteArticle(Form.UNDEFINED);
+    }
+
     public String getNounWithArticle(Form form) {
         NounGetter getter = getGetter();
         form = form != null ? form : Form.UNDEFINED;
