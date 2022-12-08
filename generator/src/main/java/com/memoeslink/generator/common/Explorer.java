@@ -105,6 +105,7 @@ public class Explorer extends Binder {
     }
 
     private class ReferenceFinder {
+
         public String getResource(ResourceReference reference) {
             if (reference == null)
                 return ResourceFinder.RESOURCE_NOT_FOUND;
