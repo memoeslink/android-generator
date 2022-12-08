@@ -8,15 +8,15 @@ public class Generator {
     protected Locale locale;
     protected Randomizer r;
 
-    public Generator() {
+    protected Generator() {
         this(null, null);
     }
 
-    public Generator(Long seed) {
+    protected Generator(Long seed) {
         this(null, seed);
     }
 
-    public Generator(Locale locale, Long seed) {
+    protected Generator(Locale locale, Long seed) {
         this.locale = locale != null ? locale : new Locale("xx");
         this.r = new Randomizer(seed);
     }
