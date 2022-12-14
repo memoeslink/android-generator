@@ -451,7 +451,7 @@ public class StringHelper {
         parts.ensureCapacity(s.length() / 5);
         int index = s.indexOf(delimiter);
         int startIndex = 0;
-        int endIndex = s.length() - 1;
+        int endIndex;
 
         while (index >= 0) {
             endIndex = index;
@@ -924,7 +924,7 @@ public class StringHelper {
         for (int n = 0; n < prefixes.length && n < replacements.length; n++) {
             String result = replaceStart(s, prefixes[n], replacements[n]);
 
-            if (!s.equals(result))
+            if (!equals(s, result))
                 return result;
         }
         return s;
@@ -951,7 +951,7 @@ public class StringHelper {
         for (int n = 0; n < suffixes.length && n < replacements.length; n++) {
             String result = replaceEnd(s, suffixes[n], replacements[n]);
 
-            if (!s.equals(result))
+            if (!equals(s, result))
                 return result;
         }
         return s;
@@ -1210,9 +1210,13 @@ public class StringHelper {
         return false;
     }
 
+    public static boolean equals(String a, String b) {
+        return Objects.equals(a, b);
+    }
+
     public static boolean equalsIgnoreCase(String a, String b) {
         if (a == null || b == null)
-            return Objects.equals(a, b);
+            return equals(a, b);
         return a.equalsIgnoreCase(b);
     }
 
@@ -1221,9 +1225,13 @@ public class StringHelper {
             return false;
 
         for (String occurrence : occurrences) {
-            if (s.equals(occurrence)) return true;
+            if (equals(s, occurrence)) return true;
         }
         return false;
+    }
+
+    public static boolean equalsDefault(String s) {
+        return equals(s, DEFAULT_VALUE);
     }
 
     public static boolean containsAny(String s, String... affixes) {

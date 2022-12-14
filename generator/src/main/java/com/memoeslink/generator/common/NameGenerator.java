@@ -192,7 +192,7 @@ public class NameGenerator extends Generator {
     public String getNameOrDefault(NameType nameType, String defaultValue) {
         String name = getName(nameType);
 
-        if (StringHelper.isNullOrBlank(name) || name.equals(Database.DEFAULT_VALUE))
+        if (StringHelper.isNullOrBlank(name) || StringHelper.equalsDefault(name))
             return defaultValue;
         return name;
     }
@@ -205,7 +205,7 @@ public class NameGenerator extends Generator {
         do {
             name = getName(nameType);
             tries--;
-        } while ((invalidName = (StringHelper.isNullOrBlank(name) || name.equals(Database.DEFAULT_VALUE))) && tries > 0);
+        } while ((invalidName = (StringHelper.isNullOrBlank(name) || StringHelper.equalsDefault(name))) && tries > 0);
 
         if (invalidName && tries == 0)
             name = getDefaultName();

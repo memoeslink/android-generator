@@ -11,6 +11,8 @@ import java.util.stream.Collectors;
 public class Pluralizer {
     private static final Map<String, String> PLURAL_EXCEPTIONS =
             Arrays.stream(new String[][]{
+                    {"el", "los"},
+                    {"él", "ellos"},
                     {"no", "noes"},
                     {"sí", "síes"},
                     {"cualquiera", "cualesquiera"},
@@ -130,5 +132,14 @@ public class Pluralizer {
         if ((StringHelper.getEnd(s).equals("n") && !StringHelper.hasAny(s, 'á', 'é', 'í', 'ó', 'ú'))) //Unaccented paroxytones
             return syllableSeparator.convertToProparoxytone();
         return s + "es";
+    }
+
+    public static String pluralizeAll(String s) {
+        String[] words = s.split("\\s+");
+
+        for (int n = 0; n < words.length; n++) {
+            words[n] = convert(words[n]);
+        }
+        return String.join(String.valueOf(Separator.SPACE.getCharacter()), words);
     }
 }

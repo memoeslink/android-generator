@@ -313,6 +313,17 @@ public class Person {
         );
     }
 
+    public String getAltSummary() {
+        String suffix = "";
+
+        if (gender != null && gender != Gender.UNDEFINED)
+            suffix = "｢" + gender.getValue() + "｣";
+
+        return (StringHelper.defaultWhenBlank(getDescriptor()) +
+                StringHelper.appendLineBreakIfNotBlank(suffix)
+        );
+    }
+
     public String getMd5() {
         return StringHelper.md5(getSummary());
     }

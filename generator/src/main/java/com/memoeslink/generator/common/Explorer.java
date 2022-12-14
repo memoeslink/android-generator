@@ -3,13 +3,11 @@ package com.memoeslink.generator.common;
 import android.content.Context;
 
 import com.memoeslink.generator.common.finder.ContactNameFinder;
-import com.memoeslink.generator.common.finder.PreferenceFinder;
 import com.memoeslink.generator.common.finder.ResourceFinder;
 
 public class Explorer extends Binder {
     protected final ResourceFinder resourceFinder;
     protected final ContactNameFinder contactNameFinder;
-    protected final PreferenceFinder preferenceFinder;
     protected final ReferenceFinder referenceFinder;
     protected final Device device;
 
@@ -22,7 +20,6 @@ public class Explorer extends Binder {
         device = new Device(context);
         resourceFinder = new ResourceFinder(context, seed);
         contactNameFinder = new ContactNameFinder(context, seed);
-        preferenceFinder = new PreferenceFinder(context, seed);
         referenceFinder = new ReferenceFinder();
     }
 
@@ -34,10 +31,6 @@ public class Explorer extends Binder {
         return contactNameFinder;
     }
 
-    public PreferenceFinder getPreferenceFinder() {
-        return preferenceFinder;
-    }
-
     public ReferenceFinder getReferenceFinder() {
         return referenceFinder;
     }
@@ -47,7 +40,6 @@ public class Explorer extends Binder {
         super.bindSeed(seed);
         resourceFinder.bindSeed(seed);
         contactNameFinder.bindSeed(seed);
-        preferenceFinder.bindSeed(seed);
     }
 
     @Override
@@ -55,7 +47,6 @@ public class Explorer extends Binder {
         super.unbindSeed();
         resourceFinder.unbindSeed();
         contactNameFinder.unbindSeed();
-        preferenceFinder.unbindSeed();
     }
 
     public String findRes(int id) {
