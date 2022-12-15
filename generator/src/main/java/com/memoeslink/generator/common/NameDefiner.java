@@ -161,6 +161,8 @@ public interface NameDefiner {
 
     public String getMarkovFullName();
 
+    public String getSecretName();
+
     public String getUsername();
 
     public String getCompositeUsername();

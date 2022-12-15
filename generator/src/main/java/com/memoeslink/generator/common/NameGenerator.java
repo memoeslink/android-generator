@@ -169,6 +169,8 @@ public class NameGenerator extends Generator {
                 return getter.getFemaleMarkovFullName();
             case MARKOV_FULL_NAME:
                 return getter.getMarkovFullName();
+            case SECRET_NAME:
+                return getter.getSecretName();
             case USERNAME:
                 return getter.getUsername();
             case COMPOSITE_USERNAME:

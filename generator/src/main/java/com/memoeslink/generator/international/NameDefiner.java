@@ -196,4 +196,19 @@ public interface NameDefiner extends com.memoeslink.generator.common.NameDefiner
             nameGen = new NameGen(minLength, maxLength, r.getSeed());
         return StringHelper.capitalizeFirst(nameGen.getName());
     }
+
+    default String getSecretName(int length, Randomizer r) {
+        length = IntegerHelper.defaultInt(length, 1, 9999);
+        r = r != null ? r : new Randomizer();
+        StringBuilder sb = new StringBuilder();
+        boolean on = r.getBoolean();
+
+        for (int i = 0; i < length; i++) {
+            if (i % 2 == 0 ^ on)
+                sb.append(ResourceGetter.with(r).getChar(com.memoeslink.generator.english.Constant.LOWERCASE_VOWELS));
+            else
+                sb.append(ResourceGetter.with(r).getChar(com.memoeslink.generator.english.Constant.LOWERCASE_CONSONANTS));
+        }
+        return StringHelper.capitalizeFirst(sb.toString());
+    }
 }

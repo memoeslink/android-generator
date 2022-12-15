@@ -380,6 +380,11 @@ public class NameGetter extends com.memoeslink.generator.common.NameGetter imple
     }
 
     @Override
+    public String getSecretName() {
+        return nameGetter.getMarkovFullName();
+    }
+
+    @Override
     public String getCompositeUsername() {
         return nameGetter.getCompositeUsername();
     }

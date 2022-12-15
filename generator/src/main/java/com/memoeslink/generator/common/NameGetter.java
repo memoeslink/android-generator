@@ -404,6 +404,11 @@ public class NameGetter extends Getter implements NameDefiner {
     }
 
     @Override
+    public String getSecretName() {
+        return Database.DEFAULT_VALUE;
+    }
+
+    @Override
     public String getUsername() {
         return Database.DEFAULT_VALUE;
     }
