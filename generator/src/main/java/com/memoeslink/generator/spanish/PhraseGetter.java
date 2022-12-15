@@ -2,7 +2,6 @@ package com.memoeslink.generator.spanish;
 
 import com.memoeslink.common.Randomizer;
 import com.memoeslink.generator.common.PhraseDefiner;
-import com.memoeslink.generator.english.PeriodOfDay;
 
 import java.time.LocalTime;
 
