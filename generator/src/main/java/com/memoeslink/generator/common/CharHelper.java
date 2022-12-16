@@ -98,7 +98,7 @@ public class CharHelper {
         char missingCharacter = '\u0978';
         byte[] b1 = BitmapHelper.getCharPixels(c);
         byte[] b2 = BitmapHelper.getCharPixels(missingCharacter);
-        return Arrays.equals(b1, b2);
+        return !Arrays.equals(b1, b2);
     }
 
     public static boolean isGlyphDisplayable(char c) {
