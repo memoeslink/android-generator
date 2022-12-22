@@ -44,7 +44,7 @@ public class IndefiniteArticle {
                 if (c == 'ˌ' || c == 'ˈ')
                     continue;
 
-                if ("æɑɒʌɛɪiɔʊuəɚɜɝ".indexOf(c) >= 0)
+                if ("æɑɒʌɛɪioɔʊuəɚɜɝ".indexOf(c) >= 0)
                     return "an";
                 return "a";
             }
