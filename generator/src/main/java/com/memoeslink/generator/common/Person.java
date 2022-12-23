@@ -320,7 +320,7 @@ public class Person {
             suffix = "｢" + gender.getValue() + "｣";
 
         return (StringHelper.defaultWhenBlank(getDescriptor()) +
-                StringHelper.appendLineBreakIfNotBlank(suffix)
+                StringHelper.appendSpaceIfNotBlank(suffix)
         );
     }
 
