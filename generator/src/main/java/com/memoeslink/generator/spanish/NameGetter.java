@@ -122,7 +122,7 @@ public final class NameGetter extends com.memoeslink.generator.common.NameGetter
 
     @Override
     public String getSurname() {
-        return getSurname(r.getInt(1, Database.countHispanicSurnames()));
+        return r.getInt(100) == 0 ? getSurnameFromName() : getSurname(r.getInt(1, Database.countHispanicSurnames()));
     }
 
     @Override

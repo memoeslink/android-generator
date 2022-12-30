@@ -155,11 +155,14 @@ public final class NameGetter extends com.memoeslink.generator.common.NameGetter
 
     @Override
     public String getFullName() {
-        switch (r.getInt(3)) {
+        switch (r.getInt(4)) {
             case 1:
                 return getFemaleFullName();
             case 2:
                 return getMaleFullName();
+            case 3:
+                return Database.selectForename(r.getInt(1, Database.countForenames())) + Separator.SPACE.getCharacter() +
+                        Database.selectSurname(r.getInt(1, Database.countSurnames()));
             case 0:
             default:
                 return Database.selectName(r.getInt(1, Database.countNames())) +

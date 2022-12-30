@@ -23,6 +23,7 @@ public class Database extends SQLiteAssetHelper {
     public static final String TABLE_ENGLISH_OCCUPATIONS = "EnglishOccupations";
     public static final String TABLE_ENGLISH_PHONETICS = "EnglishPhonetics";
     public static final String TABLE_ENGLISH_SURNAMES = "EnglishSurnames";
+    public static final String TABLE_FORENAMES = "Forenames";
     public static final String TABLE_FRENCH_FEMALE_NAMES = "FrenchFemaleNames";
     public static final String TABLE_FRENCH_MALE_NAMES = "FrenchMaleNames";
     public static final String TABLE_RUSSIAN_FEMALE_NAMES = "RussianFemaleNames";
@@ -38,6 +39,7 @@ public class Database extends SQLiteAssetHelper {
     public static final String TABLE_FAMILY_NAMES = "FamilyNames";
     public static final String TABLE_NAMES = "Names";
     public static final String TABLE_NOUNS = "Nouns";
+    public static final String TABLE_SURNAMES = "Surnames";
     public static final String TABLE_USERNAMES = "Usernames";
     private static final HashMap<String, Integer> TABLE_COUNT_REGISTRY = new HashMap<>();
     private final Context context;
@@ -214,6 +216,18 @@ public class Database extends SQLiteAssetHelper {
 
     public static String selectEnglishSurname(int id) {
         return selectRow("SELECT * FROM " + TABLE_ENGLISH_SURNAMES + " WHERE " + TABLE_ENGLISH_SURNAMES + ID_PREFIX + " = ?", 1, String.valueOf(id));
+    }
+
+    public static int countForenames() {
+        return countRows(TABLE_FORENAMES);
+    }
+
+    public static String selectForename() {
+        return selectRow("SELECT * FROM " + TABLE_FORENAMES + " ORDER BY RANDOM() LIMIT 1", 2);
+    }
+
+    public static String selectForename(int id) {
+        return selectRow("SELECT * FROM " + TABLE_FORENAMES + " WHERE " + TABLE_FORENAMES + ID_PREFIX + " = ?", 2, String.valueOf(id));
     }
 
     public static int countFrenchFemaleNames() {
@@ -394,6 +408,18 @@ public class Database extends SQLiteAssetHelper {
 
     public static String selectCommonNoun(int id) {
         return selectRow("SELECT * FROM " + TABLE_NOUNS + " WHERE " + TABLE_NOUNS + ID_PREFIX + " = ?", 1, String.valueOf(id));
+    }
+
+    public static int countSurnames() {
+        return countRows(TABLE_SURNAMES);
+    }
+
+    public static String selectSurname() {
+        return selectRow("SELECT * FROM " + TABLE_SURNAMES + " ORDER BY RANDOM() LIMIT 1", 2);
+    }
+
+    public static String selectSurname(int id) {
+        return selectRow("SELECT * FROM " + TABLE_SURNAMES + " WHERE " + TABLE_SURNAMES + ID_PREFIX + " = ?", 2, String.valueOf(id));
     }
 
     public static int countUsernames() {
