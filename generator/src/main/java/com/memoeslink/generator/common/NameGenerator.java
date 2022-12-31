@@ -83,6 +83,12 @@ public class NameGenerator extends Generator {
                 return getter.getDoubleMaleForename();
             case DOUBLE_FEMALE_FORENAME:
                 return getter.getDoubleFemaleForename();
+            case MALE_GIVEN_NAME:
+                return getter.getMaleGivenName();
+            case FEMALE_GIVEN_NAME:
+                return getter.getFemaleGivenName();
+            case GIVEN_NAME:
+                return getter.getGivenName();
             case SURNAME:
                 return getter.getSurname();
             case DUAL_SURNAME:

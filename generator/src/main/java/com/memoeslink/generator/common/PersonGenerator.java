@@ -33,15 +33,18 @@ public class PersonGenerator extends Generator {
 
         switch (gender) {
             case MASCULINE:
-                name = nameGenerator.getName(NameType.MALE_FULL_NAME);
+                name = r.getBoolean() ? nameGenerator.getName(NameType.MALE_FULL_NAME) :
+                        nameGenerator.getName(NameType.MALE_GIVEN_NAME);
                 break;
             case FEMININE:
-                name = nameGenerator.getName(NameType.FEMALE_FULL_NAME);
+                name = r.getBoolean() ? nameGenerator.getName(NameType.MALE_FULL_NAME) :
+                        nameGenerator.getName(NameType.FEMALE_GIVEN_NAME);
                 break;
             case NEUTRAL:
             case UNDEFINED:
             default:
-                name = nameGenerator.getName(NameType.FULL_NAME);
+                name = r.getBoolean() ? nameGenerator.getName(NameType.FULL_NAME) :
+                        nameGenerator.getName(NameType.GIVEN_NAME);
                 break;
         }
         String japaneseHonorific = StringHelper.EMPTY;
