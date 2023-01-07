@@ -5,6 +5,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.text.Normalizer;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.regex.Matcher;
@@ -479,10 +480,10 @@ public class StringHelper {
         return split(s, System.getProperty("line.separator"));
     }
 
-    public static String[] splitByParagraphMark(String s) {
+    public static List<String> splitByParagraphMark(String s) {
         if (isNotNullOrEmpty(s))
-            return s.split("¶[ ]*");
-        return new String[]{};
+            return new ArrayList<>(Arrays.asList(s.split("¶[ ]*")));
+        return new ArrayList<>();
     }
 
     public static String join(String a, String b) {
@@ -1549,5 +1550,15 @@ public class StringHelper {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static String getCharacter(String... codePoints) {
+        StringBuilder sb = new StringBuilder();
+
+        for (String codePoint : codePoints) {
+            if (StringHelper.isNotNullOrBlank(codePoint) && Validation.isUtf(codePoint))
+                sb.appendCodePoint(Integer.decode(codePoint.replace("U+", "0x")));
+        }
+        return sb.toString();
     }
 }

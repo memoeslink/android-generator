@@ -65,11 +65,13 @@ public interface NameDefiner {
 
     public String getMaleSimpleName(int forenameId, int surnameId);
 
-    public String getFullName();
+    public String getSimpleName();
 
     public String getFemaleFullName();
 
     public String getMaleFullName();
+
+    public String getFullName();
 
     public String getFemaleDefinedForename();
 
@@ -223,7 +225,7 @@ public interface NameDefiner {
 
         if (username.length() > 4)
             username = username.substring(0, 5);
-        username = ResourceGetter.with(r).getUpperCase() + username;
+        username = ResourceGetter.with(r).getChar(com.memoeslink.generator.english.Constant.UPPERCASE_ALPHABET) + username;
         username += r.getInt(0, 101);
         return username;
     }

@@ -35,7 +35,7 @@ public class IntegerHelper {
         return n < min ? min : max;
     }
 
-    public int tryParseInt(String s, int defaultValue) {
+    public static int tryParseInt(String s, int defaultValue) {
         try {
             return Integer.parseInt(s);
         } catch (NumberFormatException e) {
@@ -43,11 +43,11 @@ public class IntegerHelper {
         }
     }
 
-    public int parseIntOrZero(String s) {
+    public static int parseIntOrZero(String s) {
         return tryParseInt(s, 0);
     }
 
-    public Integer parseIntOrNull(String s) {
+    public static Integer parseIntOrNull(String s) {
         try {
             return Integer.valueOf(s);
         } catch (NumberFormatException e) {

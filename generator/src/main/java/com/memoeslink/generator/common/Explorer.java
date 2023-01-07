@@ -102,8 +102,8 @@ public class Explorer extends Binder {
                 return ResourceFinder.RESOURCE_NOT_FOUND;
 
             switch (reference) {
-                case EMOJIS:
-                    return getEmojis(r.getInt(1, 4));
+                case EMOJI_V15:
+                    return getEmojiV15();
                 case PICTOGRAM:
                     return getPictogram();
                 case FORMATTED_PICTOGRAM:
@@ -117,41 +117,55 @@ public class Explorer extends Binder {
             return ResourceFinder.RESOURCE_NOT_FOUND;
         }
 
-        private String getEmojis(int length) {
+        private String getResource(ResourceReference reference, int length) {
             length = IntegerHelper.defaultInt(length, 0, 1000);
             StringBuilder sb = new StringBuilder();
 
             for (int n = 0; n < length; n++) {
-                sb.append(getResource(ResourceReference.EMOJI));
+                sb.append(getResource(reference));
             }
             return sb.toString();
         }
 
+        private String getEmojiV15() {
+            String codePoints = Database.selectCodePoints(r.getInt(1, Database.countEmojis()));
+            String[] segments = StringHelper.splitBySpace(codePoints).toArray(new String[0]);
+
+            for (int n = 0; n < segments.length; n++) {
+                segments[n] = "U+" + segments[n];
+            }
+            return StringHelper.getCharacter(segments);
+        }
+
         private String getPictogram() {
-            switch (r.getInt(3)) {
+            switch (r.getInt(4)) {
                 case 0:
-                    return getResource(ResourceReference.EMOTICON);
+                    return getResource(ResourceReference.EMOJI, r.getInt(1, 4));
                 case 1:
-                    return getResource(ResourceReference.KAOMOJI);
+                    return getResource(ResourceReference.EMOJI_V15, r.getInt(1, 4));
                 case 2:
-                    return getEmojis(r.getInt(1, 4));
+                    return getResource(ResourceReference.EMOTICON);
+                case 3:
+                    return getResource(ResourceReference.KAOMOJI);
                 default:
                     return ResourceFinder.RESOURCE_NOT_FOUND;
             }
         }
 
         private String getFormattedPictogram() {
-            switch (r.getInt(3)) {
+            switch (r.getInt(4)) {
                 case 0:
+                    return getResource(ResourceReference.EMOJI, r.getInt(1, 4));
+                case 1:
+                    return getResource(ResourceReference.EMOJI_V15, r.getInt(1, 4));
+                case 2:
                     String emoticon = TextFormatter.colorText(getResource(ResourceReference.EMOTICON),
                             ResourceGetter.with(r).getString(Constant.DEFAULT_COLORS));
                     return TextFormatter.formatText(emoticon, "b");
-                case 1:
+                case 3:
                     String kaomoji = TextFormatter.colorText(getResource(ResourceReference.KAOMOJI),
                             ResourceGetter.with(r).getString(Constant.DEFAULT_COLORS));
                     return TextFormatter.formatText(kaomoji, "b");
-                case 2:
-                    return getEmojis(r.getInt(1, 4));
                 default:
                     return ResourceFinder.RESOURCE_NOT_FOUND;
             }

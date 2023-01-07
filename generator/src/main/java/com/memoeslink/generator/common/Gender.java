@@ -36,8 +36,6 @@ public enum Gender {
     }
 
     public String getName(Context context, int type) {
-        if (context == null)
-            return this.toString();
         type = IntegerHelper.defaultInt(type, 1, 4);
         String genderName = context.getResources().getStringArray(R.array.genders)[this.ordinal()];
 

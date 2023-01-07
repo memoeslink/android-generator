@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.util.HashMap;
+import java.util.List;
 
 public class ResourceGetter {
     private static Randomizer r;
@@ -86,19 +87,19 @@ public class ResourceGetter {
     }
 
     public static String getSplitString(String s) {
-        String[] parts = StringHelper.splitByParagraphMark(s);
+        List<String> parts = StringHelper.splitByParagraphMark(s);
 
-        if (parts.length > 0)
-            return parts[r.getInt(parts.length)];
+        if (parts.size() > 0)
+            return r.getItem(parts);
         return StringHelper.EMPTY;
     }
 
     public static String getSplitString(String s, int index) {
-        String[] parts = StringHelper.splitByParagraphMark(s);
+        List<String> parts = StringHelper.splitByParagraphMark(s);
 
-        if (parts.length > 0) {
-            index = IntegerHelper.defaultIndex(index, parts.length);
-            return parts[index];
+        if (parts.size() > 0) {
+            index = IntegerHelper.defaultIndex(index, parts.size());
+            return parts.get(index);
         }
         return StringHelper.EMPTY;
     }
@@ -150,18 +151,6 @@ public class ResourceGetter {
             lnr = null;
         }
         return s;
-    }
-
-    public static char getLetter() {
-        return getChar(com.memoeslink.generator.english.Constant.LETTERS);
-    }
-
-    public static char getUpperCase() {
-        return getChar(com.memoeslink.generator.english.Constant.UPPERCASE_ALPHABET);
-    }
-
-    public static char getLowerCase() {
-        return getChar(com.memoeslink.generator.english.Constant.LOWERCASE_ALPHABET);
     }
 
     public static ResourceGetter with(Randomizer r) {

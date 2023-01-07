@@ -154,6 +154,21 @@ public final class NameGetter extends com.memoeslink.generator.common.NameGetter
     }
 
     @Override
+    public String getSimpleName() {
+        return r.getBoolean() ? getMaleSimpleName() : getFemaleSimpleName();
+    }
+
+    @Override
+    public String getFemaleFullName() {
+        return getAnyGetter().getFemaleFullName();
+    }
+
+    @Override
+    public String getMaleFullName() {
+        return getAnyGetter().getMaleFullName();
+    }
+
+    @Override
     public String getFullName() {
         switch (r.getInt(4)) {
             case 1:
@@ -169,16 +184,6 @@ public final class NameGetter extends com.memoeslink.generator.common.NameGetter
                         Separator.SPACE.getCharacter() +
                         Database.selectFamilyName(r.getInt(1, Database.countFamilyNames()));
         }
-    }
-
-    @Override
-    public String getFemaleFullName() {
-        return getAnyGetter().getFemaleFullName();
-    }
-
-    @Override
-    public String getMaleFullName() {
-        return getAnyGetter().getMaleFullName();
     }
 
     @Override

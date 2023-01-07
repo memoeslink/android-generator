@@ -7,7 +7,7 @@ import java.util.HashMap;
 public enum ResourceReference {
     NONE("", 0),
     EMOJI("getEmoji", R.array.emojis),
-    EMOJIS("getEmojis", 0),
+    EMOJI_V15("getEmojiV15", 0),
     EMOTICON("getEmoticon", R.array.emoticons),
     KAOMOJI("getKaomoji", R.array.kaomojis),
     PICTOGRAM("getPictogram", 0),
