@@ -13,53 +13,7 @@ public class NameGenerator extends Generator {
     }
 
     public String getName(NameType nameType) {
-        NameGetter getter;
-
-        if (StringHelper.isNullOrEmpty(locale.getLanguage()) ||
-                locale.getLanguage().equals("xx") || locale.getCountry().equals("XX"))
-            getter = new com.memoeslink.generator.international.NameGetter(r);
-        else {
-            switch (locale.getLanguage()) {
-                case "ar":
-                    getter = new com.memoeslink.generator.arabic.NameGetter(r);
-                    break;
-                case "de":
-                    getter = new com.memoeslink.generator.german.NameGetter(r);
-                    break;
-                case "en":
-                    getter = new com.memoeslink.generator.english.NameGetter(r);
-                    break;
-                case "es":
-                    if (locale.getCountry().equals("MX"))
-                        getter = new com.memoeslink.generator.spanish.mexico.NameGetter(r);
-                    else
-                        getter = new com.memoeslink.generator.spanish.NameGetter(r);
-                    break;
-                case "fr":
-                    getter = new com.memoeslink.generator.french.NameGetter(r);
-                    break;
-                case "it":
-                    getter = new com.memoeslink.generator.italian.NameGetter(r);
-                    break;
-                case "hi":
-                    getter = new com.memoeslink.generator.hindi.NameGetter(r);
-                    break;
-                case "ja":
-                    getter = new com.memoeslink.generator.japanese.NameGetter(r);
-                    break;
-                case "pt":
-                    getter = new com.memoeslink.generator.portuguese.NameGetter(r);
-                    break;
-                case "ru":
-                    getter = new com.memoeslink.generator.russian.NameGetter(r);
-                    break;
-                case "xx":
-                case StringHelper.EMPTY:
-                default:
-                    getter = new com.memoeslink.generator.international.NameGetter(r);
-                    break;
-            }
-        }
+        NameGetter getter = getGetter();
         nameType = nameType != null ? nameType : NameType.EMPTY;
 
         switch (nameType) {
@@ -87,8 +41,6 @@ public class NameGenerator extends Generator {
                 return getter.getMaleGivenName();
             case FEMALE_GIVEN_NAME:
                 return getter.getFemaleGivenName();
-            case GIVEN_NAME:
-                return getter.getGivenName();
             case SURNAME:
                 return getter.getSurname();
             case DUAL_SURNAME:
@@ -101,8 +53,6 @@ public class NameGenerator extends Generator {
                 return getter.getMaleFullName();
             case FEMALE_FULL_NAME:
                 return getter.getFemaleFullName();
-            case FULL_NAME:
-                return getter.getFullName();
             case MALE_DEFINED_FORENAME:
                 return getter.getMaleDefinedForename();
             case FEMALE_DEFINED_FORENAME:
@@ -220,6 +170,18 @@ public class NameGenerator extends Generator {
         return name;
     }
 
+    public String getGivenName() {
+        return getGetter().getGivenName();
+    }
+
+    public String getSimpleName() {
+        return getGetter().getSimpleName();
+    }
+
+    public String getFullName() {
+        return getGetter().getFullName();
+    }
+
     public String getUsername() {
         switch (r.getInt(5)) {
             case 1:
@@ -238,5 +200,42 @@ public class NameGenerator extends Generator {
 
     public static String getDefaultName() {
         return Constant.DEFAULT_NAME;
+    }
+
+    private NameGetter getGetter() {
+        if (StringHelper.isNullOrEmpty(locale.getLanguage()) ||
+                locale.getLanguage().equals("xx") || locale.getCountry().equals("XX"))
+            return new com.memoeslink.generator.international.NameGetter(r);
+        else {
+            switch (locale.getLanguage()) {
+                case "ar":
+                    return new com.memoeslink.generator.arabic.NameGetter(r);
+                case "de":
+                    return new com.memoeslink.generator.german.NameGetter(r);
+                case "en":
+                    return new com.memoeslink.generator.english.NameGetter(r);
+                case "es":
+                    if (locale.getCountry().equals("MX"))
+                        return new com.memoeslink.generator.spanish.mexico.NameGetter(r);
+                    else
+                        return new com.memoeslink.generator.spanish.NameGetter(r);
+                case "fr":
+                    return new com.memoeslink.generator.french.NameGetter(r);
+                case "it":
+                    return new com.memoeslink.generator.italian.NameGetter(r);
+                case "hi":
+                    return new com.memoeslink.generator.hindi.NameGetter(r);
+                case "ja":
+                    return new com.memoeslink.generator.japanese.NameGetter(r);
+                case "pt":
+                    return new com.memoeslink.generator.portuguese.NameGetter(r);
+                case "ru":
+                    return new com.memoeslink.generator.russian.NameGetter(r);
+                case "xx":
+                case StringHelper.EMPTY:
+                default:
+                    return new com.memoeslink.generator.international.NameGetter(r);
+            }
+        }
     }
 }

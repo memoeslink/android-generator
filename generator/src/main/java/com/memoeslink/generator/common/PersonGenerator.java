@@ -43,8 +43,7 @@ public class PersonGenerator extends Generator {
             case NEUTRAL:
             case UNDEFINED:
             default:
-                name = r.getBoolean() ? nameGenerator.getName(NameType.FULL_NAME) :
-                        nameGenerator.getName(NameType.GIVEN_NAME);
+                name = r.getBoolean() ? nameGenerator.getFullName() : nameGenerator.getGivenName();
                 break;
         }
         String japaneseHonorific = StringHelper.EMPTY;
