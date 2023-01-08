@@ -258,8 +258,8 @@ public class TextFormatter {
     public static String formatUsername(String s) {
         if (StringHelper.isNullOrBlank(s))
             return s;
-        s = StringHelper.getCharacter("U+1F464") /* 👤 */ + Separator.SPACE.getCharacter() + s;
-        return String.format("<font color=\"%s\">%s</font>", Maker.getDefaultColor(s), formatText(s, "b"));
+        return StringHelper.getCharacter("U+1F464") /* 👤 */ + Separator.SPACE.getCharacter() +
+                String.format("<font color=\"%s\">%s</font>", Maker.getDefaultColor(s), formatText(s, "b"));
     }
 
     public static String formatContactName(String s) {
@@ -271,8 +271,8 @@ public class TextFormatter {
 
         if (Validation.isUrl(s))
             return String.format("<font color=\"%s\">%s</font>", Maker.getDefaultColor(s), formatText(s, "s"));
-        s = StringHelper.getCharacter("U+1F465") /* 👥 */ + Separator.SPACE.getCharacter() + s;
-        return String.format("<font color=\"%s\">%s</font>", Maker.getDefaultColor(s), formatText(s, "b"));
+        return StringHelper.getCharacter("U+1F465") /* 👥 */ + Separator.SPACE.getCharacter() +
+                String.format("<font color=\"%s\">%s</font>", Maker.getDefaultColor(s), formatText(s, "b"));
     }
 
     public static String formatSuggestedName(String s) {
