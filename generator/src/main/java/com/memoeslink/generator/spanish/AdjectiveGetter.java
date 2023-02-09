@@ -106,6 +106,36 @@ public final class AdjectiveGetter extends com.memoeslink.generator.common.Adjec
     }
 
     @Override
+    public String getCommonAdjective() {
+        return getRefinedCommonAdjective().getBase();
+    }
+
+    @Override
+    public String getPluralCommonAdjective() {
+        return getRefinedPluralCommonAdjective().getBase();
+    }
+
+    @Override
+    public String getCommonAdjectiveWithArticle() {
+        return getRefinedCommonAdjective().getBaseWithArticle();
+    }
+
+    @Override
+    public String getPluralCommonAdjectiveWithArticle() {
+        return getRefinedPluralCommonAdjective().getBaseWithArticle();
+    }
+
+    @Override
+    public String getCommonAdjectiveWithIndefiniteArticle() {
+        return getRefinedCommonAdjective().getBaseWithIndefiniteArticle();
+    }
+
+    @Override
+    public String getPluralCommonAdjectiveWithIndefiniteArticle() {
+        return getRefinedPluralCommonAdjective().getBaseWithIndefiniteArticle();
+    }
+
+    @Override
     public Adjective getRefinedSingularAdjective() {
         Adjective adjective = getRefinedAdjective(Database.selectSpanishSingularAdjective(r.getInt(1, Database.countSpanishSingularAdjectives())));
         adjective.setPlural(false);
@@ -141,5 +171,17 @@ public final class AdjectiveGetter extends com.memoeslink.generator.common.Adjec
     public Adjective getRefinedPluralMaleAdjective() {
         Adjective adjective = getRefinedPluralAdjective();
         return adjective.getGender() == Gender.MASCULINE ? adjective : getRefinedPluralMaleAdjective();
+    }
+
+    @Override
+    public Adjective getRefinedCommonAdjective() {
+        Adjective adjective = getRefinedSingularAdjective();
+        return adjective.getGender() == Gender.NEUTRAL ? adjective : getRefinedCommonAdjective();
+    }
+
+    @Override
+    public Adjective getRefinedPluralCommonAdjective() {
+        Adjective adjective = getRefinedPluralAdjective();
+        return adjective.getGender() == Gender.NEUTRAL ? adjective : getRefinedPluralCommonAdjective();
     }
 }

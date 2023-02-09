@@ -440,29 +440,25 @@ public final class NameGetter extends com.memoeslink.generator.common.NameGetter
         String adjective;
         String noun;
 
-        switch (r.getInt(6)) {
+        switch (r.getInt(4)) {
             case 0:
-                adjective = adjectiveGetter.getAdjective();
-                noun = nounGetter.getNoun();
-                break;
-            case 1:
-                adjective = adjectiveGetter.getPluralAdjective();
-                noun = nounGetter.getPluralNoun();
-                break;
-            case 2:
-                adjective = adjectiveGetter.getFemaleAdjective();
+                adjective = r.getBoolean() ? adjectiveGetter.getFemaleAdjective() :
+                        adjectiveGetter.getCommonAdjective();
                 noun = nounGetter.getFemaleNoun();
                 break;
-            case 3:
-                adjective = adjectiveGetter.getPluralFemaleAdjective();
+            case 1:
+                adjective = r.getBoolean() ? adjectiveGetter.getPluralFemaleAdjective() :
+                        adjectiveGetter.getPluralCommonAdjective();
                 noun = nounGetter.getPluralFemaleNoun();
                 break;
-            case 4:
-                adjective = adjectiveGetter.getMaleAdjective();
+            case 2:
+                adjective = r.getBoolean() ? adjectiveGetter.getMaleAdjective() :
+                        adjectiveGetter.getCommonAdjective();
                 noun = nounGetter.getMaleNoun();
                 break;
-            case 5:
-                adjective = adjectiveGetter.getPluralMaleAdjective();
+            case 3:
+                adjective = r.getBoolean() ? adjectiveGetter.getPluralMaleAdjective() :
+                        adjectiveGetter.getPluralCommonAdjective();
                 noun = nounGetter.getPluralMaleNoun();
                 break;
             default:

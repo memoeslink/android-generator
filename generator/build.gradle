@@ -4,7 +4,7 @@ plugins {
     id 'kotlin-android'
 }
 
-def currentVersionName = "2023.0.2"
+def currentVersionName = "2023.0.3"
 
 afterEvaluate {
     publishing {
@@ -61,9 +61,9 @@ java {
 
 dependencies {
 
-    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
-    implementation 'com.google.android.material:material:1.7.0'
+    implementation 'com.google.android.material:material:1.8.0'
     implementation 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
     implementation 'androidx.startup:startup-runtime:1.1.1'
     implementation 'com.github.jitpack:gradle-simple:1.0'
@@ -73,7 +73,8 @@ dependencies {
     implementation 'io.github.memoeslink:randomizer:2022.0.1-release'
     implementation 'com.github.memoeslink.sharedpreferences-helper:final:2022.1.2'
     implementation "androidx.core:core-ktx:1.9.0"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.0"))
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
