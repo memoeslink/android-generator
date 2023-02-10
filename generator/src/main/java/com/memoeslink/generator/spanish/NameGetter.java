@@ -481,7 +481,7 @@ public final class NameGetter extends com.memoeslink.generator.common.NameGetter
 
         switch (r.getInt(3)) {
             case 0:
-                adjective = adjectiveGetter.getAdjective();
+                adjective = adjectiveGetter.getCommonAdjective();
                 noun = nounGetter.getNoun();
                 break;
             case 1:
