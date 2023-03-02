@@ -486,66 +486,11 @@ public class StringHelper {
         return new ArrayList<>();
     }
 
-    public static String join(String a, String b) {
-        return join(EMPTY, a, b);
-    }
-
-    public static String join(char c, String a, String b) {
-        return join(String.valueOf(c), a, b);
-    }
-
-    public static String join(String separator, String a, String b) {
-        if (a == null && b == null)
-            return null;
-        separator = defaultIfNull(separator);
-
-        if (isNotNullOrEmpty(a) && isNullOrEmpty(b))
-            return a;
-
-        if (isNullOrEmpty(a) && isNotNullOrEmpty(b))
-            return b;
-        return a + separator + b;
-    }
-
-    public static String joinWithSpace(String a, String b) {
-        return join(String.valueOf(Separator.SPACE.getCharacter()), a, b);
-    }
-
-    public static String joinWithHyphen(String a, String b) {
-        return join(String.valueOf(Separator.HYPHEN.getCharacter()), a, b);
-    }
-
-    public static String joinWithLineBreak(String a, String b) {
-        return join(System.getProperty("line.separator"), a, b);
-    }
-
-    public static String joinWithSlash(String a, String b) {
-        return join('/', a, b);
-    }
-
-    public static String joinWithBackslash(String a, String b) {
-        return join('\\', a, b);
-    }
-
-    public static String joinWithFileSeparator(String a, String b) {
-        return join(File.separator, a, b);
-    }
-
-    public static String join(String... strings) {
-        return join(EMPTY, strings);
-    }
-
-    public static String join(List<String> strings) {
-        if (strings == null)
-            return null;
-        return join(strings.toArray(new String[0]));
-    }
-
     public static String join(char c, String... strings) {
         return join(String.valueOf(c), strings);
     }
 
-    public static String join(List<String> strings, char c) {
+    public static String join(char c, List<String> strings) {
         if (strings == null)
             return null;
         return join(String.valueOf(c), strings.toArray(new String[0]));
@@ -565,10 +510,20 @@ public class StringHelper {
         return sb.toString();
     }
 
-    public static String join(List<String> strings, String separator) {
+    public static String join(String separator, List<String> strings) {
         if (strings == null)
             return null;
         return join(separator, strings.toArray(new String[0]));
+    }
+
+    public static String joinWithoutSeparator(String... strings) {
+        return join(EMPTY, strings);
+    }
+
+    public static String joinWithoutSeparator(List<String> strings) {
+        if (strings == null)
+            return null;
+        return joinWithoutSeparator(strings.toArray(new String[0]));
     }
 
     public static String joinWithSpace(String... strings) {
@@ -589,6 +544,36 @@ public class StringHelper {
         if (strings == null)
             return null;
         return join(String.valueOf(Separator.HYPHEN.getCharacter()), strings.toArray(new String[0]));
+    }
+
+    public static String joinWithLineBreak(String... strings) {
+        return join(System.getProperty("line.separator"), strings);
+    }
+
+    public static String joinWithLineBreak(List<String> strings) {
+        if (strings == null)
+            return null;
+        return join(System.getProperty("line.separator"), strings.toArray(new String[0]));
+    }
+
+    public static String joinWithSlash(String... strings) {
+        return join(String.valueOf('/'), strings);
+    }
+
+    public static String joinWithSlash(List<String> strings) {
+        if (strings == null)
+            return null;
+        return join(String.valueOf('/'), strings.toArray(new String[0]));
+    }
+
+    public static String joinWithBackslash(String... strings) {
+        return join(String.valueOf('\\'), strings);
+    }
+
+    public static String joinWithBackslash(List<String> strings) {
+        if (strings == null)
+            return null;
+        return join(String.valueOf('\\'), strings.toArray(new String[0]));
     }
 
     public static String joinWithFileSeparator(String... strings) {

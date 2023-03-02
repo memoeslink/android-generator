@@ -229,12 +229,12 @@ public class TextProcessor {
                     replacement = prefix + items.get(0) + suffix;
                 else if (gender == Gender.UNDEFINED || gender == Gender.NEUTRAL) {
                     if (shortened)
-                        replacement = prefix + items.get(0) + "(" + StringHelper.join(items.subList(1, items.size()), ", ") + ")";
+                        replacement = prefix + items.get(0) + "(" + StringHelper.join(", ", items.subList(1, items.size())) + ")";
                     else {
                         for (int n = 0; n < items.size(); n++) {
                             items.set(n, prefix + items.get(n) + suffix);
                         }
-                        replacement = StringHelper.join(items, "/");
+                        replacement = StringHelper.join("/", items);
                     }
                 } else
                     replacement = prefix + (gender == Gender.MASCULINE ? items.get(0) : items.get(1)) + suffix;
