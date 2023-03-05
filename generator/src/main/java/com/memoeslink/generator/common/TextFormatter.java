@@ -227,13 +227,13 @@ public class TextFormatter {
             return "";
         String formattedDescriptor = person.getDescriptor();
 
-        if (person.hasAttribute("requested"))
-            formattedDescriptor = formatText(formattedDescriptor, "u");
-
         if (person.hasAttribute("anonymous"))
             formattedDescriptor = formatUsername(formattedDescriptor);
         else
-            formattedDescriptor = String.format("<font color=\"%s\">%s</font>", Maker.getDefaultColor(person.getSummary()), formatName(formattedDescriptor));
+            formattedDescriptor = formatName(formattedDescriptor);
+
+        if (person.hasAttribute("requested"))
+            formattedDescriptor = StringHelper.replaceEach(formattedDescriptor, new String[]{"<b>", "</b>"}, new String[]{"<b><u>", "</u></b>"});
         return formattedDescriptor;
     }
 
