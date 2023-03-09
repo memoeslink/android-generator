@@ -225,15 +225,17 @@ public class TextFormatter {
     public static String formatDescriptor(Person person) {
         if (person == null || StringHelper.isNullOrBlank(person.getDescriptor()))
             return "";
-        String formattedDescriptor = person.getDescriptor();
-
-        if (person.hasAttribute("anonymous"))
-            formattedDescriptor = formatUsername(formattedDescriptor);
-        else
-            formattedDescriptor = formatName(formattedDescriptor);
+        String formattedDescriptor = "%s";
 
         if (person.hasAttribute("requested"))
-            formattedDescriptor = StringHelper.replaceEach(formattedDescriptor, new String[]{"<b>", "</b>"}, new String[]{"<b><u>", "</u></b>"});
+            formattedDescriptor = "<u>%s</u>";
+
+        if (person.hasAttribute("anonymous")) {
+            formattedDescriptor = String.format(formattedDescriptor, preformatUsername(person.getDescriptor()));
+            formattedDescriptor = StringHelper.getCharacter("U+1F464") /* 👤 */ + Separator.SPACE.getCharacter() +
+                    formattedDescriptor;
+        } else
+            formattedDescriptor = String.format(formattedDescriptor, formatName(person.getDescriptor()));
         return formattedDescriptor;
     }
 
@@ -255,6 +257,12 @@ public class TextFormatter {
         );
     }
 
+    public static String preformatUsername(String s) {
+        if (StringHelper.isNullOrBlank(s))
+            return s;
+        return String.format("<font color=\"%s\">%s</font>", Maker.getDefaultColor(s), formatText(s, "b"));
+    }
+
     public static String formatUsername(String s) {
         if (StringHelper.isNullOrBlank(s))
             return s;
@@ -262,7 +270,7 @@ public class TextFormatter {
                 String.format("<font color=\"%s\">%s</font>", Maker.getDefaultColor(s), formatText(s, "b"));
     }
 
-    public static String formatContactName(String s) {
+    public static String preformatContactName(String s) {
         if (StringHelper.isNullOrBlank(s))
             return s;
 
@@ -271,8 +279,14 @@ public class TextFormatter {
 
         if (Validation.isUrl(s))
             return String.format("<font color=\"%s\">%s</font>", Maker.getDefaultColor(s), formatText(s, "s"));
+        return String.format("<font color=\"%s\">%s</font>", Maker.getDefaultColor(s), formatText(s, "b"));
+    }
+
+    public static String formatContactName(String s) {
+        if (StringHelper.isNullOrBlank(s))
+            return s;
         return StringHelper.getCharacter("U+1F465") /* 👥 */ + Separator.SPACE.getCharacter() +
-                String.format("<font color=\"%s\">%s</font>", Maker.getDefaultColor(s), formatText(s, "b"));
+                preformatContactName(s);
     }
 
     public static String formatSuggestedName(String s) {

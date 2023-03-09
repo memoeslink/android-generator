@@ -22,12 +22,13 @@ public class Person {
     private String email;
     private LocalDate birthdate;
     private String description;
+    private String interpretation;
     private List<String> attributes;
 
     private Person() {
     }
 
-    private Person(long id, String fullName, String forename, String surname, NameType nameType, Gender gender, String nickname, String username, String generationalSuffix, String japaneseHonorific, String occupation, String postNominalLetters, String address, String email, LocalDate birthdate, String description, List<String> attributes) {
+    private Person(long id, String fullName, String forename, String surname, NameType nameType, Gender gender, String nickname, String username, String generationalSuffix, String japaneseHonorific, String occupation, String postNominalLetters, String address, String email, LocalDate birthdate, String description, String interpretation, List<String> attributes) {
         this.id = id;
         this.fullName = fullName;
         this.forename = forename;
@@ -44,6 +45,7 @@ public class Person {
         this.email = email;
         this.birthdate = birthdate;
         this.description = description;
+        this.interpretation = interpretation;
         this.attributes = attributes;
     }
 
@@ -64,6 +66,7 @@ public class Person {
         private String email;
         private LocalDate birthdate;
         private String description;
+        private String interpretation;
         private final List<String> attributes = new ArrayList<>();
 
         public PersonBuilder() {
@@ -149,13 +152,18 @@ public class Person {
             return this;
         }
 
+        public PersonBuilder setInterpretation(String interpretation) {
+            this.interpretation = interpretation;
+            return this;
+        }
+
         public PersonBuilder setAttribute(String attribute) {
             this.attributes.add(attribute);
             return this;
         }
 
         public Person build() {
-            return new Person(id, fullName, forename, surname, nameType, gender, nickname, username, generationalSuffix, japaneseHonorific, occupation, postNominalLetters, address, email, birthdate, description, attributes);
+            return new Person(id, fullName, forename, surname, nameType, gender, nickname, username, generationalSuffix, japaneseHonorific, occupation, postNominalLetters, address, email, birthdate, description, interpretation, attributes);
         }
     }
 
@@ -285,6 +293,14 @@ public class Person {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getInterpretation() {
+        return interpretation;
+    }
+
+    public void setInterpretation(String interpretation) {
+        this.interpretation = interpretation;
     }
 
     public void addAttribute(String s) {
