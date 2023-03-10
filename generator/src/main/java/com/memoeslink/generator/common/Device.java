@@ -55,7 +55,7 @@ public class Device extends ContextWrapper {
             case 4:
                 return getString(R.string.device, StringHelper.defaultWhenEmpty(Build.PRODUCT));
             case 5:
-                return getString(R.string.device_id, getDeviceId());
+                return getString(R.string.device_id, getAndroidId());
             case 6:
                 return getString(R.string.device_brand, StringHelper.defaultWhenEmpty(Build.BRAND));
             case 7:
@@ -128,19 +128,19 @@ public class Device extends ContextWrapper {
         return ResourceFinder.RESOURCE_NOT_FOUND;
     }
 
-    public String getTestDeviceId() {
-        return StringHelper.md5(getDeviceId()).toUpperCase();
+    public String getTestId() {
+        return StringHelper.md5(getAndroidId()).toUpperCase();
     }
 
-    public String getDeviceId() {
+    public String getAndroidId() {
         String androidId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
 
         if (StringHelper.isNullOrBlank(androidId) || androidId.length() <= 4)
-            return getDevicePseudoId();
+            return getPseudoId();
         return StringHelper.mask(androidId);
     }
 
-    public String getDevicePseudoId() {
+    public String getPseudoId() {
         return String.format("%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c",
                 CharHelper.getHexDigit(Build.BOARD.length()),
                 CharHelper.getHexDigit(Build.BOOTLOADER.length()),
