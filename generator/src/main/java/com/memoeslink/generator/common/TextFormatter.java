@@ -231,11 +231,13 @@ public class TextFormatter {
             formattedDescriptor = "<u>%s</u>";
 
         if (person.hasAttribute("anonymous")) {
-            formattedDescriptor = String.format(formattedDescriptor, preformatUsername(person.getDescriptor()));
+            formattedDescriptor = String.format(formattedDescriptor, preformatUsername(person.getUsername()));
             formattedDescriptor = StringHelper.getCharacter("U+1F464") /* 👤 */ + Separator.SPACE.getCharacter() +
                     formattedDescriptor;
-        } else
-            formattedDescriptor = String.format(formattedDescriptor, formatName(person.getDescriptor()));
+        } else {
+            formattedDescriptor = String.format(formattedDescriptor, "<font color=\"%s\">%s</font>");
+            formattedDescriptor = String.format(formattedDescriptor, Maker.getDefaultColor(person.getSummary()), formatText(person.getDescriptor(), "b"));
+        }
         return formattedDescriptor;
     }
 
@@ -250,7 +252,7 @@ public class TextFormatter {
             return "";
         return String.format("%s<font color=\"%s\">%s%s%s</font>",
                 (StringHelper.isNotNullOrBlank(person.getOccupation()) ? formatText(person.getOccupation(), "i") + " " : ""),
-                Maker.getDefaultColor(person.getFullName()),
+                Maker.getDefaultColor(person.getSummary()),
                 formatText(person.getFullName(), "b"),
                 StringHelper.defaultIfBlank(person.getJapaneseHonorific()),
                 (StringHelper.isNotNullOrBlank(person.getPostNominalLetters()) ? ", " + formatText(person.getPostNominalLetters(), "b", "i") : "")
@@ -267,7 +269,7 @@ public class TextFormatter {
         if (StringHelper.isNullOrBlank(s))
             return s;
         return StringHelper.getCharacter("U+1F464") /* 👤 */ + Separator.SPACE.getCharacter() +
-                String.format("<font color=\"%s\">%s</font>", Maker.getDefaultColor(s), formatText(s, "b"));
+                preformatUsername(s);
     }
 
     public static String preformatContactName(String s) {
