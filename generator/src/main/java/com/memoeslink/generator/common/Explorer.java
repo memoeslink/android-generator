@@ -9,7 +9,6 @@ public class Explorer extends Binder {
     protected final ResourceFinder resourceFinder;
     protected final ContactNameFinder contactNameFinder;
     protected final ReferenceFinder referenceFinder;
-    protected final Device device;
 
     public Explorer(Context context) {
         this(context, null);
@@ -17,7 +16,6 @@ public class Explorer extends Binder {
 
     public Explorer(Context context, Long seed) {
         super(context, seed);
-        device = new Device(context);
         resourceFinder = new ResourceFinder(context, seed);
         contactNameFinder = new ContactNameFinder(context, seed);
         referenceFinder = new ReferenceFinder();

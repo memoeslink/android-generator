@@ -186,6 +186,23 @@ public class TextFormatter {
         return "<b><font color=\"#2FCC2F\">" + number + "</font></b>";
     }
 
+    public static String formatIntensity(int number) {
+        if (number == 0)
+            return "<font color=\"#7F79D1\">" + number + "%</font>";
+        else if (number < 25)
+            return "<font color=\"#F94C4C\">" + number + "%</font>";
+        else if (number < 50)
+            return "<font color=\"#FFA500\">" + number + "%</font>";
+        else if (number < 75)
+            return "<font color=\"#F0EF2E\">" + number + "%</font>";
+        else if (number < 100)
+            return "<font color=\"#2FCC2F\">" + number + "%</font>";
+        else if (number == 100)
+            return "<font color=\"#6666FF\">" + number + "%</font>";
+        else
+            return "<font color=\"#808080\">" + number + "%</font>";
+    }
+
     public static String formatPercentage(float percentage) {
         if (percentage < -100.0F)
             return "<b><font color=\"#6666FF\">?%%</font></b>";
@@ -239,6 +256,15 @@ public class TextFormatter {
             formattedDescriptor = String.format(formattedDescriptor, Maker.getDefaultColor(person.getSummary()), formatText(person.getDescriptor(), "b"));
         }
         return formattedDescriptor;
+    }
+
+    public static String formatDescriptorWithGender(Person person) {
+        if (person == null || StringHelper.isNullOrBlank(person.getDescriptor()))
+            return "";
+
+        if (person.getGender() == null)
+            return formatDescriptor(person);
+        return formatDescriptor(person) + " (<font color=\"#B599FC\">" + TextFormatter.formatText(person.getGender().getGlyph(), "b") + "</font>)";
     }
 
     public static String formatName(String s) {

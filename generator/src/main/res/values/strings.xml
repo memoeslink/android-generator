@@ -9,7 +9,7 @@
     <string name="device_network_unknown_ssid">device connected to unknown network through Wi-Fi</string>
     <string name="device_network_ssid">device connected to network named %1$s</string>
     <string name="device_network_operator_disconnected">device with unknown network operator</string>
-    <string name="device_network_operator">%1$s user</string>
+    <string name="device_network_operator">%1$s device</string>
     <string name="device_unidentified">device</string>
     <string name="device_unknown_ip">device with unknown IP address</string>
     <string name="device_version">Android %1$s device</string>
