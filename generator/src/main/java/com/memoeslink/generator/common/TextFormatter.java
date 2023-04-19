@@ -224,7 +224,7 @@ public class TextFormatter {
     }
 
     public static String formatCapacity(int capacity) {
-        capacity = IntegerHelper.defaultInt(capacity, 0, 100);
+        capacity = IntegerHelper.defaultByRange(capacity, 0, 100);
 
         if (capacity == 0)
             return "<font color=\"#7F79D1\">" + capacity + "%</font>";

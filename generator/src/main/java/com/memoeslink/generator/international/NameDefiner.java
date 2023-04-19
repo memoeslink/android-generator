@@ -24,7 +24,7 @@ public interface NameDefiner extends com.memoeslink.generator.common.NameDefiner
     }
 
     default String getIterativeName(int iterations, Randomizer r) {
-        iterations = IntegerHelper.defaultInt(iterations, 1, 100);
+        iterations = IntegerHelper.defaultByRange(iterations, 1, 100);
         r = r != null ? r : new Randomizer();
         StringBuilder sb = new StringBuilder();
         float probability = r.getBoolean() ? 1.1F : 0.F; //Decide whether the name will start with vowel or consonant
@@ -102,7 +102,7 @@ public interface NameDefiner extends com.memoeslink.generator.common.NameDefiner
     }
 
     default String getFrequencyName(WeightedChar[] letters, int length, Randomizer r) {
-        length = IntegerHelper.defaultInt(length, 1, 9999);
+        length = IntegerHelper.defaultByRange(length, 1, 9999);
         r = r != null ? r : new Randomizer();
         String s;
         StringBuilder sb = new StringBuilder();
@@ -160,7 +160,7 @@ public interface NameDefiner extends com.memoeslink.generator.common.NameDefiner
     }
 
     default String getPreformedName(String letters, int length, Randomizer r) {
-        length = IntegerHelper.defaultInt(length, 0, letters.length());
+        length = IntegerHelper.defaultByRange(length, 0, letters.length());
         r = r != null ? r : new Randomizer();
         String name = StringHelper.EMPTY;
 
@@ -185,8 +185,8 @@ public interface NameDefiner extends com.memoeslink.generator.common.NameDefiner
     }
 
     default String getMarkovName(int minLength, int maxLength, Randomizer r) {
-        minLength = IntegerHelper.defaultMinInt(minLength, 1);
-        maxLength = IntegerHelper.defaultInt(maxLength, minLength, 9999);
+        minLength = IntegerHelper.defaultByMin(minLength, 1);
+        maxLength = IntegerHelper.defaultByRange(maxLength, minLength, 9999);
         r = r != null ? r : new Randomizer();
         NameGen nameGen;
 
@@ -198,7 +198,7 @@ public interface NameDefiner extends com.memoeslink.generator.common.NameDefiner
     }
 
     default String getSecretName(int length, Randomizer r) {
-        length = IntegerHelper.defaultInt(length, 1, 9999);
+        length = IntegerHelper.defaultByRange(length, 1, 9999);
         r = r != null ? r : new Randomizer();
         StringBuilder sb = new StringBuilder();
         boolean on = r.getBoolean();

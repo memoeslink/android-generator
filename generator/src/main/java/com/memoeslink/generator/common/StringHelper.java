@@ -722,11 +722,11 @@ public class StringHelper {
 
         if (startIndex < 0)
             startIndex = s.length() + startIndex;
-        startIndex = IntegerHelper.defaultInt(startIndex, 0, s.length());
+        startIndex = IntegerHelper.defaultByRange(startIndex, 0, s.length());
 
         if (endIndex < 0)
             endIndex = s.length() + endIndex;
-        endIndex = IntegerHelper.defaultInt(endIndex, startIndex, s.length());
+        endIndex = IntegerHelper.defaultByRange(endIndex, startIndex, s.length());
         return s.substring(startIndex, endIndex);
     }
 
@@ -808,11 +808,11 @@ public class StringHelper {
 
         if (startIndex < 0)
             startIndex = s.length() + startIndex;
-        startIndex = IntegerHelper.defaultInt(startIndex, 0, s.length());
+        startIndex = IntegerHelper.defaultByRange(startIndex, 0, s.length());
 
         if (endIndex < 0)
             endIndex = s.length() + endIndex;
-        endIndex = IntegerHelper.defaultInt(endIndex, startIndex, s.length());
+        endIndex = IntegerHelper.defaultByRange(endIndex, startIndex, s.length());
         return new StringBuilder(s).replace(startIndex, endIndex, replacement).toString();
     }
 

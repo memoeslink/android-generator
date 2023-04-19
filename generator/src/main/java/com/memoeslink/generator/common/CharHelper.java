@@ -120,7 +120,7 @@ public class CharHelper {
     }
 
     public static char getHexDigit(int value) {
-        value = IntegerHelper.defaultMinInt(value, 0);
+        value = IntegerHelper.defaultByMin(value, 0);
         return Integer.toHexString(value % 16).charAt(0);
     }
 }

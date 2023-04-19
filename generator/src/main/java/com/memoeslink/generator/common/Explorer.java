@@ -116,7 +116,7 @@ public class Explorer extends Binder {
         }
 
         private String getResource(ResourceReference reference, int length) {
-            length = IntegerHelper.defaultInt(length, 0, 1000);
+            length = IntegerHelper.defaultByRange(length, 0, 1000);
             StringBuilder sb = new StringBuilder();
 
             for (int n = 0; n < length; n++) {

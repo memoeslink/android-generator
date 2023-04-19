@@ -26,7 +26,7 @@ public enum PeriodOfDay {
     }
 
     public static PeriodOfDay get(int hourOfDay) {
-        hourOfDay = IntegerHelper.defaultInt(hourOfDay, 0, 23);
+        hourOfDay = IntegerHelper.defaultByRange(hourOfDay, 0, 23);
         return get(LocalTime.of(hourOfDay, 0, 0));
     }
 
