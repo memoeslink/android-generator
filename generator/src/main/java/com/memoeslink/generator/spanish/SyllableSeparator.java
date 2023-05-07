@@ -47,30 +47,16 @@ public class SyllableSeparator {
     }
 
     private static int getLetterVal(char c) {
-        switch ((int) c) {
-            case -1:
-                return -1;
-            case 97: //a
-            case 225: //á
-                return 1;
-            case 101: //e
-            case 233: //é
-                return 2;
-            case 104: //h
-                return 6;
-            case 105: //i
-            case 237: //í
-                return 4;
-            case 111: //o
-            case 243: //ó
-                return 3;
-            case 117: //u
-            case 252: //ü
-            case 250: //ú
-                return 5;
-            default:
-                return 19;
-        }
+        return switch ((int) c) {
+            case -1 -> -1;
+            case 97, 225 -> 1; //a, á
+            case 101, 233 -> 2; //e, é
+            case 104 -> 6; //h
+            case 105, 237 -> 4; //i, í
+            case 111, 243 -> 3; //o, ó
+            case 117, 252, 250 -> 5; //u, ü, ú
+            default -> 19;
+        };
     }
 
     private static String getSyllable(String s) {

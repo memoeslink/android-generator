@@ -1381,33 +1381,15 @@ public class StringHelper {
             char c = s.charAt(i);
 
             switch (c) {
-                case '\\':
-                    sb.append("\\\\");
-                    break;
-                case '\b':
-                    sb.append("\\b");
-                    break;
-                case '\f':
-                    sb.append("\\f");
-                    break;
-                case '\n':
-                    sb.append("\\n");
-                    break;
-                case '\r':
-                    sb.append("\\r");
-                    break;
-                case '\t':
-                    sb.append("\\t");
-                    break;
-                case '\'':
-                    sb.append("\\'");
-                    break;
-                case '\"':
-                    sb.append("\\\"");
-                    break;
-                default:
-                    sb.append(c);
-                    break;
+                case '\\' -> sb.append("\\\\");
+                case '\b' -> sb.append("\\b");
+                case '\f' -> sb.append("\\f");
+                case '\n' -> sb.append("\\n");
+                case '\r' -> sb.append("\\r");
+                case '\t' -> sb.append("\\t");
+                case '\'' -> sb.append("\\'");
+                case '\"' -> sb.append("\\\"");
+                default -> sb.append(c);
             }
         }
         return sb.toString();
@@ -1457,42 +1439,27 @@ public class StringHelper {
                 }
 
                 switch (nextChar) {
-                    case '\\':
-                        ch = '\\';
-                        break;
-                    case 'b':
-                        ch = '\b';
-                        break;
-                    case 'f':
-                        ch = '\f';
-                        break;
-                    case 'n':
-                        ch = '\n';
-                        break;
-                    case 'r':
-                        ch = '\r';
-                        break;
-                    case 't':
-                        ch = '\t';
-                        break;
-                    case '\"':
-                        ch = '\"';
-                        break;
-                    case '\'':
-                        ch = '\'';
-                        break;
+                    case '\\' -> ch = '\\';
+                    case 'b' -> ch = '\b';
+                    case 'f' -> ch = '\f';
+                    case 'n' -> ch = '\n';
+                    case 'r' -> ch = '\r';
+                    case 't' -> ch = '\t';
+                    case '\"' -> ch = '\"';
+                    case '\'' -> ch = '\'';
+
                     // Hex Unicode: u????
-                    case 'u':
+                    case 'u' -> {
                         if (i >= st.length() - 5) {
                             ch = 'u';
                             break;
                         }
-
                         int code = Integer.parseInt(EMPTY + st.charAt(i + 2) + st.charAt(i + 3) +
                                 st.charAt(i + 4) + st.charAt(i + 5), 16);
                         sb.append(Character.toChars(code));
                         i += 5;
                         continue;
+                    }
                 }
                 i++;
             }

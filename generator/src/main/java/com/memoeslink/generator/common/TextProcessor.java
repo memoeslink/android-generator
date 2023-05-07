@@ -78,15 +78,10 @@ public class TextProcessor {
                 sb.append(Separator.SPACE.getCharacter());
 
             switch (gender) {
-                case MASCULINE:
-                    sb.append(word.getMasculineForm());
-                case FEMININE:
-                    sb.append(word.getFeminineForm());
-                case NEUTRAL:
-                    sb.append(word.getNeutralForm());
-                case UNDEFINED:
-                default:
-                    sb.append(word.getWord());
+                case MASCULINE -> sb.append(word.getMasculineForm());
+                case FEMININE -> sb.append(word.getFeminineForm());
+                case NEUTRAL -> sb.append(word.getNeutralForm());
+                default -> sb.append(word.getWord());
             }
         }
         return sb.toString();
@@ -156,10 +151,8 @@ public class TextProcessor {
 
         while (matcher.find()) {
             switch (gender) {
-                case MASCULINE:
-                    matcher.appendReplacement(sb, matcher.group(1));
-                    break;
-                case FEMININE:
+                case MASCULINE -> matcher.appendReplacement(sb, matcher.group(1));
+                case FEMININE -> {
                     if (StringHelper.isNullOrEmpty(matcher.group(2))) {
                         matcher.appendReplacement(sb, matcher.group(1));
                         continue;
@@ -170,17 +163,15 @@ public class TextProcessor {
                         matcher.appendReplacement(sb, feminize(matcher.group(1), ending));
                     else
                         matcher.appendReplacement(sb, matcher.group(5));
-                    break;
-                case NEUTRAL:
-                    matcher.appendReplacement(sb, getFirstSeveredWord(matcher.group(0)).getNeutralForm());
-                    break;
-                case UNDEFINED:
-                default:
+                }
+                case NEUTRAL ->
+                        matcher.appendReplacement(sb, getFirstSeveredWord(matcher.group(0)).getNeutralForm());
+                default -> {
                     if (combination == WordCombination.SLASH_AND_SQUARE_BRACKETS)
                         matcher.appendReplacement(sb, matcher.group(0));
                     else
                         matcher.appendReplacement(sb, getFirstSeveredWord(matcher.group(0)).getCombinedForm(combination));
-                    break;
+                }
             }
         }
         matcher.appendTail(sb);

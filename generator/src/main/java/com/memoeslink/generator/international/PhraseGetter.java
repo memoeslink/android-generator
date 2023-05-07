@@ -19,12 +19,10 @@ public class PhraseGetter extends com.memoeslink.generator.common.PhraseGetter i
     }
 
     public com.memoeslink.generator.common.PhraseGetter getAnyGetter() {
-        switch (r.getInt(2)) {
-            case 0:
-                return new com.memoeslink.generator.english.PhraseGetter(r);
-            case 1:
-                return new com.memoeslink.generator.spanish.PhraseGetter(r);
-        }
-        return new com.memoeslink.generator.common.PhraseGetter(r);
+        return switch (r.getInt(2)) {
+            case 0 -> new com.memoeslink.generator.english.PhraseGetter(r);
+            case 1 -> new com.memoeslink.generator.spanish.PhraseGetter(r);
+            default -> new com.memoeslink.generator.common.PhraseGetter(r);
+        };
     }
 }

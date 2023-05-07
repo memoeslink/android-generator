@@ -136,18 +136,13 @@ public class Explorer extends Binder {
         }
 
         private String getPictogram() {
-            switch (r.getInt(4)) {
-                case 0:
-                    return getResource(ResourceReference.EMOJI, r.getInt(1, 4));
-                case 1:
-                    return getResource(ResourceReference.EMOJI_V15, r.getInt(1, 4));
-                case 2:
-                    return getResource(ResourceReference.EMOTICON);
-                case 3:
-                    return getResource(ResourceReference.KAOMOJI);
-                default:
-                    return ResourceFinder.RESOURCE_NOT_FOUND;
-            }
+            return switch (r.getInt(4)) {
+                case 0 -> getResource(ResourceReference.EMOJI, r.getInt(1, 4));
+                case 1 -> getResource(ResourceReference.EMOJI_V15, r.getInt(1, 4));
+                case 2 -> getResource(ResourceReference.EMOTICON);
+                case 3 -> getResource(ResourceReference.KAOMOJI);
+                default -> ResourceFinder.RESOURCE_NOT_FOUND;
+            };
         }
 
         private String getFormattedPictogram() {

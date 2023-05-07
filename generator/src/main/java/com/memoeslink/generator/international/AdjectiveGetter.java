@@ -104,12 +104,10 @@ public final class AdjectiveGetter extends com.memoeslink.generator.common.Adjec
     }
 
     public com.memoeslink.generator.common.AdjectiveGetter getAnyGetter() {
-        switch (r.getInt(2)) {
-            case 0:
-                return new com.memoeslink.generator.english.AdjectiveGetter(r);
-            case 1:
-                return new com.memoeslink.generator.spanish.AdjectiveGetter(r);
-        }
-        return new com.memoeslink.generator.common.AdjectiveGetter(r);
+        return switch (r.getInt(2)) {
+            case 0 -> new com.memoeslink.generator.english.AdjectiveGetter(r);
+            case 1 -> new com.memoeslink.generator.spanish.AdjectiveGetter(r);
+            default -> new com.memoeslink.generator.common.AdjectiveGetter(r);
+        };
     }
 }

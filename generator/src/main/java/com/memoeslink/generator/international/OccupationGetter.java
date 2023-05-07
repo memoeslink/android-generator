@@ -144,12 +144,10 @@ public final class OccupationGetter extends com.memoeslink.generator.common.Occu
     }
 
     public com.memoeslink.generator.common.OccupationGetter getAnyGetter() {
-        switch (r.getInt(2)) {
-            case 0:
-                return new com.memoeslink.generator.english.OccupationGetter(r);
-            case 1:
-                return new com.memoeslink.generator.spanish.OccupationGetter(r);
-        }
-        return new com.memoeslink.generator.common.OccupationGetter(r);
+        return switch (r.getInt(2)) {
+            case 0 -> new com.memoeslink.generator.english.OccupationGetter(r);
+            case 1 -> new com.memoeslink.generator.spanish.OccupationGetter(r);
+            default -> new com.memoeslink.generator.common.OccupationGetter(r);
+        };
     }
 }

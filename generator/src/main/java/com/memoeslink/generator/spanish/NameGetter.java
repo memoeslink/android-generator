@@ -96,28 +96,20 @@ public final class NameGetter extends com.memoeslink.generator.common.NameGetter
 
     @Override
     public String getFemaleGivenName() {
-        switch (r.getInt(3)) {
-            case 1:
-                return getDoubleFemaleForename();
-            case 2:
-                return getFemaleForenames();
-            case 0:
-            default:
-                return getFemaleForename();
-        }
+        return switch (r.getInt(3)) {
+            case 1 -> getDoubleFemaleForename();
+            case 2 -> getFemaleForenames();
+            default -> getFemaleForename();
+        };
     }
 
     @Override
     public String getMaleGivenName() {
-        switch (r.getInt(3)) {
-            case 1:
-                return getDoubleMaleForename();
-            case 2:
-                return getMaleForenames();
-            case 0:
-            default:
-                return getMaleForename();
-        }
+        return switch (r.getInt(3)) {
+            case 1 -> getDoubleMaleForename();
+            case 2 -> getMaleForenames();
+            default -> getMaleForename();
+        };
     }
 
     @Override
@@ -167,32 +159,22 @@ public final class NameGetter extends com.memoeslink.generator.common.NameGetter
 
     @Override
     public String getFemaleFullName() {
-        switch (r.getInt(4)) {
-            case 1:
-                return getFemaleForename() + Separator.SPACE.getCharacter() + getSurnames();
-            case 2:
-                return getDoubleFemaleForename() + Separator.SPACE.getCharacter() + getSurnames();
-            case 3:
-                return getFemaleForenames() + Separator.SPACE.getCharacter() + getSurnames();
-            case 0:
-            default:
-                return getFemaleSimpleName();
-        }
+        return switch (r.getInt(4)) {
+            case 1 -> getFemaleForename() + Separator.SPACE.getCharacter() + getSurnames();
+            case 2 -> getDoubleFemaleForename() + Separator.SPACE.getCharacter() + getSurnames();
+            case 3 -> getFemaleForenames() + Separator.SPACE.getCharacter() + getSurnames();
+            default -> getFemaleSimpleName();
+        };
     }
 
     @Override
     public String getMaleFullName() {
-        switch (r.getInt(4)) {
-            case 1:
-                return getMaleForename() + Separator.SPACE.getCharacter() + getSurnames();
-            case 2:
-                return getDoubleMaleForename() + Separator.SPACE.getCharacter() + getSurnames();
-            case 3:
-                return getMaleForenames() + Separator.SPACE.getCharacter() + getSurnames();
-            case 0:
-            default:
-                return getMaleSimpleName();
-        }
+        return switch (r.getInt(4)) {
+            case 1 -> getMaleForename() + Separator.SPACE.getCharacter() + getSurnames();
+            case 2 -> getDoubleMaleForename() + Separator.SPACE.getCharacter() + getSurnames();
+            case 3 -> getMaleForenames() + Separator.SPACE.getCharacter() + getSurnames();
+            default -> getMaleSimpleName();
+        };
     }
 
     @Override
@@ -441,30 +423,30 @@ public final class NameGetter extends com.memoeslink.generator.common.NameGetter
         String noun;
 
         switch (r.getInt(4)) {
-            case 0:
+            case 0 -> {
                 adjective = r.getBoolean() ? adjectiveGetter.getFemaleAdjective() :
                         adjectiveGetter.getCommonAdjective();
                 noun = nounGetter.getFemaleNoun();
-                break;
-            case 1:
+            }
+            case 1 -> {
                 adjective = r.getBoolean() ? adjectiveGetter.getPluralFemaleAdjective() :
                         adjectiveGetter.getPluralCommonAdjective();
                 noun = nounGetter.getPluralFemaleNoun();
-                break;
-            case 2:
+            }
+            case 2 -> {
                 adjective = r.getBoolean() ? adjectiveGetter.getMaleAdjective() :
                         adjectiveGetter.getCommonAdjective();
                 noun = nounGetter.getMaleNoun();
-                break;
-            case 3:
+            }
+            case 3 -> {
                 adjective = r.getBoolean() ? adjectiveGetter.getPluralMaleAdjective() :
                         adjectiveGetter.getPluralCommonAdjective();
                 noun = nounGetter.getPluralMaleNoun();
-                break;
-            default:
+            }
+            default -> {
                 adjective = Database.DEFAULT_VALUE;
                 noun = Database.DEFAULT_VALUE;
-                break;
+            }
         }
         return getCompositeUsername(noun, adjective, r);
     }
@@ -480,22 +462,22 @@ public final class NameGetter extends com.memoeslink.generator.common.NameGetter
         String noun;
 
         switch (r.getInt(3)) {
-            case 0:
+            case 0 -> {
                 adjective = adjectiveGetter.getCommonAdjective();
                 noun = nounGetter.getNoun();
-                break;
-            case 1:
+            }
+            case 1 -> {
                 adjective = adjectiveGetter.getFemaleAdjective();
                 noun = nounGetter.getFemaleNoun();
-                break;
-            case 2:
+            }
+            case 2 -> {
                 adjective = adjectiveGetter.getMaleAdjective();
                 noun = nounGetter.getMaleNoun();
-                break;
-            default:
+            }
+            default -> {
                 adjective = Database.DEFAULT_VALUE;
                 noun = Database.DEFAULT_VALUE;
-                break;
+            }
         }
         return StringHelper.joinWithSpace(noun, adjective);
     }
@@ -555,13 +537,10 @@ public final class NameGetter extends com.memoeslink.generator.common.NameGetter
 
     @Override
     public String getSurnames() {
-        switch (r.getInt(100)) {
-            case 0:
-                return getCompoundSurname() + Separator.SPACE.getCharacter() + getSurname();
-            case 1:
-                return getSurname() + Separator.SPACE.getCharacter() + getCompoundSurname();
-            default:
-                return getDualSurname();
-        }
+        return switch (r.getInt(100)) {
+            case 0 -> getCompoundSurname() + Separator.SPACE.getCharacter() + getSurname();
+            case 1 -> getSurname() + Separator.SPACE.getCharacter() + getCompoundSurname();
+            default -> getDualSurname();
+        };
     }
 }

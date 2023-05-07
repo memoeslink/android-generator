@@ -29,23 +29,14 @@ public class PersonGenerator extends Generator {
 
     public Person getPerson(Gender gender) {
         gender = gender != null ? gender : Gender.UNDEFINED;
-        String name;
+        String name = switch (gender) {
+            case MASCULINE -> r.getBoolean() ? nameGenerator.getName(NameType.MALE_FULL_NAME) :
+                    nameGenerator.getName(NameType.MALE_GIVEN_NAME);
+            case FEMININE -> r.getBoolean() ? nameGenerator.getName(NameType.MALE_FULL_NAME) :
+                    nameGenerator.getName(NameType.FEMALE_GIVEN_NAME);
+            default -> r.getBoolean() ? nameGenerator.getFullName() : nameGenerator.getGivenName();
+        };
 
-        switch (gender) {
-            case MASCULINE:
-                name = r.getBoolean() ? nameGenerator.getName(NameType.MALE_FULL_NAME) :
-                        nameGenerator.getName(NameType.MALE_GIVEN_NAME);
-                break;
-            case FEMININE:
-                name = r.getBoolean() ? nameGenerator.getName(NameType.MALE_FULL_NAME) :
-                        nameGenerator.getName(NameType.FEMALE_GIVEN_NAME);
-                break;
-            case NEUTRAL:
-            case UNDEFINED:
-            default:
-                name = r.getBoolean() ? nameGenerator.getFullName() : nameGenerator.getGivenName();
-                break;
-        }
         String japaneseHonorific = StringHelper.EMPTY;
 
         if (StringHelper.endsWithAny(name, "-chan", "-kun", "-sama", "-san")) {
@@ -65,16 +56,12 @@ public class PersonGenerator extends Generator {
         LocalDate birthdate = dateTimeGenerator.getHumanDate();
 
         switch (r.getInt(4)) {
-            case 0:
-                postNominalLetters = StringHelper.EMPTY;
-                break;
-            case 1:
-                occupation = StringHelper.EMPTY;
-                break;
-            default:
+            case 0 -> postNominalLetters = StringHelper.EMPTY;
+            case 1 -> occupation = StringHelper.EMPTY;
+            default -> {
                 occupation = StringHelper.EMPTY;
                 postNominalLetters = StringHelper.EMPTY;
-                break;
+            }
         }
 
         return new Person.PersonBuilder()

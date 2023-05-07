@@ -60,42 +60,27 @@ public interface NameDefiner extends com.memoeslink.generator.common.NameDefiner
 
         for (char c : namePattern.toCharArray()) {
             switch (c) {
-                case 'c':
-                    sb.append(ResourceGetter.with(r).getChar(com.memoeslink.generator.english.Constant.LOWERCASE_CONSONANTS));
-                    break;
-                case 'e':
-                    sb.append(ResourceGetter.with(r).getChar(Constant.LOWERCASE_ENDING_CONSONANTS));
-                    break;
-                case 'ɘ':
-                    sb.append(ResourceGetter.with(r).getString(Constant.ENDING_CONSONANTS));
-                    break;
-                case 'k':
-                    sb.append(ResourceGetter.with(r).getString(Constant.CONSONANT_PAIRS));
-                    break;
-                case 'ɔ':
-                    sb.append(ResourceGetter.with(r).getString(Constant.EXTENDED_CONSONANT_PAIRS));
-                    break;
-                case 'm':
-                    sb.append(ResourceGetter.with(r).getString(Constant.MIDDLE_CONSONANTS));
-                    break;
-                case 'q':
-                    sb.append(ResourceGetter.with(r).getString(Constant.STARTING_CONSONANTS));
-                    break;
-                case 'v':
-                    sb.append(ResourceGetter.with(r).getChar(com.memoeslink.generator.english.Constant.LOWERCASE_VOWELS));
-                    break;
-                case 'w':
-                    sb.append(ResourceGetter.with(r).getString(Constant.VOWEL_PAIRS));
-                    break;
-                case '?':
+                case 'c' ->
+                        sb.append(ResourceGetter.with(r).getChar(com.memoeslink.generator.english.Constant.LOWERCASE_CONSONANTS));
+                case 'e' ->
+                        sb.append(ResourceGetter.with(r).getChar(Constant.LOWERCASE_ENDING_CONSONANTS));
+                case 'ɘ' -> sb.append(ResourceGetter.with(r).getString(Constant.ENDING_CONSONANTS));
+                case 'k' -> sb.append(ResourceGetter.with(r).getString(Constant.CONSONANT_PAIRS));
+                case 'ɔ' ->
+                        sb.append(ResourceGetter.with(r).getString(Constant.EXTENDED_CONSONANT_PAIRS));
+                case 'm' -> sb.append(ResourceGetter.with(r).getString(Constant.MIDDLE_CONSONANTS));
+                case 'q' ->
+                        sb.append(ResourceGetter.with(r).getString(Constant.STARTING_CONSONANTS));
+                case 'v' ->
+                        sb.append(ResourceGetter.with(r).getChar(com.memoeslink.generator.english.Constant.LOWERCASE_VOWELS));
+                case 'w' -> sb.append(ResourceGetter.with(r).getString(Constant.VOWEL_PAIRS));
+                case '?' -> {
                     if (r.getBoolean())
                         sb.append(ResourceGetter.with(r).getChar(com.memoeslink.generator.english.Constant.LOWERCASE_CONSONANTS));
                     else
                         sb.append(ResourceGetter.with(r).getChar(com.memoeslink.generator.english.Constant.LOWERCASE_VOWELS));
-                    break;
-                case ' ':
-                    sb.append(' ');
-                    break;
+                }
+                case ' ' -> sb.append(' ');
             }
         }
         return StringHelper.capitalize(sb.toString());

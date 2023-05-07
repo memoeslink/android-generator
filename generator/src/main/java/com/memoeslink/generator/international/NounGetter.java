@@ -104,12 +104,10 @@ public final class NounGetter extends com.memoeslink.generator.common.NounGetter
     }
 
     public com.memoeslink.generator.common.NounGetter getAnyGetter() {
-        switch (r.getInt(2)) {
-            case 0:
-                return new com.memoeslink.generator.english.NounGetter(r);
-            case 1:
-                return new com.memoeslink.generator.spanish.NounGetter(r);
-        }
-        return new com.memoeslink.generator.common.NounGetter(r);
+        return switch (r.getInt(2)) {
+            case 0 -> new com.memoeslink.generator.english.NounGetter(r);
+            case 1 -> new com.memoeslink.generator.spanish.NounGetter(r);
+            default -> new com.memoeslink.generator.common.NounGetter(r);
+        };
     }
 }

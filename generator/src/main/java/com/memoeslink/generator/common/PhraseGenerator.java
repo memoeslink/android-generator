@@ -16,13 +16,10 @@ public class PhraseGenerator extends Generator {
         PhraseGetter getter = getGetter();
         phraseType = phraseType != null ? phraseType : PhraseType.ANY;
 
-        switch (phraseType) {
-            case SIMPLE_GREETING:
-                return getter.getSimpleGreeting();
-            case ANY:
-            default:
-                return getPhrase(PhraseType.values()[r.getInt(PhraseType.values().length)]);
-        }
+        return switch (phraseType) {
+            case SIMPLE_GREETING -> getter.getSimpleGreeting();
+            default -> getPhrase(PhraseType.values()[r.getInt(PhraseType.values().length)]);
+        };
     }
 
     private PhraseGetter getGetter() {

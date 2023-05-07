@@ -10,14 +10,11 @@ public interface NameDefiner extends com.memoeslink.generator.common.NameDefiner
     default String getForename(Gender gender) {
         gender = gender != null ? gender : Gender.UNDEFINED;
 
-        switch (gender) {
-            case MASCULINE:
-                return getMaleForename();
-            case FEMININE:
-                return getFemaleForename();
-            default:
-                return Database.DEFAULT_VALUE;
-        }
+        return switch (gender) {
+            case MASCULINE -> getMaleForename();
+            case FEMININE -> getFemaleForename();
+            default -> Database.DEFAULT_VALUE;
+        };
     }
 
     public String getForenames(Gender gender);

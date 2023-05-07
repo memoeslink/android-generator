@@ -88,17 +88,9 @@ public class Pluralizer {
             return new Base();
 
         switch (base.getArticle()) {
-            case MASCULINE_SINGULAR:
-            case NEUTER:
-                base.setArticle(Article.MASCULINE_PLURAL);
-                break;
-            case FEMININE_SINGULAR:
-                base.setArticle(Article.FEMININE_PLURAL);
-                break;
-            case INDEFINITE:
-            default:
-                base.setArticle(Article.INDEFINITE);
-                break;
+            case MASCULINE_SINGULAR, NEUTER -> base.setArticle(Article.MASCULINE_PLURAL);
+            case FEMININE_SINGULAR -> base.setArticle(Article.FEMININE_PLURAL);
+            default -> base.setArticle(Article.INDEFINITE);
         }
         base.setBase(pluralize(base.getBase()));
         base.setPlural(true);

@@ -55,22 +55,21 @@ public class DateTimeGetter {
     public static String getCurrentDateTime(int type) {
         type = IntegerHelper.defaultByRange(type, 1, 6);
 
-        switch (type) {
-            case 1:
-                return ZonedDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME.withLocale(locale));
-            case 2:
-                return ZonedDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME.withLocale(locale));
-            case 3:
-                return ZonedDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL).withLocale(locale));
-            case 4:
-                return ZonedDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).withLocale(locale));
-            case 5:
-                return ZonedDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM).withLocale(locale));
-            case 6:
-                return ZonedDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT).withLocale(locale));
-            default:
-                return "";
-        }
+        return switch (type) {
+            case 1 ->
+                    ZonedDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME.withLocale(locale));
+            case 2 ->
+                    ZonedDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME.withLocale(locale));
+            case 3 ->
+                    ZonedDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.FULL).withLocale(locale));
+            case 4 ->
+                    ZonedDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.LONG).withLocale(locale));
+            case 5 ->
+                    ZonedDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM).withLocale(locale));
+            case 6 ->
+                    ZonedDateTime.now().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT).withLocale(locale));
+            default -> "";
+        };
     }
 
     public static String getSimpleCurrentDate() {
@@ -84,38 +83,28 @@ public class DateTimeGetter {
     public static String getCurrentDate(int type) {
         type = IntegerHelper.defaultByRange(type, 1, 14);
 
-        switch (type) {
-            case 1:
-                return LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd", locale));
-            case 2:
-                return LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd", locale));
-            case 3:
-                return LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy", locale));
-            case 4:
-                return LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy", locale));
-            case 5:
-                return LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MMM-yyyy", locale));
-            case 6:
-                return LocalDate.now().format(DateTimeFormatter.ofPattern("E, MMM dd yyyy", locale));
-            case 7:
-                return LocalDate.now().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy", locale));
-            case 8:
-                return LocalDate.now().format(DateTimeFormatter.ofPattern("MMMM d", locale));
-            case 9:
-                return LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE.withLocale(locale));
-            case 10:
-                return LocalDateTime.now().format(DateTimeFormatter.ISO_DATE.withLocale(locale));
-            case 11:
-                return LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL).withLocale(locale));
-            case 12:
-                return LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG).withLocale(locale));
-            case 13:
-                return LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).withLocale(locale));
-            case 14:
-                return LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT).withLocale(locale));
-            default:
-                return "";
-        }
+        return switch (type) {
+            case 1 -> LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd", locale));
+            case 2 -> LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd", locale));
+            case 3 -> LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy", locale));
+            case 4 -> LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy", locale));
+            case 5 -> LocalDate.now().format(DateTimeFormatter.ofPattern("dd-MMM-yyyy", locale));
+            case 6 -> LocalDate.now().format(DateTimeFormatter.ofPattern("E, MMM dd yyyy", locale));
+            case 7 -> LocalDate.now().format(DateTimeFormatter.ofPattern("MMMM dd, yyyy", locale));
+            case 8 -> LocalDate.now().format(DateTimeFormatter.ofPattern("MMMM d", locale));
+            case 9 ->
+                    LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE.withLocale(locale));
+            case 10 -> LocalDateTime.now().format(DateTimeFormatter.ISO_DATE.withLocale(locale));
+            case 11 ->
+                    LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL).withLocale(locale));
+            case 12 ->
+                    LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG).withLocale(locale));
+            case 13 ->
+                    LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).withLocale(locale));
+            case 14 ->
+                    LocalDateTime.now().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT).withLocale(locale));
+            default -> "";
+        };
     }
 
     public static String getCurrentDayOfWeek() {
@@ -138,32 +127,25 @@ public class DateTimeGetter {
     public static String getCurrentTime(int type) {
         type = IntegerHelper.defaultByRange(type, 1, 11);
 
-        switch (type) {
-            case 1:
-                return ZonedDateTime.now().format(DateTimeFormatter.ofPattern("h:mm a", locale));
-            case 2:
-                return ZonedDateTime.now().format(DateTimeFormatter.ofPattern("K:mm a, z", locale));
-            case 3:
-                return ZonedDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm", locale));
-            case 4:
-                return ZonedDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss Z", locale));
-            case 5:
-                return ZonedDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss", locale));
-            case 6:
-                return ZonedDateTime.now().format(DateTimeFormatter.ISO_LOCAL_TIME.withLocale(locale));
-            case 7:
-                return ZonedDateTime.now().format(DateTimeFormatter.ISO_TIME.withLocale(locale));
-            case 8:
-                return ZonedDateTime.now().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.FULL).withLocale(locale));
-            case 9:
-                return ZonedDateTime.now().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.LONG).withLocale(locale));
-            case 10:
-                return ZonedDateTime.now().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.MEDIUM).withLocale(locale));
-            case 11:
-                return ZonedDateTime.now().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT).withLocale(locale));
-            default:
-                return "";
-        }
+        return switch (type) {
+            case 1 -> ZonedDateTime.now().format(DateTimeFormatter.ofPattern("h:mm a", locale));
+            case 2 -> ZonedDateTime.now().format(DateTimeFormatter.ofPattern("K:mm a, z", locale));
+            case 3 -> ZonedDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm", locale));
+            case 4 -> ZonedDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss Z", locale));
+            case 5 -> ZonedDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss", locale));
+            case 6 ->
+                    ZonedDateTime.now().format(DateTimeFormatter.ISO_LOCAL_TIME.withLocale(locale));
+            case 7 -> ZonedDateTime.now().format(DateTimeFormatter.ISO_TIME.withLocale(locale));
+            case 8 ->
+                    ZonedDateTime.now().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.FULL).withLocale(locale));
+            case 9 ->
+                    ZonedDateTime.now().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.LONG).withLocale(locale));
+            case 10 ->
+                    ZonedDateTime.now().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.MEDIUM).withLocale(locale));
+            case 11 ->
+                    ZonedDateTime.now().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT).withLocale(locale));
+            default -> "";
+        };
     }
 
     public static DateTimeGetter with(Locale locale, Randomizer r) {

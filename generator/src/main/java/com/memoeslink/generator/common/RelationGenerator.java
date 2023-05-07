@@ -16,17 +16,12 @@ public class RelationGenerator extends Generator {
         RelationGetter getter = getGetter();
         gender = gender != null ? gender : Gender.UNDEFINED;
 
-        switch (gender) {
-            case MASCULINE:
-                return getter.getMaleRelationship(person, type);
-            case FEMININE:
-                return getter.getFemaleRelationship(person, type);
-            case NEUTRAL:
-                return getter.getRelationship(person, type);
-            case UNDEFINED:
-            default:
-                return getRelation(person, type, Gender.values()[r.getInt(Gender.values().length)]);
-        }
+        return switch (gender) {
+            case MASCULINE -> getter.getMaleRelationship(person, type);
+            case FEMININE -> getter.getFemaleRelationship(person, type);
+            case NEUTRAL -> getter.getRelationship(person, type);
+            default -> getRelation(person, type, Gender.values()[r.getInt(Gender.values().length)]);
+        };
     }
 
     private RelationGetter getGetter() {

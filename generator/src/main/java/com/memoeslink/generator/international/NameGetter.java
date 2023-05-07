@@ -170,20 +170,16 @@ public final class NameGetter extends com.memoeslink.generator.common.NameGetter
 
     @Override
     public String getFullName() {
-        switch (r.getInt(4)) {
-            case 1:
-                return getFemaleFullName();
-            case 2:
-                return getMaleFullName();
-            case 3:
-                return Database.selectForename(r.getInt(1, Database.countForenames())) + Separator.SPACE.getCharacter() +
-                        Database.selectSurname(r.getInt(1, Database.countSurnames()));
-            case 0:
-            default:
-                return Database.selectName(r.getInt(1, Database.countNames())) +
-                        Separator.SPACE.getCharacter() +
-                        Database.selectFamilyName(r.getInt(1, Database.countFamilyNames()));
-        }
+        return switch (r.getInt(4)) {
+            case 1 -> getFemaleFullName();
+            case 2 -> getMaleFullName();
+            case 3 ->
+                    Database.selectForename(r.getInt(1, Database.countForenames())) + Separator.SPACE.getCharacter() +
+                            Database.selectSurname(r.getInt(1, Database.countSurnames()));
+            default -> Database.selectName(r.getInt(1, Database.countNames())) +
+                    Separator.SPACE.getCharacter() +
+                    Database.selectFamilyName(r.getInt(1, Database.countFamilyNames()));
+        };
     }
 
     @Override
@@ -460,30 +456,19 @@ public final class NameGetter extends com.memoeslink.generator.common.NameGetter
     }
 
     public com.memoeslink.generator.common.NameGetter getAnyGetter() {
-        switch (ResourceGetter.with(r).getString(com.memoeslink.generator.common.Constant.SUPPORTED_LOCALES)) {
-            case "ar":
-                return new com.memoeslink.generator.arabic.NameGetter(r);
-            case "de":
-                return new com.memoeslink.generator.german.NameGetter(r);
-            case "en":
-                return new com.memoeslink.generator.english.NameGetter(r);
-            case "es":
-                return new com.memoeslink.generator.spanish.NameGetter(r);
-            case "es_MX":
-                return new com.memoeslink.generator.spanish.mexico.NameGetter(r);
-            case "fr":
-                return new com.memoeslink.generator.french.NameGetter(r);
-            case "it":
-                return new com.memoeslink.generator.italian.NameGetter(r);
-            case "hi":
-                return new com.memoeslink.generator.hindi.NameGetter(r);
-            case "ja":
-                return new com.memoeslink.generator.japanese.NameGetter(r);
-            case "pt":
-                return new com.memoeslink.generator.portuguese.NameGetter(r);
-            case "ru":
-                return new com.memoeslink.generator.russian.NameGetter(r);
-        }
-        return new com.memoeslink.generator.common.NameGetter(r);
+        return switch (ResourceGetter.with(r).getString(com.memoeslink.generator.common.Constant.SUPPORTED_LOCALES)) {
+            case "ar" -> new com.memoeslink.generator.arabic.NameGetter(r);
+            case "de" -> new com.memoeslink.generator.german.NameGetter(r);
+            case "en" -> new com.memoeslink.generator.english.NameGetter(r);
+            case "es" -> new com.memoeslink.generator.spanish.NameGetter(r);
+            case "es_MX" -> new com.memoeslink.generator.spanish.mexico.NameGetter(r);
+            case "fr" -> new com.memoeslink.generator.french.NameGetter(r);
+            case "it" -> new com.memoeslink.generator.italian.NameGetter(r);
+            case "hi" -> new com.memoeslink.generator.hindi.NameGetter(r);
+            case "ja" -> new com.memoeslink.generator.japanese.NameGetter(r);
+            case "pt" -> new com.memoeslink.generator.portuguese.NameGetter(r);
+            case "ru" -> new com.memoeslink.generator.russian.NameGetter(r);
+            default -> new com.memoeslink.generator.common.NameGetter(r);
+        };
     }
 }

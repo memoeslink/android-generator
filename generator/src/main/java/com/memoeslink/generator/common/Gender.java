@@ -39,18 +39,13 @@ public enum Gender {
         type = IntegerHelper.defaultByRange(type, 1, 4);
         String genderName = context.getResources().getStringArray(R.array.genders)[this.ordinal()];
 
-        switch (type) {
-            case 1:
-                return genderName;
-            case 2:
-                return StringHelper.capitalizeFirst(genderName);
-            case 3:
-                return genderName.toUpperCase();
-            case 4:
-                return StringHelper.getStart(genderName).toUpperCase();
-            default:
-                return this.toString();
-        }
+        return switch (type) {
+            case 1 -> genderName;
+            case 2 -> StringHelper.capitalizeFirst(genderName);
+            case 3 -> genderName.toUpperCase();
+            case 4 -> StringHelper.getStart(genderName).toUpperCase();
+            default -> this.toString();
+        };
     }
 
     public static Gender get(int value) {

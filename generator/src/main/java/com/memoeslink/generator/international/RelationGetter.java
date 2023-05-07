@@ -67,12 +67,10 @@ public final class RelationGetter extends com.memoeslink.generator.common.Relati
     }
 
     public com.memoeslink.generator.common.RelationGetter getAnyGetter() {
-        switch (r.getInt(2)) {
-            case 0:
-                return new com.memoeslink.generator.english.RelationGetter(r);
-            case 1:
-                return new com.memoeslink.generator.spanish.RelationGetter(r);
-        }
-        return new com.memoeslink.generator.common.RelationGetter(r);
+        return switch (r.getInt(2)) {
+            case 0 -> new com.memoeslink.generator.english.RelationGetter(r);
+            case 1 -> new com.memoeslink.generator.spanish.RelationGetter(r);
+            default -> new com.memoeslink.generator.common.RelationGetter(r);
+        };
     }
 }

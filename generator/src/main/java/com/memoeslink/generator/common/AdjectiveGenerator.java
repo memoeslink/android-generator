@@ -41,50 +41,31 @@ public class AdjectiveGenerator extends Generator {
         AdjectiveGetter getter = getGetter();
         form = form != null ? form : Form.UNDEFINED;
 
-        switch (form) {
-            case SINGULAR:
-            case SINGULAR_NEUTER:
-                return getter.getAdjectiveWithArticle();
-            case PLURAL:
-            case PLURAL_NEUTER:
-                return getter.getPluralAdjectiveWithArticle();
-            case SINGULAR_MASCULINE:
-                return getter.getMaleAdjectiveWithArticle();
-            case PLURAL_MASCULINE:
-                return getter.getPluralMaleAdjectiveWithArticle();
-            case SINGULAR_FEMININE:
-                return getter.getFemaleAdjectiveWithArticle();
-            case PLURAL_FEMININE:
-                return getter.getPluralFemaleAdjectiveWithArticle();
-            case UNDEFINED:
-            default:
-                return getAdjectiveWithArticle(Form.values()[r.getInt(Form.values().length)]);
-        }
+        return switch (form) {
+            case SINGULAR, SINGULAR_NEUTER -> getter.getAdjectiveWithArticle();
+            case PLURAL, PLURAL_NEUTER -> getter.getPluralAdjectiveWithArticle();
+            case SINGULAR_MASCULINE -> getter.getMaleAdjectiveWithArticle();
+            case PLURAL_MASCULINE -> getter.getPluralMaleAdjectiveWithArticle();
+            case SINGULAR_FEMININE -> getter.getFemaleAdjectiveWithArticle();
+            case PLURAL_FEMININE -> getter.getPluralFemaleAdjectiveWithArticle();
+            default -> getAdjectiveWithArticle(Form.values()[r.getInt(Form.values().length)]);
+        };
     }
 
     public String getAdjectiveWithIndefiniteArticle(Form form) {
         AdjectiveGetter getter = getGetter();
         form = form != null ? form : Form.UNDEFINED;
 
-        switch (form) {
-            case SINGULAR:
-            case SINGULAR_NEUTER:
-                return getter.getAdjectiveWithIndefiniteArticle();
-            case PLURAL:
-            case PLURAL_NEUTER:
-                return getter.getPluralAdjectiveWithIndefiniteArticle();
-            case SINGULAR_MASCULINE:
-                return getter.getMaleAdjectiveWithIndefiniteArticle();
-            case PLURAL_MASCULINE:
-                return getter.getPluralMaleAdjectiveWithIndefiniteArticle();
-            case SINGULAR_FEMININE:
-                return getter.getFemaleAdjectiveWithIndefiniteArticle();
-            case PLURAL_FEMININE:
-                return getter.getPluralFemaleAdjectiveWithIndefiniteArticle();
-            case UNDEFINED:
-            default:
-                return getAdjectiveWithIndefiniteArticle(Form.values()[r.getInt(Form.values().length)]);
-        }
+        return switch (form) {
+            case SINGULAR, SINGULAR_NEUTER -> getter.getAdjectiveWithIndefiniteArticle();
+            case PLURAL, PLURAL_NEUTER -> getter.getPluralAdjectiveWithIndefiniteArticle();
+            case SINGULAR_MASCULINE -> getter.getMaleAdjectiveWithIndefiniteArticle();
+            case PLURAL_MASCULINE -> getter.getPluralMaleAdjectiveWithIndefiniteArticle();
+            case SINGULAR_FEMININE -> getter.getFemaleAdjectiveWithIndefiniteArticle();
+            case PLURAL_FEMININE -> getter.getPluralFemaleAdjectiveWithIndefiniteArticle();
+            default ->
+                    getAdjectiveWithIndefiniteArticle(Form.values()[r.getInt(Form.values().length)]);
+        };
     }
 
     private AdjectiveGetter getGetter() {
