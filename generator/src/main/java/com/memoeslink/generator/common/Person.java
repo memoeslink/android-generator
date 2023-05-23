@@ -1,5 +1,6 @@
 package com.memoeslink.generator.common;
 
+import java.security.SecureRandom;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -163,8 +164,11 @@ public class Person {
         }
 
         public Person build() {
+            if (this.id == 0L)
+                this.id = new SecureRandom().nextLong();
+
             if (this.gender == null)
-                gender = Gender.UNDEFINED;
+                this.gender = Gender.UNDEFINED;
             return new Person(this.id, this.fullName, this.forename, this.surname, this.nameType, this.gender, this.nickname, this.username, this.generationalSuffix, this.japaneseHonorific, this.occupation, this.postNominalLetters, this.address, this.email, this.birthdate, this.description, this.interpretation, this.attributes);
         }
     }
