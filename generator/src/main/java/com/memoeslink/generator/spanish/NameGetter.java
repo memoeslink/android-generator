@@ -8,7 +8,7 @@ import com.memoeslink.generator.common.Separator;
 import com.memoeslink.generator.common.StringHelper;
 import com.memoeslink.generator.international.Shaper;
 
-public final class NameGetter extends com.memoeslink.generator.common.NameGetter implements com.memoeslink.generator.common.NameDefiner, NameDefiner {
+public class NameGetter extends com.memoeslink.generator.common.NameGetter implements com.memoeslink.generator.common.NameDefiner, NameDefiner {
     private final NounGetter nounGetter;
     private final AdjectiveGetter adjectiveGetter;
     private final com.memoeslink.generator.international.NameGetter nameGetter;
