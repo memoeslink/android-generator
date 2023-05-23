@@ -164,9 +164,6 @@ public class Person {
         }
 
         public Person build() {
-            if (this.id == 0L)
-                this.id = new SecureRandom().nextLong();
-
             if (this.gender == null)
                 this.gender = Gender.UNDEFINED;
             return new Person(this.id, this.fullName, this.forename, this.surname, this.nameType, this.gender, this.nickname, this.username, this.generationalSuffix, this.japaneseHonorific, this.occupation, this.postNominalLetters, this.address, this.email, this.birthdate, this.description, this.interpretation, this.attributes);
