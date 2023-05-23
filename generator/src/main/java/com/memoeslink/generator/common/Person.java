@@ -163,7 +163,9 @@ public class Person {
         }
 
         public Person build() {
-            return new Person(id, fullName, forename, surname, nameType, gender, nickname, username, generationalSuffix, japaneseHonorific, occupation, postNominalLetters, address, email, birthdate, description, interpretation, attributes);
+            if (this.gender == null)
+                gender = Gender.UNDEFINED;
+            return new Person(this.id, this.fullName, this.forename, this.surname, this.nameType, this.gender, this.nickname, this.username, this.generationalSuffix, this.japaneseHonorific, this.occupation, this.postNominalLetters, this.address, this.email, this.birthdate, this.description, this.interpretation, this.attributes);
         }
     }
 
