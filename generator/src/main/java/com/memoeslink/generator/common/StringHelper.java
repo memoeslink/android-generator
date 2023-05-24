@@ -486,6 +486,12 @@ public class StringHelper {
         return new ArrayList<>();
     }
 
+    public static String connect(String a, String b) {
+        a = defaultIfNull(a);
+        b = defaultIfNull(b);
+        return a + b;
+    }
+
     public static String join(char c, String... strings) {
         return join(String.valueOf(c), strings);
     }

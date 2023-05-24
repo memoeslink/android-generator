@@ -28,7 +28,7 @@ public class Session {
 
     public Database connectDatabase(Context context, String directory) {
         Database database;
-        String filePath = StringHelper.join(directory, Database.DATABASE_NAME);
+        String filePath = StringHelper.connect(directory, Database.DATABASE_NAME);
 
         try {
             database = new Database(context, directory);

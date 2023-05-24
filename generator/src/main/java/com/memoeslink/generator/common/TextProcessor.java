@@ -99,8 +99,8 @@ public class TextProcessor {
             return s;
 
         if (StringHelper.endsWithAny(s, com.memoeslink.generator.english.Constant.VOWELS.toCharArray()))
-            return StringHelper.join(StringHelper.removeLastChar(s), ending);
-        return StringHelper.join(s, ending);
+            return StringHelper.connect(StringHelper.removeLastChar(s), ending);
+        return StringHelper.connect(s, ending);
     }
 
     public static String feminizeOnVowelEnd(String s) {
@@ -115,7 +115,7 @@ public class TextProcessor {
             return s;
 
         if (StringHelper.endsWithAny(s, com.memoeslink.generator.english.Constant.VOWELS.toCharArray()))
-            return StringHelper.join(StringHelper.removeLastChar(s), ending);
+            return StringHelper.connect(StringHelper.removeLastChar(s), ending);
         return s;
     }
 
