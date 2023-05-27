@@ -718,12 +718,58 @@ public class StringHelper {
     }
 
     public static String mask(String s) {
+        return mask(s, '*');
+    }
+
+    public static String mask(String s, char replacement) {
         if (isNullOrEmpty(s))
             return s;
+        replacement = replacement != '\0' ? replacement : Separator.SPACE.getCharacter();
+        return s.replaceAll(".", String.valueOf(replacement));
+    }
+
+    public static String maskStart(String s) {
+        return maskStart(s, '*');
+    }
+
+    public static String maskStart(String s, char replacement) {
+        if (isNullOrEmpty(s))
+            return s;
+        replacement = replacement != '\0' ? replacement : Separator.SPACE.getCharacter();
 
         if (s.length() > 4)
-            return s.replaceAll(".(?=.{4})", "*");
-        return s.replaceAll(".", "*");
+            return s.replaceAll("(?<=.{4}).", String.valueOf(replacement));
+        return s.replaceAll(".", String.valueOf(replacement));
+    }
+
+    public static String maskMiddle(String s) {
+        return maskMiddle(s, '*');
+    }
+
+    public static String maskMiddle(String s, char replacement) {
+        if (isNullOrEmpty(s))
+            return s;
+        replacement = replacement != '\0' ? replacement : Separator.SPACE.getCharacter();
+
+        if (s.length() <= 4)
+            return String.valueOf(replacement).repeat(s.length());
+        if (s.length() <= 8)
+            return s.charAt(0) + String.valueOf(replacement).repeat(s.length() - 2) + s.charAt(s.length() - 1);
+        return s.substring(0, 2) + String.valueOf(replacement).repeat(s.length() - 4) + s.substring(s.length() - 2);
+    }
+
+    public static String maskEnd(String s) {
+        return maskEnd(s, '*');
+    }
+
+    public static String maskEnd(String s, char replacement) {
+        if (isNullOrEmpty(s))
+            return s;
+        replacement = replacement != '\0' ? replacement : Separator.SPACE.getCharacter();
+
+        if (s.length() > 4)
+            return s.replaceAll(".(?=.{4})", String.valueOf(replacement));
+        return s.replaceAll(".", String.valueOf(replacement));
     }
 
     public static String substring(String s, int startIndex, int endIndex) {
