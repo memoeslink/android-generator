@@ -418,6 +418,10 @@ public class StringHelper {
                 System.getProperty("line.separator"));
     }
 
+    public static String quote(String s) {
+        return affixIfNotBlank(s, "“", "”");
+    }
+
     public static List<String> split(String s, char delimiter) {
         if (s == null)
             return new ArrayList<>();
