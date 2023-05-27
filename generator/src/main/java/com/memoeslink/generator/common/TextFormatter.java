@@ -336,4 +336,8 @@ public class TextFormatter {
             color = COLORS.getOrDefault(color, "#FFFFFF");
         return String.format("<font color=\"%s\">%s</font>", color.toUpperCase(), s);
     }
+
+    public static String quote(String s) {
+        return "“" + StringHelper.defaultIfBlank(s) + "”";
+    }
 }
