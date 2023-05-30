@@ -725,7 +725,7 @@ public class StringHelper {
         if (isNullOrEmpty(s))
             return s;
         replacement = replacement != '\0' ? replacement : Separator.SPACE.getCharacter();
-        return s.replaceAll(".", String.valueOf(replacement));
+        return s.replaceAll("\\S", String.valueOf(replacement));
     }
 
     public static String maskStart(String s) {
@@ -738,8 +738,8 @@ public class StringHelper {
         replacement = replacement != '\0' ? replacement : Separator.SPACE.getCharacter();
 
         if (s.length() > 4)
-            return s.replaceAll("(?<=.{4}).", String.valueOf(replacement));
-        return s.replaceAll(".", String.valueOf(replacement));
+            return s.replaceAll("(?<=.{4})\\S", String.valueOf(replacement));
+        return String.valueOf(replacement).repeat(s.length());
     }
 
     public static String maskMiddle(String s) {
@@ -753,9 +753,13 @@ public class StringHelper {
 
         if (s.length() <= 4)
             return String.valueOf(replacement).repeat(s.length());
+
         if (s.length() <= 8)
-            return s.charAt(0) + String.valueOf(replacement).repeat(s.length() - 2) + s.charAt(s.length() - 1);
-        return s.substring(0, 2) + String.valueOf(replacement).repeat(s.length() - 4) + s.substring(s.length() - 2);
+            return s.replaceAll("(?<=.)\\S(?=.)", String.valueOf(replacement));
+
+        if (s.length() <= 12)
+            return s.replaceAll("(?<=.{2})\\S(?=.{2})", String.valueOf(replacement));
+        return s.replaceAll("(?<=.{3})\\S(?=.{3})", String.valueOf(replacement));
     }
 
     public static String maskEnd(String s) {
@@ -768,8 +772,8 @@ public class StringHelper {
         replacement = replacement != '\0' ? replacement : Separator.SPACE.getCharacter();
 
         if (s.length() > 4)
-            return s.replaceAll(".(?=.{4})", String.valueOf(replacement));
-        return s.replaceAll(".", String.valueOf(replacement));
+            return s.replaceAll("\\S(?=.{4})", String.valueOf(replacement));
+        return String.valueOf(replacement).repeat(s.length());
     }
 
     public static String substring(String s, int startIndex, int endIndex) {
