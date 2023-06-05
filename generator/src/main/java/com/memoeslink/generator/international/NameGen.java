@@ -15,15 +15,11 @@ import java.util.Random;
 
 public class NameGen {
     // all the lowercase characters this generator will handle
-    public static final char[] LOWERCHARS = {'a', 'b', 'c', 'd', 'e', 'f', 'g',
-            'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
-            'w', 'x', 'y', 'z'};
+    public static final char[] LOWERCHARS = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
     // all the vowels
     public static final char[] VOWELS = {'a', 'e', 'i', 'o', 'u', 'y'};
     // all the consonants
-    public static final char[] CONSONANTS = {'b', 'c', 'd', 'f', 'g', 'h', 'j',
-            'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z'};
-
+    public static final char[] CONSONANTS = {'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z'};
     // map of lowercase characters to states
     private LinkedHashMap<Character, CharState> states;
     // the special state for the beginning of a name
@@ -66,11 +62,12 @@ public class NameGen {
     public void initGen() {
         // Populate the map with the initial character set.
         states = new LinkedHashMap<Character, CharState>();
+
         for (char c : LOWERCHARS) {
             states.put(c, new CharState(c, rand));
         }
-
         LinkedHashMap<CharState, Integer> initState;
+
         // For every state do:
         for (CharState curState : states.values()) {
             // Create an initial state where consonants and vowels alternate, with
@@ -82,9 +79,11 @@ public class NameGen {
                 for (char c : VOWELS) {
                     initState.put(states.get(c), 0);
                 }
+
                 for (char c : CONSONANTS) {
                     initState.put(states.get(c), 1);
                 }
+
                 // Don't allow two 'y's in a row.
                 if (curState.getChar() == 'y') {
                     initState.put(states.get('y'), 0);
@@ -99,6 +98,7 @@ public class NameGen {
                 for (char c : CONSONANTS) {
                     initState.put(states.get(c), 0);
                 }
+
                 for (char c : VOWELS) {
                     initState.put(states.get(c), 1);
                 }
@@ -110,13 +110,14 @@ public class NameGen {
         // The beginning state has an equal chance of picking any letter.
         beginState = new CharState(' ', rand);
         initState = new LinkedHashMap<CharState, Integer>();
+
         for (CharState state : states.values()) {
             initState.put(state, 1);
         }
         beginState.setTotal(LOWERCHARS.length);
         beginState.setMap(initState);
 
-        // Add some com.memoeslink.generator.common combinations.
+        // Add some common combinations.
         addName("sh");
         addName("th");
         addName("tr");
@@ -156,8 +157,7 @@ public class NameGen {
         // For every char except the last, tell the corresponding state which
         // char came after it.
         for (int i = 0; i < name.length() - 1; i++) {
-            if (!states.containsKey(name.charAt(i))
-                    || !states.containsKey(name.charAt(i + 1))) {
+            if (!states.containsKey(name.charAt(i)) || !states.containsKey(name.charAt(i + 1))) {
                 throw new RuntimeException("Error: invalid character in sample.");
             }
             states.get(name.charAt(i)).addNext(states.get(name.charAt(i + 1)));
@@ -176,8 +176,7 @@ public class NameGen {
         // For every char except the last, tell the corresponding state which
         // char should be reset.
         for (int i = 0; i < name.length() - 1; i++) {
-            if (!states.containsKey(name.charAt(i))
-                    || !states.containsKey(name.charAt(i + 1))) {
+            if (!states.containsKey(name.charAt(i)) || !states.containsKey(name.charAt(i + 1))) {
                 throw new RuntimeException("Error: invalid character in sample.");
             }
             states.get(name.charAt(i)).resetNext(states.get(name.charAt(i + 1)));
@@ -200,7 +199,6 @@ public class NameGen {
             curState = curState.next();
             retStr += curState.getChar();
         }
-
         return retStr;
     }
 
@@ -290,8 +288,7 @@ public class NameGen {
             }
 
             // If we got this far, we somehow generated a number too large.
-            throw new RuntimeException("Error: '" + curChar + "' invalid choice ("
-                    + choice + ") for total of " + total + ".");
+            throw new RuntimeException("Error: '" + curChar + "' invalid choice (" + choice + ") for total of " + total + ".");
         }
 
         /**
@@ -327,7 +324,6 @@ public class NameGen {
             for (CharState state : nexts.keySet()) {
                 retStr.append("[").append(state.getChar()).append(":").append(nexts.get(state)).append("]");
             }
-
             return retStr + "\n";
         }
     }

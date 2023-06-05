@@ -175,7 +175,7 @@ public interface NameDefiner {
         username = StringHelper.normalize(username);
         int index = -1;
 
-        //Separate words with characters or using camel case
+        // Separate words with characters or using camel case
         if (StringHelper.isNullOrBlank(username)) {
         } else if (r.getBoolean()) {
             username = StringHelper.capitalize(username);
@@ -186,7 +186,7 @@ public interface NameDefiner {
                     String.valueOf(Separator.values()[index].getCharacter()));
         }
 
-        //Append number, if required
+        // Append number, if required
         if (StringHelper.isNullOrBlank(username)) {
         } else if (r.getBoolean()) {
             username = username + (index >= 0 ? Separator.values()[index].getCharacter() : StringHelper.EMPTY);

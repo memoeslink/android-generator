@@ -27,9 +27,9 @@ public interface NameDefiner extends com.memoeslink.generator.common.NameDefiner
         iterations = IntegerHelper.defaultByRange(iterations, 1, 100);
         r = r != null ? r : new Randomizer();
         StringBuilder sb = new StringBuilder();
-        float probability = r.getBoolean() ? 1.1F : 0.F; //Decide whether the name will start with vowel or consonant
+        float probability = r.getBoolean() ? 1.1F : 0.F; // Decide whether the name will start with vowel or consonant
 
-        //Add consonants with vowel
+        // Add consonants with vowel
         for (int i = 1; i <= iterations; i++) {
             if (probability <= 0.7F)
                 sb.append(r.chooseOnWeight(Constant.WEIGHTED_CONSONANTS));
@@ -41,7 +41,7 @@ public interface NameDefiner extends com.memoeslink.generator.common.NameDefiner
             probability = r.getFloat();
         }
 
-        //Decide whether the name will end with consonant
+        // Decide whether the name will end with consonant
         if (r.getInt(4) == 0 || sb.length() == 1)
             sb.append(ResourceGetter.with(r).getChar(Constant.LOWERCASE_ENDING_CONSONANTS));
         return StringHelper.capitalizeFirst(sb.toString());

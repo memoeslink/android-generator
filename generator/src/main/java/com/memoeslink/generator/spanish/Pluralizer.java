@@ -103,25 +103,25 @@ public class Pluralizer {
         SyllableSeparator syllableSeparator = new SyllableSeparator(s);
         List<String> syllables = syllableSeparator.getSyllables();
 
-        if (PLURAL_EXCEPTIONS.containsKey(s)) //Exceptions
+        if (PLURAL_EXCEPTIONS.containsKey(s)) // Exceptions
             return PLURAL_EXCEPTIONS.get(s);
 
-        if (StringHelper.endsWithAny(s, 'a', 'e', 'i', 'o', 'u', 'á', 'é', 'í', 'ó', 'ú')) //Words ending with vowel
+        if (StringHelper.endsWithAny(s, 'a', 'e', 'i', 'o', 'u', 'á', 'é', 'í', 'ó', 'ú')) // Words ending with vowel
             return s + 's';
 
-        if (StringHelper.endsWithAny(s, "ás", "és", "ís", "ós", "ús", "án", "én", "ín", "ón", "ún")) //Consonant-ending oxytones with acute accent
+        if (StringHelper.endsWithAny(s, "ás", "és", "ís", "ós", "ús", "án", "én", "ín", "ón", "ún")) // Consonant-ending oxytones with acute accent
             return StringHelper.left(s, s.length() - 2) + StringHelper.stripAccents(StringHelper.right(s, 2)) + "es";
 
-        if (StringHelper.endsWith(s, "z")) //Words ending with 'z'
+        if (StringHelper.endsWith(s, "z")) // Words ending with 'z'
             return StringHelper.removeLastChar(s) + "ces";
 
-        if (syllables.size() == 1) //Monosyllables
+        if (syllables.size() == 1) // Monosyllables
             return s + "es";
 
-        if (syllableSeparator.isProparoxytone() || StringHelper.endsWith(s, "s")) //Proparoxytones or invariable words
+        if (syllableSeparator.isProparoxytone() || StringHelper.endsWith(s, "s")) // Proparoxytones or invariable words
             return s;
 
-        if ((StringHelper.getEnd(s).equals("n") && !StringHelper.hasAny(s, 'á', 'é', 'í', 'ó', 'ú'))) //Unaccented paroxytones
+        if ((StringHelper.getEnd(s).equals("n") && !StringHelper.hasAny(s, 'á', 'é', 'í', 'ó', 'ú'))) // Unaccented paroxytones
             return syllableSeparator.convertToProparoxytone();
         return s + "es";
     }

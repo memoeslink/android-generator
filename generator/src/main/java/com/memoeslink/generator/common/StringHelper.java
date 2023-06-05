@@ -1128,24 +1128,24 @@ public class StringHelper {
         return replaceBetweenZeroWidthSpaces(s, EMPTY);
     }
 
-    //Remove zero width spaces (​)
+    // Remove zero width spaces (​)
     public static String removeZeroWidthSpaces(String s) {
         return remove(s, "\u200B");
     }
 
-    //Remove invisible control characters and unused code points: \p{Cc} or \p{Other}
+    // Remove invisible control characters and unused code points: \p{Cc} or \p{Other}
     public static String removeOtherChars(String s) {
         String regex = "\\p{Other}";
         return removeAll(s, regex);
     }
 
-    //Remove an ASCII or Latin-1 control character (Ox00–0x1F, 0x7F–0x9F): \p{Cc} or \p{Control}
+    // Remove an ASCII or Latin-1 control character (Ox00–0x1F, 0x7F–0x9F): \p{Cc} or \p{Control}
     public static String removeControlChars(String s) {
         String regex = "\\p{Control}";
         return removeAll(s, regex);
     }
 
-    //Remove invisible formatting indicators: \p{Cf} or \p{Format}
+    // Remove invisible formatting indicators: \p{Cf} or \p{Format}
     public static String removeFormattingChars(String s) {
         String regex = "\\p{Format}";
         return removeAll(s, regex);

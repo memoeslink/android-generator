@@ -49,12 +49,12 @@ public class SyllableSeparator {
     private static int getLetterVal(char c) {
         return switch ((int) c) {
             case -1 -> -1;
-            case 97, 225 -> 1; //a, á
-            case 101, 233 -> 2; //e, é
-            case 104 -> 6; //h
-            case 105, 237 -> 4; //i, í
-            case 111, 243 -> 3; //o, ó
-            case 117, 252, 250 -> 5; //u, ü, ú
+            case 97, 225 -> 1; // a, á
+            case 101, 233 -> 2; // e, é
+            case 104 -> 6; // h
+            case 105, 237 -> 4; // i, í
+            case 111, 243 -> 3; // o, ó
+            case 117, 252, 250 -> 5; // u, ü, ú
             default -> 19;
         };
     }
@@ -76,45 +76,45 @@ public class SyllableSeparator {
             y = s.charAt(1);
             z = s.charAt(2);
 
-            if (getLetterVal(x) < 6) { //V ? ?
-                if (getLetterVal(y) < 6) { //V V ?
-                    if (getLetterVal(z) < 6) { //V V V
+            if (getLetterVal(x) < 6) { // V ? ?
+                if (getLetterVal(y) < 6) { // V V ?
+                    if (getLetterVal(z) < 6) { // V V V
                         if (isHiatus(x, y))
                             return s.substring(0, 1);
                         else if (isHiatus(y, z))
                             return s.substring(0, 2);
                         return s.substring(0, 3);
-                    } else if (isHiatus(x, y)) //V V C
+                    } else if (isHiatus(x, y)) // V V C
                         return s.substring(0, 1);
                     return s.substring(0, 2);
-                } else { //V C ?
-                    if (getLetterVal(z) < 6) { //V C V
-                        if (getLetterVal(y) == 6) { //V H C
+                } else { // V C ?
+                    if (getLetterVal(z) < 6) { // V C V
+                        if (getLetterVal(y) == 6) { // V H C
                             if (isHiatus(x, z))
                                 return s.substring(0, 1);
                             return s.substring(0, 3);
                         }
                         return s.substring(0, 1);
-                    } else { //V C C
+                    } else { // V C C
                         if (isPairOfConsonants(y, z))
                             return s.substring(0, 1);
                         return s.substring(0, 2);
                     }
                 }
-            } else { //C ? ?
-                if (getLetterVal(y) < 6) { //C V ?
-                    if (getLetterVal(z) < 6) { //C V V
+            } else { // C ? ?
+                if (getLetterVal(y) < 6) { // C V ?
+                    if (getLetterVal(z) < 6) { // C V V
                         if (StringHelper.equalsAny(s.substring(0, 3), "gue", "gui", "que", "qui"))
                             return s.substring(0, 3);
                         else if (isHiatus(y, z))
                             return s.substring(0, 2);
                         return s.substring(0, 3);
                     }
-                    return s.substring(0, 2); //C V C
-                } else { //C C ?
-                    if (getLetterVal(z) < 6 && isPairOfConsonants(x, y)) //C C V
+                    return s.substring(0, 2); // C V C
+                } else { // C C ?
+                    if (getLetterVal(z) < 6 && isPairOfConsonants(x, y)) // C C V
                         return s.substring(0, 3);
-                    return s.substring(0, 1); //C C C
+                    return s.substring(0, 1); // C C C
                 }
             }
         }
@@ -125,14 +125,14 @@ public class SyllableSeparator {
     }
 
     private static boolean isHiatus(char a, char b) {
-        if (getLetterVal(a) < 4) { //VA + ?
-            if (getLetterVal(b) < 4) //VA + VA
+        if (getLetterVal(a) < 4) { // VA + ?
+            if (getLetterVal(b) < 4) // VA + VA
                 return true;
-            else return CharHelper.equalsAny(b, 'í', 'ú'); //VA + VC
-        } else { //VC + ?
-            if (getLetterVal(b) < 4 && CharHelper.equalsAny(a, 'í', 'ú')) //VC + VA
+            else return CharHelper.equalsAny(b, 'í', 'ú'); // VA + VC
+        } else { // VC + ?
+            if (getLetterVal(b) < 4 && CharHelper.equalsAny(a, 'í', 'ú')) // VC + VA
                 return true;
-            return a == b; //VC + VC
+            return a == b; // VC + VC
         }
     }
 
