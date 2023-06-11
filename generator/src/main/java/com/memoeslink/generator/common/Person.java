@@ -1,9 +1,8 @@
 package com.memoeslink.generator.common;
 
-import java.security.SecureRandom;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 public class Person {
@@ -24,12 +23,12 @@ public class Person {
     private LocalDate birthdate;
     private String description;
     private String interpretation;
-    private List<String> attributes;
+    private Set<String> attributes;
 
     private Person() {
     }
 
-    private Person(long id, String fullName, String forename, String surname, NameType nameType, Gender gender, String nickname, String username, String generationalSuffix, String japaneseHonorific, String occupation, String postNominalLetters, String address, String email, LocalDate birthdate, String description, String interpretation, List<String> attributes) {
+    private Person(long id, String fullName, String forename, String surname, NameType nameType, Gender gender, String nickname, String username, String generationalSuffix, String japaneseHonorific, String occupation, String postNominalLetters, String address, String email, LocalDate birthdate, String description, String interpretation, Set<String> attributes) {
         this.id = id;
         this.fullName = fullName;
         this.forename = forename;
@@ -68,7 +67,7 @@ public class Person {
         private LocalDate birthdate;
         private String description;
         private String interpretation;
-        private final List<String> attributes = new ArrayList<>();
+        private final Set<String> attributes = new HashSet<>();
 
         public PersonBuilder() {
         }
