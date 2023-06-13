@@ -277,7 +277,7 @@ public class TextFormatter {
         if (person == null || StringHelper.isNullOrBlank(person.getFullName()))
             return "";
         return String.format("%s<font color=\"%s\">%s%s%s</font>",
-                (StringHelper.isNotNullOrBlank(person.getOccupation()) ? formatText(person.getOccupation(), "i") + " " : ""),
+                (StringHelper.isNotNullOrBlank(person.getOccupation()) ? formatText(person.getOccupation(), "i") + Separator.SPACE.getCharacter() : ""),
                 Maker.getDefaultColor(person.getSummary()),
                 formatText(person.getFullName(), "b"),
                 StringHelper.defaultIfBlank(person.getJapaneseHonorific()),

@@ -422,6 +422,34 @@ public class StringHelper {
         return affixIfNotBlank(s, "“", "”");
     }
 
+    public static String padLeft(String s, int length, char padChar) {
+        if (s == null)
+            return null;
+
+        if (padChar == CharHelper.NULL_CHAR)
+            padChar = Separator.SPACE.getCharacter();
+        StringBuilder sb = new StringBuilder(s);
+
+        while (sb.length() < length) {
+            sb.insert(0, padChar);
+        }
+        return sb.toString();
+    }
+
+    public static String padRight(String s, int length, char padChar) {
+        if (s == null)
+            return null;
+
+        if (padChar == CharHelper.NULL_CHAR)
+            padChar = Separator.SPACE.getCharacter();
+        StringBuilder sb = new StringBuilder(s);
+
+        while (sb.length() < length) {
+            sb.append(padChar);
+        }
+        return sb.toString();
+    }
+
     public static List<String> split(String s, char delimiter) {
         if (s == null)
             return new ArrayList<>();
@@ -1028,7 +1056,7 @@ public class StringHelper {
     }
 
     public static String remove(String s, char occurrence) {
-        return replace(s, occurrence, CharHelper.NULL_CHAR);
+        return replace(s, occurrence, CharHelper.EMPTY_CHAR);
     }
 
     public static String remove(String s, String occurrence) {
@@ -1126,6 +1154,11 @@ public class StringHelper {
 
     public static String removeBetweenZeroWidthSpaces(String s) {
         return replaceBetweenZeroWidthSpaces(s, EMPTY);
+    }
+
+    public static String removeWhitespaces(String s) {
+        String regex = "\\s";
+        return removeAll(s, regex);
     }
 
     // Remove zero width spaces (​)

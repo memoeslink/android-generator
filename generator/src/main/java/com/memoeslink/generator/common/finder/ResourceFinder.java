@@ -32,7 +32,7 @@ public class ResourceFinder extends Binder {
     public String getStrFromArray(String[] items) {
         if (StringHelper.isNullOrEmpty(items))
             return RESOURCE_NOT_FOUND;
-        return items[r.getInt(items.length)];
+        return r.getElement(items);
     }
 
     public String getStrFromList(List<String> items) {

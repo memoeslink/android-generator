@@ -173,29 +173,25 @@ public interface NameDefiner {
         r = r != null ? r : new Randomizer();
         String username = StringHelper.joinWithSpace(a, b).trim();
         username = StringHelper.normalize(username);
-        int index = -1;
 
-        // Separate words with characters or using camel case
-        if (StringHelper.isNullOrBlank(username)) {
-        } else if (r.getBoolean()) {
-            username = StringHelper.capitalize(username);
-            username = StringHelper.remove(username, String.valueOf(Separator.SPACE.getCharacter()));
-        } else {
-            index = r.getInt(Separator.values().length - 2);
-            username = StringHelper.replace(username, String.valueOf(Separator.SPACE.getCharacter()),
-                    String.valueOf(Separator.values()[index].getCharacter()));
-        }
+        if (StringHelper.isNullOrBlank(username))
+            return username;
 
         // Append number, if required
-        if (StringHelper.isNullOrBlank(username)) {
-        } else if (r.getBoolean()) {
-            username = username + (index >= 0 ? Separator.values()[index].getCharacter() : StringHelper.EMPTY);
-            float probability = r.getFloat();
+        switch (r.getInt(6)) {
+            case 0 -> {
+                int extent = 10;
+                int exp = r.getInt(1, 6);
 
-            if (probability <= 0.45F) {
-                int number = r.getInt(0, 1000);
-                username = username + (r.getBoolean() ? String.format("%03d", number) : number);
-            } else if (probability <= 0.9F) {
+                for (int n = 1; n < exp; n++) {
+                    extent *= 10;
+                }
+                int number = r.getInt(0, extent);
+                int count = IntegerHelper.countDigits(extent - 1);
+                username = username + Separator.SPACE.getCharacter() +
+                        StringHelper.padLeft(String.valueOf(number), count, '0');
+            }
+            case 1 -> {
                 int year = 2000;
                 int difference = r.getInt(0, 201);
 
@@ -206,10 +202,26 @@ public interface NameDefiner {
 
                 if (year < 1)
                     year = 2000;
-                username = username + year;
-            } else {
+                username = username + Separator.SPACE.getCharacter() + year;
+            }
+            case 2 -> {
                 String[] numbers = {"0", "002", "007", "2", "69", "69", "69", "666", "777", "420", "420", "420", "911", "999"};
-                username += numbers[r.getInt(0, numbers.length)];
+                username = username + Separator.SPACE.getCharacter() + r.getElement(numbers);
+            }
+        }
+
+        // Replace or remove whitespaces
+        switch (r.getInt(3)) {
+            case 0 ->
+                    username = StringHelper.remove(username, String.valueOf(Separator.SPACE.getCharacter()));
+            case 1 -> {
+                username = StringHelper.capitalize(username);
+                username = StringHelper.remove(username, String.valueOf(Separator.SPACE.getCharacter()));
+            }
+            case 2 -> {
+                int index = r.getInt(UsernameSeparator.values().length);
+                char separator = UsernameSeparator.values()[index].getCharacter();
+                username = StringHelper.replace(username, Separator.SPACE.getCharacter(), separator);
             }
         }
         return username;
