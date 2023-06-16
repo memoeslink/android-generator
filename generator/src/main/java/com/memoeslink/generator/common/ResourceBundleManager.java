@@ -18,7 +18,7 @@ public class ResourceBundleManager {
     }
 
     public ResourceBundle getResourceBundle(Locale locale) {
-        if (locale == null || !StringHelper.containsAny(locale.getLanguage(), "en", "es"))
+        if (locale == null || !StringHelper.equalsAny(locale.getLanguage(), "en", "es"))
             locale = Locale.ENGLISH;
 
         if (!resourceMapping.containsKey(locale)) {
