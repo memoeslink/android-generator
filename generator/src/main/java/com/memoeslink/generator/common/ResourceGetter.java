@@ -148,8 +148,7 @@ public class ResourceGetter {
     public String getStrFromResBundle(Locale locale, String key) {
         if (StringHelper.isNullOrBlank(key))
             return StringHelper.EMPTY;
-        StringLocalization localization = new StringLocalization(locale);
-        String s = localization.getString(key);
+        String s = ResourceBundleManager.getInstance().getResourceBundle(locale).getString(key);
 
         if (StringHelper.contains(s, "\t")) {
             String[] parts = StringHelper.splitByTab(s);
