@@ -49,7 +49,7 @@ public interface NameDefiner extends com.memoeslink.generator.common.NameDefiner
 
     default String getPatternName(Randomizer r) {
         r = r != null ? r : new Randomizer();
-        String namePattern = r.getElement(Constant.NAME_PATTERNS);
+        String namePattern = ResourceGetter.with(r).getString(Constant.NAME_PATTERNS);
         StringBuilder sb = new StringBuilder();
 
         if (r.getBoolean())

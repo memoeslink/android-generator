@@ -40,16 +40,16 @@ public class PersonGenerator extends Generator {
         String japaneseHonorific = StringHelper.EMPTY;
 
         if (StringHelper.endsWithAny(name, "-chan", "-kun", "-sama", "-san")) {
-            List<String> parts = StringHelper.split(name, Separator.HYPHEN.getCharacter());
-            name = parts.get(0);
-            japaneseHonorific = parts.get(1);
+            String[]  parts = StringHelper.split(name, Separator.HYPHEN.getCharacter());
+            name = parts[0];
+            japaneseHonorific = parts[1];
         }
         Gender tempGender = gender == Gender.UNDEFINED || gender == Gender.NEUTRAL ?
                 (r.getBoolean() ? Gender.MASCULINE : Gender.FEMININE) : gender;
         OccupationType occupationType;
 
         do {
-            occupationType = OccupationType.values()[r.getInt(OccupationType.values().length)];
+            occupationType = r.getElement(OccupationType.values());
         } while (occupationType.getGender() != tempGender);
         String occupation = occupationGenerator.getOccupation(occupationType);
         String postNominalLetters = ResourceGetter.with(r).getString(Constant.POST_NOMINAL_LETTERS);

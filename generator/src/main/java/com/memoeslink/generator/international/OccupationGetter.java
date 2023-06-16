@@ -74,6 +74,26 @@ public final class OccupationGetter extends com.memoeslink.generator.common.Occu
     }
 
     @Override
+    public String getJobPosition() {
+        return getAnyGetter().getJobPosition();
+    }
+
+    @Override
+    public String getFemaleJobPosition() {
+        return getAnyGetter().getFemaleJobPosition();
+    }
+
+    @Override
+    public String getMaleJobPosition() {
+        return getAnyGetter().getMaleJobPosition();
+    }
+
+    @Override
+    public String getGenderlessJobPosition() {
+        return getAnyGetter().getGenderlessJobPosition();
+    }
+
+    @Override
     public String getSimpleFantasyClass() {
         return getAnyGetter().getSimpleFantasyClass();
     }

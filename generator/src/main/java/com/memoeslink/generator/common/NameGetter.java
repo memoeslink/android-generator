@@ -429,6 +429,11 @@ public class NameGetter extends Getter implements NameDefiner {
     }
 
     @Override
+    public String getPatternUsername() {
+        return Database.DEFAULT_VALUE;
+    }
+
+    @Override
     public String getAnonymousName() {
         return Database.DEFAULT_VALUE;
     }

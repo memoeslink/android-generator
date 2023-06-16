@@ -18,7 +18,7 @@ public class PhraseGenerator extends Generator {
 
         return switch (phraseType) {
             case SIMPLE_GREETING -> getter.getSimpleGreeting();
-            default -> getPhrase(PhraseType.values()[r.getInt(PhraseType.values().length)]);
+            default -> getPhrase(r.getElement(PhraseType.values()));
         };
     }
 

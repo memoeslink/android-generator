@@ -146,7 +146,7 @@ public class Validation {
      * Returns the number of days that a month, from a specific year,
      * has. The leap years are considered.
      *
-     * @param year an integer for the year
+     * @param year  an integer for the year
      * @param month an integer for the month
      * @return an integer with the number of days; 30 by default
      */

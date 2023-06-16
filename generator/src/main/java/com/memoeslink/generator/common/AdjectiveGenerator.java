@@ -33,7 +33,7 @@ public class AdjectiveGenerator extends Generator {
                 return getter.getPluralFemaleAdjective();
             case UNDEFINED:
             default:
-                return getAdjective(Form.values()[r.getInt(Form.values().length)]);
+                return getAdjective(r.getElement(Form.values()));
         }
     }
 
@@ -48,7 +48,7 @@ public class AdjectiveGenerator extends Generator {
             case PLURAL_MASCULINE -> getter.getPluralMaleAdjectiveWithArticle();
             case SINGULAR_FEMININE -> getter.getFemaleAdjectiveWithArticle();
             case PLURAL_FEMININE -> getter.getPluralFemaleAdjectiveWithArticle();
-            default -> getAdjectiveWithArticle(Form.values()[r.getInt(Form.values().length)]);
+            default -> getAdjectiveWithArticle(r.getElement(Form.values()));
         };
     }
 
@@ -63,8 +63,7 @@ public class AdjectiveGenerator extends Generator {
             case PLURAL_MASCULINE -> getter.getPluralMaleAdjectiveWithIndefiniteArticle();
             case SINGULAR_FEMININE -> getter.getFemaleAdjectiveWithIndefiniteArticle();
             case PLURAL_FEMININE -> getter.getPluralFemaleAdjectiveWithIndefiniteArticle();
-            default ->
-                    getAdjectiveWithIndefiniteArticle(Form.values()[r.getInt(Form.values().length)]);
+            default -> getAdjectiveWithIndefiniteArticle(r.getElement(Form.values()));
         };
     }
 

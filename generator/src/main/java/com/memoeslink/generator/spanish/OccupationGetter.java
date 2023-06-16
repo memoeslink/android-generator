@@ -90,6 +90,31 @@ public final class OccupationGetter extends com.memoeslink.generator.common.Occu
     }
 
     @Override
+    public String getJobPosition() {
+        String titleDepartment = ResourceGetter.with(r).getString(Constant.TITLE_DEPARTMENT);
+        String titleJob = ResourceGetter.with(r).getString(Constant.TITLE_JOB);
+        return String.join(String.valueOf(Separator.SPACE.getCharacter()), titleJob, "de", titleDepartment);
+    }
+
+    @Override
+    public String getFemaleJobPosition() {
+        String title = getJobPosition();
+        return TextProcessor.genderify(title, Gender.FEMININE);
+    }
+
+    @Override
+    public String getMaleJobPosition() {
+        String title = getJobPosition();
+        return TextProcessor.genderify(title, Gender.MASCULINE);
+    }
+
+    @Override
+    public String getGenderlessJobPosition() {
+        String title = getJobPosition();
+        return TextProcessor.genderify(title, Gender.UNDEFINED);
+    }
+
+    @Override
     public String getSimpleFantasyClass() {
         String fantasyClass = ResourceGetter.with(r).getSplitString(Constant.CLASSES);
         return StringHelper.capitalizeFirst(fantasyClass);

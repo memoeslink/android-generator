@@ -4,13 +4,13 @@ plugins {
 }
 
 android {
-    compileSdk 33
-    buildToolsVersion '33.0.0'
+    compileSdk 34
+    buildToolsVersion '34.0.0'
 
     defaultConfig {
         applicationId "com.memoeslink.androidgenerator"
         minSdk 26
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0.0"
         multiDexEnabled true

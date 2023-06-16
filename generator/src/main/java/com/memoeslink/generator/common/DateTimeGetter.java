@@ -21,6 +21,10 @@ public class DateTimeGetter {
         r = new Randomizer();
     }
 
+    private DateTimeGetter(Randomizer r) {
+        this(null, r);
+    }
+
     private DateTimeGetter(Locale locale, Randomizer r) {
         DateTimeGetter.locale = locale == null ? Locale.getDefault() : locale;
 
@@ -148,11 +152,19 @@ public class DateTimeGetter {
         };
     }
 
+    public static DateTimeGetter with(Randomizer r) {
+        return new DateTimeGetter(locale, r);
+    }
+
     public static DateTimeGetter with(Locale locale, Randomizer r) {
         return new DateTimeGetter(locale, r);
     }
 
     public static DateTimeGetter without() {
         return with(null, null);
+    }
+
+    public static DateTimeGetter without(Locale locale) {
+        return with(locale, null);
     }
 }

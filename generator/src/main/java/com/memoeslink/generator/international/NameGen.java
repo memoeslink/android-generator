@@ -15,7 +15,7 @@ import java.util.Random;
 
 public class NameGen {
     // all the lowercase characters this generator will handle
-    public static final char[] LOWERCHARS = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+    public static final char[] LOWER_CHARS = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
     // all the vowels
     public static final char[] VOWELS = {'a', 'e', 'i', 'o', 'u', 'y'};
     // all the consonants
@@ -25,9 +25,10 @@ public class NameGen {
     // the special state for the beginning of a name
     private CharState beginState;
     // a random number generator to generate name lengths
-    private Random rand;
+    private final Random rand;
     // the range of lengths to pick from
-    private int max, min;
+    private final int max;
+    private final int min;
 
     /**
      * Constructs a name generator.
@@ -61,9 +62,9 @@ public class NameGen {
      */
     public void initGen() {
         // Populate the map with the initial character set.
-        states = new LinkedHashMap<Character, CharState>();
+        states = new LinkedHashMap<>();
 
-        for (char c : LOWERCHARS) {
+        for (char c : LOWER_CHARS) {
             states.put(c, new CharState(c, rand));
         }
         LinkedHashMap<CharState, Integer> initState;
@@ -72,7 +73,7 @@ public class NameGen {
         for (CharState curState : states.values()) {
             // Create an initial state where consonants and vowels alternate, with
             // an equal chance of picking each next option.
-            initState = new LinkedHashMap<CharState, Integer>();
+            initState = new LinkedHashMap<>();
 
             // If it's a vowel, add all the consonants to its inital state.
             if (Arrays.binarySearch(VOWELS, curState.getChar()) > -1) {
@@ -109,12 +110,12 @@ public class NameGen {
 
         // The beginning state has an equal chance of picking any letter.
         beginState = new CharState(' ', rand);
-        initState = new LinkedHashMap<CharState, Integer>();
+        initState = new LinkedHashMap<>();
 
         for (CharState state : states.values()) {
             initState.put(state, 1);
         }
-        beginState.setTotal(LOWERCHARS.length);
+        beginState.setTotal(LOWER_CHARS.length);
         beginState.setMap(initState);
 
         // Add some common combinations.
@@ -170,7 +171,7 @@ public class NameGen {
      * @param name the name to be removed
      */
     public void removeName(String name) {
-        // Sanitize the string.
+        // Sanitize the string
         name = StringHelper.removeAll(name, "\\s+").toLowerCase();
 
         // For every char except the last, tell the corresponding state which
@@ -189,17 +190,19 @@ public class NameGen {
      * @return the generated name
      */
     public String getName() {
-        // Pick an initial character.
+        StringBuilder retStr = new StringBuilder();
+
+        // Pick an initial character
         CharState curState = beginState.next();
-        String retStr = StringHelper.EMPTY + curState.getChar();
+        retStr.append(curState.getChar());
 
         // For each remaining spot in the desired name do:
         for (int i = rand.nextInt(max - min) + min; i > 1; i--) {
-            // Query the current state for the random next state.
+            // Query the current state for the random next state
             curState = curState.next();
-            retStr += curState.getChar();
+            retStr.append(curState.getChar());
         }
-        return retStr;
+        return retStr.toString();
     }
 
     /**
@@ -208,18 +211,18 @@ public class NameGen {
      * @return the string
      */
     public String toString() {
-        String retStr = StringHelper.EMPTY;
+        StringBuilder retStr = new StringBuilder();
 
         for (CharState state : states.values()) {
-            retStr += state.toString();
+            retStr.append(state.toString());
         }
-        return retStr;
+        return retStr.toString();
     }
 
     /**
      * Represents one character state.
      */
-    private class CharState {
+    private static class CharState {
         // the character represented by this state
         char curChar;
         // the total number of next states seen
@@ -273,21 +276,22 @@ public class NameGen {
          * @return the next state.
          */
         private CharState next() {
-            // Generate a random number within the total number of states seen.
+            // Generate a random number within the total number of states seen
             int choice = rand.nextInt(total);
             int chance = 0;
 
             // For each state in the map do:
             for (CharState posNext : nexts.keySet()) {
-                // Add the chance of that state.
+                // Add the chance of that state
                 chance += nexts.get(posNext);
-                // If the choice is within the chance, then return the state.
+
+                // If the choice is within the chance, then return the state
                 if (choice < chance) {
                     return posNext;
                 }
             }
 
-            // If we got this far, we somehow generated a number too large.
+            // If we got this far, we somehow generated a number too large
             throw new RuntimeException("Error: '" + curChar + "' invalid choice (" + choice + ") for total of " + total + ".");
         }
 
@@ -297,7 +301,7 @@ public class NameGen {
          * @param newNext the state that was seen
          */
         private void addNext(CharState newNext) {
-            // Increment that state's quantity and the total.
+            // Increment that state's quantity and the total
             nexts.put(newNext, nexts.get(newNext) + 1);
             ++total;
         }
@@ -308,7 +312,7 @@ public class NameGen {
          * @param oldNext the state to be reset
          */
         private void resetNext(CharState oldNext) {
-            // Reset the state's quantity and remove it from the total.
+            // Reset the state's quantity and remove it from the total
             total -= nexts.get(oldNext);
             nexts.put(oldNext, 0);
         }

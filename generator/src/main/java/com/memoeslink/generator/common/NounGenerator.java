@@ -23,7 +23,7 @@ public class NounGenerator extends Generator {
             case PLURAL_MASCULINE -> getter.getPluralMaleNoun();
             case SINGULAR_FEMININE -> getter.getFemaleNoun();
             case PLURAL_FEMININE -> getter.getPluralFemaleNoun();
-            default -> getNoun(Form.values()[r.getInt(Form.values().length)]);
+            default -> getNoun(r.getElement(Form.values()));
         };
     }
 
@@ -43,7 +43,7 @@ public class NounGenerator extends Generator {
             case PLURAL_MASCULINE -> getter.getPluralMaleNounWithArticle();
             case SINGULAR_FEMININE -> getter.getFemaleNounWithArticle();
             case PLURAL_FEMININE -> getter.getPluralFemaleNounWithArticle();
-            default -> getNounWithArticle(Form.values()[r.getInt(Form.values().length)]);
+            default -> getNounWithArticle(r.getElement(Form.values()));
         };
     }
 
@@ -58,7 +58,7 @@ public class NounGenerator extends Generator {
             case PLURAL_MASCULINE -> getter.getPluralMaleNounWithIndefiniteArticle();
             case SINGULAR_FEMININE -> getter.getFemaleNounWithIndefiniteArticle();
             case PLURAL_FEMININE -> getter.getPluralFemaleNounWithIndefiniteArticle();
-            default -> getNounWithIndefiniteArticle(Form.values()[r.getInt(Form.values().length)]);
+            default -> getNounWithIndefiniteArticle(r.getElement(Form.values()));
         };
     }
 

@@ -127,7 +127,7 @@ public class Explorer extends Binder {
 
         private String getEmojiV15() {
             String codePoints = Database.selectCodePoints(r.getInt(1, Database.countEmojis()));
-            String[] segments = StringHelper.splitBySpace(codePoints).toArray(new String[0]);
+            String[] segments = StringHelper.splitBySpace(codePoints);
 
             for (int n = 0; n < segments.length; n++) {
                 segments[n] = "U+" + segments[n];

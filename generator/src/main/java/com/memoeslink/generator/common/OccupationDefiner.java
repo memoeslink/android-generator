@@ -26,6 +26,14 @@ public interface OccupationDefiner {
 
     public String getGenderlessJobTitle();
 
+    public String getJobPosition();
+
+    public String getFemaleJobPosition();
+
+    public String getMaleJobPosition();
+
+    public String getGenderlessJobPosition();
+
     public String getSimpleFantasyClass();
 
     public String getFemaleSimpleFantasyClass();

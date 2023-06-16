@@ -20,7 +20,7 @@ public class RelationGenerator extends Generator {
             case MASCULINE -> getter.getMaleRelationship(person, type);
             case FEMININE -> getter.getFemaleRelationship(person, type);
             case NEUTRAL -> getter.getRelationship(person, type);
-            default -> getRelation(person, type, Gender.values()[r.getInt(Gender.values().length)]);
+            default -> getRelation(person, type, r.getElement(Gender.values()));
         };
     }
 

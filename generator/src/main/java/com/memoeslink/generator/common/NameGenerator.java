@@ -75,6 +75,7 @@ public class NameGenerator extends Generator {
             case USERNAME -> getter.getUsername();
             case COMPOSITE_USERNAME -> getter.getCompositeUsername();
             case DERIVED_USERNAME -> getter.getDerivedUsername();
+            case PATTERN_USERNAME -> getter.getPatternUsername();
             case ANONYMOUS_NAME -> getter.getAnonymousName();
             case ANONYMOUS_ANIMAL -> getter.getAnonymousAnimal();
             default -> getter.getEmptyName();
@@ -121,11 +122,12 @@ public class NameGenerator extends Generator {
     }
 
     public String getUsername() {
-        return switch (r.getInt(5)) {
+        return switch (r.getInt(6)) {
             case 1 -> getName(NameType.COMPOSITE_USERNAME);
             case 2 -> getName(NameType.DERIVED_USERNAME);
-            case 3 -> getName(NameType.ANONYMOUS_NAME);
-            case 4 -> getName(NameType.ANONYMOUS_ANIMAL);
+            case 3 -> getName(NameType.PATTERN_USERNAME);
+            case 4 -> getName(NameType.ANONYMOUS_NAME);
+            case 5 -> getName(NameType.ANONYMOUS_ANIMAL);
             default -> getName(NameType.USERNAME);
         };
     }

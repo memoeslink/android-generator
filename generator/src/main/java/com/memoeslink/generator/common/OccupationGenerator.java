@@ -32,6 +32,9 @@ public class OccupationGenerator extends Generator {
             case MALE_JOB_TITLE -> getter.getMaleJobTitle();
             case FEMALE_JOB_TITLE -> getter.getFemaleJobTitle();
             case GENDERLESS_JOB_TITLE -> getter.getGenderlessJobTitle();
+            case MALE_JOB_POSITION -> getter.getMaleJobPosition();
+            case FEMALE_JOB_POSITION -> getter.getFemaleJobPosition();
+            case GENDERLESS_JOB_POSITION -> getter.getGenderlessJobPosition();
             case MALE_FANTASY_CLASS -> getter.getMaleSimpleFantasyClass();
             case FEMALE_FANTASY_CLASS -> getter.getFemaleSimpleFantasyClass();
             case GENDERLESS_FANTASY_CLASS -> getter.getGenderlessSimpleFantasyClass();
@@ -44,8 +47,7 @@ public class OccupationGenerator extends Generator {
             case MALE_ROYAL_TITLE -> getter.getMaleRoyalTitle();
             case FEMALE_ROYAL_TITLE -> getter.getFemaleRoyalTitle();
             case GENDERLESS_ROYAL_TITLE -> getter.getGenderlessRoyalTitle();
-            default ->
-                    getOccupation(OccupationType.values()[r.getInt(OccupationType.values().length)]);
+            default -> getOccupation(r.getElement(OccupationType.values()));
         };
     }
 

@@ -5,7 +5,7 @@ import com.memoeslink.generator.common.Database;
 import com.memoeslink.generator.common.ResourceGetter;
 import com.memoeslink.generator.common.Separator;
 
-public class NameGetter extends com.memoeslink.generator.international.NameGetter {
+public class NameGetter extends com.memoeslink.generator.spanish.NameGetter {
 
     public NameGetter() {
         super();

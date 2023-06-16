@@ -7,6 +7,8 @@ import com.memoeslink.generator.common.ResourceGetter;
 import com.memoeslink.generator.common.Separator;
 import com.memoeslink.generator.common.StringHelper;
 
+import java.util.Locale;
+
 public class NameGetter extends com.memoeslink.generator.international.NameGetter implements NameDefiner {
     private final NounGetter nounGetter;
     private final AdjectiveGetter adjectiveGetter;
@@ -220,6 +222,11 @@ public class NameGetter extends com.memoeslink.generator.international.NameGette
     @Override
     public String getDerivedUsername() {
         return getDerivedUsername(Database.selectFamilyName(r.getInt(1, Database.countFamilyNames())), r);
+    }
+
+    @Override
+    public String getPatternUsername() {
+        return getPatternUsername(r.getBoolean() ? getMaleForename() : getFemaleForename(), getSurname(), new Locale("es"), r);
     }
 
     @Override

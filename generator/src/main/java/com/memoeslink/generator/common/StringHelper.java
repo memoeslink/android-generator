@@ -4,9 +4,8 @@ import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.text.Normalizer;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -19,26 +18,12 @@ public class StringHelper {
         return s == null || s.length() == 0;
     }
 
-    public static boolean isNullOrEmpty(String[] strings) {
-        return strings == null || strings.length == 0;
-    }
-
     public static boolean isNotNullOrEmpty(String s) {
         return !isNullOrEmpty(s);
     }
 
-    public static boolean isNotNullOrEmpty(String[] strings) {
-        return !isNullOrEmpty(strings);
-    }
-
     public static boolean isNullOrBlank(String s) {
-        if (isNullOrEmpty(s))
-            return true;
-
-        for (char c : s.toCharArray()) {
-            if (!Character.isWhitespace(c)) return false;
-        }
-        return true;
+        return s == null || s.isBlank();
     }
 
     public static boolean isNotNullOrBlank(String s) {
@@ -450,38 +435,64 @@ public class StringHelper {
         return sb.toString();
     }
 
-    public static List<String> split(String s, char delimiter) {
+    public static String[] fastSplit(String line, char split) {
+        String[] temp = new String[line.length() / 2];
+        int wordCount = 0;
+        int i = 0;
+        int j = line.indexOf(split); // First substring
+
+        while (j >= 0) {
+            temp[wordCount++] = line.substring(i, j);
+            i = j + 1;
+            j = line.indexOf(split, i); // Rest of substrings
+        }
+        temp[wordCount++] = line.substring(i); // Last substring
+        String[] result = new String[wordCount];
+        System.arraycopy(temp, 0, result, 0, wordCount);
+        return result;
+    }
+
+    public static String[] split(String s, String regex) {
+        if (isNullOrEmpty(s) || isNullOrEmpty(regex))
+            return new String[]{};
+        return s.split(regex);
+    }
+
+    public static String[] split(String s, char delimiter) {
         if (s == null)
-            return new ArrayList<>();
+            return new String[]{};
         StringBuilder sb = new StringBuilder();
-        ArrayList<String> parts = new ArrayList<>();
-        parts.ensureCapacity(s.length() / 5);
+        String[] parts = new String[s.length() / 2];
+        int partCount = 0;
         char[] chars = s.toCharArray();
 
         for (char c : chars) {
             if (c == delimiter) {
-                parts.add(sb.toString());
+                parts[partCount] = sb.toString();
+                partCount++;
                 sb.delete(0, sb.length());
             } else
                 sb.append(c);
         }
 
-        if (sb.length() > 0)
-            parts.add(sb.toString());
-        return parts;
+        if (sb.length() > 0) {
+            parts[partCount] = sb.toString();
+            partCount++;
+        }
+        String[] result = new String[partCount];
+        System.arraycopy(parts, 0, result, 0, partCount);
+        return result;
     }
 
-    public static List<String> split(String s, String delimiter) {
-        ArrayList<String> parts = new ArrayList<>();
-
+    public static String[] splitByDelimiter(String s, String delimiter) {
         if (s == null)
-            return parts;
+            return new String[]{};
 
         if (delimiter == null || s.length() < delimiter.length()) {
-            parts.add(s);
-            return parts;
+            return new String[]{s};
         }
-        parts.ensureCapacity(s.length() / 5);
+        String[] parts = new String[s.length() / 2];
+        int partCount = 0;
         int index = s.indexOf(delimiter);
         int startIndex = 0;
         int endIndex;
@@ -489,33 +500,45 @@ public class StringHelper {
         while (index >= 0) {
             endIndex = index;
 
-            if (startIndex < endIndex)
-                parts.add(s.substring(startIndex, endIndex));
+            if (startIndex < endIndex) {
+                parts[partCount] = s.substring(startIndex, endIndex);
+                partCount++;
+            }
             startIndex = endIndex + delimiter.length();
             index = s.indexOf(delimiter, index + 1);
         }
 
-        if (startIndex < s.length() - 1)
-            parts.add(s.substring(startIndex));
-        return parts;
+        if (startIndex < s.length() - 1) {
+            parts[partCount] = s.substring(startIndex);
+            partCount++;
+        }
+        String[] result = new String[partCount];
+        System.arraycopy(parts, 0, result, 0, partCount);
+        return result;
     }
 
-    public static List<String> splitBySpace(String s) {
+    public static String[] splitBySpace(String s) {
         return split(s, Separator.SPACE.getCharacter());
     }
 
-    public static List<String> splitByHyphen(String s) {
+    public static String[] splitByHyphen(String s) {
         return split(s, Separator.HYPHEN.getCharacter());
     }
 
-    public static List<String> splitByLineBreak(String s) {
-        return split(s, System.getProperty("line.separator"));
+    public static String[] splitByLineBreak(String s) {
+        return splitByDelimiter(s, System.getProperty("line.separator"));
     }
 
-    public static List<String> splitByParagraphMark(String s) {
-        if (isNotNullOrEmpty(s))
-            return new ArrayList<>(Arrays.asList(s.split("¶[ ]*")));
-        return new ArrayList<>();
+    public static String[] splitByParagraphMark(String s) {
+        return split(s, "¶[ ]*");
+    }
+
+    public static String[] splitByComma(String s) {
+        return split(s, ",[ ]*");
+    }
+
+    public static String[] splitByTab(String s) {
+        return split(s, "\t[ ]*");
     }
 
     public static String connect(String a, String b) {
@@ -680,9 +703,19 @@ public class StringHelper {
         return s;
     }
 
+    public static String normalizeAlpha(String s) {
+        s = normalize(s);
+        return removeNonAlpha(s);
+    }
+
+    public static String normalizeAlphaSpace(String s) {
+        s = normalize(s);
+        return removeNonAlphaSpace(s);
+    }
+
     public static String stripAccents(String s) {
         if (isNotNullOrEmpty(s))
-            return Normalizer.normalize(s, Normalizer.Form.NFD).replaceAll("[\\p{InCombiningDiacriticalMarks}]", EMPTY);
+            return Normalizer.normalize(s, Normalizer.Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}", EMPTY);
         return s;
     }
 
@@ -711,7 +744,7 @@ public class StringHelper {
         return s;
     }
 
-    public static String uncapitalizeFirst(String s) {
+    public static String decapitalizeFirst(String s) {
         if (isNullOrEmpty(s))
             return s;
 
@@ -724,13 +757,13 @@ public class StringHelper {
         return s;
     }
 
-    public static String uncapitalize(String s) {
+    public static String decapitalize(String s) {
         if (isNullOrEmpty(s))
             return s;
         String[] parts = s.split("\\s+");
 
         for (int n = 0; n < parts.length; n++) {
-            parts[n] = uncapitalizeFirst(parts[n]);
+            parts[n] = decapitalizeFirst(parts[n]);
         }
         s = String.join(String.valueOf(Separator.SPACE.getCharacter()), parts);
         return s;
@@ -1055,6 +1088,24 @@ public class StringHelper {
         return replaceBetweenChars(s, ZeroWidthChar.ZERO_WIDTH_SPACE.getCharacter(), replacement);
     }
 
+    static String replaceTags(String s, Map<String, String> valuesMap) {
+        StringBuilder sb = new StringBuilder(s);
+
+        if (isNullOrEmpty(s) || valuesMap == null)
+            return s;
+
+        for (Map.Entry<String, String> entry : valuesMap.entrySet()) {
+            int start;
+            String tag = "${" + entry.getKey() + "}";
+            String value = entry.getValue();
+
+            while ((start = sb.indexOf(tag)) != -1) {
+                sb.replace(start, start + tag.length(), value);
+            }
+        }
+        return sb.toString();
+    }
+
     public static String remove(String s, char occurrence) {
         return replace(s, occurrence, CharHelper.EMPTY_CHAR);
     }
@@ -1156,6 +1207,19 @@ public class StringHelper {
         return replaceBetweenZeroWidthSpaces(s, EMPTY);
     }
 
+    // Remove non-alphabetic characters
+    public static String removeNonAlpha(String s) {
+        String regex = "[^a-zA-Z]";
+        return removeAll(s, regex);
+    }
+
+    // Remove non-alphabetic or non-space characters
+    public static String removeNonAlphaSpace(String s) {
+        String regex = "[^a-zA-Z\\s]";
+        return removeAll(s, regex);
+    }
+
+    // Remove whitespaces: \t\n\x0B\f\r
     public static String removeWhitespaces(String s) {
         String regex = "\\s";
         return removeAll(s, regex);
@@ -1313,8 +1377,16 @@ public class StringHelper {
         return equals(s, DEFAULT_VALUE);
     }
 
+    public static boolean contains(String s, char c) {
+        return indexOf(s, c) != -1;
+    }
+
+    public static boolean contains(String s, String occurrence) {
+        return indexOf(s, occurrence) != -1;
+    }
+
     public static boolean containsAny(String s, String... affixes) {
-        if (isNullOrEmpty(s) || isNullOrEmpty(affixes))
+        if (isNullOrEmpty(s) || ArrayHelper.isNullOrEmpty(affixes))
             return false;
 
         for (String affix : affixes) {
@@ -1601,7 +1673,7 @@ public class StringHelper {
         StringBuilder sb = new StringBuilder();
 
         for (String codePoint : codePoints) {
-            if (StringHelper.isNotNullOrBlank(codePoint) && Validation.isUtf(codePoint))
+            if (isNotNullOrBlank(codePoint) && Validation.isUtf(codePoint))
                 sb.appendCodePoint(Integer.decode(codePoint.replace("U+", "0x")));
         }
         return sb.toString();

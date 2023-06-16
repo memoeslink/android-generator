@@ -3,6 +3,10 @@ package com.memoeslink.generator.common;
 import com.memoeslink.common.Randomizer;
 import com.memoeslink.generator.international.Shaper;
 
+import net.andreinc.aleph.AlephFormatter;
+
+import java.util.Locale;
+
 public interface NameDefiner {
 
     public String getEmptyName();
@@ -179,30 +183,19 @@ public interface NameDefiner {
 
         // Append number, if required
         switch (r.getInt(6)) {
-            case 0 -> {
+            case 0 ->
+                    username = username + Separator.SPACE.getCharacter() + Constant.STARTING_YEAR + r.getInt(-100, 201);
+            case 1 -> {
                 int extent = 10;
                 int exp = r.getInt(1, 6);
 
                 for (int n = 1; n < exp; n++) {
                     extent *= 10;
                 }
-                int number = r.getInt(0, extent);
+                int number = r.getInt(extent);
                 int count = IntegerHelper.countDigits(extent - 1);
                 username = username + Separator.SPACE.getCharacter() +
                         StringHelper.padLeft(String.valueOf(number), count, '0');
-            }
-            case 1 -> {
-                int year = 2000;
-                int difference = r.getInt(0, 201);
-
-                if (difference < 0)
-                    year = year - difference;
-                else
-                    year = year + difference;
-
-                if (year < 1)
-                    year = 2000;
-                username = username + Separator.SPACE.getCharacter() + year;
             }
             case 2 -> {
                 String[] numbers = {"0", "002", "007", "2", "69", "69", "69", "666", "777", "420", "420", "420", "911", "999"};
@@ -219,8 +212,7 @@ public interface NameDefiner {
                 username = StringHelper.remove(username, String.valueOf(Separator.SPACE.getCharacter()));
             }
             case 2 -> {
-                int index = r.getInt(UsernameSeparator.values().length);
-                char separator = UsernameSeparator.values()[index].getCharacter();
+                char separator = r.getElement(UsernameSeparator.values()).getCharacter();
                 username = StringHelper.replace(username, Separator.SPACE.getCharacter(), separator);
             }
         }
@@ -232,14 +224,34 @@ public interface NameDefiner {
     default String getDerivedUsername(String s, Randomizer r) {
         r = r != null ? r : new Randomizer();
         String username = s;
-        username = StringHelper.normalize(username);
-        username = StringHelper.removeAll(username, "[^a-zA-Z]");
+        username = StringHelper.normalizeAlpha(s);
 
         if (username.length() > 4)
             username = username.substring(0, 5);
         username = ResourceGetter.with(r).getChar(com.memoeslink.generator.english.Constant.UPPERCASE_ALPHABET) + username;
         username += r.getInt(0, 101);
         return username;
+    }
+
+    public String getPatternUsername();
+
+    default String getPatternUsername(String a, String b, Locale locale, Randomizer r) {
+        r = r != null ? r : new Randomizer();
+
+        if (StringHelper.isNullOrBlank(a) || StringHelper.isNullOrBlank(b))
+            return com.memoeslink.generator.common.Constant.DEFAULT_USERNAME;
+        a = StringHelper.normalizeAlpha(a).toLowerCase();
+        b = StringHelper.normalizeAlpha(b).toLowerCase();
+        String pattern = ResourceGetter.with(r).getString(Constant.USERNAME_PATTERNS);
+        return AlephFormatter.str(pattern)
+                .arg("firstParam", a)
+                .arg("secondParam", b)
+                .arg("job", StringHelper.normalize(ResourceGetter.with(r).getStrFromResBundle(locale, "job.position")).toLowerCase())
+                .arg("denominator", StringHelper.normalize(ResourceGetter.with(r).getStrFromResBundle(locale, "organizational.denominator")).toLowerCase())
+                .arg("letter", r.getInt(1, 9))
+                .arg("number", ResourceGetter.with(r).getChar(com.memoeslink.generator.english.Constant.UPPERCASE_ALPHABET))
+                .arg("year", Constant.STARTING_YEAR + r.getInt(-100, 201))
+                .fmt();
     }
 
     public String getAnonymousName();

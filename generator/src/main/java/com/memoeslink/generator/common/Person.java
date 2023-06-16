@@ -305,16 +305,18 @@ public class Person {
         this.interpretation = interpretation;
     }
 
-    public void addAttribute(String s) {
-        attributes.add(s);
+    public void addAttribute(String attribute) {
+        if (StringHelper.isNotNullOrEmpty(attribute))
+            attributes.add(attribute);
     }
 
-    public void removeAttribute(String s) {
-        attributes.remove(s);
+    public void removeAttribute(String attribute) {
+        if (StringHelper.isNotNullOrEmpty(attribute))
+            attributes.remove(attribute);
     }
 
-    public boolean hasAttribute(String s) {
-        return attributes.contains(s);
+    public boolean hasAttribute(String attribute) {
+        return attributes.contains(attribute);
     }
 
     public String getDescriptor() {

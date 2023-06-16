@@ -7,6 +7,7 @@ import androidx.annotation.ArrayRes;
 import androidx.annotation.RawRes;
 import androidx.annotation.StringRes;
 
+import com.memoeslink.generator.common.ArrayHelper;
 import com.memoeslink.generator.common.Binder;
 import com.memoeslink.generator.common.IntegerHelper;
 import com.memoeslink.generator.common.StringHelper;
@@ -30,13 +31,13 @@ public class ResourceFinder extends Binder {
     }
 
     public String getStrFromArray(String[] items) {
-        if (StringHelper.isNullOrEmpty(items))
+        if (ArrayHelper.isNullOrEmpty(items))
             return RESOURCE_NOT_FOUND;
         return r.getElement(items);
     }
 
     public String getStrFromList(List<String> items) {
-        if (items == null)
+        if (items == null || items.isEmpty())
             return RESOURCE_NOT_FOUND;
         return getStrFromArray(items.toArray(new String[0]));
     }
@@ -98,7 +99,7 @@ public class ResourceFinder extends Binder {
             try {
                 String[] items = getResources().getStringArray(id);
 
-                if (StringHelper.isNotNullOrEmpty(items) && items[0] != null)
+                if (ArrayHelper.isNotNullOrEmpty(items) && items[0] != null)
                     return items;
             } catch (Exception ignored) {
             }
