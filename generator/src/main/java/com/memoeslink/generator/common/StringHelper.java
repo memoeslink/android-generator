@@ -708,9 +708,19 @@ public class StringHelper {
         return removeNonAlpha(s);
     }
 
+    public static String normalizeAlphanumeric(String s) {
+        s = normalize(s);
+        return removeNonAlphanumeric(s);
+    }
+
     public static String normalizeAlphaSpace(String s) {
         s = normalize(s);
         return removeNonAlphaSpace(s);
+    }
+
+    public static String normalizeAlphanumericSpace(String s) {
+        s = normalize(s);
+        return removeNonAlphanumericSpace(s);
     }
 
     public static String stripAccents(String s) {
@@ -1213,9 +1223,21 @@ public class StringHelper {
         return removeAll(s, regex);
     }
 
+    // Remove non-alphanumeric characters
+    public static String removeNonAlphanumeric(String s) {
+        String regex = "[^a-zA-Z0-9]";
+        return removeAll(s, regex);
+    }
+
     // Remove non-alphabetic or non-space characters
     public static String removeNonAlphaSpace(String s) {
         String regex = "[^a-zA-Z\\s]";
+        return removeAll(s, regex);
+    }
+
+    // Remove non-alphanumeric or non-space characters
+    public static String removeNonAlphanumericSpace(String s) {
+        String regex = "[^a-zA-Z0-9\\s]";
         return removeAll(s, regex);
     }
 

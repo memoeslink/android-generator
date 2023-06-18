@@ -244,12 +244,12 @@ public interface NameDefiner {
         b = StringHelper.normalizeAlpha(b).toLowerCase();
         String pattern = ResourceGetter.with(r).getString(Constant.USERNAME_PATTERNS);
         return AlephFormatter.str(pattern)
-                .arg("firstParam", a)
-                .arg("secondParam", b)
+                .arg("first", a)
+                .arg("second", b)
                 .arg("job", StringHelper.normalize(ResourceGetter.with(r).getStrFromResBundle(locale, "job.position")).toLowerCase())
-                .arg("denominator", StringHelper.normalize(ResourceGetter.with(r).getStrFromResBundle(locale, "organizational.denominator")).toLowerCase())
-                .arg("letter", r.getInt(1, 9))
-                .arg("number", ResourceGetter.with(r).getChar(com.memoeslink.generator.english.Constant.UPPERCASE_ALPHABET))
+                .arg("denominator", StringHelper.normalize(ResourceGetter.with(r).getStrFromResBundle(locale, "organization.denominator")).toLowerCase())
+                .arg("letter", ResourceGetter.with(r).getChar(com.memoeslink.generator.english.Constant.UPPERCASE_ALPHABET))
+                .arg("number", r.getInt(1, 9))
                 .arg("year", Constant.STARTING_YEAR + r.getInt(-100, 201))
                 .fmt();
     }

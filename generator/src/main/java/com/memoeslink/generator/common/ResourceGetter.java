@@ -42,11 +42,11 @@ public class ResourceGetter {
         }
     }
 
-    public static char getChar(char[] chars) {
+    public char getChar(char[] chars) {
         return getChar(chars, r.getInt(chars.length));
     }
 
-    public static char getChar(char[] chars, int index) {
+    public char getChar(char[] chars, int index) {
         if (chars != null && chars.length > 0) {
             index = IntegerHelper.defaultIndex(index, chars.length);
             return chars[index];
@@ -54,11 +54,11 @@ public class ResourceGetter {
         return CharHelper.EMPTY_CHAR;
     }
 
-    public static char getChar(String s) {
+    public char getChar(String s) {
         return getChar(s, r.getInt(s.length()));
     }
 
-    public static char getChar(String s, int index) {
+    public char getChar(String s, int index) {
         if (StringHelper.isNotNullOrEmpty(s)) {
             index = IntegerHelper.defaultIndex(index, s.length());
             return s.charAt(index);
@@ -66,19 +66,19 @@ public class ResourceGetter {
         return CharHelper.EMPTY_CHAR;
     }
 
-    public static String getString(String s) {
+    public String getString(String s) {
         return String.valueOf(getChar(s));
     }
 
-    public static String getString(String s, int index) {
+    public String getString(String s, int index) {
         return String.valueOf(getChar(s, index));
     }
 
-    public static String getString(String[] strings) {
+    public String getString(String[] strings) {
         return getString(strings, r.getInt(strings.length));
     }
 
-    public static String getString(String[] strings, int index) {
+    public String getString(String[] strings, int index) {
         if (ArrayHelper.isNotNullOrEmpty(strings)) {
             index = IntegerHelper.defaultIndex(index, strings.length);
             return strings[index];
@@ -86,17 +86,17 @@ public class ResourceGetter {
         return StringHelper.EMPTY;
     }
 
-    public static String getSplitString(String s) {
+    public String getSplitString(String s) {
         String[] parts = StringHelper.splitByParagraphMark(s);
         return getString(parts);
     }
 
-    public static String getSplitString(String s, int index) {
+    public String getSplitString(String s, int index) {
         String[] parts = StringHelper.splitByParagraphMark(s);
         return getString(parts, index);
     }
 
-    public static String getLineFromFile(String filename) {
+    public String getLineFromFile(String filename) {
         String s = StringHelper.EMPTY;
         File file = new File(String.format(RESOURCES_PATH, filename));
 
