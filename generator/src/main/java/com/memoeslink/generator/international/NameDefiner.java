@@ -32,7 +32,7 @@ public interface NameDefiner extends com.memoeslink.generator.common.NameDefiner
         // Add consonants with vowel
         for (int i = 1; i <= iterations; i++) {
             if (probability <= 0.7F)
-                sb.append(r.chooseOnWeight(Constant.WEIGHTED_CONSONANTS));
+                sb.append(r.getCharBasedOnWeight(Constant.WEIGHTED_CONSONANTS));
             else if (probability <= 0.85F)
                 sb.append(ResourceGetter.with(r).getString(Constant.MIDDLE_CONSONANTS));
             else if (probability <= 1.0F)
@@ -91,7 +91,7 @@ public interface NameDefiner extends com.memoeslink.generator.common.NameDefiner
         r = r != null ? r : new Randomizer();
         String s;
         StringBuilder sb = new StringBuilder();
-        char previousChar = r.chooseOnWeight(letters);
+        char previousChar = r.getCharBasedOnWeight(letters);
         char currentChar;
         boolean sameType = false;
         boolean allowed;
@@ -106,7 +106,7 @@ public interface NameDefiner extends com.memoeslink.generator.common.NameDefiner
         for (int n = 0; n < length; n++) {
             if (sameType) {
                 do {
-                    currentChar = r.chooseOnWeight(letters);
+                    currentChar = r.getCharBasedOnWeight(letters);
                     allowed = true;
 
                     if (previousChar == currentChar) {
@@ -120,7 +120,7 @@ public interface NameDefiner extends com.memoeslink.generator.common.NameDefiner
                         (equal && CharHelper.isNonClusterConsonant(currentChar)) || !allowed);
             } else {
                 do {
-                    currentChar = r.chooseOnWeight(letters);
+                    currentChar = r.getCharBasedOnWeight(letters);
                 }
                 while ((vowel = CharHelper.isUnaccentedVowel(previousChar)) == (anotherVowel = CharHelper.isUnaccentedVowel(currentChar)) ||
                         ((!vowel || n == length - 1) && CharHelper.isAccentedConsonant(currentChar)) ||
