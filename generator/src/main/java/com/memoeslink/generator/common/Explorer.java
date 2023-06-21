@@ -126,7 +126,7 @@ public class Explorer extends Binder {
         }
 
         private String getEmojiV15() {
-            String codePoints = Database.selectCodePoints(r.getInt(1, Database.countEmojis()));
+            String codePoints = Database.selectCodePoints(r.getIntInRange(1, Database.countEmojis()));
             String[] segments = StringHelper.splitBySpace(codePoints);
 
             for (int n = 0; n < segments.length; n++) {
@@ -137,8 +137,8 @@ public class Explorer extends Binder {
 
         private String getPictogram() {
             return switch (r.getInt(4)) {
-                case 0 -> getResource(ResourceReference.EMOJI, r.getInt(1, 4));
-                case 1 -> getResource(ResourceReference.EMOJI_V15, r.getInt(1, 4));
+                case 0 -> getResource(ResourceReference.EMOJI, r.getInt(1, 5));
+                case 1 -> getResource(ResourceReference.EMOJI_V15, r.getInt(1, 5));
                 case 2 -> getResource(ResourceReference.EMOTICON);
                 case 3 -> getResource(ResourceReference.KAOMOJI);
                 default -> ResourceFinder.RESOURCE_NOT_FOUND;

@@ -174,11 +174,11 @@ public class NameGetter extends com.memoeslink.generator.common.NameGetter imple
             case 1 -> getFemaleFullName();
             case 2 -> getMaleFullName();
             case 3 ->
-                    Database.selectForename(r.getInt(1, Database.countForenames())) + Separator.SPACE.getCharacter() +
-                            Database.selectSurname(r.getInt(1, Database.countSurnames()));
-            default -> Database.selectName(r.getInt(1, Database.countNames())) +
+                    Database.selectForename(r.getIntInRange(1, Database.countForenames())) + Separator.SPACE.getCharacter() +
+                            Database.selectSurname(r.getIntInRange(1, Database.countSurnames()));
+            default -> Database.selectName(r.getIntInRange(1, Database.countNames())) +
                     Separator.SPACE.getCharacter() +
-                    Database.selectFamilyName(r.getInt(1, Database.countFamilyNames()));
+                    Database.selectFamilyName(r.getIntInRange(1, Database.countFamilyNames()));
         };
     }
 
@@ -235,17 +235,17 @@ public class NameGetter extends com.memoeslink.generator.common.NameGetter imple
 
     @Override
     public String getFemaleIterativeForename() {
-        return TextProcessor.feminize(getIterativeName(r.getInt(1, 5), r));
+        return TextProcessor.feminize(getIterativeName(r.getInt(1, 6), r));
     }
 
     @Override
     public String getMaleIterativeForename() {
-        return getIterativeName(r.getInt(1, 5), r);
+        return getIterativeName(r.getInt(1, 6), r);
     }
 
     @Override
     public String getIterativeFamilyName() {
-        return getIterativeName(r.getInt(1, 3), r);
+        return getIterativeName(r.getInt(1, 4), r);
     }
 
     @Override
@@ -312,7 +312,7 @@ public class NameGetter extends com.memoeslink.generator.common.NameGetter imple
 
     @Override
     public String getMaleFrequencyForename(int type) {
-        return getFrequencyName(Constant.WEIGHTED_LETTERS[type], r.getInt(3, 8), r);
+        return getFrequencyName(Constant.WEIGHTED_LETTERS[type], r.getInt(3, 11), r);
     }
 
     @Override
@@ -323,7 +323,7 @@ public class NameGetter extends com.memoeslink.generator.common.NameGetter imple
 
     @Override
     public String getFrequencyFamilyName(int type) {
-        return getFrequencyName(Constant.WEIGHTED_LETTERS[type], r.getInt(2, 11), r);
+        return getFrequencyName(Constant.WEIGHTED_LETTERS[type], r.getInt(2, 13), r);
     }
 
     @Override
@@ -362,7 +362,7 @@ public class NameGetter extends com.memoeslink.generator.common.NameGetter imple
     @Override
     public String getMalePreformedForename(Shaper shaper) {
         shaper = shaper != null ? shaper : Shaper.DEFAULT;
-        return getPreformedName(shaper.getShape(), r.getInt(3, 8), r);
+        return getPreformedName(shaper.getShape(), r.getInt(3, 11), r);
     }
 
     @Override
@@ -374,7 +374,7 @@ public class NameGetter extends com.memoeslink.generator.common.NameGetter imple
     @Override
     public String getPreformedFamilyName(Shaper shaper) {
         shaper = shaper != null ? shaper : Shaper.DEFAULT;
-        return getPreformedName(shaper.getShape(), r.getInt(3, 4), r);
+        return getPreformedName(shaper.getShape(), r.getInt(3, 7), r);
     }
 
     @Override
@@ -427,7 +427,7 @@ public class NameGetter extends com.memoeslink.generator.common.NameGetter imple
 
     @Override
     public String getSecretName() {
-        return getSecretName(r.getInt(2, 9), r);
+        return getSecretName(r.getInt(2, 11), r);
     }
 
     @Override

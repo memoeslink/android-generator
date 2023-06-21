@@ -130,7 +130,7 @@ public class ResourceGetter {
                 try {
                     is.getChannel().position(0);
 
-                    for (int x = 0, limit = r.getInt(1, lineCount); x < limit; x++) {
+                    for (int x = 0, limit = r.getIntInRange(1, lineCount); x < limit; x++) {
                         s = br.readLine();
                     }
                     br.close();

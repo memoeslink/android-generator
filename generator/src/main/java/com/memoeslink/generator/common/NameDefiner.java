@@ -184,10 +184,10 @@ public interface NameDefiner {
         // Append number, if required
         switch (r.getInt(6)) {
             case 0 ->
-                    username = username + Separator.SPACE.getCharacter() + Constant.STARTING_YEAR + r.getInt(-100, 201);
+                    username = username + Separator.SPACE.getCharacter() + (Constant.STARTING_YEAR + r.getInt(-100, 101));
             case 1 -> {
                 int extent = 10;
-                int exp = r.getInt(1, 6);
+                int exp = r.getInt(1, 7);
 
                 for (int n = 1; n < exp; n++) {
                     extent *= 10;
@@ -229,7 +229,7 @@ public interface NameDefiner {
         if (username.length() > 4)
             username = username.substring(0, 5);
         username = ResourceGetter.with(r).getChar(com.memoeslink.generator.english.Constant.UPPERCASE_ALPHABET) + username;
-        username += r.getInt(0, 101);
+        username += r.getInt(101);
         return username;
     }
 
@@ -249,8 +249,8 @@ public interface NameDefiner {
                 .arg("job", StringHelper.normalize(ResourceGetter.with(r).getStrFromResBundle(locale, "job.position")).toLowerCase())
                 .arg("denominator", StringHelper.normalize(ResourceGetter.with(r).getStrFromResBundle(locale, "organization.denominator")).toLowerCase())
                 .arg("letter", ResourceGetter.with(r).getChar(com.memoeslink.generator.english.Constant.UPPERCASE_ALPHABET))
-                .arg("number", r.getInt(1, 9))
-                .arg("year", Constant.STARTING_YEAR + r.getInt(-100, 201))
+                .arg("number", r.getInt(1, 10))
+                .arg("year", Constant.STARTING_YEAR + r.getInt(-100, 101))
                 .fmt();
     }
 

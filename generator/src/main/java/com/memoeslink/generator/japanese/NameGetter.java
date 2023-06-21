@@ -152,7 +152,7 @@ public class NameGetter extends com.memoeslink.generator.international.NameGette
 
     @Override
     public String getUsername() {
-        return Database.selectUsername(r.getInt(1, Database.countUsernames()));
+        return Database.selectUsername(r.getIntInRange(1, Database.countUsernames()));
     }
 
     @Override

@@ -53,7 +53,7 @@ public class DateTimeGetter {
     }
 
     public static String getCurrentDateTime() {
-        return getCurrentDateTime(r.getInt(1, 6));
+        return getCurrentDateTime(r.getIntInRange(1, 6));
     }
 
     public static String getCurrentDateTime(int type) {
@@ -81,7 +81,7 @@ public class DateTimeGetter {
     }
 
     public static String getCurrentDate() {
-        return getCurrentDate(r.getInt(1, 14));
+        return getCurrentDate(r.getIntInRange(1, 14));
     }
 
     public static String getCurrentDate(int type) {
@@ -125,7 +125,7 @@ public class DateTimeGetter {
     }
 
     public static String getCurrentTime() {
-        return getCurrentTime(r.getInt(1, 11));
+        return getCurrentTime(r.getIntInRange(1, 11));
     }
 
     public static String getCurrentTime(int type) {

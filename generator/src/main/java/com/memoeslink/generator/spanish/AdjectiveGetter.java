@@ -137,14 +137,14 @@ public final class AdjectiveGetter extends com.memoeslink.generator.common.Adjec
 
     @Override
     public Adjective getRefinedSingularAdjective() {
-        Adjective adjective = getRefinedAdjective(Database.selectSpanishSingularAdjective(r.getInt(1, Database.countSpanishSingularAdjectives())));
+        Adjective adjective = getRefinedAdjective(Database.selectSpanishSingularAdjective(r.getIntInRange(1, Database.countSpanishSingularAdjectives())));
         adjective.setPlural(false);
         return adjective;
     }
 
     @Override
     public Adjective getRefinedPluralAdjective() {
-        Adjective adjective = getRefinedAdjective(Database.selectSpanishPluralAdjective(r.getInt(1, Database.countSpanishPluralAdjectives())));
+        Adjective adjective = getRefinedAdjective(Database.selectSpanishPluralAdjective(r.getIntInRange(1, Database.countSpanishPluralAdjectives())));
         adjective.setPlural(true);
         return adjective;
     }

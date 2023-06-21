@@ -13,11 +13,11 @@ public class StringGenerator extends Generator {
     }
 
     public String getPercentage() {
-        return r.getInt(0, 101) + "%";
+        return r.getInt(101) + "%";
     }
 
     public String getDecimalPercentage() {
-        return String.format(locale, "%.2f%%", r.getFloat(0.0F, 100.0F));
+        return String.format(locale, "%.2f%%", r.getFloatInRange(0.0F, 100.0F));
     }
 
     public String getStrColor() {

@@ -150,7 +150,7 @@ public interface NameDefiner extends com.memoeslink.generator.common.NameDefiner
         String name = StringHelper.EMPTY;
 
         if (StringHelper.isNotNullOrEmpty(letters)) {
-            int firstMark = r.getInt(0, letters.length()), secondMark;
+            int firstMark = r.getInt(letters.length()), secondMark;
 
             if (firstMark + length - 1 > letters.length()) {
                 secondMark = firstMark;

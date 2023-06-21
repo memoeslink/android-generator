@@ -20,7 +20,7 @@ public class RelationGetter extends com.memoeslink.generator.common.RelationGett
 
     @Override
     public TextComponent getRelationship(Person person) {
-        int type = r.getInt(2, Constant.RELATIONSHIP.length - 1);
+        int type = r.getInt(2, Constant.RELATIONSHIP.length);
         return getRelationship(person, type);
     }
 
@@ -57,7 +57,7 @@ public class RelationGetter extends com.memoeslink.generator.common.RelationGett
 
     @Override
     public TextComponent getUnspecificRelationship() {
-        int type = r.getInt(2, Constant.RELATIONSHIP.length - 1);
+        int type = r.getInt(2, Constant.RELATIONSHIP.length);
         return getUnspecificRelationship(type);
     }
 

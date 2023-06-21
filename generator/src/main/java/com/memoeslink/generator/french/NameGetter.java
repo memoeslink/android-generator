@@ -19,7 +19,7 @@ public class NameGetter extends com.memoeslink.generator.international.NameGette
     @Override
     public String getFemaleForename() {
         String name = r.getBoolean() ? ResourceGetter.with(r).getString(Constant.FEMALE_FORENAMES) :
-                getFemaleForename(r.getInt(1, Database.countFrenchFemaleNames()));
+                getFemaleForename(r.getIntInRange(1, Database.countFrenchFemaleNames()));
         return !StringHelper.containsAny(name, " ", "-") ? name : getFemaleForename();
     }
 
@@ -31,7 +31,7 @@ public class NameGetter extends com.memoeslink.generator.international.NameGette
     @Override
     public String getMaleForename() {
         String name = r.getBoolean() ? ResourceGetter.with(r).getString(Constant.MALE_FORENAMES) :
-                getMaleForename(r.getInt(1, Database.countFrenchMaleNames()));
+                getMaleForename(r.getIntInRange(1, Database.countFrenchMaleNames()));
         return !StringHelper.containsAny(name, " ", "-") ? name : getMaleForename();
     }
 
@@ -179,7 +179,7 @@ public class NameGetter extends com.memoeslink.generator.international.NameGette
 
     @Override
     public String getUsername() {
-        return Database.selectUsername(r.getInt(1, Database.countUsernames()));
+        return Database.selectUsername(r.getIntInRange(1, Database.countUsernames()));
     }
 
     @Override

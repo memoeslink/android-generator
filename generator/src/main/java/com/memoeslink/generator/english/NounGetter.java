@@ -19,7 +19,7 @@ public final class NounGetter extends com.memoeslink.generator.common.NounGetter
 
     @Override
     public String getNoun() {
-        return Database.selectEnglishNoun(r.getInt(1, Database.countEnglishNouns()));
+        return Database.selectEnglishNoun(r.getIntInRange(1, Database.countEnglishNouns()));
     }
 
     @Override

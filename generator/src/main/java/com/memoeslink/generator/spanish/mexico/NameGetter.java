@@ -158,6 +158,6 @@ public class NameGetter extends com.memoeslink.generator.spanish.NameGetter {
 
     @Override
     public String getUsername() {
-        return Database.selectUsername(r.getInt(1, Database.countUsernames()));
+        return Database.selectUsername(r.getIntInRange(1, Database.countUsernames()));
     }
 }

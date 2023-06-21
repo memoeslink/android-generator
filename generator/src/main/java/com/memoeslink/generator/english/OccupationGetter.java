@@ -21,7 +21,7 @@ public final class OccupationGetter extends com.memoeslink.generator.common.Occu
 
     @Override
     public String getOccupation() {
-        return getOccupation(r.getInt(1, Database.countEnglishOccupations()));
+        return getOccupation(r.getIntInRange(1, Database.countEnglishOccupations()));
     }
 
     @Override
@@ -134,28 +134,28 @@ public final class OccupationGetter extends com.memoeslink.generator.common.Occu
     @Override
     public String getFantasyClass() {
         String fantasyClass = getSimpleFantasyClass();
-        int level = r.getInt(1, 99);
+        int level = r.getInt(1, 100);
         return String.format(FANTASY_CLASS_FORMAT, level, fantasyClass);
     }
 
     @Override
     public String getFemaleFantasyClass() {
         String fantasyClass = getFemaleSimpleFantasyClass();
-        int level = r.getInt(1, 99);
+        int level = r.getInt(1, 100);
         return String.format(FANTASY_CLASS_FORMAT, level, fantasyClass);
     }
 
     @Override
     public String getMaleFantasyClass() {
         String fantasyClass = getMaleSimpleFantasyClass();
-        int level = r.getInt(1, 99);
+        int level = r.getInt(1, 100);
         return String.format(FANTASY_CLASS_FORMAT, level, fantasyClass);
     }
 
     @Override
     public String getGenderlessFantasyClass() {
         String fantasyClass = getGenderlessSimpleFantasyClass();
-        int level = r.getInt(1, 99);
+        int level = r.getInt(1, 100);
         return String.format(FANTASY_CLASS_FORMAT, level, fantasyClass);
     }
 

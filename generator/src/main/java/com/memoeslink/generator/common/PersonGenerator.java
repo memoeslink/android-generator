@@ -1,7 +1,6 @@
 package com.memoeslink.generator.common;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Locale;
 
 public class PersonGenerator extends Generator {
@@ -40,7 +39,7 @@ public class PersonGenerator extends Generator {
         String japaneseHonorific = StringHelper.EMPTY;
 
         if (StringHelper.endsWithAny(name, "-chan", "-kun", "-sama", "-san")) {
-            String[]  parts = StringHelper.split(name, Separator.HYPHEN.getCharacter());
+            String[] parts = StringHelper.split(name, Separator.HYPHEN.getCharacter());
             name = parts[0];
             japaneseHonorific = parts[1];
         }

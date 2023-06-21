@@ -26,7 +26,7 @@ public class NameGetter extends com.memoeslink.generator.international.NameGette
 
     @Override
     public String getFemaleForename() {
-        return getFemaleForename(r.getInt(1, Database.countEnglishFemaleNames()));
+        return getFemaleForename(r.getIntInRange(1, Database.countEnglishFemaleNames()));
     }
 
     @Override
@@ -36,7 +36,7 @@ public class NameGetter extends com.memoeslink.generator.international.NameGette
 
     @Override
     public String getMaleForename() {
-        return getMaleForename(r.getInt(1, Database.countEnglishMaleNames()));
+        return getMaleForename(r.getIntInRange(1, Database.countEnglishMaleNames()));
     }
 
     @Override
@@ -111,7 +111,7 @@ public class NameGetter extends com.memoeslink.generator.international.NameGette
 
     @Override
     public String getSurname() {
-        return getSurname(r.getInt(1, Database.countEnglishSurnames()));
+        return getSurname(r.getIntInRange(1, Database.countEnglishSurnames()));
     }
 
     @Override
@@ -202,7 +202,7 @@ public class NameGetter extends com.memoeslink.generator.international.NameGette
 
     @Override
     public String getUsername() {
-        return Database.selectUsername(r.getInt(1, Database.countUsernames()));
+        return Database.selectUsername(r.getIntInRange(1, Database.countUsernames()));
     }
 
     @Override
@@ -214,7 +214,7 @@ public class NameGetter extends com.memoeslink.generator.international.NameGette
 
     @Override
     public String getDerivedUsername() {
-        return getDerivedUsername(Database.selectFamilyName(r.getInt(1, Database.countFamilyNames())), r);
+        return getDerivedUsername(Database.selectFamilyName(r.getIntInRange(1, Database.countFamilyNames())), r);
     }
 
     @Override
