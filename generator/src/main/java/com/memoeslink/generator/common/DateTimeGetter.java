@@ -48,15 +48,15 @@ public class DateTimeGetter {
         }
     }
 
-    public static String getSimpleCurrentDateTime() {
+    public String getSimpleCurrentDateTime() {
         return ZonedDateTime.now().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.FULL).withLocale(locale));
     }
 
-    public static String getCurrentDateTime() {
+    public String getCurrentDateTime() {
         return getCurrentDateTime(r.getIntInRange(1, 6));
     }
 
-    public static String getCurrentDateTime(int type) {
+    public String getCurrentDateTime(int type) {
         type = IntegerHelper.defaultByRange(type, 1, 6);
 
         return switch (type) {
@@ -76,15 +76,15 @@ public class DateTimeGetter {
         };
     }
 
-    public static String getSimpleCurrentDate() {
+    public String getSimpleCurrentDate() {
         return LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd").withLocale(locale));
     }
 
-    public static String getCurrentDate() {
+    public String getCurrentDate() {
         return getCurrentDate(r.getIntInRange(1, 14));
     }
 
-    public static String getCurrentDate(int type) {
+    public String getCurrentDate(int type) {
         type = IntegerHelper.defaultByRange(type, 1, 14);
 
         return switch (type) {
@@ -111,24 +111,24 @@ public class DateTimeGetter {
         };
     }
 
-    public static String getCurrentDayOfWeek() {
+    public String getCurrentDayOfWeek() {
         DayOfWeek dayOfWeek = LocalDate.now().getDayOfWeek();
         return dayOfWeek.getDisplayName(TextStyle.FULL, locale);
     }
 
-    public static String getNameOfDayOfWeek() {
+    public String getNameOfDayOfWeek() {
         return android.text.format.DateFormat.format("EEEE", new Date()).toString();
     }
 
-    public static String getSimpleCurrentTime() {
+    public String getSimpleCurrentTime() {
         return ZonedDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss").withLocale(locale));
     }
 
-    public static String getCurrentTime() {
+    public String getCurrentTime() {
         return getCurrentTime(r.getIntInRange(1, 11));
     }
 
-    public static String getCurrentTime(int type) {
+    public String getCurrentTime(int type) {
         type = IntegerHelper.defaultByRange(type, 1, 11);
 
         return switch (type) {
@@ -153,7 +153,7 @@ public class DateTimeGetter {
     }
 
     public static DateTimeGetter with(Randomizer r) {
-        return new DateTimeGetter(locale, r);
+        return new DateTimeGetter(null, r);
     }
 
     public static DateTimeGetter with(Locale locale, Randomizer r) {
@@ -162,9 +162,5 @@ public class DateTimeGetter {
 
     public static DateTimeGetter without() {
         return with(null, null);
-    }
-
-    public static DateTimeGetter without(Locale locale) {
-        return with(locale, null);
     }
 }
