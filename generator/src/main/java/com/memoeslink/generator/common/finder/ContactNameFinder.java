@@ -64,6 +64,6 @@ public class ContactNameFinder extends Binder {
 
         if (contactNames.size() == 0)
             return ResourceFinder.RESOURCE_NOT_FOUND;
-        return StringHelper.trimToEmpty(r.getItem(contactNames));
+        return StringHelper.trimToEmpty(r.getElement(contactNames));
     }
 }
