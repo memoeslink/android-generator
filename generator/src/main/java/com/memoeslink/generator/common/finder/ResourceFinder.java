@@ -219,10 +219,10 @@ public class ResourceFinder extends Binder {
             String[] items = {};
 
             if (StringHelper.isNotNullOrBlank(s))
-                items = s.split("¶[ ]*");
+                items = StringHelper.splitByParagraphMark(s);
             RESOURCE_REGISTRY.put(id, items);
         }
-        return RESOURCE_REGISTRY.get(id);
+        return RESOURCE_REGISTRY.getOrDefault(id, new String[]{});
     }
 
     public String getStrFromSplitStrRes(@StringRes int id) {

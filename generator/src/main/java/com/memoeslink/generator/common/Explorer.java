@@ -131,16 +131,15 @@ public class Explorer extends Binder {
         private String getEmojiV15() {
             String codePoints = Database.selectCodePoints(r.getIntInRange(1, Database.countEmojis()));
 
-            if (EMOJI_MAPPING.containsKey(codePoints))
-                return EMOJI_MAPPING.getOrDefault(codePoints, Database.DEFAULT_VALUE);
-            String[] segments = StringHelper.splitBySpace(codePoints);
+            if (!EMOJI_MAPPING.containsKey(codePoints)) {
+                String[] segments = StringHelper.splitBySpace(codePoints);
 
-            for (int n = 0; n < segments.length; n++) {
-                segments[n] = "U+" + segments[n];
+                for (int n = 0; n < segments.length; n++) {
+                    segments[n] = "U+" + segments[n];
+                }
+                EMOJI_MAPPING.put(codePoints, StringHelper.getCharacter(segments));
             }
-            String character = StringHelper.getCharacter(segments);
-            EMOJI_MAPPING.put(codePoints, character);
-            return character;
+            return EMOJI_MAPPING.getOrDefault(codePoints, Database.DEFAULT_VALUE);
         }
 
         private String getPictogram() {
