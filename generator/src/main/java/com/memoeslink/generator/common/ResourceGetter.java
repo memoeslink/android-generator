@@ -14,7 +14,7 @@ import java.util.Locale;
 
 public class ResourceGetter {
     private static final HashMap<String, Integer> COUNT_REGISTRY = new HashMap<>();
-    private static final HashMap<Integer, String[]> STRING_MAPPING = new HashMap<>();
+    private static final HashMap<Integer, String[]> SPLIT_STRING_MAPPING = new HashMap<>();
     private static final HashMap<String, String[]> RESOURCE_BUNDLE_MAPPING = new HashMap<>();
     private static final String RESOURCES_PATH = "src/main/resources/%s";
     private static Randomizer r;
@@ -110,14 +110,14 @@ public class ResourceGetter {
         if (StringHelper.isNullOrBlank(s))
             return new String[]{};
 
-        if (!STRING_MAPPING.containsKey(s.hashCode())) {
+        if (!SPLIT_STRING_MAPPING.containsKey(s.hashCode())) {
             String[] parts = StringHelper.splitByParagraphMark(s);
 
             if (StringHelper.isNotNullOrBlank(s))
                 parts = StringHelper.splitByParagraphMark(s);
-            STRING_MAPPING.put(s.hashCode(), parts);
+            SPLIT_STRING_MAPPING.put(s.hashCode(), parts);
         }
-        return STRING_MAPPING.getOrDefault(s.hashCode(), new String[]{});
+        return SPLIT_STRING_MAPPING.getOrDefault(s.hashCode(), new String[]{});
     }
 
     public String getLineFromFile(String filename) {
