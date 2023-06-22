@@ -1,27 +1,27 @@
 package com.memoeslink.generator.common;
 
 public class Pair<A, B> {
-    private A subKey = null;
-    private B subValue = null;
+    private A key;
+    private B value;
 
-    public Pair(A subKey, B subValue) {
-        this.subKey = subKey;
-        this.subValue = subValue;
+    public Pair(A key, B value) {
+        this.key = key;
+        this.value = value;
     }
 
-    public A getSubKey() {
-        return subKey;
+    public A getKey() {
+        return key;
     }
 
-    public void setSubKey(A subKey) {
-        this.subKey = subKey;
+    public void setKey(A key) {
+        this.key = key;
     }
 
-    public B getSubValue() {
-        return subValue;
+    public B getValue() {
+        return value;
     }
 
-    public void setSubValue(B subValue) {
-        this.subValue = subValue;
+    public void setValue(B value) {
+        this.value = value;
     }
 }
