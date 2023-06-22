@@ -5,7 +5,10 @@ import android.content.Context;
 import com.memoeslink.generator.common.finder.ContactNameFinder;
 import com.memoeslink.generator.common.finder.ResourceFinder;
 
+import java.util.HashMap;
+
 public class Explorer extends Binder {
+    private static final HashMap<String, String> EMOJI_MAPPING = new HashMap<>();
     protected final ResourceFinder resourceFinder;
     protected final ContactNameFinder contactNameFinder;
     protected final ReferenceFinder referenceFinder;
@@ -127,12 +130,17 @@ public class Explorer extends Binder {
 
         private String getEmojiV15() {
             String codePoints = Database.selectCodePoints(r.getIntInRange(1, Database.countEmojis()));
+
+            if (EMOJI_MAPPING.containsKey(codePoints))
+                return EMOJI_MAPPING.getOrDefault(codePoints, Database.DEFAULT_VALUE);
             String[] segments = StringHelper.splitBySpace(codePoints);
 
             for (int n = 0; n < segments.length; n++) {
                 segments[n] = "U+" + segments[n];
             }
-            return StringHelper.getCharacter(segments);
+            String character = StringHelper.getCharacter(segments);
+            EMOJI_MAPPING.put(codePoints, character);
+            return character;
         }
 
         private String getPictogram() {
