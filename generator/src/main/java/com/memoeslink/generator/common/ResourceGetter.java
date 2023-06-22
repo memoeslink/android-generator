@@ -13,9 +13,11 @@ import java.util.HashMap;
 import java.util.Locale;
 
 public class ResourceGetter {
-    private static Randomizer r;
     private static final HashMap<String, Integer> COUNT_REGISTRY = new HashMap<>();
+    private static final HashMap<Integer, String[]> RESOURCE_MAPPING = new HashMap<>();
+    private static final HashMap<String, String[]> RESOURCE_BUNDLE_MAPPING = new HashMap<>();
     private static final String RESOURCES_PATH = "src/main/resources/%s";
+    private static Randomizer r;
 
     static {
         r = new Randomizer();
@@ -40,6 +42,14 @@ public class ResourceGetter {
             if (!r.getSeed().equals(ResourceGetter.r.getSeed()))
                 ResourceGetter.r = r;
         }
+    }
+
+    public static ResourceGetter with(Randomizer r) {
+        return new ResourceGetter(r);
+    }
+
+    public static ResourceGetter without() {
+        return with(null);
     }
 
     public char getChar(char[] chars) {
@@ -87,13 +97,27 @@ public class ResourceGetter {
     }
 
     public String getSplitString(String s) {
-        String[] parts = StringHelper.splitByParagraphMark(s);
+        String[] parts = getStrArrayFromSplitStr(s);
         return getString(parts);
     }
 
     public String getSplitString(String s, int index) {
-        String[] parts = StringHelper.splitByParagraphMark(s);
+        String[] parts = getStrArrayFromSplitStr(s);
         return getString(parts, index);
+    }
+
+    public String[] getStrArrayFromSplitStr(String s) {
+        if (StringHelper.isNullOrBlank(s))
+            return new String[]{};
+
+        if (!RESOURCE_MAPPING.containsKey(s.hashCode())) {
+            String[] parts = StringHelper.splitByParagraphMark(s);
+
+            if (StringHelper.isNotNullOrBlank(s))
+                parts = StringHelper.splitByParagraphMark(s);
+            RESOURCE_MAPPING.put(s.hashCode(), parts);
+        }
+        return RESOURCE_MAPPING.getOrDefault(s.hashCode(), new String[]{});
     }
 
     public String getLineFromFile(String filename) {
@@ -151,17 +175,15 @@ public class ResourceGetter {
         String s = ResourceBundleManager.getInstance().getResourceBundle(locale).getString(key);
 
         if (StringHelper.contains(s, "\t")) {
-            String[] parts = StringHelper.splitByTab(s);
+            String mapKey = String.format("%d-%s", s.hashCode(), key);
+
+            if (!RESOURCE_BUNDLE_MAPPING.containsKey(mapKey)) {
+                String[] parts = StringHelper.splitByTab(s);
+                RESOURCE_BUNDLE_MAPPING.put(mapKey, parts);
+            }
+            String[] parts = RESOURCE_BUNDLE_MAPPING.getOrDefault(mapKey, new String[]{});
             return getString(parts);
         }
         return s;
-    }
-
-    public static ResourceGetter with(Randomizer r) {
-        return new ResourceGetter(r);
-    }
-
-    public static ResourceGetter without() {
-        return with(null);
     }
 }
