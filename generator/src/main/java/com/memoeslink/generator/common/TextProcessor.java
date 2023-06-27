@@ -2,7 +2,6 @@ package com.memoeslink.generator.common;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -201,7 +200,7 @@ public class TextProcessor {
                 if (StringHelper.isNotNullOrEmpty(substring) && StringHelper.isNullOrBlank(suffix)) {
                     List<String> sortedItems = new ArrayList<>(items);
 
-                    Collections.sort(sortedItems, (item, otherItem) -> {
+                    sortedItems.sort((item, otherItem) -> {
                         if (item.length() > otherItem.length())
                             return 1;
                         else
@@ -222,9 +221,7 @@ public class TextProcessor {
                     if (shortened)
                         replacement = prefix + items.get(0) + "(" + StringHelper.join(", ", items.subList(1, items.size())) + ")";
                     else {
-                        for (int n = 0; n < items.size(); n++) {
-                            items.set(n, prefix + items.get(n) + suffix);
-                        }
+                        items.replaceAll(item -> prefix + item + suffix);
                         replacement = StringHelper.join("/", items);
                     }
                 } else

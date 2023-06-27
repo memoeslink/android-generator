@@ -223,8 +223,7 @@ public interface NameDefiner {
 
     default String getDerivedUsername(String s, Randomizer r) {
         r = r != null ? r : new Randomizer();
-        String username = s;
-        username = StringHelper.normalizeAlpha(s);
+        String username = StringHelper.normalizeAlpha(s);
 
         if (username.length() > 4)
             username = username.substring(0, 5);

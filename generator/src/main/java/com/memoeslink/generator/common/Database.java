@@ -63,9 +63,9 @@ public class Database extends SQLiteAssetHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         if (newVersion > oldVersion) {
             if (context.deleteDatabase(DATABASE_NAME))
-                System.out.println(String.format("Old %s database (V%d) was deleted successfully.", DATABASE_NAME, DATABASE_VERSION));
+                System.out.printf("Old %s database (V%d) was deleted successfully.", DATABASE_NAME, DATABASE_VERSION);
             else {
-                System.out.println(String.format("Old %s database (V%d) couldn't be deleted. Trying forced upgrade.", DATABASE_NAME, DATABASE_VERSION));
+                System.out.printf("Old %s database (V%d) couldn't be deleted. Trying forced upgrade.%n", DATABASE_NAME, DATABASE_VERSION);
                 setForcedUpgrade(newVersion);
             }
         }

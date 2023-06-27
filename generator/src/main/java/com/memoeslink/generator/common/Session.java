@@ -35,10 +35,10 @@ public class Session {
 
             if (!database.isConnected())
                 throw new SQLiteException();
-            System.out.println(String.format("Database %s was successfully connected.", filePath));
+            System.out.printf("Database %s was successfully connected.%n", filePath);
         } catch (SQLiteException e) {
             database = null;
-            System.out.println(String.format("Database %s could not be connected.", filePath));
+            System.out.printf("Database %s could not be connected.%n", filePath);
         }
         return database;
     }

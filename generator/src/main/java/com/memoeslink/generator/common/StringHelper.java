@@ -1117,7 +1117,7 @@ public class StringHelper {
     }
 
     public static String removeEach(String s, String... occurrences) {
-        if (isNullOrEmpty(s) || occurrences.length == 0)
+        if (isNullOrEmpty(s))
             return s;
 
         for (String occurrence : occurrences) {

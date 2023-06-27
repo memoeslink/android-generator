@@ -16,25 +16,15 @@ public class AdjectiveGenerator extends Generator {
         AdjectiveGetter getter = getGetter();
         form = form != null ? form : Form.UNDEFINED;
 
-        switch (form) {
-            case SINGULAR:
-            case SINGULAR_NEUTER:
-                return getter.getAdjective();
-            case PLURAL:
-            case PLURAL_NEUTER:
-                return getter.getPluralAdjective();
-            case SINGULAR_MASCULINE:
-                return getter.getMaleAdjective();
-            case PLURAL_MASCULINE:
-                return getter.getPluralMaleAdjective();
-            case SINGULAR_FEMININE:
-                return getter.getFemaleAdjective();
-            case PLURAL_FEMININE:
-                return getter.getPluralFemaleAdjective();
-            case UNDEFINED:
-            default:
-                return getAdjective(r.getElement(Form.values()));
-        }
+        return switch (form) {
+            case SINGULAR, SINGULAR_NEUTER -> getter.getAdjective();
+            case PLURAL, PLURAL_NEUTER -> getter.getPluralAdjective();
+            case SINGULAR_MASCULINE -> getter.getMaleAdjective();
+            case PLURAL_MASCULINE -> getter.getPluralMaleAdjective();
+            case SINGULAR_FEMININE -> getter.getFemaleAdjective();
+            case PLURAL_FEMININE -> getter.getPluralFemaleAdjective();
+            default -> getAdjective(r.getElement(Form.values()));
+        };
     }
 
     public String getAdjectiveWithArticle(Form form) {

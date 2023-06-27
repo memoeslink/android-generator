@@ -1,18 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <string name="device">dispositivo %1$s</string>
-    <string name="device_android">dispositivo Android</string>
-    <string name="device_brand">dispositivo de marca %1$s</string>
-    <string name="device_id">dispositivo Android con ID %1$s</string>
-    <string name="device_ip">dispositivo con dirección IP %1$s</string>
-    <string name="device_network_disconnected">dispositivo sin conexión a Internet por Wi-Fi</string>
-    <string name="device_network_unknown_ssid">dispositivo conectado a una red desconocida mediante Wi-Fi</string>
-    <string name="device_network_ssid">dispositivo conectado a red llamada %1$s</string>
-    <string name="device_network_operator_disconnected">dispositivo con operador de red desconocido</string>
-    <string name="device_network_operator">dispositivo %1$s</string>
-    <string name="device_unidentified">dispositivo</string>
-    <string name="device_unknown_ip">dispositivo con IP desconocida</string>
-    <string name="device_version">dispositivo Android %1$s</string>
     <string name="gender_female">femenino</string>
     <string name="gender_indefinite">indefinido</string>
     <string name="gender_male">masculino</string>
