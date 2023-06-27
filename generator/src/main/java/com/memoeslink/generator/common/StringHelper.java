@@ -83,39 +83,15 @@ public class StringHelper {
     }
 
     public static String getFirstNonNull(String... strings) {
-        for (String s : strings) {
-            if (s != null)
-                return s;
-        }
-        return null;
+        return getFirstNonNullOrDefault(null, strings);
     }
 
     public static String getFirstNonEmpty(String... strings) {
-        for (String s : strings) {
-            if (isNotNullOrEmpty(s))
-                return s;
-        }
-        return null;
+        return getFirstNonEmptyOrDefault(null, strings);
     }
 
     public static String getFirstNonBlank(String... strings) {
-        for (String s : strings) {
-            if (isNotNullOrBlank(s))
-                return s;
-        }
-        return null;
-    }
-
-    public static String getFirstNonNullElseDefault(String... strings) {
-        return getFirstNonNullOrDefault(DEFAULT_VALUE, strings);
-    }
-
-    public static String getFirstNonEmptyElseDefault(String... strings) {
-        return getFirstNonEmptyOrDefault(DEFAULT_VALUE, strings);
-    }
-
-    public static String getFirstNonBlankElseDefault(String... strings) {
-        return getFirstNonBlankOrDefault(DEFAULT_VALUE, strings);
+        return getFirstNonBlankOrDefault(null, strings);
     }
 
     public static String getFirstNonNullOrDefault(String defaultValue, String... strings) {
@@ -140,6 +116,18 @@ public class StringHelper {
                 return s;
         }
         return defaultValue;
+    }
+
+    public static String getFirstNonNullElseDefault(String... strings) {
+        return getFirstNonNullOrDefault(DEFAULT_VALUE, strings);
+    }
+
+    public static String getFirstNonEmptyElseDefault(String... strings) {
+        return getFirstNonEmptyOrDefault(DEFAULT_VALUE, strings);
+    }
+
+    public static String getFirstNonBlankElseDefault(String... strings) {
+        return getFirstNonBlankOrDefault(DEFAULT_VALUE, strings);
     }
 
     public static String prependIfNotNull(String s, String prefix) {
@@ -1699,5 +1687,11 @@ public class StringHelper {
                 sb.appendCodePoint(Integer.decode(codePoint.replace("U+", "0x")));
         }
         return sb.toString();
+    }
+
+    public static String createHexStringFromARGB(int alpha, int red, int green, int blue) {
+        if ((alpha < 0 || alpha > 255) || (red < 0 || red > 255) || (green < 0 || green > 255) || (blue < 0 || blue > 255))
+            return ("#FFFFFFFF");
+        return String.format("#%02X%02X%02X%02X", alpha, red, green, blue).toUpperCase();
     }
 }

@@ -5,6 +5,7 @@ import com.memoeslink.generator.common.Separator;
 import com.memoeslink.generator.common.StringHelper;
 
 import java.text.Normalizer;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -197,7 +198,7 @@ public class SyllableSeparator {
 
     public List<String> getSyllables() {
         if (syllables == null)
-            syllables = Arrays.asList(StringHelper.splitByHyphen(getSyllableBySyllable()));
+            syllables = new ArrayList<>(Arrays.asList(StringHelper.splitByHyphen(getSyllableBySyllable())));
         return syllables;
     }
 

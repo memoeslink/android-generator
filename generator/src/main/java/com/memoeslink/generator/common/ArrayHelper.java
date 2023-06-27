@@ -27,4 +27,18 @@ public class ArrayHelper {
         }
         return false;
     }
+
+    @SafeVarargs
+    public static <T> T getFirstNonNull(T... elements) {
+        return getFirstNonNullOrDefault(null, elements);
+    }
+
+    @SafeVarargs
+    public static <T> T getFirstNonNullOrDefault(T defaultValue, T... elements) {
+        for (T element : elements) {
+            if (element != null)
+                return element;
+        }
+        return defaultValue;
+    }
 }
