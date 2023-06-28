@@ -65,12 +65,12 @@ public class NameGenerator extends Generator {
             case MALE_PREFORMED_FULL_NAME -> getter.getMalePreformedFullName();
             case FEMALE_PREFORMED_FULL_NAME -> getter.getFemalePreformedFullName();
             case PREFORMED_FULL_NAME -> getter.getPreformedFullName();
-            case MALE_MARKOV_FORENAME -> getter.getMaleMarkovForename();
-            case FEMALE_MARKOV_FORENAME -> getter.getFemaleMarkovForename();
-            case MARKOV_FAMILY_NAME -> getter.getMarkovFamilyName();
-            case MALE_MARKOV_FULL_NAME -> getter.getMaleMarkovFullName();
-            case FEMALE_MARKOV_FULL_NAME -> getter.getFemaleMarkovFullName();
-            case MARKOV_FULL_NAME -> getter.getMarkovFullName();
+            case MALE_MARKOVIAN_FORENAME -> getter.getMaleMarkovianForename();
+            case FEMALE_MARKOVIAN_FORENAME -> getter.getFemaleMarkovianForename();
+            case MARKOVIAN_FAMILY_NAME -> getter.getMarkovianFamilyName();
+            case MALE_MARKOVIAN_FULL_NAME -> getter.getMaleMarkovianFullName();
+            case FEMALE_MARKOVIAN_FULL_NAME -> getter.getFemaleMarkovianFullName();
+            case MARKOVIAN_FULL_NAME -> getter.getMarkovianFullName();
             case SECRET_NAME -> getter.getSecretName();
             case USERNAME -> getter.getUsername();
             case COMPOSITE_USERNAME -> getter.getCompositeUsername();

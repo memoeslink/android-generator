@@ -97,7 +97,7 @@ public class TextProcessor {
         if (StringHelper.endsWith(s, ending))
             return s;
 
-        if (StringHelper.endsWithAny(s, com.memoeslink.generator.english.Constant.VOWELS.toCharArray()))
+        if (StringHelper.endsWithAny(s, com.memoeslink.generator.base.Constant.VOWELS.toCharArray()))
             return StringHelper.connect(StringHelper.removeLastChar(s), ending);
         return StringHelper.connect(s, ending);
     }
@@ -113,7 +113,7 @@ public class TextProcessor {
         if (StringHelper.endsWith(s, ending))
             return s;
 
-        if (StringHelper.endsWithAny(s, com.memoeslink.generator.english.Constant.VOWELS.toCharArray()))
+        if (StringHelper.endsWithAny(s, com.memoeslink.generator.base.Constant.VOWELS.toCharArray()))
             return StringHelper.connect(StringHelper.removeLastChar(s), ending);
         return s;
     }

@@ -150,17 +150,17 @@ public interface NameDefiner {
 
     public String getPreformedFullName();
 
-    public String getFemaleMarkovForename();
+    public String getFemaleMarkovianForename();
 
-    public String getMaleMarkovForename();
+    public String getMaleMarkovianForename();
 
-    public String getMarkovFamilyName();
+    public String getMarkovianFamilyName();
 
-    public String getFemaleMarkovFullName();
+    public String getFemaleMarkovianFullName();
 
-    public String getMaleMarkovFullName();
+    public String getMaleMarkovianFullName();
 
-    public String getMarkovFullName();
+    public String getMarkovianFullName();
 
     public String getSecretName();
 

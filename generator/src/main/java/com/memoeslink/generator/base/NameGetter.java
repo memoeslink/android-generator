@@ -231,34 +231,34 @@ public class NameGetter extends com.memoeslink.generator.common.NameGetter imple
     }
 
     @Override
-    public String getFemaleMarkovForename() {
+    public String getFemaleMarkovianForename() {
         String ending = ResourceGetter.with(r).getString(Constant.FEMALE_NAME_SUFFIX);
-        return TextProcessor.feminizeOnVowelEnd(getMarkovName(3, 10, r), ending);
+        return TextProcessor.feminizeOnVowelEnd(getMarkovianName(3, 10, r), ending);
     }
 
     @Override
-    public String getMaleMarkovForename() {
-        return getMarkovName(3, 10, r);
+    public String getMaleMarkovianForename() {
+        return getMarkovianName(3, 10, r);
     }
 
     @Override
-    public String getMarkovFamilyName() {
-        return getMarkovName(3, 8, r);
+    public String getMarkovianFamilyName() {
+        return getMarkovianName(3, 8, r);
     }
 
     @Override
-    public String getFemaleMarkovFullName() {
-        return getFemaleMarkovForename() + Separator.SPACE.getCharacter() + getMarkovFamilyName();
+    public String getFemaleMarkovianFullName() {
+        return getFemaleMarkovianForename() + Separator.SPACE.getCharacter() + getMarkovianFamilyName();
     }
 
     @Override
-    public String getMaleMarkovFullName() {
-        return getMaleMarkovForename() + Separator.SPACE.getCharacter() + getMarkovFamilyName();
+    public String getMaleMarkovianFullName() {
+        return getMaleMarkovianForename() + Separator.SPACE.getCharacter() + getMarkovianFamilyName();
     }
 
     @Override
-    public String getMarkovFullName() {
-        return r.getBoolean() ? getMaleMarkovFullName() : getFemaleMarkovFullName();
+    public String getMarkovianFullName() {
+        return r.getBoolean() ? getMaleMarkovianFullName() : this.getFemaleMarkovianFullName();
     }
 
     @Override

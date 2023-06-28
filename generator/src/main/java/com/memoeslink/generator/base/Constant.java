@@ -3,6 +3,16 @@ package com.memoeslink.generator.base;
 import com.memoeslink.common.WeightedChar;
 
 public class Constant {
+    public static final String ALPHABET = "abcdefghijklmnopqrstuvwxyz";
+    public static final String LOWERCASE_ALPHABET = "abcdefghijklmnopqrstuvwxyz";
+    public static final String UPPERCASE_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    public static final String LETTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    public static final String VOWELS = "aeiouAEIOU";
+    public static final String LOWERCASE_VOWELS = "aeiou";
+    public static final String UPPERCASE_VOWELS = "AEIOU";
+    public static final String CONSONANTS = "bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ";
+    public static final String LOWERCASE_CONSONANTS = "bcdfghjklmnpqrstvwxyz";
+    public static final String UPPERCASE_CONSONANTS = "BCDFGHJKLMNPQRSTVWXYZ";
     public static final char[] LOWERCASE_ENDING_CONSONANTS = {'l', 'm', 'n', 'r', 's', 't', 'z'};
     public static final char[] LOWERCASE_NON_CLUSTER_CONSONANTS = {'h', 'j', 'q', 'v', 'w', 'x'};
     public static final WeightedChar[] WEIGHTED_CONSONANTS = {
