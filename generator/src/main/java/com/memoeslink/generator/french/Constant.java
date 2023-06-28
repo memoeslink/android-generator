@@ -1286,4 +1286,7 @@ public class Constant {
             "Xx",
             "Zimmermann"
     };
+
+    private Constant() {
+    }
 }

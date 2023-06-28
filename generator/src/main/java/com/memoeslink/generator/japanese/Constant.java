@@ -782,4 +782,7 @@ public class Constant {
             "Yoshino",
             "Yoshioka"
     };
+
+    private Constant() {
+    }
 }

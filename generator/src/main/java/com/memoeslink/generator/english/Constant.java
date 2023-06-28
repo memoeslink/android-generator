@@ -22,4 +22,7 @@ public class Constant {
     public static final String[] ROYAL_TITLES = {"[Baron[,ess]]", "[Count[,ess]]", "[Du[ke,chess]]", "[Emp[eror,ress]]", "[Kaiser[,in]]", "[Mar[quess,chioness]]", "Pope", "[Prince[,ss]]", "[[King,Queen]]", "[Viscount[,ess]]", "[Tsar[,ina]]", "[R[ex,ēgīna]]", "[Sultan[,a]]"};
     public static final String[] RELATIONSHIP = {"a person", "an unknown person", "a related person to %s", "the couple of %s", "the spouse of %s", "the concubine of %s", "the best friend of %s", "the worst enemy of %s", "the closest person to %s", "someone who offers a service to %s", "someone who sells anything to %s", "someone close to %s", "a lover of %s", "a relative of %s", "a distant relative of %s", "a colleague of %s", "a friend of %s", "an enemy of %s", "a good friend of %s", "a comrade of %s", "a fellow of %s", "a companion of %s", "a teammate of %s", "a coworker of %s", "a classmate of %s", "a roommate of %s", "a business associate of %s", "a customer of %s", "a prospect of %s", "an acquaintance of %s", "a neighbor of %s", "a follower of %s", "an observer of %s", "an ally of %s", "a rival of %s", "an apprentice of %s", "a mentor of %s"};
     public static final String[] UNSPECIFIC_RELATIONSHIP = {"a friend", "a foe", "a relative", "a distant relative", "an acquaintance", "a neighbor", "an unknown person", "a fellow", "a comrade", "a companion", "a lover", "a follower", "a work-related person", "an associate", "a partner", "a third party", "a random person"};
+
+    private Constant() {
+    }
 }

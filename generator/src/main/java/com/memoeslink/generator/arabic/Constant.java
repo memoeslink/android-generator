@@ -389,4 +389,7 @@ public class Constant {
             "Yousif",
             "Zogby"
     };
+
+    private Constant() {
+    }
 }

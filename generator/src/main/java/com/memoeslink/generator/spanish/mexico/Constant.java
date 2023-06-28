@@ -498,4 +498,7 @@ public class Constant {
             "Zepeda",
             "Zúñiga"
     };
+
+    private Constant() {
+    }
 }

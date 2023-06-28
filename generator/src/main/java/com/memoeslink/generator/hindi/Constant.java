@@ -307,4 +307,7 @@ public class Constant {
             "Vijaya",
             "Vish"
     };
+
+    private Constant() {
+    }
 }

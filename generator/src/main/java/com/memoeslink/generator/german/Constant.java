@@ -1102,4 +1102,7 @@ public class Constant {
             "Werner",
             "Wilhelm"
     };
+
+    private Constant() {
+    }
 }

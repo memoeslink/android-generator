@@ -287,4 +287,7 @@ public class Constant {
     };
     public static final String[] FEMALE_PATRONYMIC_SUFFIXES = {"inichna", "evna", "ovna"};
     public static final String[] MALE_PATRONYMIC_SUFFIXES = {"ich", "evich", "ovich"};
+
+    private Constant() {
+    }
 }

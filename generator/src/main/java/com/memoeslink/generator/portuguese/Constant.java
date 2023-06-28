@@ -1058,4 +1058,7 @@ public class Constant {
             "Zambujal",
             "Zarco"
     };
+
+    private Constant() {
+    }
 }
