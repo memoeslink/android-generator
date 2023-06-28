@@ -1,4 +1,4 @@
-package com.memoeslink.generator.international;
+package com.memoeslink.generator.base;
 
 import com.memoeslink.common.WeightedChar;
 

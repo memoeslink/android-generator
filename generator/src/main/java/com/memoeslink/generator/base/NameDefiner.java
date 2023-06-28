@@ -1,11 +1,18 @@
-package com.memoeslink.generator.international;
+package com.memoeslink.generator.base;
 
 import com.memoeslink.common.Randomizer;
 import com.memoeslink.common.WeightedChar;
 import com.memoeslink.generator.common.CharHelper;
 import com.memoeslink.generator.common.IntegerHelper;
 import com.memoeslink.generator.common.ResourceGetter;
+import com.memoeslink.generator.common.Separator;
 import com.memoeslink.generator.common.StringHelper;
+import com.memoeslink.generator.common.UsernameSeparator;
+import com.memoeslink.generator.international.NameGen;
+
+import net.andreinc.aleph.AlephFormatter;
+
+import java.util.Locale;
 
 public interface NameDefiner extends com.memoeslink.generator.common.NameDefiner {
 
@@ -195,5 +202,81 @@ public interface NameDefiner extends com.memoeslink.generator.common.NameDefiner
                 sb.append(ResourceGetter.with(r).getChar(com.memoeslink.generator.english.Constant.LOWERCASE_CONSONANTS));
         }
         return StringHelper.capitalizeFirst(sb.toString());
+    }
+
+    default String getCompositeUsername(String a, String b, Randomizer r) {
+        r = r != null ? r : new Randomizer();
+        String username = StringHelper.joinWithSpace(a, b).trim();
+        username = StringHelper.normalize(username);
+
+        if (StringHelper.isNullOrBlank(username))
+            return username;
+
+        // Append number, if required
+        switch (r.getInt(6)) {
+            case 0 ->
+                    username = username + Separator.SPACE.getCharacter() + (com.memoeslink.generator.common.Constant.STARTING_YEAR + r.getInt(-100, 101));
+            case 1 -> {
+                int extent = 10;
+                int exp = r.getInt(1, 7);
+
+                for (int n = 1; n < exp; n++) {
+                    extent *= 10;
+                }
+                int number = r.getInt(extent);
+                int count = IntegerHelper.countDigits(extent - 1);
+                username = username + Separator.SPACE.getCharacter() +
+                        StringHelper.padLeft(String.valueOf(number), count, '0');
+            }
+            case 2 -> {
+                String[] numbers = {"0", "002", "007", "2", "69", "69", "69", "666", "777", "420", "420", "420", "911", "999"};
+                username = username + Separator.SPACE.getCharacter() + r.getElement(numbers);
+            }
+        }
+
+        // Replace or remove whitespaces
+        switch (r.getInt(3)) {
+            case 0 ->
+                    username = StringHelper.remove(username, String.valueOf(Separator.SPACE.getCharacter()));
+            case 1 -> {
+                username = StringHelper.capitalize(username);
+                username = StringHelper.remove(username, String.valueOf(Separator.SPACE.getCharacter()));
+            }
+            case 2 -> {
+                char separator = r.getElement(UsernameSeparator.values()).getCharacter();
+                username = StringHelper.replace(username, Separator.SPACE.getCharacter(), separator);
+            }
+        }
+        return username;
+    }
+
+    default String getDerivedUsername(String s, Randomizer r) {
+        r = r != null ? r : new Randomizer();
+        String username = StringHelper.normalizeAlpha(s);
+
+        if (username.length() > 4)
+            username = username.substring(0, 5);
+        username = ResourceGetter.with(r).getChar(com.memoeslink.generator.english.Constant.UPPERCASE_ALPHABET) + username;
+        username += r.getInt(101);
+        return username;
+    }
+
+    default String getPatternUsername(String a, String b, Locale locale, Randomizer r) {
+        r = r != null ? r : new Randomizer();
+
+        if (StringHelper.isNullOrBlank(a) || StringHelper.isNullOrBlank(b))
+            return com.memoeslink.generator.common.Constant.DEFAULT_USERNAME;
+        a = StringHelper.normalizeAlpha(a).toLowerCase();
+        b = StringHelper.normalizeAlpha(b).toLowerCase();
+        String pattern = ResourceGetter.with(r).getString(com.memoeslink.generator.common.Constant.USERNAME_PATTERNS);
+        return AlephFormatter.str(pattern)
+                .arg("first", a)
+                .arg("second", b)
+                .arg("job", StringHelper.normalize(ResourceGetter.with(r).getStrFromResBundle(locale, "job.position")).toLowerCase())
+                .arg("denominator", StringHelper.normalize(ResourceGetter.with(r).getStrFromResBundle(locale, "organization.denominator")).toLowerCase())
+                .arg("letter", ResourceGetter.with(r).getChar(com.memoeslink.generator.english.Constant.UPPERCASE_ALPHABET))
+                .arg("number", r.getInt(1, 10))
+                .arg("year", com.memoeslink.generator.common.Constant.STARTING_YEAR + r.getInt(-100, 101))
+                .fmt();
     }
 }

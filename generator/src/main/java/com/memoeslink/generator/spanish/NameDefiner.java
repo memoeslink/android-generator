@@ -5,7 +5,7 @@ import com.memoeslink.generator.common.Gender;
 import com.memoeslink.generator.common.Separator;
 import com.memoeslink.generator.common.StringHelper;
 
-public interface NameDefiner extends com.memoeslink.generator.common.NameDefiner {
+public interface NameDefiner extends com.memoeslink.generator.base.NameDefiner {
 
     default String getForename(Gender gender) {
         gender = gender != null ? gender : Gender.UNDEFINED;

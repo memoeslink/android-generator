@@ -9,7 +9,7 @@ import com.memoeslink.generator.common.StringHelper;
 
 import java.util.Locale;
 
-public class NameGetter extends com.memoeslink.generator.international.NameGetter implements NameDefiner {
+public class NameGetter extends com.memoeslink.generator.base.NameGetter implements NameDefiner {
     private final NounGetter nounGetter;
     private final AdjectiveGetter adjectiveGetter;
 

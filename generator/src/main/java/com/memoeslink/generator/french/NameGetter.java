@@ -6,7 +6,7 @@ import com.memoeslink.generator.common.ResourceGetter;
 import com.memoeslink.generator.common.Separator;
 import com.memoeslink.generator.common.StringHelper;
 
-public class NameGetter extends com.memoeslink.generator.international.NameGetter implements NameDefiner {
+public class NameGetter extends com.memoeslink.generator.base.NameGetter implements NameDefiner {
 
     public NameGetter() {
         super();
