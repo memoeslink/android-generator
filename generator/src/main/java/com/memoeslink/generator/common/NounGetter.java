@@ -2,6 +2,8 @@ package com.memoeslink.generator.common;
 
 import com.memoeslink.common.Randomizer;
 
+import org.memoeslink.StringHelper;
+
 public class NounGetter extends Getter implements NounDefiner {
 
     public NounGetter() {

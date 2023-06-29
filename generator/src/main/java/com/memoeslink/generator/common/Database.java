@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteException;
 
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
+import org.memoeslink.StringHelper;
+
 import java.util.HashMap;
 import java.util.function.Supplier;
 

@@ -25,7 +25,8 @@
 package com.memoeslink.generator.english;
 
 import com.memoeslink.generator.common.Database;
-import com.memoeslink.generator.common.StringHelper;
+
+import org.memoeslink.StringHelper;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

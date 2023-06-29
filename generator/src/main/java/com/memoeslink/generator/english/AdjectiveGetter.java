@@ -3,7 +3,8 @@ package com.memoeslink.generator.english;
 import com.memoeslink.common.Randomizer;
 import com.memoeslink.generator.common.AdjectiveDefiner;
 import com.memoeslink.generator.common.Database;
-import com.memoeslink.generator.common.Separator;
+
+import org.memoeslink.Separator;
 
 public final class AdjectiveGetter extends com.memoeslink.generator.common.AdjectiveGetter implements AdjectiveDefiner {
 

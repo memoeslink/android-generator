@@ -1,5 +1,7 @@
 package com.memoeslink.generator.common;
 
+import org.memoeslink.StringHelper;
+
 import java.util.Locale;
 
 public class PhraseGenerator extends Generator {

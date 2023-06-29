@@ -2,8 +2,9 @@ package com.memoeslink.generator.spanish;
 
 import com.memoeslink.generator.common.Database;
 import com.memoeslink.generator.common.Gender;
-import com.memoeslink.generator.common.Separator;
-import com.memoeslink.generator.common.StringHelper;
+
+import org.memoeslink.Separator;
+import org.memoeslink.StringHelper;
 
 public interface NameDefiner extends com.memoeslink.generator.base.NameDefiner {
 

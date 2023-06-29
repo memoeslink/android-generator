@@ -5,6 +5,9 @@ import android.content.Context;
 import com.memoeslink.generator.common.finder.ContactNameFinder;
 import com.memoeslink.generator.common.finder.ResourceFinder;
 
+import org.memoeslink.IntegerHelper;
+import org.memoeslink.StringHelper;
+
 import java.util.HashMap;
 
 public class Explorer extends Binder {

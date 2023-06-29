@@ -1,7 +1,7 @@
 package com.memoeslink.generator.spanish;
 
-import com.memoeslink.generator.common.Separator;
-import com.memoeslink.generator.common.StringHelper;
+import org.memoeslink.Separator;
+import org.memoeslink.StringHelper;
 
 import java.util.Arrays;
 import java.util.List;

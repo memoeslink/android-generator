@@ -2,6 +2,11 @@ package com.memoeslink.generator.common;
 
 import com.memoeslink.common.Randomizer;
 
+import org.memoeslink.ArrayHelper;
+import org.memoeslink.CharHelper;
+import org.memoeslink.IntegerHelper;
+import org.memoeslink.StringHelper;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;

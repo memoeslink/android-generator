@@ -1,6 +1,6 @@
 package com.memoeslink.generator.spanish;
 
-import com.memoeslink.generator.common.StringHelper;
+import org.memoeslink.StringHelper;
 
 import java.util.regex.Pattern;
 

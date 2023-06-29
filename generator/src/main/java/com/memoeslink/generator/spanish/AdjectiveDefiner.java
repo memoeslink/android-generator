@@ -1,7 +1,8 @@
 package com.memoeslink.generator.spanish;
 
 import com.memoeslink.generator.common.Gender;
-import com.memoeslink.generator.common.StringHelper;
+
+import org.memoeslink.StringHelper;
 
 public interface AdjectiveDefiner extends com.memoeslink.generator.common.AdjectiveDefiner {
 

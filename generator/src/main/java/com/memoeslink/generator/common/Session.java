@@ -4,6 +4,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteException;
 import android.os.Environment;
 
+import org.memoeslink.StringHelper;
+
 public class Session {
     private static Database database;
     private static Session instance;

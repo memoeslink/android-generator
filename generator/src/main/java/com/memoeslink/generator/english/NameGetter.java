@@ -3,8 +3,9 @@ package com.memoeslink.generator.english;
 import com.memoeslink.common.Randomizer;
 import com.memoeslink.generator.common.Database;
 import com.memoeslink.generator.common.ResourceGetter;
-import com.memoeslink.generator.common.Separator;
-import com.memoeslink.generator.common.StringHelper;
+
+import org.memoeslink.Separator;
+import org.memoeslink.StringHelper;
 
 import java.util.Locale;
 

@@ -1,6 +1,6 @@
 package com.memoeslink.generator.spanish;
 
-import com.memoeslink.generator.common.IntegerHelper;
+import org.memoeslink.IntegerHelper;
 
 import java.time.LocalTime;
 

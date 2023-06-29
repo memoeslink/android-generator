@@ -1,8 +1,9 @@
 package com.memoeslink.generator.russian;
 
-import com.memoeslink.generator.common.CharHelper;
 import com.memoeslink.generator.common.Gender;
-import com.memoeslink.generator.common.StringHelper;
+
+import org.memoeslink.CharHelper;
+import org.memoeslink.StringHelper;
 
 public interface NameDefiner extends com.memoeslink.generator.base.NameDefiner {
 

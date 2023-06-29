@@ -7,7 +7,7 @@
 
 package com.memoeslink.generator.international;
 
-import com.memoeslink.generator.common.StringHelper;
+import org.memoeslink.StringHelper;
 
 import java.util.Arrays;
 import java.util.LinkedHashMap;

@@ -2,15 +2,16 @@ package com.memoeslink.generator.base;
 
 import com.memoeslink.common.Randomizer;
 import com.memoeslink.common.WeightedChar;
-import com.memoeslink.generator.common.CharHelper;
-import com.memoeslink.generator.common.IntegerHelper;
 import com.memoeslink.generator.common.ResourceGetter;
-import com.memoeslink.generator.common.Separator;
-import com.memoeslink.generator.common.StringHelper;
 import com.memoeslink.generator.common.UsernameSeparator;
 import com.memoeslink.generator.international.NameGen;
 
 import net.andreinc.aleph.AlephFormatter;
+
+import org.memoeslink.CharHelper;
+import org.memoeslink.IntegerHelper;
+import org.memoeslink.Separator;
+import org.memoeslink.StringHelper;
 
 import java.util.Locale;
 

@@ -4,6 +4,9 @@ import android.graphics.Color;
 
 import com.memoeslink.common.Randomizer;
 
+import org.memoeslink.LongHelper;
+import org.memoeslink.StringHelper;
+
 public class Maker {
 
     public static String getColor(String s) {

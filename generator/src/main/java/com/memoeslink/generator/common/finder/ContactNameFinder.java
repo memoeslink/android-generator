@@ -10,7 +10,8 @@ import android.provider.ContactsContract;
 import androidx.core.content.ContextCompat;
 
 import com.memoeslink.generator.common.Binder;
-import com.memoeslink.generator.common.StringHelper;
+
+import org.memoeslink.StringHelper;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -7,10 +7,11 @@ import androidx.annotation.ArrayRes;
 import androidx.annotation.RawRes;
 import androidx.annotation.StringRes;
 
-import com.memoeslink.generator.common.ArrayHelper;
 import com.memoeslink.generator.common.Binder;
-import com.memoeslink.generator.common.IntegerHelper;
-import com.memoeslink.generator.common.StringHelper;
+
+import org.memoeslink.ArrayHelper;
+import org.memoeslink.IntegerHelper;
+import org.memoeslink.StringHelper;
 
 import java.io.IOException;
 import java.io.InputStream;

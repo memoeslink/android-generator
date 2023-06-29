@@ -4,6 +4,9 @@ import android.content.Context;
 
 import com.memoeslink.generator.R;
 
+import org.memoeslink.IntegerHelper;
+import org.memoeslink.StringHelper;
+
 import java.util.HashMap;
 
 public enum Gender {

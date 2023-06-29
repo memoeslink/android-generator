@@ -1,5 +1,8 @@
 package com.memoeslink.generator.common;
 
+import org.memoeslink.Separator;
+import org.memoeslink.StringHelper;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

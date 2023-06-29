@@ -3,7 +3,8 @@ package com.memoeslink.generator.english;
 import com.memoeslink.common.Randomizer;
 import com.memoeslink.generator.common.Database;
 import com.memoeslink.generator.common.NounDefiner;
-import com.memoeslink.generator.common.Separator;
+
+import org.memoeslink.Separator;
 
 import io.github.encryptorcode.pluralize.Pluralize;
 

@@ -5,8 +5,9 @@ import com.memoeslink.generator.common.Gender;
 import com.memoeslink.generator.common.Person;
 import com.memoeslink.generator.common.RelationDefiner;
 import com.memoeslink.generator.common.ResourceGetter;
-import com.memoeslink.generator.common.StringHelper;
 import com.memoeslink.generator.common.TextComponent;
+
+import org.memoeslink.StringHelper;
 
 public class RelationGetter extends com.memoeslink.generator.common.RelationGetter implements RelationDefiner {
 

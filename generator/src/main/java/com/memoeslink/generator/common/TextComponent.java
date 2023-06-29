@@ -1,5 +1,7 @@
 package com.memoeslink.generator.common;
 
+import org.memoeslink.StringHelper;
+
 import java.util.LinkedHashSet;
 import java.util.Set;
 

@@ -4,8 +4,9 @@ import com.memoeslink.common.Randomizer;
 import com.memoeslink.generator.common.Database;
 import com.memoeslink.generator.common.Gender;
 import com.memoeslink.generator.common.NounDefiner;
-import com.memoeslink.generator.common.Separator;
-import com.memoeslink.generator.common.StringHelper;
+
+import org.memoeslink.Separator;
+import org.memoeslink.StringHelper;
 
 public final class NounGetter extends com.memoeslink.generator.common.NounGetter implements NounDefiner, com.memoeslink.generator.spanish.NounDefiner {
 

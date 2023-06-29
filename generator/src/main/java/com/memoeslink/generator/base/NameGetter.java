@@ -1,12 +1,13 @@
 package com.memoeslink.generator.base;
 
 import com.memoeslink.common.Randomizer;
-import com.memoeslink.generator.common.IntegerHelper;
 import com.memoeslink.generator.common.ResourceGetter;
-import com.memoeslink.generator.common.Separator;
-import com.memoeslink.generator.common.StringHelper;
 import com.memoeslink.generator.common.TextProcessor;
 import com.memoeslink.generator.international.Shaper;
+
+import org.memoeslink.IntegerHelper;
+import org.memoeslink.Separator;
+import org.memoeslink.StringHelper;
 
 public class NameGetter extends com.memoeslink.generator.common.NameGetter implements NameDefiner {
 
