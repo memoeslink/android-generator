@@ -245,7 +245,7 @@ public class SyllableSeparator {
 
             if (!CharHelper.isUnaccentedVowel(letter))
                 continue;
-            String accentedLetter = String.format("%s\u0301", CharHelper.getUnicode(letter));
+            String accentedLetter = String.format("%s\u0301", StringHelper.getUnicode(letter));
             accentedLetter = StringHelper.unescapeJavaString(accentedLetter);
             letters[n] = Normalizer.normalize(accentedLetter, Normalizer.Form.NFC).charAt(0);
         }
