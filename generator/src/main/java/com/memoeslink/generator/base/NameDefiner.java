@@ -2,11 +2,10 @@ package com.memoeslink.generator.base;
 
 import com.memoeslink.common.Randomizer;
 import com.memoeslink.common.WeightedChar;
+import com.memoeslink.generator.common.Database;
 import com.memoeslink.generator.common.ResourceGetter;
 import com.memoeslink.generator.common.UsernameSeparator;
 import com.memoeslink.generator.international.NameGen;
-
-import net.andreinc.aleph.AlephFormatter;
 
 import org.memoeslink.CharHelper;
 import org.memoeslink.IntegerHelper;
@@ -14,8 +13,12 @@ import org.memoeslink.Separator;
 import org.memoeslink.StringHelper;
 
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public interface NameDefiner extends com.memoeslink.generator.common.NameDefiner {
+    static final String COMPONENT_REGEX = "#\\{(\\w+)\\}";
+    static final Pattern COMPONENT_PATTERN = Pattern.compile(COMPONENT_REGEX);
 
     default String getDefinedForename(Randomizer r) {
         r = r != null ? r : new Randomizer();
@@ -269,14 +272,34 @@ public interface NameDefiner extends com.memoeslink.generator.common.NameDefiner
         a = StringHelper.normalizeAlpha(a).toLowerCase();
         b = StringHelper.normalizeAlpha(b).toLowerCase();
         String pattern = ResourceGetter.with(r).getString(com.memoeslink.generator.common.Constant.USERNAME_PATTERNS);
-        return AlephFormatter.str(pattern)
-                .arg("first", a)
-                .arg("second", b)
-                .arg("job", StringHelper.normalize(ResourceGetter.with(r).getStrFromResBundle(locale, "job.position")).toLowerCase())
-                .arg("denominator", StringHelper.normalize(ResourceGetter.with(r).getStrFromResBundle(locale, "organization.denominator")).toLowerCase())
-                .arg("letter", ResourceGetter.with(r).getChar(Constant.UPPERCASE_ALPHABET))
-                .arg("number", r.getInt(1, 10))
-                .arg("year", com.memoeslink.generator.common.Constant.STARTING_YEAR + r.getInt(-100, 101))
-                .fmt();
+        Matcher matcher = COMPONENT_PATTERN.matcher(pattern);
+        StringBuffer sb = new StringBuffer();
+
+        while (matcher.find()) {
+            String replacement = Database.DEFAULT_VALUE;
+
+            switch (matcher.group(1)) {
+                case "first" -> replacement = a;
+                case "second" -> replacement = b;
+                case "job" -> {
+                    replacement = ResourceGetter.with(r).getStrFromResBundle(locale, "job.position");
+                    replacement = StringHelper.normalize(replacement).toLowerCase();
+                }
+                case "denominator" -> {
+                    replacement = ResourceGetter.with(r).getStrFromResBundle(locale, "organization.denominator");
+                    replacement = StringHelper.normalize(replacement).toLowerCase();
+                }
+                case "letter" ->
+                        replacement = String.valueOf(ResourceGetter.with(r).getChar(Constant.UPPERCASE_ALPHABET));
+                case "number" -> replacement = String.valueOf(r.getInt(1, 10));
+                case "year" -> {
+                    int year = com.memoeslink.generator.common.Constant.STARTING_YEAR + r.getInt(-100, 101);
+                    replacement = String.valueOf(year);
+                }
+            }
+            matcher.appendReplacement(sb, replacement);
+        }
+        matcher.appendTail(sb);
+        return sb.toString();
     }
 }
