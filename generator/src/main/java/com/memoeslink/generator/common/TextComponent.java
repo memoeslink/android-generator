@@ -2,7 +2,9 @@ package com.memoeslink.generator.common;
 
 import org.memoeslink.StringHelper;
 
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 public class TextComponent {
@@ -10,7 +12,8 @@ public class TextComponent {
     private String uniqueId;
     private String tag;
     private String text;
-    private Gender hegemonicGender;
+    private List<Gender> genders;
+    private List<GrammaticalNumber> grammaticalNumbers;
     private boolean nullified;
     private Set<String> attributes = new LinkedHashSet<>();
 
@@ -19,7 +22,8 @@ public class TextComponent {
         uniqueId = null;
         tag = null;
         text = StringHelper.EMPTY;
-        hegemonicGender = null;
+        genders = new ArrayList<>();
+        grammaticalNumbers = new ArrayList<>();
         nullified = false;
     }
 
@@ -28,12 +32,13 @@ public class TextComponent {
         this.text = text;
     }
 
-    public TextComponent(long id, String uniqueId, String tag, String text, Gender hegemonicGender, boolean nullified, Set<String> attributes) {
+    public TextComponent(long id, String uniqueId, String tag, String text, ArrayList<Gender> genders, ArrayList<GrammaticalNumber> grammaticalNumbers, boolean nullified, Set<String> attributes) {
         this.id = id;
         this.uniqueId = uniqueId;
         this.tag = tag;
         this.text = text;
-        this.hegemonicGender = hegemonicGender;
+        this.genders = genders != null ? genders : new ArrayList<>();
+        this.grammaticalNumbers = grammaticalNumbers != null ? grammaticalNumbers : new ArrayList<>();
         this.nullified = nullified;
         this.attributes = attributes;
     }
@@ -70,12 +75,42 @@ public class TextComponent {
         this.text = text;
     }
 
-    public Gender getHegemonicGender() {
-        return hegemonicGender;
+    public List<Gender> getGenders() {
+        return genders;
     }
 
-    public void setHegemonicGender(Gender hegemonicGender) {
-        this.hegemonicGender = hegemonicGender;
+    public void setGenders(ArrayList<Gender> genders) {
+        genders = genders != null ? genders : new ArrayList<>();
+        this.genders = genders;
+    }
+
+    public void addGender(Gender gender) {
+        gender = gender != null ? gender : Gender.UNDEFINED;
+        genders.add(gender);
+    }
+
+    public Gender getHegemonicGender() {
+        if (genders.isEmpty()) return null;
+        return genders.get(genders.size() - 1);
+    }
+
+    public List<GrammaticalNumber> getGrammaticalNumbers() {
+        return grammaticalNumbers;
+    }
+
+    public void setGrammaticalNumbers(ArrayList<GrammaticalNumber> grammaticalNumbers) {
+        grammaticalNumbers = grammaticalNumbers != null ? grammaticalNumbers : new ArrayList<>();
+        this.grammaticalNumbers = grammaticalNumbers;
+    }
+
+    public void addGrammaticalNumber(GrammaticalNumber grammaticalNumber) {
+        grammaticalNumber = grammaticalNumber != null ? grammaticalNumber : GrammaticalNumber.UNDEFINED;
+        grammaticalNumbers.add(grammaticalNumber);
+    }
+
+    public GrammaticalNumber getHegemonicGrammaticalNumber() {
+        if (grammaticalNumbers.isEmpty()) return null;
+        return grammaticalNumbers.get(grammaticalNumbers.size() - 1);
     }
 
     public boolean isNullified() {
