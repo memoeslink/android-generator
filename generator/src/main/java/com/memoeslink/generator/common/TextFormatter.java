@@ -331,6 +331,22 @@ public class TextFormatter {
         return String.format("<font color=\"%s\">%s</font>", Maker.getDefaultColor(s), formatText(s, "b"));
     }
 
+    public static String formatMessage(String message, String details) {
+        if (StringHelper.isNullOrBlank(message))
+            return message;
+
+        if (StringHelper.isNotNullOrBlank(details))
+            details = colorText(details, "gray");
+        return message + StringHelper.prependIfNotBlank(details, "<br>");
+    }
+
+    public static String formatBotMessage(String message) {
+        if (StringHelper.isNullOrBlank(message))
+            return message;
+        return colorText(message, "aqua") + "<br>" + StringHelper.getCharacter("U+1F916") +
+                StringHelper.getCharacter("U+1F4AC") /* 🤖💬 */;
+    }
+
     public static String colorText(String s, String color) {
         if (StringHelper.isNullOrBlank(s))
             return s;
