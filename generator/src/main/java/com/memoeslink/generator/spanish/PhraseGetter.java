@@ -18,6 +18,6 @@ public class PhraseGetter extends com.memoeslink.generator.common.PhraseGetter i
     @Override
     public String getSimpleGreeting() {
         String greeting = PeriodOfDay.get(LocalTime.now()).getGreeting();
-        return r.getBoolean() ? greeting : Pluralizer.pluralize(greeting);
+        return r.getBoolean() ? greeting : Pluralizer.pluralizeAll(greeting);
     }
 }
