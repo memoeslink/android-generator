@@ -19,7 +19,16 @@ public class PhraseGenerator extends Generator {
         phraseType = phraseType != null ? phraseType : PhraseType.ANY;
 
         return switch (phraseType) {
-            case SIMPLE_GREETING -> getter.getSimpleGreeting();
+            case AGREEMENT -> getter.getAgreement();
+            case APOLOGY -> getter.getApology();
+            case APPRECIATION -> getter.getAppreciation();
+            case CONGRATULATION -> getter.getCongratulation();
+            case DISAGREEMENT -> getter.getDisagreement();
+            case FAREWELL -> getter.getFarewell();
+            case GREETING -> getter.getGreeting();
+            case INITIATION_QUESTION -> getter.getInitiationQuestion();
+            case INQUIRY_QUESTION -> getter.getInquiryQuestion();
+            case SHORT_ANSWER -> getter.getShortAnswer();
             default -> getPhrase(r.getElement(PhraseType.values()));
         };
     }

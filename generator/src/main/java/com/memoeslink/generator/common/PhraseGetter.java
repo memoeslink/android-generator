@@ -13,7 +13,62 @@ public class PhraseGetter extends Getter implements PhraseDefiner {
     }
 
     @Override
-    public String getSimpleGreeting() {
+    public String getAgreement() {
+        return Database.DEFAULT_VALUE;
+    }
+
+    @Override
+    public String getAmazement() {
+        return Database.DEFAULT_VALUE;
+    }
+
+    @Override
+    public String getApology() {
+        return Database.DEFAULT_VALUE;
+    }
+
+    @Override
+    public String getAppreciation() {
+        return Database.DEFAULT_VALUE;
+    }
+
+    @Override
+    public String getCongratulation() {
+        return Database.DEFAULT_VALUE;
+    }
+
+    @Override
+    public String getDisagreement() {
+        return Database.DEFAULT_VALUE;
+    }
+
+    @Override
+    public String getFarewell() {
+        return Database.DEFAULT_VALUE;
+    }
+
+    @Override
+    public String getGreeting() {
+        return Database.DEFAULT_VALUE;
+    }
+
+    @Override
+    public String getPetition() {
+        return Database.DEFAULT_VALUE;
+    }
+
+    @Override
+    public String getInitiationQuestion() {
+        return Database.DEFAULT_VALUE;
+    }
+
+    @Override
+    public String getInquiryQuestion() {
+        return Database.DEFAULT_VALUE;
+    }
+
+    @Override
+    public String getShortAnswer() {
         return Database.DEFAULT_VALUE;
     }
 }

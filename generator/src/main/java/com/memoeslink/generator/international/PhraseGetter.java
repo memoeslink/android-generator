@@ -14,8 +14,63 @@ public class PhraseGetter extends com.memoeslink.generator.common.PhraseGetter i
     }
 
     @Override
-    public String getSimpleGreeting() {
-        return getAnyGetter().getSimpleGreeting();
+    public String getAgreement() {
+        return getAnyGetter().getAgreement();
+    }
+
+    @Override
+    public String getAmazement() {
+        return getAnyGetter().getAmazement();
+    }
+
+    @Override
+    public String getApology() {
+        return getAnyGetter().getApology();
+    }
+
+    @Override
+    public String getAppreciation() {
+        return getAnyGetter().getAppreciation();
+    }
+
+    @Override
+    public String getCongratulation() {
+        return getAnyGetter().getCongratulation();
+    }
+
+    @Override
+    public String getDisagreement() {
+        return getAnyGetter().getDisagreement();
+    }
+
+    @Override
+    public String getFarewell() {
+        return getAnyGetter().getFarewell();
+    }
+
+    @Override
+    public String getGreeting() {
+        return getAnyGetter().getGreeting();
+    }
+
+    @Override
+    public String getPetition() {
+        return getAnyGetter().getPetition();
+    }
+
+    @Override
+    public String getInitiationQuestion() {
+        return getAnyGetter().getInitiationQuestion();
+    }
+
+    @Override
+    public String getInquiryQuestion() {
+        return getAnyGetter().getInquiryQuestion();
+    }
+
+    @Override
+    public String getShortAnswer() {
+        return getAnyGetter().getShortAnswer();
     }
 
     public com.memoeslink.generator.common.PhraseGetter getAnyGetter() {
