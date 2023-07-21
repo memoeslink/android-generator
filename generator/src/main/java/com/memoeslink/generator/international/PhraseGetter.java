@@ -44,6 +44,11 @@ public class PhraseGetter extends com.memoeslink.generator.common.PhraseGetter i
     }
 
     @Override
+    public String getDoubt() {
+        return getAnyGetter().getDoubt();
+    }
+
+    @Override
     public String getFarewell() {
         return getAnyGetter().getFarewell();
     }
@@ -71,6 +76,11 @@ public class PhraseGetter extends com.memoeslink.generator.common.PhraseGetter i
     @Override
     public String getShortAnswer() {
         return getAnyGetter().getShortAnswer();
+    }
+
+    @Override
+    public String getWelcome() {
+        return getAnyGetter().getWelcome();
     }
 
     public com.memoeslink.generator.common.PhraseGetter getAnyGetter() {

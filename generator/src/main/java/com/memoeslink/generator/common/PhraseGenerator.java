@@ -24,11 +24,13 @@ public class PhraseGenerator extends Generator {
             case APPRECIATION -> getter.getAppreciation();
             case CONGRATULATION -> getter.getCongratulation();
             case DISAGREEMENT -> getter.getDisagreement();
+            case DOUBT -> getter.getDoubt();
             case FAREWELL -> getter.getFarewell();
             case GREETING -> getter.getGreeting();
             case INITIATION_QUESTION -> getter.getInitiationQuestion();
             case INQUIRY_QUESTION -> getter.getInquiryQuestion();
             case SHORT_ANSWER -> getter.getShortAnswer();
+            case WELCOME -> getter.getWelcome();
             default -> getPhrase(r.getElement(PhraseType.values()));
         };
     }

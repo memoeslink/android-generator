@@ -14,6 +14,8 @@ public interface PhraseDefiner {
 
     public String getDisagreement();
 
+    public String getDoubt();
+
     public String getFarewell();
 
     public String getGreeting();
@@ -25,4 +27,6 @@ public interface PhraseDefiner {
     public String getInquiryQuestion();
 
     public String getShortAnswer();
+
+    public String getWelcome();
 }

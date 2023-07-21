@@ -43,6 +43,11 @@ public class PhraseGetter extends Getter implements PhraseDefiner {
     }
 
     @Override
+    public String getDoubt() {
+        return Database.DEFAULT_VALUE;
+    }
+
+    @Override
     public String getFarewell() {
         return Database.DEFAULT_VALUE;
     }
@@ -69,6 +74,11 @@ public class PhraseGetter extends Getter implements PhraseDefiner {
 
     @Override
     public String getShortAnswer() {
+        return Database.DEFAULT_VALUE;
+    }
+
+    @Override
+    public String getWelcome() {
         return Database.DEFAULT_VALUE;
     }
 }

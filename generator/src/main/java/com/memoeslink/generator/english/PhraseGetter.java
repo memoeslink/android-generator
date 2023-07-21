@@ -48,6 +48,11 @@ public class PhraseGetter extends com.memoeslink.generator.common.PhraseGetter i
     }
 
     @Override
+    public String getDoubt() {
+        return ResourceGetter.with(r).getStrFromResBundle(Locale.ENGLISH, "phrase.common.doubt");
+    }
+
+    @Override
     public String getFarewell() {
         return ResourceGetter.with(r).getStrFromResBundle(Locale.ENGLISH, "phrase.common.farewell");
     }
@@ -75,5 +80,10 @@ public class PhraseGetter extends com.memoeslink.generator.common.PhraseGetter i
     @Override
     public String getShortAnswer() {
         return ResourceGetter.with(r).getStrFromResBundle(Locale.ENGLISH, "phrase.common.short.answer");
+    }
+
+    @Override
+    public String getWelcome() {
+        return ResourceGetter.with(r).getStrFromResBundle(Locale.ENGLISH, "phrase.common.welcome");
     }
 }
