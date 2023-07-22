@@ -59,8 +59,18 @@ public class PhraseGetter extends com.memoeslink.generator.common.PhraseGetter i
 
     @Override
     public String getGreeting() {
-        String greeting = PeriodOfDay.get(LocalTime.now()).getGreeting();
-        return r.getBoolean() ? greeting : Pluralizer.pluralizeAll(greeting);
+        String greeting;
+
+        switch (r.getInt(3)) {
+            case 1 -> greeting = PeriodOfDay.get(LocalTime.now()).getGreeting();
+            case 2 -> {
+                greeting = PeriodOfDay.get(LocalTime.now()).getGreeting();
+                greeting = Pluralizer.pluralize(greeting);
+            }
+            default ->
+                    greeting = ResourceGetter.with(r).getStrFromResBundle(new Locale("es"), "phrase.common.greeting");
+        }
+        return greeting;
     }
 
     @Override
