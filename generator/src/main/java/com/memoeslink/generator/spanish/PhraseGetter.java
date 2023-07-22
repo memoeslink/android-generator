@@ -62,11 +62,11 @@ public class PhraseGetter extends com.memoeslink.generator.common.PhraseGetter i
         if (r.getBoolean()) {
             return switch (PeriodOfDay.get(LocalTime.now())) {
                 case MORNING ->
-                        r.getElement(new String[]{"Buen día.", "Buenos días.", "¡Hola, buenos día!", "¡Hola, feliz día!"});
+                        ResourceGetter.with(r).getStrFromResBundle(new Locale("es"), "phrase.common.greeting.morning");
                 case AFTERNOON ->
-                        r.getElement(new String[]{"Buena tarde.", "Buenas tardes.", "¡Hola, buenas tardes!", "¡Hola, feliz tarde!"});
+                        ResourceGetter.with(r).getStrFromResBundle(new Locale("es"), "phrase.common.greeting.afternoon");
                 case NIGHT ->
-                        r.getElement(new String[]{"Buena noche.", "Buenas noches.", "¡Hola, buenas noches!", "¡Hola, feliz noche!"});
+                        ResourceGetter.with(r).getStrFromResBundle(new Locale("es"), "phrase.common.greeting.night");
             };
         } else
             return ResourceGetter.with(r).getStrFromResBundle(new Locale("es"), "phrase.common.greeting");
