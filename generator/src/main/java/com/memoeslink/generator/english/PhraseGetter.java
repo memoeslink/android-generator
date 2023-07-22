@@ -59,9 +59,14 @@ public class PhraseGetter extends com.memoeslink.generator.common.PhraseGetter i
 
     @Override
     public String getGreeting() {
-        if (r.getBoolean())
-            return PeriodOfDay.get(LocalTime.now()).getGreeting();
-        else
+        if (r.getBoolean()) {
+            return switch (PeriodOfDay.get(LocalTime.now())) {
+                case MORNING -> "Good morning";
+                case AFTERNOON -> "Good afternoon";
+                case EVENING -> "Good evening";
+                case NIGHT -> "Good night";
+            };
+        } else
             return ResourceGetter.with(r).getStrFromResBundle(Locale.ENGLISH, "phrase.common.greeting");
     }
 

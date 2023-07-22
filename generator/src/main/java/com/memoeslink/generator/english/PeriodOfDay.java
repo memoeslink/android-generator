@@ -5,25 +5,19 @@ import org.memoeslink.IntegerHelper;
 import java.time.LocalTime;
 
 public enum PeriodOfDay {
-    MORNING(LocalTime.of(5, 0, 0), "Good morning"),
-    AFTERNOON(LocalTime.of(12, 0, 0), "Good afternoon"),
-    EVENING(LocalTime.of(18, 0, 0), "Good evening"),
-    NIGHT(LocalTime.of(21, 0, 0), "Good night");
+    MORNING(LocalTime.of(5, 0, 0)),
+    AFTERNOON(LocalTime.of(12, 0, 0)),
+    EVENING(LocalTime.of(18, 0, 0)),
+    NIGHT(LocalTime.of(21, 0, 0));
 
     private final LocalTime startTime;
-    private final String greeting;
 
-    private PeriodOfDay(LocalTime startTime, String greeting) {
+    private PeriodOfDay(LocalTime startTime) {
         this.startTime = startTime;
-        this.greeting = greeting;
     }
 
     public LocalTime getStartTime() {
         return startTime;
-    }
-
-    public String getGreeting() {
-        return greeting;
     }
 
     public static PeriodOfDay get(int hourOfDay) {
