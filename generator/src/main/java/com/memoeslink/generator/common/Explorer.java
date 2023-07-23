@@ -88,7 +88,7 @@ public class Explorer extends Binder {
         return ResourceFinder.RESOURCE_NOT_FOUND;
     }
 
-    public String findSpecialResById(@ArrayRes int id) {
+    public String findResByRefId(@ArrayRes int id) {
         return referenceFinder.getResource(id);
     }
 
