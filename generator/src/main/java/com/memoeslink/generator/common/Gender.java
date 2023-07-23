@@ -40,7 +40,7 @@ public enum Gender {
 
     public String getName(Context context, int type) {
         type = IntegerHelper.defaultByRange(type, 1, 4);
-        String genderName = context.getResources().getStringArray(R.array.genders)[this.ordinal()];
+        String genderName = context.getResources().getStringArray(R.array.gender)[this.ordinal()];
 
         return switch (type) {
             case 1 -> genderName;

@@ -2,10 +2,13 @@ package com.memoeslink.generator.common;
 
 import android.content.Context;
 
+import androidx.annotation.ArrayRes;
+import androidx.annotation.StringRes;
+
+import com.memoeslink.generator.R;
 import com.memoeslink.generator.common.finder.ContactNameFinder;
 import com.memoeslink.generator.common.finder.ResourceFinder;
 
-import org.memoeslink.IntegerHelper;
 import org.memoeslink.StringHelper;
 
 import java.util.HashMap;
@@ -53,11 +56,11 @@ public class Explorer extends Binder {
         contactNameFinder.unbindSeed();
     }
 
-    public String findRes(int id) {
+    public String findRes(@ArrayRes @StringRes int id) {
         return findRes(id, -1);
     }
 
-    public String findRes(int id, int index) {
+    public String findRes(@ArrayRes @StringRes int id, int index) {
         if (!resourceFinder.isResource(id))
             return ResourceFinder.RESOURCE_NOT_FOUND;
         else if (getResources().getResourceTypeName(id).equals("array"))
@@ -85,8 +88,8 @@ public class Explorer extends Binder {
         return ResourceFinder.RESOURCE_NOT_FOUND;
     }
 
-    public String findByRef(ResourceReference reference) {
-        return referenceFinder.getResource(reference);
+    public String findSpecialResById(@ArrayRes int id) {
+        return referenceFinder.getResource(id);
     }
 
     public int findArrayResLength(int id) {
@@ -101,34 +104,10 @@ public class Explorer extends Binder {
 
     private class ReferenceFinder {
 
-        public String getResource(ResourceReference reference) {
-            if (reference == null)
-                return ResourceFinder.RESOURCE_NOT_FOUND;
-
-            switch (reference) {
-                case EMOJI_V15:
-                    return getEmojiV15();
-                case PICTOGRAM:
-                    return getPictogram();
-                case FORMATTED_PICTOGRAM:
-                    return getFormattedPictogram();
-                case NONE:
-                    return ResourceFinder.RESOURCE_NOT_FOUND;
-            }
-
-            if (reference.getResourceId() > 0)
-                return resourceFinder.getStrFromArrayRes(reference.getResourceId());
-            return ResourceFinder.RESOURCE_NOT_FOUND;
-        }
-
-        private String getResource(ResourceReference reference, int length) {
-            length = IntegerHelper.defaultByRange(length, 0, 1000);
-            StringBuilder sb = new StringBuilder();
-
-            for (int n = 0; n < length; n++) {
-                sb.append(getResource(reference));
-            }
-            return sb.toString();
+        public String getResource(@ArrayRes int id) {
+            if (id == R.array.emoji_v15) return getEmojiV15();
+            else if (id == R.array.pictogram) return getPictogram();
+            else return resourceFinder.getStrFromArrayRes(id);
         }
 
         private String getEmojiV15() {
@@ -147,31 +126,16 @@ public class Explorer extends Binder {
 
         private String getPictogram() {
             return switch (r.getInt(4)) {
-                case 0 -> getResource(ResourceReference.EMOJI, r.getInt(1, 5));
-                case 1 -> getResource(ResourceReference.EMOJI_V15, r.getInt(1, 5));
-                case 2 -> getResource(ResourceReference.EMOTICON);
-                case 3 -> getResource(ResourceReference.KAOMOJI);
+                case 0 -> getResource(R.array.emoji);
+                case 1 -> getResource(R.array.emoji_v15);
+                case 2 -> getResource(R.array.emoticon);
+                case 3 -> getResource(R.array.kaomoji);
                 default -> ResourceFinder.RESOURCE_NOT_FOUND;
             };
         }
 
-        private String getFormattedPictogram() {
-            switch (r.getInt(4)) {
-                case 0:
-                    return getResource(ResourceReference.EMOJI, r.getInt(1, 4));
-                case 1:
-                    return getResource(ResourceReference.EMOJI_V15, r.getInt(1, 4));
-                case 2:
-                    String emoticon = TextFormatter.colorText(getResource(ResourceReference.EMOTICON),
-                            ResourceGetter.with(r).getString(Constant.DEFAULT_COLORS));
-                    return TextFormatter.formatText(emoticon, "b");
-                case 3:
-                    String kaomoji = TextFormatter.colorText(getResource(ResourceReference.KAOMOJI),
-                            ResourceGetter.with(r).getString(Constant.DEFAULT_COLORS));
-                    return TextFormatter.formatText(kaomoji, "b");
-                default:
-                    return ResourceFinder.RESOURCE_NOT_FOUND;
-            }
+        private String emphasizeText(String text) {
+            return String.format("<font color=\"%s\">%s</font>", ResourceGetter.with(r).getString(Constant.DEFAULT_COLORS), TextFormatter.formatText(text, "b"));
         }
     }
 }

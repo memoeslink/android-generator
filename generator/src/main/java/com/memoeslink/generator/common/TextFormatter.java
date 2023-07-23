@@ -269,7 +269,7 @@ public class TextFormatter {
 
         if (person.getGender() == null)
             return formatDescriptor(person);
-        return formatDescriptor(person) + " (<font color=\"#B599FC\">" + TextFormatter.formatText(person.getGender().getGlyph(), "b") + "</font>)";
+        return formatDescriptor(person) + " (<font color=\"#B599FC\">" + formatText(person.getGender().getGlyph(), "b") + "</font>)";
     }
 
     public static String formatName(String s) {

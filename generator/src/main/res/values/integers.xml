@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <integer-array name="emojis">
+    <integer-array name="emoji">
         <item>0x1F601</item>
         <item>0x1F602</item>
         <item>0x1F603</item>
