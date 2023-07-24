@@ -7,7 +7,9 @@ import androidx.annotation.ArrayRes;
 import androidx.annotation.RawRes;
 import androidx.annotation.StringRes;
 
+import com.memoeslink.generator.R;
 import com.memoeslink.generator.common.Binder;
+import com.memoeslink.generator.common.Database;
 
 import org.memoeslink.ArrayHelper;
 import org.memoeslink.IntegerHelper;
@@ -15,7 +17,6 @@ import org.memoeslink.StringHelper;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -243,8 +244,40 @@ public class ResourceFinder extends Binder {
         return items[index];
     }
 
-    public List<String> getStrListFromSplitStrRes(@StringRes int id) {
-        return Arrays.asList(getStrArrayFromSplitStrRes(id));
+    public String getRes(@ArrayRes @StringRes int id) {
+        return getRes(id, -1);
+    }
+
+    public String getRes(@ArrayRes @StringRes int id, int index) {
+        if (!isResource(id))
+            return RESOURCE_NOT_FOUND;
+        else if (getResources().getResourceTypeName(id).equals("array"))
+            return index >= 0 ? getStrFromStrArrayRes(id, index) : getStrFromStrArrayRes(id);
+        else if (getResources().getResourceTypeName(id).equals("string"))
+            return index >= 0 ? getStrFromSplitStrRes(id, index) : getStrFromSplitStrRes(id);
+        return RESOURCE_NOT_FOUND;
+    }
+
+    public String getResByName(String name) {
+        return getResByName(name, -1);
+    }
+
+    public String getResByName(String name, int index) {
+        if (StringHelper.isNullOrBlank(name))
+            return RESOURCE_NOT_FOUND;
+        int id = getArrayResourceId(name);
+
+        if (id != 0)
+            return index >= 0 ? getStrFromStrArrayRes(id, index) : getStrFromStrArrayRes(id);
+        id = getStringResourceId(name);
+
+        if (id != 0)
+            return index >= 0 ? getStrFromSplitStrRes(id, index) : getStrFromSplitStrRes(id);
+        return RESOURCE_NOT_FOUND;
+    }
+
+    public String getResByRefId(@ArrayRes int id) {
+        return new ReferenceFinder().getResource(id);
     }
 
     public int getSplitStrResLength(@StringRes int id) {
@@ -268,6 +301,16 @@ public class ResourceFinder extends Binder {
         return 0;
     }
 
+    public int getAnyArrayResLength(@ArrayRes @StringRes int id) {
+        if (!isResource(id))
+            return 0;
+        else if (getResources().getResourceTypeName(id).equals("array"))
+            return getArrayResLength(id);
+        else if (getResources().getResourceTypeName(id).equals("string"))
+            return getSplitStrResLength(id);
+        return 0;
+    }
+
     public int getStringResourceId(String name) {
         return getResources().getIdentifier(name, "string", getPackageName());
     }
@@ -282,5 +325,39 @@ public class ResourceFinder extends Binder {
         } catch (Resources.NotFoundException ignore) {
         }
         return false;
+    }
+
+    private class ReferenceFinder {
+        private static final HashMap<String, String> EMOJI_MAPPING = new HashMap<>();
+
+        public String getResource(@ArrayRes int id) {
+            if (id == R.array.emoji_v15) return getEmojiV15();
+            else if (id == R.array.pictogram) return getPictogram();
+            else return getStrFromArrayRes(id);
+        }
+
+        private String getEmojiV15() {
+            String codePoints = Database.selectCodePoints(r.getIntInRange(1, Database.countEmojis()));
+
+            if (!EMOJI_MAPPING.containsKey(codePoints)) {
+                String[] segments = StringHelper.splitBySpace(codePoints);
+
+                for (int n = 0; n < segments.length; n++) {
+                    segments[n] = "U+" + segments[n];
+                }
+                EMOJI_MAPPING.put(codePoints, StringHelper.getCharacter(segments));
+            }
+            return EMOJI_MAPPING.getOrDefault(codePoints, Database.DEFAULT_VALUE);
+        }
+
+        private String getPictogram() {
+            return switch (r.getInt(4)) {
+                case 0 -> getResource(R.array.emoji);
+                case 1 -> getResource(R.array.emoji_v15);
+                case 2 -> getResource(R.array.emoticon);
+                case 3 -> getResource(R.array.kaomoji);
+                default -> RESOURCE_NOT_FOUND;
+            };
+        }
     }
 }
