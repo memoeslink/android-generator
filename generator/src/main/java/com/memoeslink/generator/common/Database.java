@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteException;
 
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
+import org.memoeslink.IntegerHelper;
 import org.memoeslink.StringHelper;
 
 import java.util.HashMap;
@@ -82,22 +83,14 @@ public class Database extends SQLiteAssetHelper {
     }
 
     private static int countRows(String table, String query) {
-        int count = getIntValue(table);
+        int count = TABLE_COUNT_REGISTRY.getOrDefault(table, DEFAULT_INDEX);
 
         if (count != DEFAULT_INDEX)
             return count;
         String s = selectRow(query, 0);
-        count = Integer.parseInt(s);
+        count = IntegerHelper.tryParse(s, 0);
         TABLE_COUNT_REGISTRY.put(table, count);
         return count;
-    }
-
-    private static int getIntValue(String key) {
-        Integer value = TABLE_COUNT_REGISTRY.get(key);
-
-        if (value != null)
-            return value;
-        return DEFAULT_INDEX;
     }
 
     private static String selectRow(String query, int column, String... parameters) {

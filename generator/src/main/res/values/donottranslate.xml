@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="emptiness" />
-    <string-array name="emoji_v15" />
     <string-array name="emoticon">
         <item>:-)</item>
         <item>:)</item>
@@ -619,5 +618,4 @@
         <item>@string/gender_female</item>
         <item>@string/gender_indefinite</item>
     </string-array>
-    <string-array name="pictogram" />
 </resources>

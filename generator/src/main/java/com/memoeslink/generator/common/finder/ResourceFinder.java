@@ -10,6 +10,7 @@ import androidx.annotation.StringRes;
 import com.memoeslink.generator.R;
 import com.memoeslink.generator.common.Binder;
 import com.memoeslink.generator.common.Database;
+import com.memoeslink.generator.common.ResourceReference;
 
 import org.memoeslink.ArrayHelper;
 import org.memoeslink.IntegerHelper;
@@ -19,6 +20,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ResourceFinder extends Binder {
     public static final String RESOURCE_NOT_FOUND = "";
@@ -276,7 +279,7 @@ public class ResourceFinder extends Binder {
         return RESOURCE_NOT_FOUND;
     }
 
-    public String getResByRefId(@ArrayRes int id) {
+    public String getResByRefId(@ArrayRes @StringRes int id) {
         return new ReferenceFinder().getResource(id);
     }
 
@@ -330,10 +333,17 @@ public class ResourceFinder extends Binder {
     private class ReferenceFinder {
         private static final HashMap<String, String> EMOJI_MAPPING = new HashMap<>();
 
-        public String getResource(@ArrayRes int id) {
-            if (id == R.array.emoji_v15) return getEmojiV15();
-            else if (id == R.array.pictogram) return getPictogram();
-            else return getStrFromArrayRes(id);
+        public String getResource(@ArrayRes @StringRes int id) {
+            return switch (id) {
+                case ResourceReference.NONE -> RESOURCE_NOT_FOUND;
+                case ResourceReference.EMOJI -> getStrFromStrArrayRes(R.array.emoji);
+                case ResourceReference.EMOJI_V15 -> getEmojiV15();
+                case ResourceReference.EMOTICON -> getStrFromStrArrayRes(R.array.emoticon);
+                case ResourceReference.KAOMOJI -> getStrFromStrArrayRes(R.array.kaomoji);
+                case ResourceReference.PICTOGRAM -> getPictogram();
+                case ResourceReference.REACTION -> getReaction();
+                default -> getRes(id);
+            };
         }
 
         private String getEmojiV15() {
@@ -352,10 +362,22 @@ public class ResourceFinder extends Binder {
 
         private String getPictogram() {
             return switch (r.getInt(4)) {
-                case 0 -> getResource(R.array.emoji);
-                case 1 -> getResource(R.array.emoji_v15);
-                case 2 -> getResource(R.array.emoticon);
-                case 3 -> getResource(R.array.kaomoji);
+                case 0 -> getResource(ResourceReference.EMOJI);
+                case 1 -> getResource(ResourceReference.EMOJI_V15);
+                case 2 -> getResource(ResourceReference.EMOTICON);
+                case 3 -> getResource(ResourceReference.KAOMOJI);
+                default -> RESOURCE_NOT_FOUND;
+            };
+        }
+
+        private String getReaction() {
+            return switch (r.getInt(4)) {
+                case 0 ->
+                        Stream.generate(() -> getResource(ResourceReference.EMOJI)).limit(r.getInt(1, 5)).collect(Collectors.joining());
+                case 1 ->
+                        Stream.generate(() -> getResource(ResourceReference.EMOJI_V15)).limit(r.getInt(1, 5)).collect(Collectors.joining());
+                case 2 -> getResource(ResourceReference.EMOTICON);
+                case 3 -> getResource(ResourceReference.KAOMOJI);
                 default -> RESOURCE_NOT_FOUND;
             };
         }
