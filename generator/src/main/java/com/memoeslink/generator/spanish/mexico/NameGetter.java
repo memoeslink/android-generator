@@ -151,9 +151,4 @@ public class NameGetter extends com.memoeslink.generator.spanish.NameGetter {
             default -> getMaleSimpleName();
         };
     }
-
-    @Override
-    public String getUsername() {
-        return Database.selectUsername(r.getIntInRange(1, Database.countUsernames()));
-    }
 }

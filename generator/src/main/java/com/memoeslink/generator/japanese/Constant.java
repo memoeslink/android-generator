@@ -1,6 +1,6 @@
 package com.memoeslink.generator.japanese;
 
-public class Constant {
+public final class Constant {
     public static final String[] FEMALE_FORENAME_SUFFIXES = {"chan", "sama", "san"};
     public static final String[] MALE_FORENAME_SUFFIXES = {"kun", "sama", "san"};
     public static final String[] FEMALE_FORENAMES = {

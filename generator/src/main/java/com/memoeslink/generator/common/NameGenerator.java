@@ -74,18 +74,12 @@ public class NameGenerator extends Generator {
             case FEMALE_MARKOVIAN_FULL_NAME -> getter.getFemaleMarkovianFullName();
             case MARKOVIAN_FULL_NAME -> getter.getMarkovianFullName();
             case SECRET_NAME -> getter.getSecretName();
-            case USERNAME -> getter.getUsername();
-            case COMPOSITE_USERNAME -> getter.getCompositeUsername();
-            case DERIVED_USERNAME -> getter.getDerivedUsername();
-            case PATTERN_USERNAME -> getter.getPatternUsername();
-            case ANONYMOUS_NAME -> getter.getAnonymousName();
-            case ANONYMOUS_ANIMAL -> getter.getAnonymousAnimal();
             default -> getter.getEmptyName();
         };
     }
 
     public String getNameOrDefault(NameType nameType) {
-        return getNameOrDefault(nameType, getDefaultName());
+        return getNameOrDefault(nameType, Constant.DEFAULT_NAME);
     }
 
     public String getNameOrDefault(NameType nameType, String defaultValue) {
@@ -103,11 +97,12 @@ public class NameGenerator extends Generator {
 
         do {
             name = getName(nameType);
+            invalidName = StringHelper.isNullOrBlank(name) || StringHelper.equalsDefault(name);
             tries--;
-        } while ((invalidName = (StringHelper.isNullOrBlank(name) || StringHelper.equalsDefault(name))) && tries > 0);
+        } while (invalidName && tries > 0);
 
-        if (invalidName && tries == 0)
-            name = getDefaultName();
+        if (invalidName)
+            name = Constant.DEFAULT_NAME;
         return name;
     }
 
@@ -121,21 +116,6 @@ public class NameGenerator extends Generator {
 
     public String getFullName() {
         return getGetter().getFullName();
-    }
-
-    public String getUsername() {
-        return switch (r.getInt(6)) {
-            case 1 -> getName(NameType.COMPOSITE_USERNAME);
-            case 2 -> getName(NameType.DERIVED_USERNAME);
-            case 3 -> getName(NameType.PATTERN_USERNAME);
-            case 4 -> getName(NameType.ANONYMOUS_NAME);
-            case 5 -> getName(NameType.ANONYMOUS_ANIMAL);
-            default -> getName(NameType.USERNAME);
-        };
-    }
-
-    public static String getDefaultName() {
-        return Constant.DEFAULT_NAME;
     }
 
     private NameGetter getGetter() {

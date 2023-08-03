@@ -8,12 +8,14 @@ import java.util.Locale;
 
 public class PersonGenerator extends Generator {
     NameGenerator nameGenerator;
+    UsernameGenerator usernameGenerator;
     OccupationGenerator occupationGenerator;
     DateTimeGenerator dateTimeGenerator;
 
     public PersonGenerator() {
         super();
         nameGenerator = new NameGenerator(new Locale("xx"), null);
+        usernameGenerator = new UsernameGenerator(new Locale("xx"), null);
         occupationGenerator = new OccupationGenerator(new Locale("xx"), null);
         dateTimeGenerator = new DateTimeGenerator(new Locale("xx"), null);
     }
@@ -21,6 +23,7 @@ public class PersonGenerator extends Generator {
     public PersonGenerator(Locale locale, Long seed) {
         super(locale, seed);
         nameGenerator = new NameGenerator(locale, seed);
+        usernameGenerator = new UsernameGenerator(locale, seed);
         occupationGenerator = new OccupationGenerator(locale, seed);
         dateTimeGenerator = new DateTimeGenerator(locale, seed);
     }
@@ -83,7 +86,11 @@ public class PersonGenerator extends Generator {
 
     public Person getAnonymousPerson(Gender gender) {
         gender = gender != null ? gender : Gender.UNDEFINED;
-        String username = nameGenerator.getUsername();
+        String username;
+
+        do {
+            username = usernameGenerator.getUsername(r.getElement(UsernameType.values()));
+        } while (StringHelper.isNullOrBlank(username) || StringHelper.equals(username, Database.DEFAULT_VALUE));
         LocalDate birthdate = dateTimeGenerator.getHumanDate();
 
         return new Person.PersonBuilder()

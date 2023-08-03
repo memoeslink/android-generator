@@ -182,9 +182,4 @@ public class NameGetter extends com.memoeslink.generator.base.NameGetter impleme
                     getSurname());
         };
     }
-
-    @Override
-    public String getUsername() {
-        return Database.selectUsername(r.getIntInRange(1, Database.countUsernames()));
-    }
 }

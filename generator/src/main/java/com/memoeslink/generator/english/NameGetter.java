@@ -7,22 +7,14 @@ import com.memoeslink.generator.common.ResourceGetter;
 import org.memoeslink.Separator;
 import org.memoeslink.StringHelper;
 
-import java.util.Locale;
-
 public class NameGetter extends com.memoeslink.generator.base.NameGetter implements NameDefiner {
-    private final NounGetter nounGetter;
-    private final AdjectiveGetter adjectiveGetter;
 
     public NameGetter() {
         super();
-        nounGetter = new NounGetter();
-        adjectiveGetter = new AdjectiveGetter();
     }
 
     public NameGetter(Randomizer r) {
         super(r);
-        nounGetter = new NounGetter(r);
-        adjectiveGetter = new AdjectiveGetter(r);
     }
 
     @Override
@@ -199,41 +191,6 @@ public class NameGetter extends com.memoeslink.generator.base.NameGetter impleme
             case 7 -> getMaleName();
             default -> getFemaleSimpleName();
         };
-    }
-
-    @Override
-    public String getUsername() {
-        return Database.selectUsername(r.getIntInRange(1, Database.countUsernames()));
-    }
-
-    @Override
-    public String getCompositeUsername() {
-        String adjective = StringHelper.removeAll(adjectiveGetter.getAdjective(), "[^a-zA-Z0-9\\\\s]");
-        String noun = StringHelper.removeAll(nounGetter.getNoun(), "[^a-zA-Z0-9\\\\s]");
-        return getCompositeUsername(adjective, noun, r);
-    }
-
-    @Override
-    public String getDerivedUsername() {
-        return getDerivedUsername(Database.selectFamilyName(r.getIntInRange(1, Database.countFamilyNames())), r);
-    }
-
-    @Override
-    public String getPatternUsername() {
-        return getPatternUsername(r.getBoolean() ? getMaleForename() : getFemaleForename(), getSurname(), Locale.ENGLISH, r);
-    }
-
-    @Override
-    public String getAnonymousName() {
-        String adjective = StringHelper.removeAll(adjectiveGetter.getAdjective(), "[^a-zA-Z0-9\\\\s]");
-        String noun = StringHelper.removeAll(nounGetter.getNoun(), "[^a-zA-Z0-9\\\\s]");
-        return StringHelper.joinWithSpace(adjective, noun);
-    }
-
-    @Override
-    public String getAnonymousAnimal() {
-        return "Anonymous" + Separator.SPACE.getCharacter() +
-                StringHelper.capitalize(ResourceGetter.with(r).getString(Constant.ANONYMOUS_ANIMALS));
     }
 
     @Override

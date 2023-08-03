@@ -19,9 +19,4 @@ public class NameGeneratorTest {
         Assertions.assertNotEquals(StringHelper.EMPTY, name);
         Assertions.assertNotEquals(Database.DEFAULT_VALUE, name);
     }
-
-    @Test
-    public void getDefaultName() throws Exception {
-        Assertions.assertEquals(Constant.DEFAULT_NAME, NameGenerator.getDefaultName());
-    }
 }

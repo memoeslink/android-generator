@@ -1,6 +1,6 @@
 package com.memoeslink.generator.german;
 
-public class Constant {
+public final class Constant {
     public static final String[] FEMALE_FORENAMES = {
             "Aaliyah",
             "Abby",

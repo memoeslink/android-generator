@@ -147,11 +147,6 @@ public class NameGetter extends com.memoeslink.generator.base.NameGetter impleme
     }
 
     @Override
-    public String getUsername() {
-        return Database.selectUsername(r.getIntInRange(1, Database.countUsernames()));
-    }
-
-    @Override
     public String getFemaleForenameSuffix() {
         return Separator.HYPHEN.getCharacter() +
                 ResourceGetter.with(r).getString(Constant.FEMALE_FORENAME_SUFFIXES);

@@ -414,34 +414,4 @@ public class NameGetter extends Getter implements NameDefiner {
     public String getSecretName() {
         return Database.DEFAULT_VALUE;
     }
-
-    @Override
-    public String getUsername() {
-        return Database.DEFAULT_VALUE;
-    }
-
-    @Override
-    public String getCompositeUsername() {
-        return Database.DEFAULT_VALUE;
-    }
-
-    @Override
-    public String getDerivedUsername() {
-        return Database.DEFAULT_VALUE;
-    }
-
-    @Override
-    public String getPatternUsername() {
-        return Database.DEFAULT_VALUE;
-    }
-
-    @Override
-    public String getAnonymousName() {
-        return Database.DEFAULT_VALUE;
-    }
-
-    @Override
-    public String getAnonymousAnimal() {
-        return Database.DEFAULT_VALUE;
-    }
 }

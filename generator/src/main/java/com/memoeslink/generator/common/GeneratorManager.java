@@ -6,6 +6,7 @@ public class GeneratorManager {
     private Locale locale;
     private Long seed;
     private NameGenerator nameGenerator;
+    private UsernameGenerator usernameGenerator;
     private OccupationGenerator occupationGenerator;
     private NounGenerator nounGenerator;
     private AdjectiveGenerator adjectiveGenerator;
@@ -51,6 +52,10 @@ public class GeneratorManager {
         return nameGenerator;
     }
 
+    public UsernameGenerator getUsernameGenerator() {
+        return usernameGenerator;
+    }
+
     public OccupationGenerator getOccupationGenerator() {
         return occupationGenerator;
     }
@@ -85,6 +90,7 @@ public class GeneratorManager {
 
     private void initializeGenerators() {
         nameGenerator = new NameGenerator(locale, seed);
+        usernameGenerator = new UsernameGenerator(locale, seed);
         occupationGenerator = new OccupationGenerator(locale, seed);
         nounGenerator = new NounGenerator(locale, seed);
         adjectiveGenerator = new AdjectiveGenerator(locale, seed);

@@ -180,36 +180,6 @@ public class NameGetter extends com.memoeslink.generator.base.NameGetter {
         };
     }
 
-    @Override
-    public String getUsername() {
-        return getAnyGetter().getUsername();
-    }
-
-    @Override
-    public String getCompositeUsername() {
-        return getAnyGetter().getCompositeUsername();
-    }
-
-    @Override
-    public String getDerivedUsername() {
-        return getAnyGetter().getDerivedUsername();
-    }
-
-    @Override
-    public String getPatternUsername() {
-        return getAnyGetter().getPatternUsername();
-    }
-
-    @Override
-    public String getAnonymousName() {
-        return getAnyGetter().getAnonymousName();
-    }
-
-    @Override
-    public String getAnonymousAnimal() {
-        return getAnyGetter().getAnonymousAnimal();
-    }
-
     public com.memoeslink.generator.common.NameGetter getAnyGetter() {
         return switch (ResourceGetter.with(r).getString(com.memoeslink.generator.common.Constant.SUPPORTED_LOCALES)) {
             case "ar" -> new com.memoeslink.generator.arabic.NameGetter(r);

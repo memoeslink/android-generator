@@ -1,6 +1,6 @@
 package com.memoeslink.generator.french;
 
-public class Constant {
+public final class Constant {
     public static final String[] FEMALE_FORENAMES = {
             "Agnès",
             "Alexandra",

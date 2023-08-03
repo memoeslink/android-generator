@@ -1,6 +1,6 @@
 package com.memoeslink.generator.spanish;
 
-public class Constant {
+public final class Constant {
     public static final String ALPHABET = "abcdefghijklmnñopqrstuvwxyz";
     public static final String LOWERCASE_ALPHABET = "abcdefghijklmnñopqrstuvwxyz";
     public static final String UPPERCASE_ALPHABET = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";

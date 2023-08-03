@@ -163,16 +163,4 @@ public interface NameDefiner {
     public String getMarkovianFullName();
 
     public String getSecretName();
-
-    public String getUsername();
-
-    public String getCompositeUsername();
-
-    public String getDerivedUsername();
-
-    public String getPatternUsername();
-
-    public String getAnonymousName();
-
-    public String getAnonymousAnimal();
 }
