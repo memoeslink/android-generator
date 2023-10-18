@@ -36,15 +36,23 @@ public class ResourceFinder extends Binder {
     }
 
     public String getStrFromArray(String[] items) {
-        if (ArrayHelper.isNullOrEmpty(items))
-            return RESOURCE_NOT_FOUND;
-        return r.getElement(items);
+        return StringHelper.defaultIfNull(r.getElement(items), RESOURCE_NOT_FOUND);
+    }
+
+    public String getStrFromArray(String[] items, int index) {
+        if (index < 0 || index >= items.length)
+            return getStrFromArray(items);
+        return StringHelper.defaultIfNull(items[index], RESOURCE_NOT_FOUND);
     }
 
     public String getStrFromList(List<String> items) {
-        if (items == null || items.isEmpty())
-            return RESOURCE_NOT_FOUND;
-        return getStrFromArray(items.toArray(new String[0]));
+        return StringHelper.defaultIfNull(r.getElement(items), RESOURCE_NOT_FOUND);
+    }
+
+    public String getStrFromList(List<String> items, int index) {
+        if (index < 0 || index >= items.size())
+            return getStrFromList(items);
+        return StringHelper.defaultIfNull(items.get(index), RESOURCE_NOT_FOUND);
     }
 
     public String getRawRes(@RawRes int id) {
