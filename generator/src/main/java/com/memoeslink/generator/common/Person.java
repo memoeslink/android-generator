@@ -340,7 +340,7 @@ public class Person {
         String suffix = "";
 
         if (gender != null && gender != Gender.UNDEFINED)
-            suffix = "｢" + gender.getValue() + "｣";
+            suffix = "(" + gender.getGlyph() + ")";
 
         return (StringHelper.defaultWhenBlank(getDescriptor()) +
                 StringHelper.prependSpaceIfNotBlank(suffix)
