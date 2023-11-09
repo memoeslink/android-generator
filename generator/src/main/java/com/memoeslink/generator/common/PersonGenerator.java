@@ -90,7 +90,7 @@ public class PersonGenerator extends Generator {
 
         do {
             username = usernameGenerator.getUsername(r.getElement(UsernameType.values()));
-        } while (StringHelper.isNullOrBlank(username) || StringHelper.equals(username, Database.DEFAULT_VALUE));
+        } while (StringHelper.isNullOrBlank(username) || StringHelper.equalsAny(username, Database.DEFAULT_VALUE, Constant.DEFAULT_USERNAME));
         LocalDate birthdate = dateTimeGenerator.getHumanDate();
 
         return new Person.PersonBuilder()
