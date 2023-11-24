@@ -331,6 +331,21 @@ public class TextFormatter {
         return String.format("<font color=\"%s\">%s</font>", Maker.getDefaultColor(s), formatText(s, "b"));
     }
 
+    public static String formatPerson(Person person) {
+        if (person == null)
+            return "";
+
+        if (person.hasAttribute("anonymous"))
+            return formatUsername(person.getUsername());
+
+        if (person.hasAttribute("suggested"))
+            return formatSuggestedName(person.getDescriptor());
+
+        if (person.hasAttribute("registered"))
+            return formatContactName(person.getDescriptor());
+        return formatName(person);
+    }
+
     public static String formatMessage(String message, String details) {
         if (StringHelper.isNullOrBlank(message))
             return message;
