@@ -2,6 +2,8 @@ package com.memoeslink.generator.common;
 
 public interface UsernameDefiner {
 
+    public String getEmptyUsername();
+
     public String getUsername();
 
     public String getCompositeUsername();

@@ -6,10 +6,6 @@ public interface NameDefiner {
 
     public String getEmptyName();
 
-    public String getDefaultName();
-
-    public String getTestName();
-
     public String getFemaleForename();
 
     public String getFemaleForename(int id);
@@ -26,21 +22,21 @@ public interface NameDefiner {
 
     public String getMalePatronymic(int id);
 
-    public String getDoubleBarrelledFemaleForename();
+    public String getFemaleDoubleBarrelledForename();
 
-    public String getDoubleBarrelledFemaleForename(int startId, int endId);
+    public String getFemaleDoubleBarrelledForename(int startId, int endId);
 
-    public String getDoubleBarrelledMaleForename();
+    public String getMaleDoubleBarrelledForename();
 
-    public String getDoubleBarrelledMaleForename(int startId, int endId);
+    public String getMaleDoubleBarrelledForename(int startId, int endId);
 
-    public String getDoubleFemaleForename();
+    public String getFemaleDoubleForename();
 
-    public String getDoubleFemaleForename(int startId, int endId);
+    public String getFemaleDoubleForename(int startId, int endId);
 
-    public String getDoubleMaleForename();
+    public String getMaleDoubleForename();
 
-    public String getDoubleMaleForename(int startId, int endId);
+    public String getMaleDoubleForename(int startId, int endId);
 
     public String getGivenName();
 

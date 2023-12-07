@@ -38,42 +38,42 @@ public class NameGetter extends com.memoeslink.generator.base.NameGetter impleme
     }
 
     @Override
-    public String getDoubleBarrelledFemaleForename() {
+    public String getFemaleDoubleBarrelledForename() {
         return getFemaleForename() + Separator.HYPHEN.getCharacter() + getFemaleForename();
     }
 
     @Override
-    public String getDoubleBarrelledFemaleForename(int startId, int endId) {
+    public String getFemaleDoubleBarrelledForename(int startId, int endId) {
         return getFemaleForename(startId) + Separator.HYPHEN.getCharacter() + getFemaleForename(endId);
     }
 
     @Override
-    public String getDoubleBarrelledMaleForename() {
+    public String getMaleDoubleBarrelledForename() {
         return getMaleForename() + Separator.HYPHEN.getCharacter() + getMaleForename();
     }
 
     @Override
-    public String getDoubleBarrelledMaleForename(int startId, int endId) {
+    public String getMaleDoubleBarrelledForename(int startId, int endId) {
         return getMaleForename(startId) + Separator.HYPHEN.getCharacter() + getMaleForename(endId);
     }
 
     @Override
-    public String getDoubleFemaleForename() {
+    public String getFemaleDoubleForename() {
         return getFemaleForename() + Separator.SPACE.getCharacter() + getFemaleForename();
     }
 
     @Override
-    public String getDoubleFemaleForename(int startId, int endId) {
+    public String getFemaleDoubleForename(int startId, int endId) {
         return getFemaleForename(startId) + Separator.SPACE.getCharacter() + getFemaleForename(endId);
     }
 
     @Override
-    public String getDoubleMaleForename() {
+    public String getMaleDoubleForename() {
         return getMaleForename() + Separator.SPACE.getCharacter() + getMaleForename();
     }
 
     @Override
-    public String getDoubleMaleForename(int startId, int endId) {
+    public String getMaleDoubleForename(int startId, int endId) {
         return getMaleForename(startId) + Separator.SPACE.getCharacter() + getMaleForename(endId);
     }
 
@@ -85,7 +85,7 @@ public class NameGetter extends com.memoeslink.generator.base.NameGetter impleme
     @Override
     public String getFemaleGivenName() {
         return switch (r.getInt(4)) {
-            case 1 -> getDoubleBarrelledFemaleForename();
+            case 1 -> this.getFemaleDoubleBarrelledForename();
             case 2 -> getFemaleForename() + Separator.SPACE.getCharacter() + getFemaleMiddleName();
             case 3 -> getFemaleForename() + Separator.SPACE.getCharacter() + getMiddleNameInitial();
             default -> getFemaleForename();
@@ -95,7 +95,7 @@ public class NameGetter extends com.memoeslink.generator.base.NameGetter impleme
     @Override
     public String getMaleGivenName() {
         return switch (r.getInt(4)) {
-            case 1 -> getDoubleBarrelledMaleForename();
+            case 1 -> this.getMaleDoubleBarrelledForename();
             case 2 -> getMaleForename() + Separator.SPACE.getCharacter() + getMaleMiddleName();
             case 3 -> getMaleForename() + Separator.SPACE.getCharacter() + getMiddleNameInitial();
             default -> getMaleForename();
@@ -151,7 +151,7 @@ public class NameGetter extends com.memoeslink.generator.base.NameGetter impleme
     public String getFemaleFullName() {
         return switch (r.getInt(8)) {
             case 1 -> getFemaleForename() + Separator.SPACE.getCharacter() + getDualSurname();
-            case 2 -> (getDoubleBarrelledFemaleForename() + Separator.SPACE.getCharacter() +
+            case 2 -> (this.getFemaleDoubleBarrelledForename() + Separator.SPACE.getCharacter() +
                     getSurname());
             case 3 -> (getFemaleForename() + Separator.SPACE.getCharacter() +
                     getFemaleMiddleName() + Separator.SPACE.getCharacter() +
@@ -174,7 +174,7 @@ public class NameGetter extends com.memoeslink.generator.base.NameGetter impleme
     public String getMaleFullName() {
         return switch (r.getInt(8)) {
             case 1 -> getMaleForename() + Separator.SPACE.getCharacter() + getDualSurname();
-            case 2 -> (getDoubleBarrelledMaleForename() + Separator.SPACE.getCharacter() +
+            case 2 -> (this.getMaleDoubleBarrelledForename() + Separator.SPACE.getCharacter() +
                     getSurname());
             case 3 -> (getMaleForename() + Separator.SPACE.getCharacter() +
                     getMaleMiddleName() + Separator.SPACE.getCharacter() +

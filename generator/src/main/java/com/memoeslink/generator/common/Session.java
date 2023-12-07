@@ -7,15 +7,14 @@ import android.os.Environment;
 import org.memoeslink.StringHelper;
 
 public class Session {
-    private static Database database;
     private static Session instance;
+    private static Database database;
 
     private Session() {
     }
 
     public static Session getInstance() {
-        if (instance == null)
-            instance = new Session();
+        if (instance == null) instance = new Session();
         return instance;
     }
 
@@ -35,8 +34,7 @@ public class Session {
         try {
             database = new Database(context, directory);
 
-            if (!database.isConnected())
-                throw new SQLiteException();
+            if (!database.isConnected()) throw new SQLiteException();
             System.out.printf("Database %s was successfully connected.%n", filePath);
         } catch (SQLiteException e) {
             database = null;

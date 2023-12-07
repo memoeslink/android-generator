@@ -1,7 +1,6 @@
 package com.memoeslink.generator.german;
 
 import com.memoeslink.common.Randomizer;
-import com.memoeslink.generator.common.Database;
 import com.memoeslink.generator.common.ResourceGetter;
 
 import org.memoeslink.Separator;
@@ -37,43 +36,43 @@ public class NameGetter extends com.memoeslink.generator.base.NameGetter {
     }
 
     @Override
-    public String getDoubleBarrelledFemaleForename() {
-        return Database.DEFAULT_VALUE;
+    public String getFemaleDoubleBarrelledForename() {
+        return super.getFemaleDoubleBarrelledForename();
     }
 
     @Override
-    public String getDoubleBarrelledFemaleForename(int startId, int endId) {
-        return Database.DEFAULT_VALUE;
+    public String getFemaleDoubleBarrelledForename(int startId, int endId) {
+        return super.getFemaleDoubleBarrelledForename(startId, endId);
     }
 
     @Override
-    public String getDoubleBarrelledMaleForename() {
-        return Database.DEFAULT_VALUE;
+    public String getMaleDoubleBarrelledForename() {
+        return super.getMaleDoubleBarrelledForename();
     }
 
     @Override
-    public String getDoubleBarrelledMaleForename(int startId, int endId) {
-        return Database.DEFAULT_VALUE;
+    public String getMaleDoubleBarrelledForename(int startId, int endId) {
+        return super.getMaleDoubleBarrelledForename(startId, endId);
     }
 
     @Override
-    public String getDoubleFemaleForename() {
-        return Database.DEFAULT_VALUE;
+    public String getFemaleDoubleForename() {
+        return super.getFemaleDoubleForename();
     }
 
     @Override
-    public String getDoubleFemaleForename(int startId, int endId) {
-        return Database.DEFAULT_VALUE;
+    public String getFemaleDoubleForename(int startId, int endId) {
+        return super.getFemaleDoubleForename(startId, endId);
     }
 
     @Override
-    public String getDoubleMaleForename() {
-        return Database.DEFAULT_VALUE;
+    public String getMaleDoubleForename() {
+        return super.getMaleDoubleForename();
     }
 
     @Override
-    public String getDoubleMaleForename(int startId, int endId) {
-        return Database.DEFAULT_VALUE;
+    public String getMaleDoubleForename(int startId, int endId) {
+        return super.getMaleDoubleForename(startId, endId);
     }
 
     @Override
@@ -103,12 +102,12 @@ public class NameGetter extends com.memoeslink.generator.base.NameGetter {
 
     @Override
     public String getDualSurname() {
-        return Database.DEFAULT_VALUE;
+        return super.getDualSurname();
     }
 
     @Override
     public String getDualSurname(int startId, int endId) {
-        return Database.DEFAULT_VALUE;
+        return super.getDualSurname(startId, endId);
     }
 
     @Override

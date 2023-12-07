@@ -12,10 +12,14 @@ import java.util.regex.Pattern;
 public class TextProcessor {
     public static final String WORD_REGEX = "\\p{L}+";
     public static final Pattern WORD_PATTERN = Pattern.compile(WORD_REGEX);
-    public static final String BASE_TEXT_REGEX = "[\\w\\p{L}\\s'ªº]";
+    public static final String TEXT_UNIT_REGEX = "[\\w\\p{L}\\s'ªº]*";
+    public static final String BASE_TEXT_REGEX = "[\\w\\p{L}\\s'ªº]+";
+    public static final Pattern BASE_TEXT_PATTERN = Pattern.compile("^" + BASE_TEXT_REGEX + "$");
+    public static final String SIMPLE_TEXT_REGEX = "[\\p{L}\\p{Z}\\p{M}\\-.,'ªº]+";
+    public static final Pattern SIMPLE_TEXT_PATTERN = Pattern.compile("^" + SIMPLE_TEXT_REGEX + "$");
     public static final String COMBINED_WORDS_REGEX = "(\\p{L}+)(\\[(\\p{L})\\]|\\((\\p{L})\\)|[\\|\\/\\-](\\p{L}+))?";
     public static final Pattern COMBINED_WORDS_PATTERN = Pattern.compile(COMBINED_WORDS_REGEX);
-    public static final String EXTENDED_TEXT_REGEX = "\\[\\^{0,2}" + BASE_TEXT_REGEX + "*(\\[" + BASE_TEXT_REGEX + "*(," + BASE_TEXT_REGEX + "*)?\\])?" + BASE_TEXT_REGEX + "*\\]";
+    public static final String EXTENDED_TEXT_REGEX = "\\[\\^{0,2}" + TEXT_UNIT_REGEX + "(\\[" + TEXT_UNIT_REGEX + "(," + TEXT_UNIT_REGEX + ")?\\])?" + TEXT_UNIT_REGEX + "\\]";
     public static final Pattern EXTENDED_TEXT_PATTERN = Pattern.compile(EXTENDED_TEXT_REGEX);
     public static final String ROMAN_NUMERAL_REGEX = "(^|\\s+)M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})($|\\s+)";
     public static final Pattern ROMAN_NUMERAL_PATTERN = Pattern.compile(ROMAN_NUMERAL_REGEX);

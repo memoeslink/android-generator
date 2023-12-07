@@ -7,19 +7,13 @@ import com.memoeslink.generator.common.Gender;
 import org.memoeslink.Separator;
 
 public class NameGetter extends com.memoeslink.generator.base.NameGetter implements NameDefiner {
-    private final NounGetter nounGetter;
-    private final AdjectiveGetter adjectiveGetter;
 
     public NameGetter() {
         super();
-        nounGetter = new NounGetter();
-        adjectiveGetter = new AdjectiveGetter();
     }
 
     public NameGetter(Randomizer r) {
         super(r);
-        nounGetter = new NounGetter(r);
-        adjectiveGetter = new AdjectiveGetter(r);
     }
 
     @Override
@@ -45,42 +39,42 @@ public class NameGetter extends com.memoeslink.generator.base.NameGetter impleme
     }
 
     @Override
-    public String getDoubleBarrelledFemaleForename() {
+    public String getFemaleDoubleBarrelledForename() {
         return getFemaleForename() + Separator.HYPHEN.getCharacter() + getFemaleForename();
     }
 
     @Override
-    public String getDoubleBarrelledFemaleForename(int startId, int endId) {
+    public String getFemaleDoubleBarrelledForename(int startId, int endId) {
         return getFemaleForename(startId) + Separator.HYPHEN.getCharacter() + getFemaleForename(endId);
     }
 
     @Override
-    public String getDoubleBarrelledMaleForename() {
+    public String getMaleDoubleBarrelledForename() {
         return getMaleForename() + Separator.HYPHEN.getCharacter() + getMaleForename();
     }
 
     @Override
-    public String getDoubleBarrelledMaleForename(int startId, int endId) {
+    public String getMaleDoubleBarrelledForename(int startId, int endId) {
         return getMaleForename(startId) + Separator.HYPHEN.getCharacter() + getMaleForename(endId);
     }
 
     @Override
-    public String getDoubleFemaleForename() {
+    public String getFemaleDoubleForename() {
         return getFemaleForename() + Separator.SPACE.getCharacter() + getFemaleForename();
     }
 
     @Override
-    public String getDoubleFemaleForename(int startId, int endId) {
+    public String getFemaleDoubleForename(int startId, int endId) {
         return getFemaleForename(startId) + Separator.SPACE.getCharacter() + getFemaleForename(endId);
     }
 
     @Override
-    public String getDoubleMaleForename() {
+    public String getMaleDoubleForename() {
         return getMaleForename() + Separator.SPACE.getCharacter() + getMaleForename();
     }
 
     @Override
-    public String getDoubleMaleForename(int startId, int endId) {
+    public String getMaleDoubleForename(int startId, int endId) {
         return getMaleForename(startId) + Separator.SPACE.getCharacter() + getMaleForename(endId);
     }
 
@@ -92,7 +86,7 @@ public class NameGetter extends com.memoeslink.generator.base.NameGetter impleme
     @Override
     public String getFemaleGivenName() {
         return switch (r.getInt(3)) {
-            case 1 -> getDoubleFemaleForename();
+            case 1 -> this.getFemaleDoubleForename();
             case 2 -> getFemaleForenames();
             default -> getFemaleForename();
         };
@@ -101,7 +95,7 @@ public class NameGetter extends com.memoeslink.generator.base.NameGetter impleme
     @Override
     public String getMaleGivenName() {
         return switch (r.getInt(3)) {
-            case 1 -> getDoubleMaleForename();
+            case 1 -> this.getMaleDoubleForename();
             case 2 -> getMaleForenames();
             default -> getMaleForename();
         };
@@ -156,7 +150,8 @@ public class NameGetter extends com.memoeslink.generator.base.NameGetter impleme
     public String getFemaleFullName() {
         return switch (r.getInt(4)) {
             case 1 -> getFemaleForename() + Separator.SPACE.getCharacter() + getSurnames();
-            case 2 -> getDoubleFemaleForename() + Separator.SPACE.getCharacter() + getSurnames();
+            case 2 ->
+                    this.getFemaleDoubleForename() + Separator.SPACE.getCharacter() + getSurnames();
             case 3 -> getFemaleForenames() + Separator.SPACE.getCharacter() + getSurnames();
             default -> getFemaleSimpleName();
         };
@@ -166,7 +161,7 @@ public class NameGetter extends com.memoeslink.generator.base.NameGetter impleme
     public String getMaleFullName() {
         return switch (r.getInt(4)) {
             case 1 -> getMaleForename() + Separator.SPACE.getCharacter() + getSurnames();
-            case 2 -> getDoubleMaleForename() + Separator.SPACE.getCharacter() + getSurnames();
+            case 2 -> this.getMaleDoubleForename() + Separator.SPACE.getCharacter() + getSurnames();
             case 3 -> getMaleForenames() + Separator.SPACE.getCharacter() + getSurnames();
             default -> getMaleSimpleName();
         };

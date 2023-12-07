@@ -328,11 +328,11 @@ public class Person {
     }
 
     public String getSummary() {
-        return (StringHelper.defaultWhenBlank(getDescriptor()) +
+        return (getDescriptor() +
                 System.getProperty("line.separator") +
-                (gender != null ? gender.getGlyph() : Gender.UNDEFINED.getGlyph()) +
+                (gender != null ? gender : Gender.UNDEFINED).getGlyph() +
                 System.getProperty("line.separator") +
-                StringHelper.defaultWhenBlank(DateTimeHelper.toIso8601Date(getBirthdate()))
+                StringHelper.defaultOnBlank(DateTimeHelper.toIso8601Date(getBirthdate()))
         );
     }
 
@@ -342,7 +342,7 @@ public class Person {
         if (gender != null && gender != Gender.UNDEFINED)
             suffix = "(" + gender.getGlyph() + ")";
 
-        return (StringHelper.defaultWhenBlank(getDescriptor()) +
+        return (StringHelper.defaultOnBlank(getDescriptor()) +
                 StringHelper.prependSpaceIfNotBlank(suffix)
         );
     }

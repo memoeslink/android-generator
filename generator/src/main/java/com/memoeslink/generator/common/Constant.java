@@ -8,6 +8,7 @@ public final class Constant {
     public static final String TEST_NAME = "┤de la ┤Paz";
     public static final String DEFAULT_USERNAME = "username.default";
     public static final String UNKNOWN_USERNAME = "username.unknown";
+    public static final String TEST_USERNAME = "test-user.2000";
     public static final String DEFAULT_OCCUPATION = "occupation.default";
     public static final String UNKNOWN_OCCUPATION = "occupation.unknown";
     public static final String ACCENTED_VOWELS = "aàáâãäåāăąǻȁȃạảấầẩẫậắằẳẵặḁæǽeȅȇḕḗḙḛḝẹẻẽếềểễệēĕėęěèéêëiȉȋḭḯỉịĩīĭįiìíîïĳoœøǿȍȏṍṏṑṓọỏốồổỗộớờởỡợōòóŏőôõöuũūŭůűųùúûüȕȗṳṵṷṹṻụủứừửữựyẙỳỵỷỹŷÿýAÀÁÂÃÄÅĀĂĄǺȀȂẠẢẤẦẨẪẬẮẰẲẴẶḀÆǼEȄȆḔḖḘḚḜẸẺẼẾỀỂỄỆĒĔĖĘĚÈÉÊËIȈȊḬḮỈỊĨĪĬĮIÌÍÎÏĲOŒØǾȌȎṌṎṐṒỌỎỐỒỔỖỘỚỜỞỠỢŌÒÓŎŐÔÕÖUŨŪŬŮŰŲÙÚÛÜȔȖṲṴṶṸṺỤỦỨỪỬỮỰYY̊ỲỴỶỸŶŸÝ";

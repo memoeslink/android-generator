@@ -26,20 +26,8 @@ public class UsernameGenerator extends Generator {
             case ADMIN_USERNAME -> getter.getAdminUsername();
             case ANONYMOUS_NAME -> getter.getAnonymousName();
             case ANONYMOUS_ANIMAL -> getter.getAnonymousAnimal();
-            default -> Constant.DEFAULT_USERNAME;
+            default -> getter.getEmptyUsername();
         };
-    }
-
-    public String getUsernameOrDefault(UsernameType usernameType) {
-        return getUsernameOrDefault(usernameType, Constant.DEFAULT_USERNAME);
-    }
-
-    public String getUsernameOrDefault(UsernameType usernameType, String defaultValue) {
-        String name = getUsername(usernameType);
-
-        if (StringHelper.isNullOrBlank(name) || StringHelper.equalsDefault(name))
-            return defaultValue;
-        return name;
     }
 
     private UsernameGetter getGetter() {

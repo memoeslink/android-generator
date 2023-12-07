@@ -19,16 +19,14 @@ public class NameGenerator extends Generator {
         nameType = nameType != null ? nameType : NameType.EMPTY;
 
         return switch (nameType) {
-            case DEFAULT -> getter.getDefaultName();
-            case TEST_CASE -> getter.getTestName();
             case MALE_FORENAME -> getter.getMaleForename();
             case FEMALE_FORENAME -> getter.getFemaleForename();
             case MALE_PATRONYMIC -> getter.getMalePatronymic();
             case FEMALE_PATRONYMIC -> getter.getFemalePatronymic();
-            case DOUBLE_BARRELLED_MALE_FORENAME -> getter.getDoubleBarrelledMaleForename();
-            case DOUBLE_BARRELLED_FEMALE_FORENAME -> getter.getDoubleBarrelledFemaleForename();
-            case DOUBLE_MALE_FORENAME -> getter.getDoubleMaleForename();
-            case DOUBLE_FEMALE_FORENAME -> getter.getDoubleFemaleForename();
+            case MALE_DOUBLE_BARRELLED_FORENAME -> getter.getMaleDoubleBarrelledForename();
+            case FEMALE_DOUBLE_BARRELLED_FORENAME -> getter.getFemaleDoubleBarrelledForename();
+            case MALE_DOUBLE_NAME -> getter.getMaleDoubleForename();
+            case FEMALE_DOUBLE_NAME -> getter.getFemaleDoubleForename();
             case MALE_GIVEN_NAME -> getter.getMaleGivenName();
             case FEMALE_GIVEN_NAME -> getter.getFemaleGivenName();
             case SURNAME -> getter.getSurname();
@@ -76,34 +74,6 @@ public class NameGenerator extends Generator {
             case SECRET_NAME -> getter.getSecretName();
             default -> getter.getEmptyName();
         };
-    }
-
-    public String getNameOrDefault(NameType nameType) {
-        return getNameOrDefault(nameType, Constant.DEFAULT_NAME);
-    }
-
-    public String getNameOrDefault(NameType nameType, String defaultValue) {
-        String name = getName(nameType);
-
-        if (StringHelper.isNullOrBlank(name) || StringHelper.equalsDefault(name))
-            return defaultValue;
-        return name;
-    }
-
-    public String getNameOrRetry(NameType nameType) {
-        String name;
-        boolean invalidName;
-        int tries = 9999;
-
-        do {
-            name = getName(nameType);
-            invalidName = StringHelper.isNullOrBlank(name) || StringHelper.equalsDefault(name);
-            tries--;
-        } while (invalidName && tries > 0);
-
-        if (invalidName)
-            name = Constant.DEFAULT_NAME;
-        return name;
     }
 
     public String getGivenName() {

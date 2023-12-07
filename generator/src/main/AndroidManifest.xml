@@ -12,7 +12,7 @@
             android:exported="false"
             tools:node="merge">
             <meta-data
-                android:name="com.memoeslink.generator.common.SessionInitializer"
+                android:name="com.memoeslink.generator.common.BaseInitializer"
                 android:value="androidx.startup" />
         </provider>
     </application>

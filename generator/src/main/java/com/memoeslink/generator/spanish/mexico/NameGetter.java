@@ -37,42 +37,42 @@ public class NameGetter extends com.memoeslink.generator.spanish.NameGetter {
     }
 
     @Override
-    public String getDoubleBarrelledFemaleForename() {
+    public String getFemaleDoubleBarrelledForename() {
         return Database.DEFAULT_VALUE;
     }
 
     @Override
-    public String getDoubleBarrelledFemaleForename(int startId, int endId) {
+    public String getFemaleDoubleBarrelledForename(int startId, int endId) {
         return Database.DEFAULT_VALUE;
     }
 
     @Override
-    public String getDoubleBarrelledMaleForename() {
+    public String getMaleDoubleBarrelledForename() {
         return Database.DEFAULT_VALUE;
     }
 
     @Override
-    public String getDoubleBarrelledMaleForename(int startId, int endId) {
+    public String getMaleDoubleBarrelledForename(int startId, int endId) {
         return Database.DEFAULT_VALUE;
     }
 
     @Override
-    public String getDoubleFemaleForename() {
+    public String getFemaleDoubleForename() {
         return Database.DEFAULT_VALUE;
     }
 
     @Override
-    public String getDoubleFemaleForename(int startId, int endId) {
+    public String getFemaleDoubleForename(int startId, int endId) {
         return Database.DEFAULT_VALUE;
     }
 
     @Override
-    public String getDoubleMaleForename() {
+    public String getMaleDoubleForename() {
         return Database.DEFAULT_VALUE;
     }
 
     @Override
-    public String getDoubleMaleForename(int startId, int endId) {
+    public String getMaleDoubleForename(int startId, int endId) {
         return Database.DEFAULT_VALUE;
     }
 

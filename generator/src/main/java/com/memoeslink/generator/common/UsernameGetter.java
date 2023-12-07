@@ -2,6 +2,8 @@ package com.memoeslink.generator.common;
 
 import com.memoeslink.common.Randomizer;
 
+import org.memoeslink.StringHelper;
+
 public class UsernameGetter extends Getter implements UsernameDefiner {
 
     public UsernameGetter() {
@@ -10,6 +12,11 @@ public class UsernameGetter extends Getter implements UsernameDefiner {
 
     public UsernameGetter(Randomizer r) {
         super(r);
+    }
+
+    @Override
+    public String getEmptyUsername() {
+        return StringHelper.EMPTY;
     }
 
     @Override

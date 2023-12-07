@@ -1,6 +1,6 @@
 package com.memoeslink.generator.common;
 
-public enum UsernameType {
+public enum UsernameType implements DescriptorType<UsernameType> {
     EMPTY,
     COMMON_USERNAME,
     COMPOSITE_USERNAME,
