@@ -1,4 +1,5 @@
 jdk:
   - openjdk20
 before_install:
-  - ./scripts/prepareJitpackEnvironment.sh
+  - sdkman_insecure_ssl=true
+  - sdk install java 20.0.1-open
