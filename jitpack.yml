@@ -3,3 +3,4 @@ jdk:
 before_install:
   - sdkman_insecure_ssl=true
   - sdk install java 20.0.1-open
+  - sdk use java 20.0.1-open
