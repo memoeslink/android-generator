@@ -86,7 +86,7 @@ public class NameGetter extends com.memoeslink.generator.base.NameGetter impleme
     @Override
     public String getFemaleGivenName() {
         return switch (r.getInt(3)) {
-            case 1 -> this.getFemaleDoubleForename();
+            case 1 -> getFemaleDoubleForename();
             case 2 -> getFemaleForenames();
             default -> getFemaleForename();
         };
@@ -95,7 +95,7 @@ public class NameGetter extends com.memoeslink.generator.base.NameGetter impleme
     @Override
     public String getMaleGivenName() {
         return switch (r.getInt(3)) {
-            case 1 -> this.getMaleDoubleForename();
+            case 1 -> getMaleDoubleForename();
             case 2 -> getMaleForenames();
             default -> getMaleForename();
         };
@@ -150,8 +150,7 @@ public class NameGetter extends com.memoeslink.generator.base.NameGetter impleme
     public String getFemaleFullName() {
         return switch (r.getInt(4)) {
             case 1 -> getFemaleForename() + Separator.SPACE.getCharacter() + getSurnames();
-            case 2 ->
-                    this.getFemaleDoubleForename() + Separator.SPACE.getCharacter() + getSurnames();
+            case 2 -> getFemaleDoubleForename() + Separator.SPACE.getCharacter() + getSurnames();
             case 3 -> getFemaleForenames() + Separator.SPACE.getCharacter() + getSurnames();
             default -> getFemaleSimpleName();
         };
@@ -161,7 +160,7 @@ public class NameGetter extends com.memoeslink.generator.base.NameGetter impleme
     public String getMaleFullName() {
         return switch (r.getInt(4)) {
             case 1 -> getMaleForename() + Separator.SPACE.getCharacter() + getSurnames();
-            case 2 -> this.getMaleDoubleForename() + Separator.SPACE.getCharacter() + getSurnames();
+            case 2 -> getMaleDoubleForename() + Separator.SPACE.getCharacter() + getSurnames();
             case 3 -> getMaleForenames() + Separator.SPACE.getCharacter() + getSurnames();
             default -> getMaleSimpleName();
         };

@@ -2,6 +2,7 @@ package com.memoeslink.generator.common;
 
 import org.memoeslink.Separator;
 import org.memoeslink.StringHelper;
+import org.memoeslink.StringValidation;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -73,7 +74,7 @@ public class TextProcessor {
     }
 
     public static String joinWords(List<Word> words, Gender gender) {
-        if (words == null || words.size() == 0)
+        if (words == null || words.isEmpty())
             return StringHelper.EMPTY;
         StringBuilder sb = new StringBuilder();
         gender = gender != null ? gender : Gender.UNDEFINED;
@@ -97,7 +98,7 @@ public class TextProcessor {
     }
 
     public static String feminize(String s, String ending) {
-        if (StringHelper.isNotOnlyLetters(s) || StringHelper.isNotOnlyLetters(ending))
+        if (!StringValidation.isOnlyLetter(s) || !StringValidation.isOnlyLetter(ending))
             return s;
 
         if (StringHelper.endsWith(s, ending))
@@ -113,7 +114,7 @@ public class TextProcessor {
     }
 
     public static String feminizeOnVowelEnd(String s, String ending) {
-        if (StringHelper.isNotOnlyLetters(s) || StringHelper.isNotOnlyLetters(ending))
+        if (!StringValidation.isOnlyLetter(s) || !StringValidation.isOnlyLetter(ending))
             return s;
 
         if (StringHelper.endsWith(s, ending))
@@ -129,7 +130,7 @@ public class TextProcessor {
     }
 
     public static String feminizeWhen(String s, String ending, String... occurrences) {
-        if (StringHelper.isNotOnlyLetters(s) || StringHelper.isNotOnlyLetters(ending))
+        if (!StringValidation.isOnlyLetter(s) || !StringValidation.isOnlyLetter(ending))
             return s;
 
         if (StringHelper.endsWith(s, ending))
@@ -163,7 +164,6 @@ public class TextProcessor {
                         continue;
                     }
                     String ending = StringHelper.defaultIfNull(matcher.group(3), StringHelper.defaultIfNull(matcher.group(4)));
-
                     if (!ending.isEmpty())
                         matcher.appendReplacement(sb, feminize(matcher.group(1), ending));
                     else
@@ -200,7 +200,7 @@ public class TextProcessor {
                 String prefix = StringHelper.substringBefore(substring, "[");
                 String suffix = StringHelper.substringAfter(substring, "]");
                 substring = StringHelper.substringBetween(substring, "[", "]");
-                List<String> items = Arrays.asList(substring.split(",\\s*"));
+                List<String> items = new ArrayList<>(Arrays.asList(substring.split(",\\s*")));
                 boolean shortened = false;
 
                 if (StringHelper.isNotNullOrEmpty(substring) && StringHelper.isNullOrBlank(suffix)) {
@@ -219,7 +219,7 @@ public class TextProcessor {
                     }
                 }
 
-                if (items.size() == 0)
+                if (items.isEmpty())
                     replacement = prefix + suffix;
                 else if (items.size() == 1)
                     replacement = prefix + items.get(0) + suffix;
@@ -228,7 +228,7 @@ public class TextProcessor {
                         replacement = prefix + items.get(0) + "(" + StringHelper.join(", ", items.subList(1, items.size())) + ")";
                     else {
                         items.replaceAll(item -> prefix + item + suffix);
-                        replacement = StringHelper.join("/", items);
+                        replacement = StringHelper.joinWithSlash(items);
                     }
                 } else
                     replacement = prefix + (gender == Gender.MASCULINE ? items.get(0) : items.get(1)) + suffix;
@@ -254,8 +254,7 @@ public class TextProcessor {
             return s;
         s = ROMAN_NUMERAL_PATTERN.matcher(s).replaceAll(String.valueOf(Separator.SPACE.getCharacter())).trim();
 
-        if (StringHelper.isOnlyAlphaSpace(s) || LATIN_OR_SPACE_PATTERN.matcher(s).matches()) {
-        } else
+        if (!StringValidation.isOnlyAlphabeticOrWhitespace(s) && !LATIN_OR_SPACE_PATTERN.matcher(s).matches())
             s = defaultName;
         s = s.toLowerCase();
         s = StringHelper.normalize(s);

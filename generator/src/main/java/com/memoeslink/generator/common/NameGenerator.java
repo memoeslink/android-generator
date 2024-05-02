@@ -1,7 +1,5 @@
 package com.memoeslink.generator.common;
 
-import org.memoeslink.StringHelper;
-
 import java.util.Locale;
 
 public class NameGenerator extends Generator {
@@ -15,7 +13,7 @@ public class NameGenerator extends Generator {
     }
 
     public String getName(NameType nameType) {
-        NameGetter getter = getGetter();
+        NameGetter getter = NameGetterFactory.getNameGetter(locale, r);
         nameType = nameType != null ? nameType : NameType.EMPTY;
 
         return switch (nameType) {
@@ -25,8 +23,8 @@ public class NameGenerator extends Generator {
             case FEMALE_PATRONYMIC -> getter.getFemalePatronymic();
             case MALE_DOUBLE_BARRELLED_FORENAME -> getter.getMaleDoubleBarrelledForename();
             case FEMALE_DOUBLE_BARRELLED_FORENAME -> getter.getFemaleDoubleBarrelledForename();
-            case MALE_DOUBLE_NAME -> getter.getMaleDoubleForename();
-            case FEMALE_DOUBLE_NAME -> getter.getFemaleDoubleForename();
+            case MALE_DOUBLE_FORENAME -> getter.getMaleDoubleForename();
+            case FEMALE_DOUBLE_FORENAME -> getter.getFemaleDoubleForename();
             case MALE_GIVEN_NAME -> getter.getMaleGivenName();
             case FEMALE_GIVEN_NAME -> getter.getFemaleGivenName();
             case SURNAME -> getter.getSurname();
@@ -77,37 +75,14 @@ public class NameGenerator extends Generator {
     }
 
     public String getGivenName() {
-        return getGetter().getGivenName();
+        return NameGetterFactory.getNameGetter(locale, r).getGivenName();
     }
 
     public String getSimpleName() {
-        return getGetter().getSimpleName();
+        return NameGetterFactory.getNameGetter(locale, r).getSimpleName();
     }
 
     public String getFullName() {
-        return getGetter().getFullName();
-    }
-
-    private NameGetter getGetter() {
-        if (StringHelper.isNullOrEmpty(locale.getLanguage()) ||
-                locale.getLanguage().equals("xx") || locale.getCountry().equals("XX"))
-            return new com.memoeslink.generator.international.NameGetter(r);
-        else {
-            return switch (locale.getLanguage()) {
-                case "ar" -> new com.memoeslink.generator.arabic.NameGetter(r);
-                case "de" -> new com.memoeslink.generator.german.NameGetter(r);
-                case "en" -> new com.memoeslink.generator.english.NameGetter(r);
-                case "es" ->
-                        locale.getCountry().equals("MX") ? new com.memoeslink.generator.spanish.mexico.NameGetter(r) :
-                                new com.memoeslink.generator.spanish.NameGetter(r);
-                case "fr" -> new com.memoeslink.generator.french.NameGetter(r);
-                case "it" -> new com.memoeslink.generator.italian.NameGetter(r);
-                case "hi" -> new com.memoeslink.generator.hindi.NameGetter(r);
-                case "ja" -> new com.memoeslink.generator.japanese.NameGetter(r);
-                case "pt" -> new com.memoeslink.generator.portuguese.NameGetter(r);
-                case "ru" -> new com.memoeslink.generator.russian.NameGetter(r);
-                default -> new com.memoeslink.generator.international.NameGetter(r);
-            };
-        }
+        return NameGetterFactory.getNameGetter(locale, r).getFullName();
     }
 }

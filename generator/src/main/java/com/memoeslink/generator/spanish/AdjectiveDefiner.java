@@ -21,11 +21,11 @@ public interface AdjectiveDefiner extends com.memoeslink.generator.common.Adject
     default Adjective getRefinedAdjective(String s) {
         Adjective adjective = new Adjective();
 
-        if (StringHelper.contains(s, "AQ0C"))
+        if (StringHelper.has(s, "AQ0C"))
             adjective.setGender(Gender.NEUTRAL);
-        else if (StringHelper.containsAny(s, "AQ0M", "AO0M", "AQSM"))
+        else if (StringHelper.hasAny(s, "AQ0M", "AO0M", "AQSM"))
             adjective.setGender(Gender.MASCULINE);
-        else if (StringHelper.containsAny(s, "AQ0F", "AO0F", "AQSF"))
+        else if (StringHelper.hasAny(s, "AQ0F", "AO0F", "AQSF"))
             adjective.setGender(Gender.FEMININE);
         else if (StringHelper.endsWith(s, "o"))
             adjective.setGender(Gender.MASCULINE);

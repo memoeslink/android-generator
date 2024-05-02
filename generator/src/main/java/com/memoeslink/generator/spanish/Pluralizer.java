@@ -2,6 +2,7 @@ package com.memoeslink.generator.spanish;
 
 import org.memoeslink.Separator;
 import org.memoeslink.StringHelper;
+import org.memoeslink.StringValidation;
 
 import java.util.Arrays;
 import java.util.List;
@@ -98,7 +99,7 @@ public class Pluralizer {
     }
 
     private static String convert(String s) {
-        if (StringHelper.isNullOrBlank(s) || StringHelper.containsSpace(s) || StringHelper.isAllUpperCase(s))
+        if (StringHelper.isNullOrBlank(s) || StringValidation.hasSpace(s) || StringValidation.isOnlyUppercase(s))
             return s;
         SyllableSeparator syllableSeparator = new SyllableSeparator(s);
         List<String> syllables = syllableSeparator.getSyllables();

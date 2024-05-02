@@ -376,7 +376,7 @@ public class TextFormatter {
     public static String colorText(String s, int alpha, int red, int green, int blue) {
         if (StringHelper.isNullOrBlank(s))
             return s;
-        String color = StringHelper.createHexStringFromARGB(alpha, red, green, blue);
+        String color = StringHelper.getHexStringFromARGB(alpha, red, green, blue);
         return String.format("<font color=\"%s\">%s</font>", color, s);
     }
 }

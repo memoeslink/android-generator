@@ -66,7 +66,7 @@ public class ResourceGetter {
             index = IntegerHelper.defaultIndex(index, chars.length);
             return chars[index];
         }
-        return CharHelper.EMPTY_CHAR;
+        return CharHelper.NULL_CHAR;
     }
 
     public char getChar(String s) {
@@ -78,7 +78,7 @@ public class ResourceGetter {
             index = IntegerHelper.defaultIndex(index, s.length());
             return s.charAt(index);
         }
-        return CharHelper.EMPTY_CHAR;
+        return CharHelper.NULL_CHAR;
     }
 
     public String getString(String s) {
@@ -135,7 +135,6 @@ public class ResourceGetter {
             try {
                 is = new FileInputStream(file);
             } catch (FileNotFoundException e) {
-                e.printStackTrace();
                 return s;
             }
             InputStreamReader isr = new InputStreamReader(is);
@@ -150,8 +149,7 @@ public class ResourceGetter {
                     lnr.skip(Long.MAX_VALUE);
                     lineCount = lnr.getLineNumber() + 1;
                     COUNT_REGISTRY.put(filename, lineCount);
-                } catch (IOException e) {
-                    e.printStackTrace();
+                } catch (IOException ignored) {
                 }
             }
 
@@ -164,8 +162,7 @@ public class ResourceGetter {
                     }
                     br.close();
                     lnr.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                } catch (IOException ignored) {
                 }
             }
             br = null;
@@ -179,7 +176,7 @@ public class ResourceGetter {
             return StringHelper.EMPTY;
         String s = ResourceBundleManager.getInstance().getResourceBundle(locale).getString(key);
 
-        if (StringHelper.contains(s, "\t")) {
+        if (StringHelper.has(s, "\t")) {
             String mapKey = String.format("%d-%s", s.hashCode(), key);
 
             if (!RESOURCE_BUNDLE_MAPPING.containsKey(mapKey)) {

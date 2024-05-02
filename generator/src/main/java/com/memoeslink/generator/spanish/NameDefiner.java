@@ -5,6 +5,7 @@ import com.memoeslink.generator.common.Gender;
 
 import org.memoeslink.Separator;
 import org.memoeslink.StringHelper;
+import org.memoeslink.StringValidation;
 
 public interface NameDefiner extends com.memoeslink.generator.base.NameDefiner {
 
@@ -38,7 +39,7 @@ public interface NameDefiner extends com.memoeslink.generator.base.NameDefiner {
         do {
             surname = getGivenName();
         } while (StringHelper.isNullOrBlank(surname) || surname.equals(Database.DEFAULT_VALUE)
-                || StringHelper.containsSpace(surname) || StringHelper.startsWithAny(surname, "de ", "del "));
+                || StringValidation.hasSpace(surname) || StringHelper.startsWithAny(surname, "de ", "del "));
         return "de" + Separator.SPACE.getCharacter() + surname;
     }
 

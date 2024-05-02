@@ -8,6 +8,7 @@ import com.memoeslink.generator.international.NameGen;
 import org.memoeslink.CharHelper;
 import org.memoeslink.IntegerHelper;
 import org.memoeslink.StringHelper;
+import org.memoeslink.StringValidation;
 
 public interface NameDefiner extends com.memoeslink.generator.common.NameDefiner {
 
@@ -140,7 +141,7 @@ public interface NameDefiner extends com.memoeslink.generator.common.NameDefiner
         }
         s = sb.toString();
 
-        if (!StringHelper.hasVowel(s))
+        if (!StringValidation.hasVowel(s))
             s = getFrequencyName(letters, length, r);
         return StringHelper.capitalizeFirst(s);
     }
@@ -160,7 +161,7 @@ public interface NameDefiner extends com.memoeslink.generator.common.NameDefiner
                 secondMark = firstMark + length - 1;
             name = StringHelper.substring(letters, firstMark, secondMark + 1);
 
-            if (!StringHelper.hasVowel(name))
+            if (!StringValidation.hasVowel(name))
                 name = getPreformedName(letters, length, r);
             else {
                 name = r.getBoolean() ? StringHelper.reverse(name) : name;

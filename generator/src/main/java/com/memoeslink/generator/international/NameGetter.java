@@ -183,6 +183,6 @@ public class NameGetter extends com.memoeslink.generator.base.NameGetter {
 
     public com.memoeslink.generator.common.NameGetter getAnyGetter(String methodName) {
         String locale = r.getElement(NameMapper.getNameMapping().get(methodName));
-        return NameGetterFactory.getNameGetter(locale);
+        return NameGetterFactory.getNameGetter(locale, r);
     }
 }

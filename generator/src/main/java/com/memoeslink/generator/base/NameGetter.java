@@ -264,7 +264,7 @@ public class NameGetter extends com.memoeslink.generator.common.NameGetter imple
 
     @Override
     public String getMarkovianFullName() {
-        return r.getBoolean() ? getMaleMarkovianFullName() : this.getFemaleMarkovianFullName();
+        return r.getBoolean() ? getMaleMarkovianFullName() : getFemaleMarkovianFullName();
     }
 
     @Override

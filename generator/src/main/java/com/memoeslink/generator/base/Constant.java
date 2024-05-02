@@ -14,7 +14,6 @@ public final class Constant {
     public static final String LOWERCASE_CONSONANTS = "bcdfghjklmnpqrstvwxyz";
     public static final String UPPERCASE_CONSONANTS = "BCDFGHJKLMNPQRSTVWXYZ";
     public static final char[] LOWERCASE_ENDING_CONSONANTS = {'l', 'm', 'n', 'r', 's', 't', 'z'};
-    public static final char[] LOWERCASE_NON_CLUSTER_CONSONANTS = {'h', 'j', 'q', 'v', 'w', 'x'};
     public static final WeightedChar[] WEIGHTED_CONSONANTS = {
             new WeightedChar('b', 0.25D),
             new WeightedChar('c', 0.3D),

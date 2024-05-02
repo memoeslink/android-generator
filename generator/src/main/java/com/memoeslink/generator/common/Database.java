@@ -12,12 +12,12 @@ import org.memoeslink.IntegerHelper;
 import org.memoeslink.StringHelper;
 
 import java.util.HashMap;
+import java.util.Objects;
 import java.util.function.Supplier;
 
 public class Database extends SQLiteAssetHelper {
     public static final String DATABASE_NAME = "generator.sqlite";
     public static final int DATABASE_VERSION = 1;
-    public static final int DEFAULT_INDEX = -1;
     public static final String DEFAULT_VALUE = "?";
     public static final String ID_PREFIX = "ID";
     public static final String TABLE_ENGLISH_ADJECTIVES = "EnglishAdjectives";
@@ -83,9 +83,9 @@ public class Database extends SQLiteAssetHelper {
     }
 
     private static int countRows(String table, String query) {
-        int count = TABLE_COUNT_REGISTRY.getOrDefault(table, DEFAULT_INDEX);
+        int count = Objects.requireNonNull(TABLE_COUNT_REGISTRY.getOrDefault(table, -1));
 
-        if (count != DEFAULT_INDEX)
+        if (count != -1)
             return count;
         String s = selectRow(query, 0);
         count = IntegerHelper.tryParse(s, 0);
@@ -102,7 +102,7 @@ public class Database extends SQLiteAssetHelper {
             c = db.rawQuery(query, null);
         else
             c = db.rawQuery(query, parameters);
-        String result = StringHelper.EMPTY;
+        String result;
 
         try {
             c.moveToFirst();
@@ -112,8 +112,8 @@ public class Database extends SQLiteAssetHelper {
         } finally {
             c.close();
             c = null;
-            return result;
         }
+        return result;
     }
 
     public static int countTableRows(String table) {
@@ -152,7 +152,7 @@ public class Database extends SQLiteAssetHelper {
             TABLE_MAPPING.put(TABLE_SURNAMES, Database::selectSurname);
             TABLE_MAPPING.put(TABLE_USERNAMES, Database::selectUsername);
         }
-        return TABLE_MAPPING.getOrDefault(table, () -> DEFAULT_VALUE).get();
+        return Objects.requireNonNull(TABLE_MAPPING.getOrDefault(table, () -> DEFAULT_VALUE)).get();
     }
 
     public static String selectFromTable(String table) {

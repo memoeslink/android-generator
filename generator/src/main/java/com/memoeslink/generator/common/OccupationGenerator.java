@@ -15,16 +15,7 @@ public class OccupationGenerator extends Generator {
     }
 
     public String getOccupation(OccupationType occupationType) {
-        OccupationGetter getter;
-
-        if (StringHelper.isNullOrEmpty(locale.getLanguage()))
-            getter = new com.memoeslink.generator.international.OccupationGetter(r);
-        else if (locale.getLanguage().equals("en"))
-            getter = new com.memoeslink.generator.english.OccupationGetter(r);
-        else if (locale.getLanguage().equals("es"))
-            getter = new com.memoeslink.generator.spanish.OccupationGetter(r);
-        else
-            getter = new com.memoeslink.generator.international.OccupationGetter(r);
+        OccupationGetter getter = getOccupationGetter();
         occupationType = occupationType != null ? occupationType : OccupationType.ANY;
 
         return switch (occupationType) {
@@ -51,6 +42,20 @@ public class OccupationGenerator extends Generator {
             case GENDERLESS_ROYAL_TITLE -> getter.getGenderlessRoyalTitle();
             default -> getOccupation(r.getElement(OccupationType.values()));
         };
+    }
+
+    private OccupationGetter getOccupationGetter() {
+        OccupationGetter getter;
+
+        if (StringHelper.isNullOrEmpty(locale.getLanguage()))
+            getter = new com.memoeslink.generator.international.OccupationGetter(r);
+        else if (locale.getLanguage().equals("en"))
+            getter = new com.memoeslink.generator.english.OccupationGetter(r);
+        else if (locale.getLanguage().equals("es"))
+            getter = new com.memoeslink.generator.spanish.OccupationGetter(r);
+        else
+            getter = new com.memoeslink.generator.international.OccupationGetter(r);
+        return getter;
     }
 
     public static String getDefaultOccupation() {

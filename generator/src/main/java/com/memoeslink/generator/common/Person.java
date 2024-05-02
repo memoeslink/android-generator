@@ -329,10 +329,10 @@ public class Person {
 
     public String getSummary() {
         return (getDescriptor() +
-                System.getProperty("line.separator") +
+                System.lineSeparator() +
                 (gender != null ? gender : Gender.UNDEFINED).getGlyph() +
-                System.getProperty("line.separator") +
-                StringHelper.defaultOnBlank(DateTimeHelper.toIso8601Date(getBirthdate()))
+                System.lineSeparator() +
+                StringHelper.defaultOnBlank(DateTimeHelper.toIso8601DateStr(getBirthdate()))
         );
     }
 
