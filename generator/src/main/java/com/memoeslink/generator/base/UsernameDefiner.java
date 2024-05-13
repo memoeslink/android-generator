@@ -90,11 +90,11 @@ public interface UsernameDefiner extends com.memoeslink.generator.common.Usernam
 
         if (r.getBoolean()) {
             String username = StringHelper.joinWithSpace(words);
-            username = StringHelper.replace(username, "-", " ");
+            username = StringHelper.stripAccents(username);
             return StringHelper.convertCase(username, r.getElement(CaseStyle.values()));
         } else {
             String username = StringHelper.joinWithoutSeparator(words);
-            username = StringHelper.removeEach(username, "-", " ");
+            username = StringHelper.normalizeAlpha(username);
             return StringHelper.randomCase(username);
         }
     }
