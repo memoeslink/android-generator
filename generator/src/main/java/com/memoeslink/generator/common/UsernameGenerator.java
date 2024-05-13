@@ -24,6 +24,7 @@ public class UsernameGenerator extends Generator {
             case DERIVED_USERNAME -> getter.getDerivedUsername();
             case PATTERN_USERNAME -> getter.getPatternUsername();
             case ADMIN_USERNAME -> getter.getAdminUsername();
+            case WORD_BASED_USERNAME -> getter.getWordBasedUsername();
             case ANONYMOUS_NAME -> getter.getAnonymousName();
             case ANONYMOUS_ANIMAL -> getter.getAnonymousAnimal();
             default -> getter.getEmptyUsername();

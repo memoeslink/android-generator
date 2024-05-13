@@ -344,8 +344,8 @@ public class ResourceFinder extends Binder {
         public String getResource(@ArrayRes @StringRes int id) {
             return switch (id) {
                 case ResourceReference.NONE -> RESOURCE_NOT_FOUND;
-                case ResourceReference.EMOJI -> getStrFromStrArrayRes(R.array.emoji);
-                case ResourceReference.EMOJI_V15 -> getEmojiV15();
+                case ResourceReference.COMPATIBLE_EMOJI -> getStrFromStrArrayRes(R.array.emoji);
+                case ResourceReference.EMOJI -> getEmoji();
                 case ResourceReference.EMOTICON -> getStrFromStrArrayRes(R.array.emoticon);
                 case ResourceReference.KAOMOJI -> getStrFromStrArrayRes(R.array.kaomoji);
                 case ResourceReference.PICTOGRAM -> getPictogram();
@@ -354,7 +354,7 @@ public class ResourceFinder extends Binder {
             };
         }
 
-        private String getEmojiV15() {
+        private String getEmoji() {
             String codePoints = Database.selectCodePoints(r.getIntInRange(1, Database.countEmojis()));
 
             if (!EMOJI_MAPPING.containsKey(codePoints)) {
@@ -370,8 +370,8 @@ public class ResourceFinder extends Binder {
 
         private String getPictogram() {
             return switch (r.getInt(4)) {
-                case 0 -> getResource(ResourceReference.EMOJI);
-                case 1 -> getResource(ResourceReference.EMOJI_V15);
+                case 0 -> getResource(ResourceReference.COMPATIBLE_EMOJI);
+                case 1 -> getResource(ResourceReference.EMOJI);
                 case 2 -> getResource(ResourceReference.EMOTICON);
                 case 3 -> getResource(ResourceReference.KAOMOJI);
                 default -> RESOURCE_NOT_FOUND;
@@ -381,9 +381,9 @@ public class ResourceFinder extends Binder {
         private String getReaction() {
             return switch (r.getInt(4)) {
                 case 0 ->
-                        Stream.generate(() -> getResource(ResourceReference.EMOJI)).limit(r.getInt(1, 5)).collect(Collectors.joining());
+                        Stream.generate(() -> getResource(ResourceReference.COMPATIBLE_EMOJI)).limit(r.getInt(1, 5)).collect(Collectors.joining());
                 case 1 ->
-                        Stream.generate(() -> getResource(ResourceReference.EMOJI_V15)).limit(r.getInt(1, 5)).collect(Collectors.joining());
+                        Stream.generate(() -> getResource(ResourceReference.EMOJI)).limit(r.getInt(1, 5)).collect(Collectors.joining());
                 case 2 -> getResource(ResourceReference.EMOTICON);
                 case 3 -> getResource(ResourceReference.KAOMOJI);
                 default -> RESOURCE_NOT_FOUND;

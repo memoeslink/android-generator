@@ -42,6 +42,11 @@ public class UsernameGetter extends com.memoeslink.generator.base.UsernameGetter
     }
 
     @Override
+    public String getWordBasedUsername() {
+        return getAnyGetter().getWordBasedUsername();
+    }
+
+    @Override
     public String getAnonymousName() {
         return getAnyGetter().getAnonymousName();
     }

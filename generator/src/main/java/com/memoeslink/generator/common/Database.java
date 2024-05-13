@@ -27,10 +27,13 @@ public class Database extends SQLiteAssetHelper {
     public static final String TABLE_ENGLISH_OCCUPATIONS = "EnglishOccupations";
     public static final String TABLE_ENGLISH_PHONETICS = "EnglishPhonetics";
     public static final String TABLE_ENGLISH_SURNAMES = "EnglishSurnames";
+    public static final String TABLE_ENGLISH_WORDS = "EnglishWords";
     public static final String TABLE_EMOJIS = "Emojis";
     public static final String TABLE_FORENAMES = "Forenames";
     public static final String TABLE_FRENCH_FEMALE_NAMES = "FrenchFemaleNames";
     public static final String TABLE_FRENCH_MALE_NAMES = "FrenchMaleNames";
+    public static final String TABLE_FRENCH_WORDS = "FrenchWords";
+    public static final String TABLE_GERMAN_WORDS = "GermanWords";
     public static final String TABLE_RUSSIAN_FEMALE_NAMES = "RussianFemaleNames";
     public static final String TABLE_RUSSIAN_MALE_NAMES = "RussianMaleNames";
     public static final String TABLE_SPANISH_COMPOUND_SURNAMES = "SpanishCompoundSurnames";
@@ -41,6 +44,7 @@ public class Database extends SQLiteAssetHelper {
     public static final String TABLE_SPANISH_PLURAL_ADJECTIVES = "SpanishPluralAdjectives";
     public static final String TABLE_SPANISH_SINGULAR_ADJECTIVES = "SpanishSingularAdjectives";
     public static final String TABLE_SPANISH_SURNAMES = "SpanishSurnames";
+    public static final String TABLE_SPANISH_WORDS = "SpanishWords";
     public static final String TABLE_FAMILY_NAMES = "FamilyNames";
     public static final String TABLE_NAMES = "Names";
     public static final String TABLE_NOUNS = "Nouns";
@@ -79,29 +83,22 @@ public class Database extends SQLiteAssetHelper {
     }
 
     private static int countRows(String table) {
-        return countRows(table, "SELECT COUNT(*) FROM " + table);
-    }
-
-    private static int countRows(String table, String query) {
         int count = Objects.requireNonNull(TABLE_COUNT_REGISTRY.getOrDefault(table, -1));
 
-        if (count != -1)
-            return count;
-        String s = selectRow(query, 0);
-        count = IntegerHelper.tryParse(s, 0);
+        if (count != -1) return count;
+        count = IntegerHelper.tryParse(selectRow("SELECT COUNT(*) FROM " + table, 1), -1);
         TABLE_COUNT_REGISTRY.put(table, count);
         return count;
     }
 
     private static String selectRow(String query, int column, String... parameters) {
-        if (db == null)
-            return DEFAULT_VALUE;
+        if (StringHelper.isNullOrEmpty(query)) return DEFAULT_VALUE;
+
+        if (db == null) return DEFAULT_VALUE;
         Cursor c;
 
-        if (parameters.length == 0)
-            c = db.rawQuery(query, null);
-        else
-            c = db.rawQuery(query, parameters);
+        if (parameters.length == 0) c = db.rawQuery(query, null);
+        else c = db.rawQuery(query, parameters);
         String result;
 
         try {
@@ -121,8 +118,7 @@ public class Database extends SQLiteAssetHelper {
     }
 
     public String selectRecord(String table) {
-        if (StringHelper.isNullOrBlank(table))
-            return DEFAULT_VALUE;
+        if (StringHelper.isNullOrBlank(table)) return DEFAULT_VALUE;
 
         if (TABLE_MAPPING.isEmpty()) {
             TABLE_MAPPING.put(TABLE_ENGLISH_ADJECTIVES, Database::selectEnglishAdjective);
@@ -132,10 +128,13 @@ public class Database extends SQLiteAssetHelper {
             TABLE_MAPPING.put(TABLE_ENGLISH_OCCUPATIONS, Database::selectEnglishOccupation);
             TABLE_MAPPING.put(TABLE_ENGLISH_PHONETICS, Database::selectEnglishPhoneticScript);
             TABLE_MAPPING.put(TABLE_ENGLISH_SURNAMES, Database::selectEnglishSurname);
-            TABLE_MAPPING.put(TABLE_EMOJIS, Database::selectEmojis);
+            TABLE_MAPPING.put(TABLE_ENGLISH_WORDS, Database::selectEnglishWord);
+            TABLE_MAPPING.put(TABLE_EMOJIS, Database::selectEmoji);
             TABLE_MAPPING.put(TABLE_FORENAMES, Database::selectForename);
             TABLE_MAPPING.put(TABLE_FRENCH_FEMALE_NAMES, Database::selectFrenchFemaleName);
             TABLE_MAPPING.put(TABLE_FRENCH_MALE_NAMES, Database::selectFrenchMaleName);
+            TABLE_MAPPING.put(TABLE_FRENCH_WORDS, Database::selectFrenchWord);
+            TABLE_MAPPING.put(TABLE_GERMAN_WORDS, Database::selectGermanWord);
             TABLE_MAPPING.put(TABLE_RUSSIAN_FEMALE_NAMES, Database::selectRussianFemaleName);
             TABLE_MAPPING.put(TABLE_RUSSIAN_MALE_NAMES, Database::selectRussianMaleName);
             TABLE_MAPPING.put(TABLE_SPANISH_COMPOUND_SURNAMES, Database::selectHispanicCompoundSurname);
@@ -146,6 +145,7 @@ public class Database extends SQLiteAssetHelper {
             TABLE_MAPPING.put(TABLE_SPANISH_PLURAL_ADJECTIVES, Database::selectSpanishPluralAdjective);
             TABLE_MAPPING.put(TABLE_SPANISH_SINGULAR_ADJECTIVES, Database::selectSpanishSingularAdjective);
             TABLE_MAPPING.put(TABLE_SPANISH_SURNAMES, Database::selectHispanicSurname);
+            TABLE_MAPPING.put(TABLE_SPANISH_WORDS, Database::selectSpanishWord);
             TABLE_MAPPING.put(TABLE_FAMILY_NAMES, Database::selectFamilyName);
             TABLE_MAPPING.put(TABLE_NAMES, Database::selectName);
             TABLE_MAPPING.put(TABLE_NOUNS, Database::selectCommonNoun);
@@ -227,11 +227,11 @@ public class Database extends SQLiteAssetHelper {
         return countRows(TABLE_ENGLISH_PHONETICS);
     }
 
-    public static String selectEnglishWord() {
+    public static String selectEnglishPhoneticWord() {
         return selectRow("SELECT * FROM " + TABLE_ENGLISH_PHONETICS + " ORDER BY RANDOM() LIMIT 1", 1);
     }
 
-    public static String selectEnglishWord(int id) {
+    public static String selectEnglishPhoneticWord(int id) {
         return selectRow("SELECT * FROM " + TABLE_ENGLISH_PHONETICS + " WHERE " + TABLE_ENGLISH_PHONETICS + ID_PREFIX + " = ?", 1, String.valueOf(id));
     }
 
@@ -240,7 +240,7 @@ public class Database extends SQLiteAssetHelper {
     }
 
     public static String selectEnglishPhoneticScript(String word) {
-        return selectRow("SELECT Word, Phonetics FROM " + TABLE_ENGLISH_PHONETICS + " WHERE Word = ?", 1, word);
+        return selectRow("SELECT Word, Phonetics FROM " + TABLE_ENGLISH_PHONETICS + " WHERE Word = ? COLLATE NOCASE", 1, word);
     }
 
     public static int countEnglishSurnames() {
@@ -255,15 +255,27 @@ public class Database extends SQLiteAssetHelper {
         return selectRow("SELECT * FROM " + TABLE_ENGLISH_SURNAMES + " WHERE " + TABLE_ENGLISH_SURNAMES + ID_PREFIX + " = ?", 1, String.valueOf(id));
     }
 
+    public static int countEnglishWords() {
+        return countRows(TABLE_ENGLISH_WORDS);
+    }
+
+    public static String selectEnglishWord() {
+        return selectRow("SELECT * FROM " + TABLE_ENGLISH_WORDS + " ORDER BY RANDOM() LIMIT 1", 1);
+    }
+
+    public static String selectEnglishWord(int id) {
+        return selectRow("SELECT * FROM " + TABLE_ENGLISH_WORDS + " WHERE " + TABLE_ENGLISH_WORDS + ID_PREFIX + " = ?", 1, String.valueOf(id));
+    }
+
     public static int countEmojis() {
         return countRows(TABLE_EMOJIS);
     }
 
-    public static String selectEmojis() {
+    public static String selectEmoji() {
         return selectRow("SELECT CodePoints, Emoji FROM " + TABLE_EMOJIS + " ORDER BY RANDOM() LIMIT 1", 1);
     }
 
-    public static String selectEmojis(int id) {
+    public static String selectEmoji(int id) {
         return selectRow("SELECT CodePoints, Emoji FROM " + TABLE_EMOJIS + " WHERE " + TABLE_EMOJIS + ID_PREFIX + " = ?", 1, String.valueOf(id));
     }
 
@@ -309,6 +321,30 @@ public class Database extends SQLiteAssetHelper {
 
     public static String selectFrenchMaleName(int id) {
         return selectRow("SELECT * FROM " + TABLE_FRENCH_MALE_NAMES + " WHERE " + TABLE_FRENCH_MALE_NAMES + ID_PREFIX + " = ?", 1, String.valueOf(id));
+    }
+
+    public static int countFrenchWords() {
+        return countRows(TABLE_FRENCH_WORDS);
+    }
+
+    public static String selectFrenchWord() {
+        return selectRow("SELECT * FROM " + TABLE_FRENCH_WORDS + " ORDER BY RANDOM() LIMIT 1", 1);
+    }
+
+    public static String selectFrenchWord(int id) {
+        return selectRow("SELECT * FROM " + TABLE_FRENCH_WORDS + " WHERE " + TABLE_FRENCH_WORDS + ID_PREFIX + " = ?", 1, String.valueOf(id));
+    }
+
+    public static int countGermanWords() {
+        return countRows(TABLE_GERMAN_WORDS);
+    }
+
+    public static String selectGermanWord() {
+        return selectRow("SELECT * FROM " + TABLE_GERMAN_WORDS + " ORDER BY RANDOM() LIMIT 1", 1);
+    }
+
+    public static String selectGermanWord(int id) {
+        return selectRow("SELECT * FROM " + TABLE_GERMAN_WORDS + " WHERE " + TABLE_GERMAN_WORDS + ID_PREFIX + " = ?", 1, String.valueOf(id));
     }
 
     public static int countRussianFemaleNames() {
@@ -429,6 +465,18 @@ public class Database extends SQLiteAssetHelper {
 
     public static String selectHispanicSurname(int id) {
         return selectRow("SELECT * FROM " + TABLE_SPANISH_SURNAMES + " WHERE " + TABLE_SPANISH_SURNAMES + ID_PREFIX + " = ?", 1, String.valueOf(id));
+    }
+
+    public static int countSpanishWords() {
+        return countRows(TABLE_SPANISH_WORDS);
+    }
+
+    public static String selectSpanishWord() {
+        return selectRow("SELECT * FROM " + TABLE_SPANISH_WORDS + " ORDER BY RANDOM() LIMIT 1", 1);
+    }
+
+    public static String selectSpanishWord(int id) {
+        return selectRow("SELECT * FROM " + TABLE_SPANISH_WORDS + " WHERE " + TABLE_SPANISH_WORDS + ID_PREFIX + " = ?", 1, String.valueOf(id));
     }
 
     public static int countFamilyNames() {

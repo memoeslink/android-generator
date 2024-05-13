@@ -14,6 +14,8 @@ public interface UsernameDefiner {
 
     public String getAdminUsername();
 
+    public String getWordBasedUsername();
+
     public String getAnonymousName();
 
     public String getAnonymousAnimal();

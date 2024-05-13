@@ -8,6 +8,8 @@ import org.memoeslink.Separator;
 import org.memoeslink.StringHelper;
 
 import java.util.Locale;
+import java.util.Map;
+import java.util.function.Supplier;
 
 public class UsernameGetter extends com.memoeslink.generator.international.UsernameGetter {
     private final NameGetter nameGetter;
@@ -42,7 +44,32 @@ public class UsernameGetter extends com.memoeslink.generator.international.Usern
 
     @Override
     public String getPatternUsername() {
-        return getPatternUsername(r.getBoolean() ? nameGetter.getMaleForename() : nameGetter.getFemaleForename(), nameGetter.getSurname(), Locale.ENGLISH, r);
+        Map<String, Supplier<String>> patternMapping = Map.of(
+                "forename", () -> nameGetter.getForename().toLowerCase(),
+                "surname", () -> nameGetter.getSurname().toLowerCase(),
+                "job", () -> {
+                    String job = ResourceGetter.with(r).getStrFromResBundle(Locale.ENGLISH, "job.position");
+                    return StringHelper.normalize(job).toLowerCase();
+                },
+                "denominator", () -> {
+                    String denominator = ResourceGetter.with(r).getStrFromResBundle(Locale.ENGLISH, "organization.denominator");
+                    return StringHelper.normalize(denominator).toLowerCase();
+                },
+                "letter", () -> String.valueOf(ResourceGetter.with(r).getChar(com.memoeslink.generator.base.Constant.UPPERCASE_ALPHABET)),
+                "number", () -> String.valueOf(r.getInt(1, 10)),
+                "year", () -> {
+                    int year = com.memoeslink.generator.common.Constant.STARTING_YEAR + r.getInt(-100, 101);
+                    return String.valueOf(year);
+                }
+        );
+        return getPatternUsername(ResourceGetter.with(r).getString(com.memoeslink.generator.base.Constant.USERNAME_PATTERNS), patternMapping);
+    }
+
+    @Override
+    public String getWordBasedUsername() {
+        String start = Database.selectEnglishWord(r.getIntInRange(1, Database.countEnglishWords()));
+        String end = r.getBoolean() ? Database.selectEnglishWord(r.getIntInRange(1, Database.countEnglishWords())) : "";
+        return getWordBasedUsername(r, start, end);
     }
 
     @Override

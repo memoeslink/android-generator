@@ -20,6 +20,11 @@ public class NameGetter extends com.memoeslink.generator.common.NameGetter imple
     }
 
     @Override
+    public String getForename() {
+        return r.getBoolean() ? getMaleForename() : getFemaleForename();
+    }
+
+    @Override
     public String getFullName() {
         return r.getBoolean() ? getMaleFullName() : getFemaleFullName();
     }

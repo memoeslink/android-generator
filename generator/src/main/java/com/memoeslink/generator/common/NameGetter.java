@@ -41,6 +41,11 @@ public class NameGetter extends Getter implements NameDefiner {
     }
 
     @Override
+    public String getForename() {
+        return Database.DEFAULT_VALUE;
+    }
+
+    @Override
     public String getFemalePatronymic() {
         return Database.DEFAULT_VALUE;
     }

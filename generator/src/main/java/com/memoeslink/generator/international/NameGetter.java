@@ -3,6 +3,7 @@ package com.memoeslink.generator.international;
 import com.memoeslink.common.Randomizer;
 import com.memoeslink.generator.common.Database;
 import com.memoeslink.generator.common.NameGetterFactory;
+import com.memoeslink.generator.common.NameIndexer;
 import com.memoeslink.generator.common.NameMapper;
 
 import org.memoeslink.Separator;
@@ -35,6 +36,11 @@ public class NameGetter extends com.memoeslink.generator.base.NameGetter {
     @Override
     public String getMaleForename(int id) {
         return getAnyGetter(new Exception().getStackTrace()[0].getMethodName()).getMaleForename(id);
+    }
+
+    @Override
+    public String getForename() {
+        return getAnyGetter(new Exception().getStackTrace()[0].getMethodName()).getForename();
     }
 
     @Override
@@ -183,6 +189,9 @@ public class NameGetter extends com.memoeslink.generator.base.NameGetter {
 
     public com.memoeslink.generator.common.NameGetter getAnyGetter(String methodName) {
         String locale = r.getElement(NameMapper.getNameMapping().get(methodName));
+
+        if (locale == null)
+            locale = r.getElement(NameIndexer.getNameMapping().get(methodName));
         return NameGetterFactory.getNameGetter(locale, r);
     }
 }

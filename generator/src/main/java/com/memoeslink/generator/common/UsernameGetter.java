@@ -45,6 +45,11 @@ public class UsernameGetter extends Getter implements UsernameDefiner {
     }
 
     @Override
+    public String getWordBasedUsername() {
+        return Database.DEFAULT_VALUE;
+    }
+
+    @Override
     public String getAnonymousName() {
         return Database.DEFAULT_VALUE;
     }

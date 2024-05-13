@@ -14,6 +14,8 @@ public interface NameDefiner {
 
     public String getMaleForename(int id);
 
+    public String getForename();
+
     public String getFemalePatronymic();
 
     public String getFemalePatronymic(int id);
