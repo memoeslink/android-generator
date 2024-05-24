@@ -151,20 +151,20 @@ public class NameGetter extends com.memoeslink.generator.base.NameGetter impleme
     public String getFemaleFullName() {
         return switch (r.getInt(8)) {
             case 1 -> getFemaleForename() + Separator.SPACE.getCharacter() + getDualSurname();
-            case 2 -> (getFemaleDoubleBarrelledForename() + Separator.SPACE.getCharacter() +
-                    getSurname());
-            case 3 -> (getFemaleForename() + Separator.SPACE.getCharacter() +
+            case 2 -> getFemaleDoubleBarrelledForename() + Separator.SPACE.getCharacter() +
+                    getSurname();
+            case 3 -> getFemaleForename() + Separator.SPACE.getCharacter() +
                     getFemaleMiddleName() + Separator.SPACE.getCharacter() +
-                    getSurname());
-            case 4 -> (getFemaleForename() + Separator.SPACE.getCharacter() +
+                    getSurname();
+            case 4 -> getFemaleForename() + Separator.SPACE.getCharacter() +
                     getMiddleNameInitial() + Separator.SPACE.getCharacter() +
-                    getSurname());
-            case 5 -> (getFemaleForename() + Separator.SPACE.getCharacter() +
+                    getSurname();
+            case 5 -> getFemaleForename() + Separator.SPACE.getCharacter() +
                     getFemaleMiddleName() + Separator.SPACE.getCharacter() +
-                    getDualSurname());
-            case 6 -> (getFemaleForename() + Separator.SPACE.getCharacter() +
+                    getDualSurname();
+            case 6 -> getFemaleForename() + Separator.SPACE.getCharacter() +
                     getMiddleNameInitial() + Separator.SPACE.getCharacter() +
-                    getDualSurname());
+                    getDualSurname();
             case 7 -> getFemaleName();
             default -> getFemaleSimpleName();
         };
@@ -174,20 +174,20 @@ public class NameGetter extends com.memoeslink.generator.base.NameGetter impleme
     public String getMaleFullName() {
         return switch (r.getInt(8)) {
             case 1 -> getMaleForename() + Separator.SPACE.getCharacter() + getDualSurname();
-            case 2 -> (getMaleDoubleBarrelledForename() + Separator.SPACE.getCharacter() +
-                    getSurname());
-            case 3 -> (getMaleForename() + Separator.SPACE.getCharacter() +
+            case 2 -> getMaleDoubleBarrelledForename() + Separator.SPACE.getCharacter() +
+                    getSurname();
+            case 3 -> getMaleForename() + Separator.SPACE.getCharacter() +
                     getMaleMiddleName() + Separator.SPACE.getCharacter() +
-                    getSurname());
-            case 4 -> (getMaleForename() + Separator.SPACE.getCharacter() +
+                    getSurname();
+            case 4 -> getMaleForename() + Separator.SPACE.getCharacter() +
                     getMiddleNameInitial() + Separator.SPACE.getCharacter() +
-                    getSurname());
-            case 5 -> (getMaleForename() + Separator.SPACE.getCharacter() +
+                    getSurname();
+            case 5 -> getMaleForename() + Separator.SPACE.getCharacter() +
                     getMaleMiddleName() + Separator.SPACE.getCharacter() +
-                    getDualSurname());
-            case 6 -> (getMaleForename() + Separator.SPACE.getCharacter() +
+                    getDualSurname();
+            case 6 -> getMaleForename() + Separator.SPACE.getCharacter() +
                     getMiddleNameInitial() + Separator.SPACE.getCharacter() +
-                    getDualSurname());
+                    getDualSurname();
             case 7 -> getMaleName();
             default -> getFemaleSimpleName();
         };

@@ -167,9 +167,9 @@ public class NameGetter extends com.memoeslink.generator.base.NameGetter impleme
     public String getFemaleFullName() {
         return switch (r.getInt(2)) {
             case 1 -> getFemaleSimpleName();
-            default -> (getFemaleForename() + Separator.SPACE.getCharacter() +
+            default -> getFemaleForename() + Separator.SPACE.getCharacter() +
                     getFemalePatronymic() + Separator.SPACE.getCharacter() +
-                    getSurname());
+                    getSurname();
         };
     }
 
@@ -177,9 +177,9 @@ public class NameGetter extends com.memoeslink.generator.base.NameGetter impleme
     public String getMaleFullName() {
         return switch (r.getInt(2)) {
             case 1 -> getMaleSimpleName();
-            default -> (getMaleForename() + Separator.SPACE.getCharacter() +
+            default -> getMaleForename() + Separator.SPACE.getCharacter() +
                     getMalePatronymic() + Separator.SPACE.getCharacter() +
-                    getSurname());
+                    getSurname();
         };
     }
 }

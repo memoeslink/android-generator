@@ -165,12 +165,30 @@ public class NameGetter extends com.memoeslink.generator.base.NameGetter {
 
     @Override
     public String getFemaleFullName() {
-        return getAnyGetter(new Exception().getStackTrace()[0].getMethodName()).getFemaleFullName();
+        return switch (r.getInt(3)) {
+            case 1 ->
+                    Database.selectFemaleName(r.getIntInRange(1, Database.countFemaleNames())) + Separator.SPACE.getCharacter() +
+                            Database.selectFamilyName(r.getIntInRange(1, Database.countFamilyNames()));
+            case 2 ->
+                    Database.selectFemaleName(r.getIntInRange(1, Database.countFemaleNames())) + Separator.SPACE.getCharacter() +
+                            Database.selectSurname(r.getIntInRange(1, Database.countSurnames()));
+            default ->
+                    getAnyGetter(new Exception().getStackTrace()[0].getMethodName()).getFemaleFullName();
+        };
     }
 
     @Override
     public String getMaleFullName() {
-        return getAnyGetter(new Exception().getStackTrace()[0].getMethodName()).getMaleFullName();
+        return switch (r.getInt(3)) {
+            case 1 ->
+                    Database.selectMaleName(r.getIntInRange(1, Database.countMaleNames())) + Separator.SPACE.getCharacter() +
+                            Database.selectFamilyName(r.getIntInRange(1, Database.countFamilyNames()));
+            case 2 ->
+                    Database.selectMaleName(r.getIntInRange(1, Database.countMaleNames())) + Separator.SPACE.getCharacter() +
+                            Database.selectSurname(r.getIntInRange(1, Database.countSurnames()));
+            default ->
+                    getAnyGetter(new Exception().getStackTrace()[0].getMethodName()).getMaleFullName();
+        };
     }
 
     @Override
